@@ -1,0 +1,32 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", "group:recommended", ":prHourlyLimit2", ":automergeMinor", ":automergeRequireAllStatusChecks"],
+  "labels": ["dependencies"],
+  "minimumReleaseAge": "3 days",
+  "schedule": ["before 4am on Monday"],
+  "packageRules": [
+    {
+      "description": "Group and schedule npm dependencies for bi-weekly updates",
+      "matchManagers": ["npm"],
+      "groupName": "npm dependencies",
+      "schedule": ["before 4am every 2 weeks on Monday"]
+    },
+    {
+      "description": "Group and schedule Docker/Compose dependencies for weekly updates",
+      "matchManagers": ["dockerfile", "docker-compose"],
+      "groupName": "docker dependencies",
+      "schedule": ["before 4am on Monday"]
+    }
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "matchStrings": [
+        "^\\s*datasource=(?<datasource>\\S+)\\s+depName=(?<depName>\\S+)(\\s+registryUrls=(?<registryUrls>\\S+))?(\\s+versioning=(?<versioning>\\S+))?(\\s+extractVersion=(?<extractVersion>\\S+))?\\s+.*?_version:\\s+(?<currentValue>.+)$"
+      ],
+      "registryUrlTemplate": "{{#if registryUrls}}{{registryUrls}}{{else}}https://github.com{{/if}}",
+      "datasourceTemplate": "{{#if datasource}}{{datasource}}{{else}}github-releases{{/if}}",
+      "depNameTemplate": "{{#if depName}}{{depName}}{{else}}{{packageName}}{{/if}}"
+    }
+  ]
+}
