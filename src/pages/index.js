@@ -53,13 +53,13 @@ export default function Home() {
       <main>
         <AboutSection />
         <ProblemSection />
-        <CloudProviders />
         <VideoSection />
         <WhatYouGetSection />
         <WhatIsAutobaseSection />
         <ExplainSection />
         <HowItWorksSection />
         <FeaturedSection />
+        <CloudProviders />
         <Sponsors />
         <PricingSection />
         <ComparisonSection />
