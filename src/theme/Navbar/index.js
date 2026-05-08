@@ -1,6 +1,8 @@
 import React from 'react';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import { useLocation } from '@docusaurus/router';
+import { useThemeConfig } from '@docusaurus/theme-common';
+import { useHideableNavbar } from '@docusaurus/theme-common/internal';
 import Link from '@docusaurus/Link';
 import OriginalNavbar from '@theme-original/Navbar';
 import clsx from 'clsx';
@@ -16,15 +18,29 @@ function normalizePath(pathname) {
 
 export default function Navbar(props) {
   const { pathname } = useLocation();
+  const {
+    navbar: { hideOnScroll },
+  } = useThemeConfig();
   const homePath = useBaseUrl('/');
   const isHomepage = normalizePath(pathname) === normalizePath(homePath);
+  const { navbarRef, isNavbarVisible } = useHideableNavbar(
+    isHomepage && hideOnScroll
+  );
 
   if (!isHomepage) {
     return <OriginalNavbar {...props} />;
   }
 
   return (
-    <nav className={clsx('navbar', 'navbar--fixed-top', styles.navbar)}>
+    <nav
+      ref={navbarRef}
+      className={clsx(
+        'navbar',
+        'navbar--fixed-top',
+        styles.navbar,
+        hideOnScroll && styles.navbarHideable,
+        hideOnScroll && !isNavbarVisible && styles.navbarHidden
+      )}>
       <div className={styles.inner}>
 
         {/* Logo */}
