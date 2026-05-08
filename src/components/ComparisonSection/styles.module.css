@@ -28,6 +28,7 @@
 .cardDark {
   background: linear-gradient(203.91deg, #000000 19.64%, #743001 135.33%);
   border: 2px solid var(--color-primary);
+  color: var(--color-white);
 }
 
 /* ─── Card title ─────────────────────────────────────────────────── */
@@ -64,6 +65,11 @@
 }
 
 .featureItemDark { color: var(--color-white); }
+
+.cardDark .featureItem,
+.cardDark .featureItem span {
+  color: var(--color-white);
+}
 
 .checkIcon { flex-shrink: 0; }
 
