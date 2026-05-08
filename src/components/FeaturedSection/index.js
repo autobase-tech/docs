@@ -6,7 +6,7 @@ const stats = [
   { icon: '/img/featured/icon-github-sm.svg', number: '2500+',  label: 'Github clones ( 14 days )' },
   { icon: '/img/featured/icon-docker.svg',    number: '100k+',  label: 'Docker downloads' },
   { icon: '/img/featured/icon-ansible.svg',   number: '9 800+', label: 'Ansible installs' },
-  { icon: '/img/featured/icon-star.svg',      number: '4k+',    label: 'Github stars' },
+  { icon: '/img/featured/icon-star.svg',      number: '4k+',    label: 'GitHub stars' },
 ];
 
 const cards = [
@@ -39,7 +39,7 @@ export default function FeaturedSection() {
         </p>
         <p className={styles.subtitle}>
           Real developers. Real interest. Straight from{' '}
-          <span className={styles.orange}>Github</span>
+          <span className={styles.orange}>GitHub</span>
         </p>
       </div>
 

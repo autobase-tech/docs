@@ -14,7 +14,7 @@ const navGroups = [
   },
   {
     title: 'Source code',
-    links: [{ label: 'Github', href: 'https://github.com/autobase-tech/autobase', external: true }],
+    links: [{ label: 'GitHub', href: 'https://github.com/autobase-tech/autobase', external: true }],
   },
 ];
 

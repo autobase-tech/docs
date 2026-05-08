@@ -20,7 +20,7 @@ const plans = [
     billing: 'per month if billed monthly.',
     features: [
       'Basic monitoring',
-      'Shared infrastracture',
+      'Shared infrastructure',
       'Up to 2 clusters',
       '1 DBA hour included',
     ],
