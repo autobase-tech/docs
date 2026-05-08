@@ -78,7 +78,7 @@ export default function Navbar(props) {
             <img src="/img/navbar/github.svg" alt="" width={32} height={32} />
           </a>
           <a
-            href="https://t.me/autobase_tech"
+            href="https://t.me/pavel_kovcheg"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.iconLink}

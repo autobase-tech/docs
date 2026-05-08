@@ -96,7 +96,7 @@ export default function HeroSection() {
                   <Link className={styles.ctaPrimary} to="/docs">
                     Get started
                   </Link>
-                  <Link className={styles.ctaSecondary} to="https://t.me/autobase_tech">
+                  <Link className={styles.ctaSecondary} to="https://t.me/pavel_kovcheg">
                     Chat on Telegram
                     <img src="/img/hero/telegram.svg" alt="" width={24} height={24} decoding="async" />
                   </Link>
