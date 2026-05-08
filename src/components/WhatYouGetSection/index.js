@@ -37,8 +37,8 @@ export default function WhatYouGetSection() {
 
               {/* type.body-lg.500 */}
               <p className={styles.subtext}>
-                You're not getting a <span className={styles.orange}>tool</span>.<br />
-                You're getting certainty.
+                You're not getting a tool.<br />
+                You're getting <span className={styles.orange}>certainty</span>.
               </p>
 
               {/* sequence-list */}
