@@ -14,7 +14,7 @@ import PricingSection from '@site/src/components/PricingSection';
 import ComparisonSection from '@site/src/components/ComparisonSection';
 import Sponsors from '@site/src/components/Sponsors';
 
-export default function Home() {
+function HomepageContent() {
   // GSAP scroll reveal — blur + fade from below, fires once per section
   useEffect(() => {
     let ctx;
@@ -45,10 +45,9 @@ export default function Home() {
     );
     return () => ctx?.revert();
   }, []);
+
   return (
-    <Layout
-      title="autobase"
-      description="Automated database platform for PostgreSQL">
+    <>
       <HeroSection />
       <main>
         <AboutSection />
@@ -64,6 +63,17 @@ export default function Home() {
         <PricingSection />
         <ComparisonSection />
       </main>
+    </>
+  );
+}
+
+export default function Home() {
+  return (
+    <Layout
+      wrapperClassName="landingPage"
+      title="autobase"
+      description="Automated database platform for PostgreSQL">
+      <HomepageContent />
     </Layout>
   );
 }

@@ -73,6 +73,27 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
+.landingPage {
+  --ifm-background-color: #ffffff !important;
+  --ifm-background-surface-color: #ffffff !important;
+  --ifm-font-color-base: #000000;
+  --ifm-heading-color: #000000;
+  --ifm-color-primary: #0366d6;
+  --ifm-color-primary-dark: #024aaa;
+  --ifm-color-primary-darker: #023e8a;
+  --ifm-color-primary-darkest: #002e6e;
+  --ifm-color-primary-light: #2b8cd8;
+  --ifm-color-primary-lighter: #69b0e3;
+  --ifm-color-primary-lightest: #a8d1ef;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.landingPage main {
+  background-color: #ffffff;
+}
+
 /* Logo text styles */
 .navbar__title {
   font-weight: 400;
