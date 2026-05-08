@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import 'swiper/css';
 import styles from './styles.module.css';
 
 const sponsors = [
