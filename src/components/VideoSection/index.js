@@ -55,7 +55,7 @@ export default function VideoSection() {
         <div className={styles.videoWrap}>
           <div className={styles.videoCard}>
             <iframe
-              src="https://www.youtube.com/embed/Aoywhr-XA00?autoplay=1&mute=1&rel=0&playsinline=1&modestbranding=1"
+              src="https://www.youtube.com/embed/Q4Jiv1UtgOk?autoplay=1&mute=1&rel=0&playsinline=1&modestbranding=1"
               title="Autobase — PostgreSQL. Without Chaos."
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
