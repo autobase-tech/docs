@@ -10,7 +10,7 @@ const navGroups = [
   },
   {
     title: 'Support',
-    links: [{ label: 'Support Packages', href: '/support' }],
+    links: [{ label: 'Support Packages', href: '/docs/support' }],
   },
   {
     title: 'Source code',
