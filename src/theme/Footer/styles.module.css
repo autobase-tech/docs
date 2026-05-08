@@ -1,4 +1,8 @@
 /* ─── Footer wrapper ─────────────────────────────────────────────── */
+.footerSurface {
+  background-color: #ffffff;
+}
+
 .footer {
   display: flex;
   flex-direction: column;
