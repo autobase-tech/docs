@@ -1,0 +1,161 @@
+/* ─── Section shell — 100vh, flex column so CTA can sit at bottom ── */
+.section {
+  background-color: var(--color-white);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--section-pt);
+}
+
+/* ─── Inner wrapper — fills section height, manages the two rows ──── */
+.inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 110px;
+}
+
+/* ─── Row 1: content — expands to fill remaining vertical space ───── */
+.contentRow {
+  flex: 1;
+}
+
+/* ─── Left column image ───────────────────────────────────────────── */
+.mainImage {
+  width: 100%;
+  max-width: 726px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* ─── Right column content ────────────────────────────────────────── */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  align-items: flex-start;
+  text-align: left;
+  padding-left: 80px;
+}
+
+/* ─── Heading — type.h3.900 ──────────────────────────────────────── */
+.heading {
+  font-family: var(--font-base);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-black);
+  color: var(--color-black);
+  margin: 0;
+}
+
+.orange { color: var(--color-primary); }
+
+/* ─── Subtext — type.body-lg.500 ────────────────────────────────── */
+.subtext {
+  font-family: var(--font-base);
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-medium);
+  color: var(--color-black);
+  margin: 0;
+}
+
+/* ─── List ───────────────────────────────────────────────────────── */
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+/* ─── List item — flex row, icon + text, right-to-left order ─────── */
+.listItem {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.listIcon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  order: -1;
+}
+
+/* ─── List text — type.btn / 18px medium ────────────────────────── */
+.listText {
+  font-family: var(--font-base);
+  font-size: var(--fs-btn);
+  font-weight: var(--fw-medium);
+  color: var(--color-black);
+}
+
+/* ─── Row 2: CTA pinned at section bottom ────────────────────────── */
+.ctaRow {
+  padding: 60px 0;
+  text-align: center;
+}
+
+/* ─── CTA heading — type.h2.900 ─────────────────────────────────── */
+.ctaHeading {
+  font-family: var(--font-base);
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-black);
+  color: var(--color-black);
+  text-align: center;
+  margin: 0 0 24px;
+}
+
+/* ─── CTA button — type.btn.700 ─────────────────────────────────── */
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  height: 54px;
+  min-width: 242px;
+  padding: 0 24px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-family: var(--font-base);
+  font-size: var(--fs-btn);
+  font-weight: var(--fw-bold);
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.ctaButton:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+  color: var(--color-white);
+  text-decoration: none;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 1440px) {
+  .inner { padding: 0 80px; }
+}
+
+@media (max-width: 900px) {
+  .inner { padding: 0 48px; }
+  .content { padding-left: 48px; }
+  .ctaHeading { font-size: var(--fs-h3); }
+}
+
+@media (max-width: 768px) {
+  .section { min-height: unset; }
+  .inner { padding: 0 24px; }
+  .content { padding-left: 0; }
+  .contentRow { flex: unset; padding: 48px 0 24px; }
+  .ctaRow { padding: 32px 0 48px; }
+  .ctaHeading { font-size: var(--fs-h3); }
+  .ctaButton { width: 100%; }
+}

@@ -1,0 +1,90 @@
+/* ─── Section shell ───────────────────────────────────────────────── */
+.sectionAbout {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  padding: var(--section-pt) 0 calc(var(--section-pb) / 2);
+}
+
+/* ─── Title — type.h2.900 ─────────────────────────────────────────── */
+.title {
+  font-family: var(--font-base);
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-black);
+  line-height: 1.2;
+  text-align: center;
+  margin: 0;
+}
+
+.titleOrange {
+  color: var(--color-primary);
+}
+
+.titleBlack {
+  color: var(--color-black);
+}
+
+/* ─── Feature item ────────────────────────────────────────────────── */
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 29px;
+  align-items: center;
+}
+
+/* ─── Circular thumbnail ──────────────────────────────────────────── */
+.thumb {
+  width: 168px;
+  height: 168px;
+  border-radius: 178px;
+  border: 2px solid var(--color-primary-alt);
+  padding: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    inset 1.712px 1.712px 1.712px 0px var(--color-white),
+    inset -1.71px -1.71px 9.169px 0px rgba(179, 179, 179, 0.5);
+  flex-shrink: 0;
+}
+
+.thumb img {
+  width: 144px;
+  height: 144px;
+  object-fit: cover;
+  display: block;
+}
+
+/* ─── Label text — type.body.500 ─────────────────────────────────── */
+.label {
+  font-family: var(--font-base);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
+  line-height: 1.4;
+  color: var(--color-black);
+  text-align: center;
+  margin: 0;
+}
+
+.orange {
+  color: var(--color-primary);
+}
+
+/* ─── Arrow between items ─────────────────────────────────────────── */
+.arrowWrap {
+  padding: 0 8px;
+  padding-top: 68px;
+}
+
+.arrow {
+  width: 46px;
+  height: auto;
+  display: block;
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .title { font-size: 32px; }
+  .item { flex-direction: row; align-items: center; gap: 20px; margin-bottom: 32px; }
+  .label { font-size: var(--fs-btn); }
+}

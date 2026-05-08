@@ -1,0 +1,220 @@
+/* ─── Section card ───────────────────────────────────────────────── */
+.section {
+  margin: var(--section-pt) 110px var(--section-pb);
+  border-radius: 48px;
+  background: linear-gradient(245.7deg, rgba(203, 195, 192, 0.2) 6.79%, rgba(255, 87, 34, 0.2) 117.19%);
+  padding: 40px 80px 40px;
+}
+
+.orange { color: var(--color-primary); }
+
+/* ─── Title block ────────────────────────────────────────────────── */
+.titleBlock {
+  text-align: center;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* 36px, fw-black */
+.titleLine {
+  font-family: var(--font-base);
+  font-size: 36px;
+  font-weight: var(--fw-black);
+  color: var(--color-black);
+  margin: 0;
+}
+
+/* type.body-lg.500 */
+.subtitle {
+  font-family: var(--font-base);
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-medium);
+  color: var(--color-black);
+  margin: 0;
+}
+
+/* ─── Stats row ──────────────────────────────────────────────────── */
+.statsRow {
+  margin-bottom: 8px;
+}
+
+.statItem {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 24px;
+}
+
+.statText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* scales with viewport — ~40px at 1440px reference */
+.statNumber {
+  font-family: var(--font-base);
+  font-size: 2.8vw;
+  font-weight: var(--fw-black);
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+/* 18px, regular */
+.statLabel {
+  font-family: var(--font-base);
+  font-size: 18px;
+  font-weight: var(--fw-regular);
+  color: var(--color-black);
+}
+
+/* ─── Placeholder graphic ────────────────────────────────────────── */
+.placeholder {
+  aspect-ratio: 722 / 448;
+  max-width: 722px;
+  width: 100%;
+  margin: 40px 20%;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholderLabel {
+  font-family: var(--font-base);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-regular);
+  color: rgba(0, 0, 0, 0.3);
+}
+
+/* ─── Featured in ────────────────────────────────────────────────── */
+.featuredBlock {
+  text-align: center;
+  max-width: 537px;
+  margin: 0 auto 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.featuredTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+/* 32px, fw-semibold */
+.featuredIn {
+  font-family: var(--font-base);
+  font-size: 32px;
+  font-weight: var(--fw-semibold);
+  color: var(--color-black);
+}
+
+.featuredLogo {
+  width: 60px;
+  height: 49px;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+}
+
+.featuredArticle {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* 16px, regular */
+.articleTitle {
+  font-family: var(--font-base);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-regular);
+  color: rgba(0, 0, 0, 0.7);
+  margin: 0;
+}
+
+.articleLink {
+  font-family: var(--font-base);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-regular);
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.articleLink:hover {
+  color: var(--color-primary);
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* ─── Bottom trust cards ─────────────────────────────────────────── */
+.cardsRow {
+  gap: 0;
+  row-gap: 16px;
+}
+
+.card {
+  background: rgba(250, 250, 250, 0.45);
+  border-radius: 24px;
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  overflow: hidden;
+  height: 100%;
+}
+
+.cardIcon {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+}
+
+.cardText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+/* 16px, medium */
+.cardTitle {
+  font-family: var(--font-base);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--color-black);
+  margin: 0;
+}
+
+/* 16px, regular */
+.cardBody {
+  font-family: var(--font-base);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-regular);
+  color: rgba(0, 0, 0, 0.6);
+  margin: 0;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 1440px) {
+  .section { margin: var(--section-pt) 80px var(--section-pb); padding: 40px 60px; }
+}
+
+@media (max-width: 900px) {
+  .section { margin: var(--section-pt) 48px var(--section-pb); padding: 40px 48px; }
+  .titleLine { font-size: var(--fs-h3); }
+}
+
+@media (max-width: 768px) {
+  .section { margin: var(--section-pt) 24px var(--section-pb); padding: 32px 24px; }
+  .cardsRow { flex-direction: column; }
+  .card { width: 100%; }
+  .statNumber { font-size: 5.5vw; }
+}

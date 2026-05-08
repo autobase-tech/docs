@@ -1,11 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Zalando+Sans+SemiExpanded:ital,wght@0,200..900;1,200..900&display=swap');
+@import 'bootstrap/dist/css/bootstrap-grid.min.css';
+
 /**
  * Any CSS included here will be global. The classic template
  * bundles Infima by default. Infima is a CSS framework designed to
  * work well for content-centric websites.
  */
 
-/* You can override the default Infima variables here. */
 :root {
+  /* ── Infima theme ───────────────────────────────────────────────── */
   --ifm-color-primary: #0366d6;
   --ifm-color-primary-dark: #024aaa;
   --ifm-color-primary-darker: #023e8a;
@@ -13,13 +16,64 @@
   --ifm-color-primary-light: #2b8cd8;
   --ifm-color-primary-lighter: #69b0e3;
   --ifm-color-primary-lightest: #a8d1ef;
+  --ifm-background-color: #ffffff;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-font-family-base: 'Zalando Sans SemiExpanded', sans-serif;
+
+  /* ── Font family ────────────────────────────────────────────────── */
+  --font-base: 'Zalando Sans SemiExpanded', sans-serif;
+
+  /* ── Font weights ───────────────────────────────────────────────── */
+  /* layer: type.*.200  */ --fw-light:    200;
+  /* layer: type.*.400  */ --fw-regular:  400;
+  /* layer: type.*.500  */ --fw-medium:   500;
+  /* layer: type.*.600  */ --fw-semibold: 600;
+  /* layer: type.*.700  */ --fw-bold:     700;
+  /* layer: type.*.900  */ --fw-black:    900;
+
+  /* ── Font sizes ─────────────────────────────────────────────────── */
+  /* layer: type.hero.900   */ --fs-hero:    72px;
+  /* layer: type.h2.900     */ --fs-h2:      48px;
+  /* layer: type.h3.900     */ --fs-h3:      32px;
+  /* layer: type.navbar.400 */ --fs-navbar:  27.12px;
+  /* layer: type.body-lg.*  */ --fs-body-lg: 24px;
+  /* layer: type.body.*     */ --fs-body:    20px;
+  /* layer: type.btn.700    */ --fs-btn:     18px;
+  /* layer: type.caption.*  */ --fs-sm:      16px;
+
+  /* ── Brand colours ──────────────────────────────────────────────── */
+  /* Figma var: COLOR-SECONDARY */ --color-primary:      #ff5722;
+                                   --color-primary-alt:  #fc6902;
+                                   --color-gradient-end: #be987d;
+                                   --color-white:        #ffffff;
+                                   --color-black:        #000000;
+                                   --color-muted:        #c7c7c7;
+
+  /* ── Section backgrounds ─────────────────────────────────────────── */
+  --bg-gradient-extra1: linear-gradient(194.94deg, #000000 19.64%, #743001 135.33%);
+
+  /* ── Section vertical rhythm ─────────────────────────────────────── */
+  --section-pt: 120px;
+  --section-pb: 120px;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+@media (max-width: 900px) {
+  :root {
+    --section-pt: 80px;
+    --section-pb: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --section-pt: 60px;
+    --section-pb: 60px;
+  }
+}
+
 [data-theme='dark'] {
-  --ifm-background-color: #121212 !important;
+  --ifm-background-color: #ffffff !important;
   --ifm-color-primary: #58a6ff;
   --ifm-color-primary-dark: #3f8cfd;
   --ifm-color-primary-darker: #2a74d8;
@@ -30,48 +84,281 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-/* Logo text styles */
-.navbar__title {
-  font-weight: 400;
-  font-size: 1.4rem;
-  line-height: 1.2;
-  white-space: nowrap;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+/* ─── Global typography ───────────────────────────────────────────── */
+body {
+  font-family: var(--font-base);
+  color: var(--color-white);
+  background-color: var(--color-white) !important;
 }
 
-.navbar {
-  padding-left: 4rem;
-  padding-right: 4rem;
+h1, h2, h3 {
+  font-family: var(--font-base);
+  font-weight: var(--fw-black);
+}
+
+h4, h5, h6 {
+  font-family: var(--font-base);
+}
+
+p {
+  font-family: var(--font-base);
+  font-weight: var(--fw-light);
+}
+
+/* ─── Navbar — Apple Liquid Glass (2026) ─────────────────────────── */
+.navbar.navbar--transparent {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(48px) saturate(200%) brightness(1.08);
+  -webkit-backdrop-filter: blur(48px) saturate(200%) brightness(1.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),   /* specular top highlight */
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06),  /* subtle bottom rim */
+    0 8px 32px rgba(0, 0, 0, 0.06);
+  transition:
+    background 0.4s ease,
+    box-shadow 0.4s ease,
+    border-color 0.4s ease,
+    backdrop-filter 0.4s ease;
+}
+
+/* Liquid-glass inner gradient — simulates curved glass refraction */
+.navbar.navbar--transparent::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.10) 0%,
+    rgba(255, 255, 255, 0.03) 55%,
+    rgba(255, 255, 255, 0.00) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Scrolled — slightly more opaque, tighter border */
+.navbar.navbar--transparent.navbar--scrolled {
+  background: rgba(255, 255, 255, 0.12);
+  border-bottom-color: rgba(255, 255, 255, 0.20);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+    0 8px 40px rgba(0, 0, 0, 0.10);
 }
 
 @media (max-width: 768px) {
-  .navbar {
-    padding-left: 1rem;
-    padding-right: 1rem;
+  .navbar.navbar--transparent,
+  .navbar.navbar--transparent.navbar--scrolled {
+    backdrop-filter: blur(32px) saturate(180%) brightness(1.06);
+    -webkit-backdrop-filter: blur(32px) saturate(180%) brightness(1.06);
   }
 }
 
-.navbar.navbar--transparent {
-  background: rgba(15, 15, 30, 0.15);
-  backdrop-filter: blur(18px) saturate(160%);
-  -webkit-backdrop-filter: blur(18px) saturate(160%);
-  box-shadow: none;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
+/* ─── Navbar hide-on-scroll transition ───────────────────────────── */
+.navbar {
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              background 0.4s ease,
+              box-shadow 0.4s ease,
+              border-color 0.4s ease !important;
 }
 
-.navbar.navbar--transparent.navbar--scrolled {
-  background: rgba(15, 15, 30, 0.55);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+/* ─── Mobile navbar sidebar — glass effect ───────────────────────── */
+.navbar-sidebar {
+  background: rgba(255, 255, 255, 0.97) !important;
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.08);
 }
 
-:root[data-theme='light'] .navbar.navbar--transparent {
-  background: rgba(255, 255, 255, 0.25);
+.navbar-sidebar__brand {
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-:root[data-theme='light'] .navbar.navbar--transparent.navbar--scrolled {
-  background: rgba(255, 255, 255, 0.65);
+.navbar-sidebar__items .menu__link {
+  font-family: var(--font-base);
+  font-size: var(--fs-btn);
+  font-weight: var(--fw-medium);
+  color: var(--color-black);
+  border-radius: 8px;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
-.navbar.navbar--transparent :is(.navbar__item, .navbar__link, .navbar__brand) {
-  transition: color 0.2s ease;
+.navbar-sidebar__items .menu__link:hover {
+  background: rgba(255, 87, 34, 0.08);
+  color: var(--color-primary);
+}
+
+.navbar-sidebar__backdrop {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* ─── Navbar brand/logo sizing ───────────────────────────────────── */
+.navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navbar__logo {
+  height: 28px;
+  width: auto;
+}
+
+.navbar__title {
+  font-family: var(--font-base);
+  font-weight: var(--fw-bold);
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  .navbar__logo { height: 24px; }
+  .navbar__title { font-size: 16px; }
+}
+
+/* ─── Docs pages — dark theme (scoped, no effect on other pages) ──── */
+html.docs-doc-page {
+  --ifm-color-primary:         var(--color-primary);
+  --ifm-color-primary-dark:    var(--color-primary-alt);
+  --ifm-color-primary-darker:  #e04d1a;
+  --ifm-color-primary-darkest: #c23c0e;
+  --ifm-color-primary-light:   #ff7043;
+  --ifm-color-primary-lighter: #ff8a65;
+  --ifm-color-primary-lightest: #ffab91;
+  --ifm-link-color:            var(--color-primary);
+  --ifm-link-hover-color:      var(--color-primary-alt);
+  --ifm-tabs-color-active:     var(--color-primary);
+  --ifm-toc-link-color:        #606060;
+}
+
+html.docs-doc-page body {
+  background-color: #0f0f0f !important;
+  color: #d4d4d4;
+}
+
+/* Navbar */
+html.docs-doc-page body .navbar {
+  background-color: #141414;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+html.docs-doc-page body .navbar__link,
+html.docs-doc-page body .navbar__brand,
+html.docs-doc-page body .navbar a {
+  color: #e0e0e0;
+}
+
+html.docs-doc-page body .navbar__link:hover,
+html.docs-doc-page body .navbar a:hover {
+  color: #ffffff;
+}
+
+/* Sidebar */
+html.docs-doc-page body .theme-doc-sidebar-container {
+  background-color: #141414;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+html.docs-doc-page body .menu {
+  background-color: #141414;
+}
+
+html.docs-doc-page body .menu__link {
+  color: #a0a0a0;
+}
+
+html.docs-doc-page body .menu__link:hover,
+html.docs-doc-page body .menu__link--active {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+html.docs-doc-page body .menu__list-item-collapsible:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+html.docs-doc-page body .menu__caret::before {
+  border-color: #606060;
+}
+
+/* Main content */
+html.docs-doc-page body .theme-doc-markdown,
+html.docs-doc-page body article,
+html.docs-doc-page body .main-wrapper {
+  background-color: #0f0f0f;
+  color: #d4d4d4;
+}
+
+html.docs-doc-page body h1,
+html.docs-doc-page body h2,
+html.docs-doc-page body h3,
+html.docs-doc-page body h4 {
+  color: #ffffff;
+}
+
+html.docs-doc-page body a {
+  color: var(--color-primary);
+}
+
+html.docs-doc-page body a:hover {
+  color: var(--color-primary-alt);
+}
+
+/* Breadcrumbs */
+html.docs-doc-page body .breadcrumbs__link {
+  color: #707070;
+}
+
+html.docs-doc-page body .breadcrumbs__link:hover {
+  color: #e0e0e0;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+html.docs-doc-page body .breadcrumbs__item--active .breadcrumbs__link {
+  color: #d4d4d4;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* Table of contents (right rail) */
+html.docs-doc-page body .table-of-contents__link {
+  color: #606060;
+}
+
+html.docs-doc-page body .table-of-contents__link:hover,
+html.docs-doc-page body .table-of-contents__link--active {
+  color: #e0e0e0;
+}
+
+/* Pagination */
+html.docs-doc-page body .pagination-nav__link {
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #a0a0a0;
+}
+
+html.docs-doc-page body .pagination-nav__link:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+html.docs-doc-page body .pagination-nav__sublabel {
+  color: #606060;
+}
+
+/* Code blocks */
+html.docs-doc-page body code {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #e0e0e0;
+}
+
+html.docs-doc-page body pre {
+  background-color: #1a1a1a !important;
+}
+
+/* Sidebar expand button */
+html.docs-doc-page body .expandButton {
+  background-color: #141414;
+  border-color: rgba(255, 255, 255, 0.06);
 }
