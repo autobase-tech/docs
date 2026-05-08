@@ -10,7 +10,7 @@ const plans = [
     description: 'Open-source version with limited platform functionality.',
     features: ['No guarantees.', 'No support.'],
     cta: 'Try Free',
-    href: '#',
+    href: 'https://github.com/autobase-tech/autobase',
   },
   {
     id: 'standard',
@@ -25,7 +25,7 @@ const plans = [
       '1 DBA hour included',
     ],
     cta: 'Start now',
-    href: '#',
+    href: '/docs',
   },
   {
     id: 'professional',
@@ -42,7 +42,7 @@ const plans = [
       'SLA / uptime guarantee',
     ],
     cta: 'Launch production',
-    href: '#',
+    href: '/docs',
   },
   {
     id: 'premium',
@@ -60,7 +60,7 @@ const plans = [
       'Performance optimization',
     ],
     cta: 'Scale with Autobase',
-    href: '#',
+    href: '/docs',
   },
 ];
 
@@ -154,7 +154,7 @@ export default function PricingSection() {
                 </ul>
 
                 <div className={styles.ctaWrap}>
-                  <a href={plan.href} className={styles.cta}>
+                  <a href={plan.href} className={styles.cta} target="_blank" rel="noreferrer">
                     {plan.cta}
                   </a>
                 </div>
