@@ -73,7 +73,7 @@ const cards = [
   {
     icon: '/img/featured/icon-production.svg',
     title: 'Used in production since 2019',
-    body: 'Built on real workloads – not assumptions',
+    body: 'Built on real workloads, real experience – not assumptions',
   },
   {
     icon: '/img/featured/icon-github-lg.svg',
