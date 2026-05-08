@@ -6,7 +6,7 @@ import styles from './styles.module.css';
 const navGroups = [
   {
     title: 'Docs',
-    links: [{ label: 'Introduction', href: '/docs/intro' }],
+    links: [{ label: 'Introduction', href: '/docs/' }],
   },
   {
     title: 'Support',
