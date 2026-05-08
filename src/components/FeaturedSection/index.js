@@ -3,9 +3,9 @@ import clsx from 'clsx';
 import styles from './styles.module.css';
 
 const stats = [
-  { icon: '/img/featured/icon-github-sm.svg', number: '2500+',  label: 'Github clones ( 14 days )' },
+  { icon: '/img/featured/icon-github-sm.svg', number: '2500+',  label: 'Github clones (last 14 days)' },
   { icon: '/img/featured/icon-docker.svg',    number: '100k+',  label: 'Docker downloads' },
-  { icon: '/img/featured/icon-ansible.svg',   number: '9 800+', label: 'Ansible installs' },
+  { icon: '/img/featured/icon-ansible.svg',   number: '10K+',   label: 'Ansible Galaxy downloads' },
   { icon: '/img/featured/icon-star.svg',      number: '4k+',    label: 'GitHub stars' },
 ];
 
