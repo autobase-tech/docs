@@ -88,6 +88,7 @@ const config = {
       },
       */
       navbar: {
+        hideOnScroll: true,
         title: 'autobase',
         logo: {
           alt: 'autobase',
@@ -110,57 +111,6 @@ const config = {
             value: `<a href="https://github.com/autobase-tech/autobase" target="_blank" style="display: flex; align-items: center;"><img src="https://img.shields.io/github/stars/autobase-tech/autobase?style=social" alt="GitHub stars" style="height: 22px;"></a>`,
           }
         ],
-      },
-      footer: {
-        style: 'light',
-        links: [
-          {
-            title: 'Docs',
-            items: [
-              {
-                label: 'Introduction',
-                to: '/docs',
-              },
-            ],
-          },
-          {
-            title: 'Support',
-            items: [
-              {
-                label: 'Support Packages',
-                to: 'docs/support',
-              },
-            ],
-          },
-          {
-            title: 'Source code',
-            items: [
-              {
-                label: 'GitHub',
-                href: 'https://github.com/autobase-tech/autobase',
-              },
-            ],
-          },
-          {
-            title: 'Social',
-            items: [
-              {
-                label: 'X (Twitter)',
-                href: 'https://twitter.com/autobase_tech',
-              },
-            ],
-          },
-          {
-            title: 'Contact',
-            items: [
-              {
-                label: 'info@autobase.tech',
-                to: 'mailto:info@autobase.tech',
-              },
-            ],
-          },
-        ],
-        copyright: `Copyright © 2019 - 2026 Autobase. All rights reserved.`,
       },
       docs: {
         sidebar: {

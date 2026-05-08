@@ -1,0 +1,105 @@
+/* ─── Section ────────────────────────────────────────────────────── */
+.section {
+  margin: var(--section-pt) 110px var(--section-pb);
+}
+
+/* ─── Cards row ──────────────────────────────────────────────────── */
+.cardsRow {
+  row-gap: 24px;
+  margin-bottom: 60px;
+  align-items: stretch;
+  --bs-gutter-x: 30px;
+}
+
+/* ─── Base card ──────────────────────────────────────────────────── */
+.cardLight,
+.cardDark {
+  border-radius: 24px;
+  overflow: hidden;
+  padding: 60px;
+  height: 100%;
+}
+
+.cardLight {
+  background: rgba(162, 153, 153, 0.09);
+  border: 1.083px solid rgba(255, 255, 255, 0.04);
+}
+
+.cardDark {
+  background: linear-gradient(203.91deg, #000000 19.64%, #743001 135.33%);
+  border: 2px solid var(--color-primary);
+}
+
+/* ─── Card title ─────────────────────────────────────────────────── */
+.cardTitle {
+  font-family: var(--font-base);
+  font-size: 36px;
+  font-weight: var(--fw-black);
+  margin: 0 0 40px;
+  line-height: 1.15;
+}
+
+.cardTitleLight { color: var(--color-black); }
+.cardTitleDark  { color: var(--color-white); }
+.orange         { color: var(--color-primary); }
+
+/* ─── Feature list ───────────────────────────────────────────────── */
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-family: var(--font-base);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--color-black);
+}
+
+.featureItemDark { color: var(--color-white); }
+
+.checkIcon { flex-shrink: 0; }
+
+/* ─── Result row (animates last) ─────────────────────────────────── */
+.resultRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 80px;
+  opacity: 0; /* GSAP takes over */
+}
+
+.resultHeading {
+  font-family: var(--font-base);
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-black);
+  color: var(--color-black);
+  margin: 0;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 1440px) {
+  .section { margin: var(--section-pt) 80px var(--section-pb); }
+}
+
+@media (max-width: 900px) {
+  .section       { margin: var(--section-pt) 48px var(--section-pb); }
+  .cardTitle     { font-size: var(--fs-h3); }
+  .resultHeading { font-size: var(--fs-h3); }
+}
+
+@media (max-width: 768px) {
+  .section       { margin: var(--section-pt) 24px var(--section-pb); }
+  .cardLight,
+  .cardDark      { padding: 40px 28px; }
+  .resultRow     { flex-direction: column; gap: 24px; }
+  .resultHeading { white-space: normal; }
+}

@@ -38,7 +38,7 @@ function CloudProvider({ name, image, link }) {
   return (
     <div className={styles.cloudProvider}>
       <a href={link}>
-        <img src={image} alt={name} className={styles.cloudImage} />
+        <img src={image} alt={name} className={styles.cloudImage} loading="lazy" decoding="async" />
       </a>
     </div>
   );
@@ -46,9 +46,10 @@ function CloudProvider({ name, image, link }) {
 
 export default function CloudProviderSection() {
   return (
-    <section>
+    <section className={styles.section}>
       <h2 className={styles.heading}>
-        Deploy <span className={styles.managedPostgres}>your own managed Postgres</span> on bare metal and in the cloud
+        Deploy your own managed Postgres<br />
+        <span className={styles.orange}>on bare metal and in the cloud</span>
       </h2>
       <div className={styles.cloudProvidersList}>
         {CloudProviders.map((provider, idx) => (

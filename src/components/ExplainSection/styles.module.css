@@ -1,0 +1,123 @@
+/* ─── Section card ───────────────────────────────────────────────── */
+.section {
+  position: relative;
+  z-index: 0;
+  /* 15% wider than WhatIsAutobase (110px margins) → max(4px, 126.5px - 7.5vw) */
+  margin: -5rem max(4px, calc(126.5px - 7.5vw)) 0;
+  border-radius: 48px;
+  background: rgba(162, 153, 153, 0.09);
+  overflow: hidden;
+}
+
+/* ─── Decorative orange inner border ────────────────────────────── */
+.innerBorder {
+  position: absolute;
+  inset: 20px 20px 22px 20px;
+  border: 1px solid var(--color-primary);
+  border-radius: 44px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Inner content ──────────────────────────────────────────────── */
+.inner {
+  position: relative;
+  z-index: 1;
+  padding: 140px 100px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* ─── Title block — centered ─────────────────────────────────────── */
+.titleBlock {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* type.h2.900 */
+.heading {
+  font-family: var(--font-base);
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-black);
+  color: var(--color-black);
+  margin: 0;
+  line-height: 1.1;
+}
+
+/* type.body-lg.500 */
+.subtext {
+  font-family: var(--font-base);
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-medium);
+  color: var(--color-black);
+  margin: 0;
+}
+
+.orange { color: var(--color-primary); }
+
+/* ─── Icon item ──────────────────────────────────────────────────── */
+.iconItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 0;
+}
+
+/* 96×96 clip container */
+.iconClip {
+  flex-shrink: 0;
+  width: 96px;
+  height: 96px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ─── Icon text ──────────────────────────────────────────────────── */
+.iconText {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* type.body.500 */
+.iconLine {
+  font-family: var(--font-base);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
+  color: var(--color-black);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────── */
+/*
+ * 15% wider than WhatIsAutobaseSection at each breakpoint.
+ * Formula per breakpoint: max(4px, (WhatIsAutobase_margin - 0.075 * WhatIsAutobase_width))
+ * where WhatIsAutobase_width = 100vw - 2*WhatIsAutobase_margin
+ *   → simplified: max(4px, calc(1.15*margin - 0.075*100vw))  ... see below
+ *
+ * Default  (WhatIsAutobase margin 110px): max(4px, calc(126.5px - 7.5vw))
+ * ≤1440px  (WhatIsAutobase margin  80px): max(4px, calc(92px   - 7.5vw))
+ * ≤900px   (WhatIsAutobase margin  48px): max(4px, calc(55px   - 7.5vw))
+ * ≤768px   (WhatIsAutobase margin  24px): 4px
+ */
+@media (max-width: 1440px) {
+  .section { margin: -5rem max(4px, calc(92px - 7.5vw)) 0; }
+  .inner { padding: 140px 80px 80px; }
+}
+
+@media (max-width: 900px) {
+  .section { margin: -5rem max(4px, calc(55px - 7.5vw)) 0; }
+  .inner { padding: 120px 48px 60px; }
+  .heading { font-size: var(--fs-h3); }
+}
+
+@media (max-width: 768px) {
+  .section { margin: -5rem 4px 0; }
+  .inner { padding: 100px 24px 48px; }
+  .heading { font-size: var(--fs-h3); }
+  .iconItem { gap: 16px; }
+}

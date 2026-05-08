@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Zalando+Sans+SemiExpanded:ital,wght@0,200..900;1,200..900&display=swap');
+@import 'bootstrap/dist/css/bootstrap-grid.min.css';
+
 /**
  * Any CSS included here will be global. The classic template
  * bundles Infima by default. Infima is a CSS framework designed to
  * work well for content-centric websites.
  */
 
-/* You can override the default Infima variables here. */
 :root {
   --ifm-color-primary: #0366d6;
   --ifm-color-primary-dark: #024aaa;
@@ -15,9 +17,50 @@
   --ifm-color-primary-lightest: #a8d1ef;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  --font-base: 'Zalando Sans SemiExpanded', sans-serif;
+  --fw-light: 200;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-black: 900;
+
+  --fs-hero: 72px;
+  --fs-h2: 48px;
+  --fs-h3: 32px;
+  --fs-navbar: 27.12px;
+  --fs-body-lg: 24px;
+  --fs-body: 20px;
+  --fs-btn: 18px;
+  --fs-sm: 16px;
+
+  --color-primary: #ff5722;
+  --color-primary-alt: #fc6902;
+  --color-gradient-end: #be987d;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-muted: #c7c7c7;
+
+  --bg-gradient-extra1: linear-gradient(194.94deg, #000000 19.64%, #743001 135.33%);
+  --section-pt: 120px;
+  --section-pb: 120px;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+@media (max-width: 900px) {
+  :root {
+    --section-pt: 80px;
+    --section-pb: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --section-pt: 60px;
+    --section-pb: 60px;
+  }
+}
+
 [data-theme='dark'] {
   --ifm-background-color: #121212 !important;
   --ifm-color-primary: #58a6ff;
@@ -51,25 +94,52 @@
   }
 }
 
+/* Landing page transparent navbar */
 .navbar.navbar--transparent {
-  background: rgba(15, 15, 30, 0.15);
-  backdrop-filter: blur(18px) saturate(160%);
-  -webkit-backdrop-filter: blur(18px) saturate(160%);
-  box-shadow: none;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(48px) saturate(200%) brightness(1.08);
+  -webkit-backdrop-filter: blur(48px) saturate(200%) brightness(1.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),   /* specular top highlight */
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06),  /* subtle bottom rim */
+    0 8px 32px rgba(0, 0, 0, 0.06);
+  transition:
+    background 0.4s ease,
+    box-shadow 0.4s ease,
+    border-color 0.4s ease,
+    backdrop-filter 0.4s ease;
+}
+
+.navbar.navbar--transparent::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.10) 0%,
+    rgba(255, 255, 255, 0.03) 55%,
+    rgba(255, 255, 255, 0.00) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
 }
 
 .navbar.navbar--transparent.navbar--scrolled {
-  background: rgba(15, 15, 30, 0.55);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  background: rgba(255, 255, 255, 0.12);
+  border-bottom-color: rgba(255, 255, 255, 0.20);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+    0 8px 40px rgba(0, 0, 0, 0.10);
 }
 
-:root[data-theme='light'] .navbar.navbar--transparent {
-  background: rgba(255, 255, 255, 0.25);
-}
-
-:root[data-theme='light'] .navbar.navbar--transparent.navbar--scrolled {
-  background: rgba(255, 255, 255, 0.65);
+@media (max-width: 768px) {
+  .navbar.navbar--transparent,
+  .navbar.navbar--transparent.navbar--scrolled {
+    backdrop-filter: blur(32px) saturate(180%) brightness(1.06);
+    -webkit-backdrop-filter: blur(32px) saturate(180%) brightness(1.06);
+  }
 }
 
 .navbar.navbar--transparent :is(.navbar__item, .navbar__link, .navbar__brand) {
