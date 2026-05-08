@@ -10,7 +10,7 @@ const withoutItems = [
 ];
 
 const withItems = [
-  'Production-ready cluster in 10–15 minutes',
+  'Autobase: from $256/month',
   'Standardized architecture',
   'Predictable system behavior',
   'Your infrastructure. No vendor lock-in',
