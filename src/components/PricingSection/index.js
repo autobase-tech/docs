@@ -165,7 +165,7 @@ export default function PricingSection() {
       <div className={styles.notes}>
         <div className={styles.noteItem}>
           <img src="/img/pricing/icon-info.svg" alt="" aria-hidden="true" width={24} height={24} />
-          <span>Save 8% annually</span>
+          <span>1 month free with annual billing</span>
         </div>
         <div className={styles.noteItem}>
           <img src="/img/pricing/icon-info.svg" alt="" aria-hidden="true" width={24} height={24} />
