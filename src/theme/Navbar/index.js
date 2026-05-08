@@ -64,9 +64,12 @@ export default function Navbar(props) {
             href="https://demo.autobase.tech"
             target="_blank"
             rel="noopener noreferrer"
-            className={clsx(styles.cta, styles.ctaSecondary)}
+            className={clsx(styles.cta, styles.ctaSecondary, styles.demoCta)}
           >
             Product demo
+            <span className={styles.demoTooltip} aria-hidden="true">
+              use the token <span className={styles.demoToken}>demo</span> to access
+            </span>
           </a>
           <a
             href="https://github.com/autobase-tech/autobase"
