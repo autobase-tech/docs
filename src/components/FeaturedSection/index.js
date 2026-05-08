@@ -64,9 +64,9 @@ const tooltipY = Math.max(18, highlightY + 30);
 
 const stats = [
   { icon: '/img/featured/icon-github-sm.svg', number: '2500+',  label: 'Github clones (last 14 days)' },
-  { icon: '/img/featured/icon-docker.svg',    number: '100k+',  label: 'Docker downloads' },
-  { icon: '/img/featured/icon-ansible.svg',   number: '10K+',   label: 'Ansible Galaxy downloads' },
   { icon: '/img/featured/icon-star.svg',      number: '4k+',    label: 'GitHub stars' },
+  { icon: '/img/featured/icon-ansible.svg',   number: '10K+',   label: 'Ansible Galaxy downloads' },
+  { icon: '/img/featured/icon-docker.svg',    number: '100k+',  label: 'Docker downloads' },
 ];
 
 const cards = [
