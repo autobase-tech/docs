@@ -50,14 +50,21 @@ export default function HowItWorksSection() {
           </div>
         </div>
 
-        {/* Video placeholder */}
+        {/* Demo preview */}
         <div className="col-12 col-lg-7">
           <div className={styles.placeholder}>
+            {/*
             <svg className={styles.playIcon} viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="32" cy="32" r="31" stroke="#ff5722" strokeWidth="2" />
               <path d="M26 20L46 32L26 44V20Z" fill="#ff5722" />
             </svg>
             <span className={styles.placeholderLabel}>Video coming soon</span>
+            */}
+            <img
+              src="/img/autobase_create_cluster_demo.gif"
+              alt="Autobase create cluster demo"
+              className={styles.demoPreview}
+            />
           </div>
         </div>
 
