@@ -66,6 +66,9 @@ const plans = [
 
 export default function PricingSection() {
   const [monthly, setMonthly] = useState(true);
+  const getDisplayedPrice = (price) => (monthly ? price : price * 11);
+  const getBillingLabel = () =>
+    monthly ? 'per month if billed monthly.' : 'per year if billed yearly.';
 
   return (
     <section className={styles.section}>
@@ -125,9 +128,9 @@ export default function PricingSection() {
                     <>
                       <p className={styles.price}>
                         <span className={styles.currency}>$</span>
-                        {plan.price}
+                        {getDisplayedPrice(plan.price)}
                       </p>
-                      <p className={styles.billing}>{plan.billing}</p>
+                      <p className={styles.billing}>{getBillingLabel()}</p>
                     </>
                   ) : (
                     <p className={styles.freeDesc}>{plan.description}</p>
