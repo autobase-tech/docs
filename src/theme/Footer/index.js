@@ -71,7 +71,7 @@ export default function Footer(props) {
                   Get started
                 </Link>
                 <a
-                  href="https://t.me/autobase_tech"
+                  href="https://t.me/pavel_kovcheg"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.ctaSecondary}
