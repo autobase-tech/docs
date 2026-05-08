@@ -70,24 +70,134 @@
   color: var(--color-black);
 }
 
-/* ─── Placeholder graphic ────────────────────────────────────────── */
-.placeholder {
-  aspect-ratio: 722 / 448;
-  max-width: 722px;
-  width: 100%;
-  margin: 40px 20%;
-  background: rgba(0, 0, 0, 0.06);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* ─── Git clone chart ───────────────────────────────────────────── */
+.chartCard {
+  max-width: 860px;
+  margin: 28px auto 32px;
+  padding: 22px 24px 14px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
 }
 
-.placeholderLabel {
+.chartHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 4px;
+}
+
+.chartEyebrow {
   font-family: var(--font-base);
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-regular);
-  color: rgba(0, 0, 0, 0.3);
+  font-size: 14px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.45);
+  margin: 0 0 6px;
+}
+
+.chartTitle {
+  font-family: var(--font-base);
+  font-size: 32px;
+  font-weight: var(--fw-bold);
+  color: var(--color-black);
+  margin: 0;
+}
+
+.chartTotal {
+  font-family: var(--font-base);
+  font-size: 20px;
+  font-weight: var(--fw-semibold);
+  color: rgba(0, 0, 0, 0.7);
+  margin: 8px 0 0;
+  white-space: nowrap;
+}
+
+.chartFrame {
+  width: 100%;
+}
+
+.chartSvg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.chartGridLine {
+  stroke: rgba(0, 0, 0, 0.14);
+  stroke-width: 1;
+}
+
+.chartVerticalLine {
+  stroke: rgba(0, 0, 0, 0.08);
+  stroke-width: 1;
+}
+
+.chartAxisLabel {
+  font-family: var(--font-base);
+  font-size: 14px;
+  font-weight: var(--fw-medium);
+  fill: rgba(0, 0, 0, 0.55);
+}
+
+.chartArea {
+  fill: url(#featuredAreaFill);
+}
+
+.chartLine {
+  fill: none;
+  stroke: #34a853;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.chartHighlightGlow {
+  fill: rgba(52, 168, 83, 0.18);
+}
+
+.chartHighlightOuter {
+  fill: #ffffff;
+  stroke: #34a853;
+  stroke-width: 3;
+}
+
+.chartHighlightInner {
+  fill: #34a853;
+}
+
+.chartTooltipBox {
+  fill: #ffffff;
+  stroke: rgba(0, 0, 0, 0.08);
+  stroke-width: 1;
+}
+
+.chartTooltipDate {
+  font-family: var(--font-base);
+  font-size: 16px;
+  font-weight: var(--fw-bold);
+  fill: rgba(0, 0, 0, 0.75);
+}
+
+.chartTooltipDot {
+  fill: #34a853;
+}
+
+.chartTooltipLabel {
+  font-family: var(--font-base);
+  font-size: 16px;
+  font-weight: var(--fw-medium);
+  fill: rgba(0, 0, 0, 0.72);
+}
+
+.chartTooltipValue {
+  font-family: var(--font-base);
+  font-size: 20px;
+  font-weight: var(--fw-bold);
+  fill: var(--color-black);
 }
 
 /* ─── Featured in ────────────────────────────────────────────────── */
@@ -210,6 +320,8 @@
 @media (max-width: 900px) {
   .section { margin: var(--section-pt) 48px var(--section-pb); padding: 40px 48px; }
   .titleLine { font-size: var(--fs-h3); }
+  .chartTitle { font-size: 26px; }
+  .chartTotal { font-size: 18px; }
 }
 
 @media (max-width: 768px) {
@@ -217,4 +329,8 @@
   .cardsRow { flex-direction: column; }
   .card { width: 100%; }
   .statNumber { font-size: 5.5vw; }
+  .chartCard { margin: 20px auto 32px; padding: 18px 14px 10px; }
+  .chartHeader { flex-direction: column; gap: 10px; }
+  .chartTitle { font-size: 22px; }
+  .chartTotal { margin-top: 0; white-space: normal; }
 }
