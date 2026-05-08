@@ -15,24 +15,6 @@ import ComparisonSection from '@site/src/components/ComparisonSection';
 import Sponsors from '@site/src/components/Sponsors';
 
 export default function Home() {
-  // Navbar transparency
-  useEffect(() => {
-    const nav = document.querySelector('.navbar');
-    if (!nav) return;
-    nav.classList.add('navbar--transparent');
-    const onScroll = () => {
-      if (window.scrollY > 40) nav.classList.add('navbar--scrolled');
-      else nav.classList.remove('navbar--scrolled');
-    };
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      nav.classList.remove('navbar--transparent');
-      nav.classList.remove('navbar--scrolled');
-    };
-  }, []);
-
   // GSAP scroll reveal — blur + fade from below, fires once per section
   useEffect(() => {
     let ctx;

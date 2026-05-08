@@ -1,8 +1,6 @@
 /* ─── Navbar shell ────────────────────────────────────────────────── */
 .navbar {
-  background: rgba(10, 10, 10, 0.92) !important;
-  backdrop-filter: blur(18px) saturate(160%);
-  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  background: rgba(0, 0, 0, 0.96) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   padding: 0 !important;
   height: auto !important;
@@ -24,7 +22,7 @@
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 200px;
-  height: 80px;
+  height: 72px;
   width: 100%;
 }
 
@@ -44,12 +42,14 @@
 .logoIcon {
   display: block;
   flex-shrink: 0;
+  width: 42px;
+  height: auto;
 }
 
 /* ─── Logo text — type.navbar.400 ────────────────────────────────── */
 .logoText {
   font-family: var(--font-base);
-  font-size: var(--fs-navbar);
+  font-size: 24px;
   font-weight: var(--fw-regular);
   color: var(--color-white);
   white-space: nowrap;
@@ -68,7 +68,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 54px;
+  height: 48px;
   width: 165px;
   border-radius: 6px;
   font-family: var(--font-base);
@@ -111,8 +111,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   flex-shrink: 0;
   opacity: 0.9;
   transition: opacity 0.2s ease, transform 0.15s ease;
@@ -141,8 +141,10 @@
 
 /* ─── Responsive: ≤ 768px ────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .inner { padding: 0 24px; height: 64px; }
+  .inner { padding: 0 24px; height: 58px; }
   .actions { display: none; }
   .mobileActions { display: flex; align-items: center; }
-  .mobileActions .cta { height: 42px; width: auto; padding: 0 18px; font-size: 15px; }
+  .logoIcon { width: 36px; }
+  .logoText { font-size: 20px; }
+  .mobileActions .cta { height: 38px; width: auto; padding: 0 16px; font-size: 15px; }
 }
