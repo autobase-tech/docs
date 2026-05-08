@@ -8,7 +8,6 @@
  */
 
 :root {
-  /* ── Infima theme ───────────────────────────────────────────────── */
   --ifm-color-primary: #0366d6;
   --ifm-color-primary-dark: #024aaa;
   --ifm-color-primary-darker: #023e8a;
@@ -16,44 +15,34 @@
   --ifm-color-primary-light: #2b8cd8;
   --ifm-color-primary-lighter: #69b0e3;
   --ifm-color-primary-lightest: #a8d1ef;
-  --ifm-background-color: #ffffff;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-  --ifm-font-family-base: 'Zalando Sans SemiExpanded', sans-serif;
 
-  /* ── Font family ────────────────────────────────────────────────── */
   --font-base: 'Zalando Sans SemiExpanded', sans-serif;
+  --fw-light: 200;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-black: 900;
 
-  /* ── Font weights ───────────────────────────────────────────────── */
-  /* layer: type.*.200  */ --fw-light:    200;
-  /* layer: type.*.400  */ --fw-regular:  400;
-  /* layer: type.*.500  */ --fw-medium:   500;
-  /* layer: type.*.600  */ --fw-semibold: 600;
-  /* layer: type.*.700  */ --fw-bold:     700;
-  /* layer: type.*.900  */ --fw-black:    900;
+  --fs-hero: 72px;
+  --fs-h2: 48px;
+  --fs-h3: 32px;
+  --fs-navbar: 27.12px;
+  --fs-body-lg: 24px;
+  --fs-body: 20px;
+  --fs-btn: 18px;
+  --fs-sm: 16px;
 
-  /* ── Font sizes ─────────────────────────────────────────────────── */
-  /* layer: type.hero.900   */ --fs-hero:    72px;
-  /* layer: type.h2.900     */ --fs-h2:      48px;
-  /* layer: type.h3.900     */ --fs-h3:      32px;
-  /* layer: type.navbar.400 */ --fs-navbar:  27.12px;
-  /* layer: type.body-lg.*  */ --fs-body-lg: 24px;
-  /* layer: type.body.*     */ --fs-body:    20px;
-  /* layer: type.btn.700    */ --fs-btn:     18px;
-  /* layer: type.caption.*  */ --fs-sm:      16px;
+  --color-primary: #ff5722;
+  --color-primary-alt: #fc6902;
+  --color-gradient-end: #be987d;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-muted: #c7c7c7;
 
-  /* ── Brand colours ──────────────────────────────────────────────── */
-  /* Figma var: COLOR-SECONDARY */ --color-primary:      #ff5722;
-                                   --color-primary-alt:  #fc6902;
-                                   --color-gradient-end: #be987d;
-                                   --color-white:        #ffffff;
-                                   --color-black:        #000000;
-                                   --color-muted:        #c7c7c7;
-
-  /* ── Section backgrounds ─────────────────────────────────────────── */
   --bg-gradient-extra1: linear-gradient(194.94deg, #000000 19.64%, #743001 135.33%);
-
-  /* ── Section vertical rhythm ─────────────────────────────────────── */
   --section-pt: 120px;
   --section-pb: 120px;
 }
@@ -73,7 +62,7 @@
 }
 
 [data-theme='dark'] {
-  --ifm-background-color: #ffffff !important;
+  --ifm-background-color: #121212 !important;
   --ifm-color-primary: #58a6ff;
   --ifm-color-primary-dark: #3f8cfd;
   --ifm-color-primary-darker: #2a74d8;
@@ -84,28 +73,28 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-/* ─── Global typography ───────────────────────────────────────────── */
-body {
-  font-family: var(--font-base);
-  color: var(--color-white);
-  background-color: var(--color-white) !important;
+/* Logo text styles */
+.navbar__title {
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 1.2;
+  white-space: nowrap;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
-h1, h2, h3 {
-  font-family: var(--font-base);
-  font-weight: var(--fw-black);
+.navbar {
+  padding-left: 4rem;
+  padding-right: 4rem;
 }
 
-h4, h5, h6 {
-  font-family: var(--font-base);
+@media (max-width: 768px) {
+  .navbar {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 
-p {
-  font-family: var(--font-base);
-  font-weight: var(--fw-light);
-}
-
-/* ─── Navbar — Apple Liquid Glass (2026) ─────────────────────────── */
+/* Landing page transparent navbar */
 .navbar.navbar--transparent {
   background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(48px) saturate(200%) brightness(1.08);
@@ -122,7 +111,6 @@ p {
     backdrop-filter 0.4s ease;
 }
 
-/* Liquid-glass inner gradient — simulates curved glass refraction */
 .navbar.navbar--transparent::before {
   content: '';
   position: absolute;
@@ -137,7 +125,6 @@ p {
   z-index: 0;
 }
 
-/* Scrolled — slightly more opaque, tighter border */
 .navbar.navbar--transparent.navbar--scrolled {
   background: rgba(255, 255, 255, 0.12);
   border-bottom-color: rgba(255, 255, 255, 0.20);
@@ -155,210 +142,6 @@ p {
   }
 }
 
-/* ─── Navbar hide-on-scroll transition ───────────────────────────── */
-.navbar {
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-              background 0.4s ease,
-              box-shadow 0.4s ease,
-              border-color 0.4s ease !important;
-}
-
-/* ─── Mobile navbar sidebar — glass effect ───────────────────────── */
-.navbar-sidebar {
-  background: rgba(255, 255, 255, 0.97) !important;
-  backdrop-filter: blur(24px) saturate(160%);
-  -webkit-backdrop-filter: blur(24px) saturate(160%);
-  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.08);
-}
-
-.navbar-sidebar__brand {
-  background: rgba(255, 255, 255, 0.95);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.navbar-sidebar__items .menu__link {
-  font-family: var(--font-base);
-  font-size: var(--fs-btn);
-  font-weight: var(--fw-medium);
-  color: var(--color-black);
-  border-radius: 8px;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-.navbar-sidebar__items .menu__link:hover {
-  background: rgba(255, 87, 34, 0.08);
-  color: var(--color-primary);
-}
-
-.navbar-sidebar__backdrop {
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-}
-
-/* ─── Navbar brand/logo sizing ───────────────────────────────────── */
-.navbar__brand {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.navbar__logo {
-  height: 28px;
-  width: auto;
-}
-
-.navbar__title {
-  font-family: var(--font-base);
-  font-weight: var(--fw-bold);
-  font-size: 18px;
-}
-
-@media (max-width: 768px) {
-  .navbar__logo { height: 24px; }
-  .navbar__title { font-size: 16px; }
-}
-
-/* ─── Docs pages — dark theme (scoped, no effect on other pages) ──── */
-html.docs-doc-page {
-  --ifm-color-primary:         var(--color-primary);
-  --ifm-color-primary-dark:    var(--color-primary-alt);
-  --ifm-color-primary-darker:  #e04d1a;
-  --ifm-color-primary-darkest: #c23c0e;
-  --ifm-color-primary-light:   #ff7043;
-  --ifm-color-primary-lighter: #ff8a65;
-  --ifm-color-primary-lightest: #ffab91;
-  --ifm-link-color:            var(--color-primary);
-  --ifm-link-hover-color:      var(--color-primary-alt);
-  --ifm-tabs-color-active:     var(--color-primary);
-  --ifm-toc-link-color:        #606060;
-}
-
-html.docs-doc-page body {
-  background-color: #0f0f0f !important;
-  color: #d4d4d4;
-}
-
-/* Navbar */
-html.docs-doc-page body .navbar {
-  background-color: #141414;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
-}
-
-html.docs-doc-page body .navbar__link,
-html.docs-doc-page body .navbar__brand,
-html.docs-doc-page body .navbar a {
-  color: #e0e0e0;
-}
-
-html.docs-doc-page body .navbar__link:hover,
-html.docs-doc-page body .navbar a:hover {
-  color: #ffffff;
-}
-
-/* Sidebar */
-html.docs-doc-page body .theme-doc-sidebar-container {
-  background-color: #141414;
-  border-right: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-html.docs-doc-page body .menu {
-  background-color: #141414;
-}
-
-html.docs-doc-page body .menu__link {
-  color: #a0a0a0;
-}
-
-html.docs-doc-page body .menu__link:hover,
-html.docs-doc-page body .menu__link--active {
-  color: #ffffff;
-  background-color: rgba(255, 255, 255, 0.06);
-}
-
-html.docs-doc-page body .menu__list-item-collapsible:hover {
-  background-color: rgba(255, 255, 255, 0.04);
-}
-
-html.docs-doc-page body .menu__caret::before {
-  border-color: #606060;
-}
-
-/* Main content */
-html.docs-doc-page body .theme-doc-markdown,
-html.docs-doc-page body article,
-html.docs-doc-page body .main-wrapper {
-  background-color: #0f0f0f;
-  color: #d4d4d4;
-}
-
-html.docs-doc-page body h1,
-html.docs-doc-page body h2,
-html.docs-doc-page body h3,
-html.docs-doc-page body h4 {
-  color: #ffffff;
-}
-
-html.docs-doc-page body a {
-  color: var(--color-primary);
-}
-
-html.docs-doc-page body a:hover {
-  color: var(--color-primary-alt);
-}
-
-/* Breadcrumbs */
-html.docs-doc-page body .breadcrumbs__link {
-  color: #707070;
-}
-
-html.docs-doc-page body .breadcrumbs__link:hover {
-  color: #e0e0e0;
-  background: rgba(255, 255, 255, 0.06);
-}
-
-html.docs-doc-page body .breadcrumbs__item--active .breadcrumbs__link {
-  color: #d4d4d4;
-  background: rgba(255, 255, 255, 0.04);
-}
-
-/* Table of contents (right rail) */
-html.docs-doc-page body .table-of-contents__link {
-  color: #606060;
-}
-
-html.docs-doc-page body .table-of-contents__link:hover,
-html.docs-doc-page body .table-of-contents__link--active {
-  color: #e0e0e0;
-}
-
-/* Pagination */
-html.docs-doc-page body .pagination-nav__link {
-  border-color: rgba(255, 255, 255, 0.1);
-  color: #a0a0a0;
-}
-
-html.docs-doc-page body .pagination-nav__link:hover {
-  border-color: rgba(255, 255, 255, 0.25);
-  color: #ffffff;
-}
-
-html.docs-doc-page body .pagination-nav__sublabel {
-  color: #606060;
-}
-
-/* Code blocks */
-html.docs-doc-page body code {
-  background-color: rgba(255, 255, 255, 0.08);
-  color: #e0e0e0;
-}
-
-html.docs-doc-page body pre {
-  background-color: #1a1a1a !important;
-}
-
-/* Sidebar expand button */
-html.docs-doc-page body .expandButton {
-  background-color: #141414;
-  border-color: rgba(255, 255, 255, 0.06);
+.navbar.navbar--transparent :is(.navbar__item, .navbar__link, .navbar__brand) {
+  transition: color 0.2s ease;
 }

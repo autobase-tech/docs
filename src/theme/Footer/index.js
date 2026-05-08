@@ -1,5 +1,8 @@
 import React from 'react';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import { useLocation } from '@docusaurus/router';
 import Link from '@docusaurus/Link';
+import OriginalFooter from '@theme-original/Footer';
 import clsx from 'clsx';
 import styles from './styles.module.css';
 
@@ -18,7 +21,23 @@ const navGroups = [
   },
 ];
 
-export default function Footer() {
+function normalizePath(pathname) {
+  if (!pathname || pathname === '/') {
+    return '/';
+  }
+
+  return pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
+}
+
+export default function Footer(props) {
+  const { pathname } = useLocation();
+  const homePath = useBaseUrl('/');
+  const isHomepage = normalizePath(pathname) === normalizePath(homePath);
+
+  if (!isHomepage) {
+    return <OriginalFooter {...props} />;
+  }
+
   return (
     <footer className={styles.footer}>
 
