@@ -106,7 +106,7 @@ export default function FeaturedSection() {
       {/* ── Stats row ── */}
       <div className={clsx('row justify-content-center align-items-center', styles.statsRow)}>
         {stats.map((s) => (
-          <div key={s.label} className="col-auto">
+          <div key={s.label} className={clsx('col-auto', styles.statColumn)}>
             <div className={styles.statItem}>
               <img src={s.icon} alt="" aria-hidden="true" width={36} height={36} loading="lazy" decoding="async" />
               <div className={styles.statText}>

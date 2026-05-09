@@ -40,6 +40,10 @@
   margin-bottom: 8px;
 }
 
+.statColumn {
+  display: flex;
+}
+
 .statItem {
   display: flex;
   align-items: center;
@@ -326,6 +330,28 @@
 
 @media (max-width: 768px) {
   .section { margin: var(--section-pt) 24px var(--section-pb); padding: 32px 24px; }
+  .statsRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .statColumn {
+    width: 100%;
+    max-width: 420px;
+  }
+  .statItem {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr);
+    align-items: center;
+    gap: 18px;
+    padding: 12px 0;
+  }
+  .statItem img {
+    width: 36px;
+    height: 36px;
+    justify-self: center;
+  }
   .cardsRow { flex-direction: column; }
   .card { width: 100%; }
   .statNumber { font-size: 5.5vw; }
