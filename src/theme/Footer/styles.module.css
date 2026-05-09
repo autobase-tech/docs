@@ -128,7 +128,7 @@
 
 /* ─── Footer bottom ──────────────────────────────────────────────── */
 .footerBottom {
-  padding: 60px 0;
+  padding: 60px 0 24px;
   border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
@@ -214,6 +214,15 @@
   font-size: var(--fs-sm);
   font-weight: var(--fw-regular);
   color: rgba(0, 0, 0, 0.6);
+  margin: 0;
+}
+
+.billingInfo {
+  font-family: var(--font-base);
+  font-size: 14px;
+  font-weight: var(--fw-regular);
+  color: rgba(0, 0, 0, 0.6);
+  line-height: 1.45;
   margin: 0;
 }
 

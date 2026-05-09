@@ -147,7 +147,13 @@ export default function Footer(props) {
                 <span className={styles.logoText}>autobase</span>
               </div>
               <p className={styles.copyright}>
-                Copyright © 2019 - 2026. All rights reserved.
+                Copyright © 2019 - 2026. All rights reserved. <br />
+              </p>
+              <p className={styles.billingInfo}>
+              Payments are processed by NovaBridge Tech OÜ, which acts as the authorized payment and billing partner for Autobase. <br />
+              Autobase is an independent software product. All intellectual property rights in Autobase remain with the respective rights holders. <br /> <br />
+
+              NovaBridge Tech OÜ. Reg. nr 17390133 · Võru tn 11, Lasnamäe linnaosa, Tallinn 13612, Harjumaa, Estonia
               </p>
             </div>
 
