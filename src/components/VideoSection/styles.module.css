@@ -123,5 +123,9 @@
 @media (max-width: 768px) {
   .inner { padding: 0 24px; gap: 32px; }
   .heading { font-size: var(--fs-h3); }
-  .videoCard { width: 85%; border-radius: 24px; }
+  .videoCard { width: 92%; border-radius: 24px; }
+}
+
+@media (max-width: 480px) {
+  .videoCard { width: 96%; }
 }
