@@ -104,9 +104,9 @@
   }
 
   .cloudProvider {
-    flex: 0 1 calc(50% - 20px);
-    max-width: 126px;
-    padding: 30px 22px;
+    flex: 0 1 calc(50% - 16px);
+    max-width: 144px;
+    padding: 34px 24px;
   }
 }
 
@@ -121,8 +121,8 @@
   }
 
   .cloudProvider {
-    flex: 0 1 calc(50% - 14px);
-    max-width: 116px;
-    padding: 28px 20px;
+    flex: 0 1 calc(50% - 12px);
+    max-width: 132px;
+    padding: 32px 22px;
   }
 }
