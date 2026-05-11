@@ -19,10 +19,10 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  max-width: 1440px;
+  max-width: 1540px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 200px;
+  padding: 0 160px;
   position: relative;
   z-index: 1;
 }
@@ -227,8 +227,15 @@
 }
 
 /* ─── Responsive ─────────────────────────────────────────────────── */
+@media (min-width: 1920px) {
+  .inner {
+    max-width: 1700px;
+    padding: 0 112px;
+  }
+}
+
 @media (max-width: 1440px) {
-  .inner { padding: 0 80px; }
+  .inner { padding: 0 96px; }
 }
 
 @media (max-width: 900px) {
