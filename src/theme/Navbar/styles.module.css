@@ -198,6 +198,13 @@
 }
 
 /* ─── Responsive: ≤ 1440px ────────────────────────────────────────── */
+@media (min-width: 1920px) {
+  .inner {
+    max-width: 1660px;
+    padding: 0 128px;
+  }
+}
+
 @media (max-width: 1440px) {
   .inner { padding: 0 96px; }
 }

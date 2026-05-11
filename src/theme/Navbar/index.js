@@ -68,7 +68,7 @@ export default function Navbar(props) {
           >
             Product demo
             <span className={styles.demoTooltip} aria-hidden="true">
-              use the token <span className={styles.demoToken}>demo</span> to access
+              use token <span className={styles.demoToken}>demo</span> to access
             </span>
           </a>
           <a

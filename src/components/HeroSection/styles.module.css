@@ -193,6 +193,15 @@
 }
 
 /* ─── Responsive ──────────────────────────────────────────────────── */
+@media (min-width: 1920px) {
+  .inner {
+    max-width: 1660px;
+    padding: 0 128px;
+  }
+
+  .heroImage { max-width: 620px; }
+}
+
 @media (max-width: 1680px) {
   .heroImage { max-width: 480px; }
 }
