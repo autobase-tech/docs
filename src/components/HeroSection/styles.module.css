@@ -33,9 +33,9 @@
 
 /* ─── Max-width centering wrapper (Bootstrap row lives inside) ────── */
 .inner {
-  max-width: 1440px;
+  max-width: 1540px;
   margin: 0 auto;
-  padding: 0 200px;
+  padding: 0 160px;
   position: relative;
   z-index: 1;
 }
@@ -193,9 +193,14 @@
 }
 
 /* ─── Responsive ──────────────────────────────────────────────────── */
+@media (max-width: 1680px) {
+  .heroImage { max-width: 480px; }
+}
+
 @media (max-width: 1440px) {
-  .inner { padding: 0 80px; }
+  .inner { padding: 0 96px; }
   .heading { font-size: 56px; }
+  .heroImage { max-width: 420px; }
 }
 
 @media (max-width: 900px) {

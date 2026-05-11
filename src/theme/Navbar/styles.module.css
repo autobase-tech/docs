@@ -19,9 +19,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1440px;
+  max-width: 1540px;
   margin: 0 auto;
-  padding: 0 200px;
+  padding: 0 160px;
   height: 72px;
   width: 100%;
 }
@@ -199,7 +199,7 @@
 
 /* ─── Responsive: ≤ 1440px ────────────────────────────────────────── */
 @media (max-width: 1440px) {
-  .inner { padding: 0 80px; }
+  .inner { padding: 0 96px; }
 }
 
 /* ─── Responsive: ≤ 900px ─────────────────────────────────────────── */

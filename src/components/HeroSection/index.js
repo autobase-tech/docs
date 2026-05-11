@@ -77,7 +77,7 @@ export default function HeroSection() {
                   className={styles.headingWhite}
                   style={{ opacity: 0 }}
                 >
-                  PostgreSQL.
+                  PostgreSQL
                 </span>
                 <span className={styles.headingLine2}>
                   <span className={styles.headingGradient}>{typed}</span>
