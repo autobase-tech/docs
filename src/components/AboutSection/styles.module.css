@@ -85,6 +85,44 @@
 /* ─── Responsive ──────────────────────────────────────────────────── */
 @media (max-width: 767px) {
   .title { font-size: 32px; }
-  .item { flex-direction: row; align-items: center; gap: 20px; margin-bottom: 32px; }
-  .label { font-size: var(--fs-btn); }
+  .item {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    margin-bottom: 32px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .thumb {
+    width: 132px;
+    height: 132px;
+    padding: 8px;
+  }
+  .thumb img {
+    width: 112px;
+    height: 112px;
+  }
+  .label {
+    font-size: var(--fs-btn);
+    text-align: left;
+    flex: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .item {
+    gap: 16px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .thumb {
+    width: 112px;
+    height: 112px;
+    padding: 7px;
+  }
+  .thumb img {
+    width: 94px;
+    height: 94px;
+  }
 }
