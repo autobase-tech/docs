@@ -29,12 +29,13 @@
   flex-direction: column;
   gap: 29px;
   align-items: center;
+  width: 290px;
 }
 
 /* ─── Circular thumbnail ──────────────────────────────────────────── */
 .thumb {
-  width: 168px;
-  height: 168px;
+  width: 152px;
+  height: 152px;
   border-radius: 178px;
   border: 2px solid var(--color-primary-alt);
   padding: 10px;
@@ -49,8 +50,8 @@
 }
 
 .thumb img {
-  width: 144px;
-  height: 144px;
+  width: 128px;
+  height: 128px;
   object-fit: cover;
   display: block;
 }
@@ -72,8 +73,8 @@
 
 /* ─── Arrow between items ─────────────────────────────────────────── */
 .arrowWrap {
-  padding: 0 8px;
-  padding-top: 68px;
+  padding: 0 20px;
+  padding-top: 60px;
 }
 
 .arrow {
@@ -86,6 +87,7 @@
 @media (max-width: 767px) {
   .title { font-size: 32px; }
   .item {
+    width: auto;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;

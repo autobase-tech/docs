@@ -54,7 +54,7 @@ export default function AboutSection() {
         <div className="row align-items-start justify-content-center pb-4">
           {items.map((item, i) => (
             <React.Fragment key={i}>
-              <div className="col-12 col-md">
+              <div className="col-12 col-md-auto">
                 <div className={styles.item}>
                   <div className={styles.thumb}>
                     <img src={item.img} alt={item.alt} loading="lazy" decoding="async" />
