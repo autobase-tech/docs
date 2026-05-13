@@ -10,7 +10,6 @@ const plans = [
     description: 'Open-source version with limited platform functionality.',
     features: [
       'MIT License',
-      'Unlimited clusters',
       'No guarantees & support'
     ],
     cta: 'Try Free',
