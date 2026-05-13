@@ -95,13 +95,13 @@
     padding-right: 16px;
   }
   .thumb {
-    width: 132px;
-    height: 132px;
+    width: 120px;
+    height: 120px;
     padding: 8px;
   }
   .thumb img {
-    width: 112px;
-    height: 112px;
+    width: 102px;
+    height: 102px;
   }
   .label {
     font-size: var(--fs-btn);
@@ -117,12 +117,12 @@
     padding-right: 12px;
   }
   .thumb {
-    width: 112px;
-    height: 112px;
+    width: 104px;
+    height: 104px;
     padding: 7px;
   }
   .thumb img {
-    width: 94px;
-    height: 94px;
+    width: 88px;
+    height: 88px;
   }
 }
