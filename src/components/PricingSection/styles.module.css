@@ -259,6 +259,24 @@
   flex-wrap: wrap;
 }
 
+@media (min-width: 1980px) {
+  .cardsRow {
+    justify-content: center;
+    max-width: 1600px;
+    margin: 0 auto 48px;
+  }
+
+  .cardsRow > .col-lg-3 {
+    flex: 0 0 360px;
+    max-width: 360px;
+  }
+
+  .card {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+}
+
 .noteItem {
   display: flex;
   align-items: center;
