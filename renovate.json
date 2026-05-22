@@ -17,16 +17,5 @@
       "groupName": "docker dependencies",
       "schedule": ["before 4am on Monday"]
     }
-  ],
-  "customManagers": [
-    {
-      "customType": "regex",
-      "matchStrings": [
-        "^\\s*datasource=(?<datasource>\\S+)\\s+depName=(?<depName>\\S+)(\\s+registryUrls=(?<registryUrls>\\S+))?(\\s+versioning=(?<versioning>\\S+))?(\\s+extractVersion=(?<extractVersion>\\S+))?\\s+.*?_version:\\s+(?<currentValue>.+)$"
-      ],
-      "registryUrlTemplate": "{{#if registryUrls}}{{registryUrls}}{{else}}https://github.com{{/if}}",
-      "datasourceTemplate": "{{#if datasource}}{{datasource}}{{else}}github-releases{{/if}}",
-      "depNameTemplate": "{{#if depName}}{{depName}}{{else}}{{packageName}}{{/if}}"
-    }
   ]
 }
