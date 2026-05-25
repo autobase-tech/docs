@@ -23,96 +23,78 @@ For a detailed description of the cluster components, visit the [Architecture](.
 
 ## Getting Started
 
-You have the option to deploy Postgres clusters using the Console (UI), command line, or GitOps.
+#### Deploy the Autobase Console
 
-:::tip
-📩 Contact us at info@autobase.tech, and our team will help you implement Autobase into your infrastructure.
+To run the autobase console, execute the following commands:
+
+:::info
+It is recommended to run the console in the same network as your database servers to enable monitoring of the cluster status.
 :::
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs>
-  <TabItem value="console-ui" label="Console (UI)" default>
+  <TabItem value="http" label="Quick start" default>
 
-The Console (UI) is the recommended method for most users. It is designed to be user-friendly, minimizing the risk of errors and making it easier than ever to set up your PostgreSQL clusters. This method is suitable for both beginners and those who prefer a visual interface for managing their PostgreSQL clusters.
-
-#### Run the Autobase console
-
-To run the autobase console, execute the following command:
-
-```bash
-docker run -d --name autobase-console \
-  --publish 80:80 \
-  --env PG_CONSOLE_AUTHORIZATION_TOKEN=secret_token \
-  --volume console_postgres:/var/lib/postgresql \
-  --volume dbdesk_studio_data:/opt/dbdesk-studio \
-  --volume /var/run/docker.sock:/var/run/docker.sock \
-  --volume /tmp/ansible:/tmp/ansible \
-  --restart=unless-stopped \
-  autobase/console:2.7.2
+1. Get docker-compose file:
+```
+curl -fsSL \
+  https://raw.githubusercontent.com/autobase-tech/autobase/refs/heads/main/docker-compose.platform.yml \
+  --output ./docker-compose.platform.yml
 ```
 
-Alternatively, you can use [Docker Compose](https://github.com/autobase-tech/autobase/blob/2.7.2/console/docker-compose.yml).
+2. Create environment `.env` file:
+```yaml
+AUTH_TOKEN=secret-token  # Your authorization token
+```
 
-:::info
-It is recommended to run the console in the same network as your database servers to enable monitoring of the cluster status.
-:::
+3. Run Autobase Console:
+
+```
+docker compose -f docker-compose.platform.yml up -d
+```
 
 #### Open the Console UI
 
-Go to http://localhost:80 (or the address of your server) and use `secret_token` for authorization.
-
-![Cluster creation demo](/img/autobase_create_cluster_demo.gif)
-
-Refer to the [Deployment](./docs/category/deployment) section to learn more about the different deployment methods.
+Go to http://server-address (address of your autobase server) and use `secret-token` for authorization.
 
   </TabItem>
-  <TabItem value="command-line" label="Command line">
+  <TabItem value="https" label="With SSL (recomended)">
 
-The command line mode is suitable for advanced users who require greater flexibility and control over the deployment and management of their PostgreSQL clusters.
-While the Console (UI) is designed for ease of use and is suitable for most users, the command line provides powerful options for those experienced in automation and configuration.
+1. Create a DNS A record pointing your domain to the Autobase server IP address.
 
-#### Run the Autobase automation
-
-All dependencies and source code are bundled into the `autobase/automation` docker image.
-This means the deployment process comes down to simply launching a container with a few variable overrides. For example:
-
-```bash
-docker run --rm -it \
-  -e ANSIBLE_SSH_ARGS="-F none" \
-  -e ANSIBLE_INVENTORY=/project/inventory \
-  -v $PWD:/project \
-  -v $HOME/.ssh:/root/.ssh \
-  autobase/automation:2.7.2 \
-    ansible-playbook deploy_pgcluster.yml --extra-vars \
-      "postgresql_version=18 \
-       patroni_cluster_name=postgres-cluster"
+2. Get docker-compose file:
+```
+curl -fsSL \
+  https://raw.githubusercontent.com/autobase-tech/autobase/refs/heads/main/docker-compose.platform.ssl.yml \
+  --output ./docker-compose.platform.ssl.yml
 ```
 
-Refer to the [Deployment](./docs/category/deployment) section to learn more about the different deployment methods.
+3. Create environment `.env` file:
+```yaml
+DOMAIN=autobase.example.com  # Your domain
+EMAIL=admin@example.com      # Email used for ACME/Let's Encrypt
+AUTH_TOKEN=secret-token      # Your authorization token
+```
 
-:::info
-Alternatively, you can use [Ansible Collection](https://github.com/autobase-tech/autobase/blob/2.7.2/automation/README.md)
-:::
+4. Run Autobase Console:
 
-  </TabItem>
-  <TabItem value="gitops" label="GitOps (CI/CD)">
+```
+docker compose -f docker-compose.platform.ssl.yml up -d
+```
 
-Infrastructure as Code (IaC) allows you to manage and provision database infrastructure through code instead of manual processes.
-GitOps builds on this by automating infrastructure updates using a Git workflow combined with continuous integration (CI) and continuous delivery (CI/CD).
+#### Open the Console UI
 
-#### Configure CI/CD
-
-Refer to the [GitOps](docs/management/gitops) section to learn how to integrate Autobase into your CI/CD pipelines.
+Go to https://autobase.example.com (DNS name of your autobase server) and use `secret-token` for authorization.
 
   </TabItem>
 </Tabs>
 
-#### Purchase a Support Package
+#### Create your PostgreSQL cluster
 
-Deploying and managing PostgreSQL clusters can be challenging, especially without a dedicated database administrator (DBA).
-With **Autobase**, it becomes simpler: alongside powerful automation tools, you get **DBA as a Service (DBAaaS)**.
-This means access to PostgreSQL experts who will assist with deployment, maintenance, and optimization, ensuring your clusters run smoothly.
+Refer to the [Deployment](./docs/category/deployment) section to learn more about the different deployment methods.
 
-Explore our [support packages](/docs/support) to find a plan that fits your needs.
+:::tip
+📩 Contact us at info@autobase.tech, and our team will help you implement Autobase into your infrastructure.
+:::
