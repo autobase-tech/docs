@@ -126,8 +126,7 @@ export default function HowItWorksSection() {
         </div>
         <div className="col-12 col-md">
           <p className={styles.bottomBody}>
-            PostgreSQL that stays reliable<br />
-            and under control.
+            PostgreSQL that stays reliable.
           </p>
         </div>
       </div>
