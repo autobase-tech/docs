@@ -78,14 +78,14 @@ export default function ProblemSection() {
             <div className="col-12 col-md-auto">
               {/* type.extra.900 = --fs-h2 size */}
               <p className={styles.bottomHeading}>
-                <span className={styles.white}>PostgreSQL </span>
-                <span className={styles.orange}>works.</span>
+                <span className={styles.white}>Infrastructure <br />without a</span>
+                <span className={styles.orange}> system</span>
               </p>
             </div>
             <div className="col-12 col-md">
               {/* type.body.500.white */}
               <p className={styles.bottomBody}>
-                But infrastructure without a system<br />becomes unpredictable.
+                <br />becomes unpredictable.
               </p>
             </div>
           </div>
