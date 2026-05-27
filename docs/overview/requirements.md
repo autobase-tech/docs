@@ -4,19 +4,21 @@ sidebar_position: 3
 
 # Requirements
 
-This page outlines the essential requirements for deploying and managing your PostgreSQL cluster.
+This page outlines the essential requirements for deploying and managing PostgreSQL clusters with Autobase.
 
 ### Console (UI)
 
-For users of the Autobase Console (UI), the setup is simplified. You only need [Docker](https://docs.docker.com/engine/install/) to run the container. All other dependencies and tools are bundled within the `autobase/automation` [image](https://hub.docker.com/r/autobase/automation).
+For users of the Autobase Console (UI), the setup is simplified. You only need [Docker](https://docs.docker.com/engine/install/) to run the container.
+
+The Console must have outbound HTTPS access to `https://billing.autobase.tech`. This endpoint is required to process subscription plan payments and issue signed entitlements used by the Platform API to verify billing access.
 
 :::note
-Ensure that ports 80 and 443 are open to allow access to the Console UI.
+Ensure that inbound ports `80` and `443` are open to allow access to the Console UI.
 :::
 
 ### Command line
 
-All dependencies and source code are bundled into the `autobase/automation` docker image.
+All dependencies and source code are bundled into the `autobase/automation` Docker image.
 
 You will need `root` access or a user with `sudo` privileges to access the servers via SSH. You can use your private SSH key (assuming the corresponding public key has already been added to the servers), or a username and password if password access is enabled on your servers.
 
@@ -26,25 +28,24 @@ You will need `root` access or a user with `sudo` privileges to access the serve
 When deploying to cloud providers (such as AWS, GCP, Azure, DigitalOcean, and Hetzner Cloud) using the Console UI, all necessary ports are automatically configured during the creation of the Firewall/Security Group, controlled by the `cloud_firewall` variable.
 :::
 
-List of required TCP ports that must be open for the database cluster:
+Required TCP ports for the database cluster:
 
-- `5432` (postgresql)
-- `6432` (pgbouncer)
-- `8008` (patroni rest api)
+- `5432` (PostgreSQL)
+- `6432` (PgBouncer)
+- `8008` (Patroni REST API)
 - `2379`, `2380` (etcd)
 
-for the scheme "PostgreSQL High-Availability with Load Balancing":
+For the "PostgreSQL High-Availability with Load Balancing" scheme:
 
-- `5000` (haproxy - (read/write) master)
-- `5001` (haproxy - (read only) all replicas)
-- `5002` (haproxy - (read only) synchronous replica only)
-- `5003` (haproxy - (read only) asynchronous replicas only)
-- `7000` (optional, haproxy stats)
+- `5000` (HAProxy - read/write primary)
+- `5001` (HAProxy - read-only, all replicas)
+- `5002` (HAProxy - read-only, synchronous replica only)
+- `5003` (HAProxy - read-only, asynchronous replicas only)
+- `7000` (optional, HAProxy stats)
 
-for the scheme "PostgreSQL High-Availability with Consul Service Discovery":
+For the "PostgreSQL High-Availability with Consul Service Discovery" scheme:
 
 - `8300` (Consul Server RPC)
 - `8301` (Consul Serf LAN)
-- `8302` (Consul Serf WAN)
 - `8500` (Consul HTTP API)
 - `8600` (Consul DNS server)
