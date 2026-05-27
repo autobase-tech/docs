@@ -53,13 +53,13 @@ function HomepageContent() {
         <AboutSection />
         <ProblemSection />
         <VideoSection />
-        <WhatYouGetSection />
         <WhatIsAutobaseSection />
         <ExplainSection />
         <HowItWorksSection />
+        <WhatYouGetSection />
         <FeaturedSection />
-        <CloudProviders />
         <Sponsors />
+        <CloudProviders />
         <PricingSection />
         <ComparisonSection />
       </main>
