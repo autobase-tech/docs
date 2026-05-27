@@ -9,7 +9,7 @@ const items = [
     label: (
       <>
         production-ready cluster<br />
-        in <span className={styles.orange}>10–15 minutes</span>
+        in <span className={styles.orange}>minutes</span>
       </>
     ),
   },
