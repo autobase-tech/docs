@@ -9,7 +9,7 @@ sidebar_position: 2
 RedHat and Debian based distros.
 
 - **Debian**: 11, 12, 13
-- **Ubuntu**: 22.04, 24.04
+- **Ubuntu**: 22.04, 24.04, 26.04
 - **CentOS Stream**: 9, 10
 - **Oracle Linux**: 8, 9, 10
 - **Rocky Linux**: 8, 9, 10
