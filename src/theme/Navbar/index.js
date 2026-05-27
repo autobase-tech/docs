@@ -28,7 +28,11 @@ export default function Navbar(props) {
   );
 
   if (!isHomepage) {
-    return <OriginalNavbar {...props} />;
+    return (
+      <div className={styles.docsNavbar}>
+        <OriginalNavbar {...props} />
+      </div>
+    );
   }
 
   return (

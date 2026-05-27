@@ -62,7 +62,7 @@
 }
 
 [data-theme='dark'] {
-  --ifm-background-color: #121212 !important;
+  --ifm-background-color: #090C10 !important;
   --ifm-color-primary: #58a6ff;
   --ifm-color-primary-dark: #3f8cfd;
   --ifm-color-primary-darker: #2a74d8;
@@ -71,6 +71,32 @@
   --ifm-color-primary-lighter: #a8d1ef;
   --ifm-color-primary-lightest: #d5e6f7;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+html.docs-wrapper[data-theme='light'] {
+  --ifm-background-color: #F9FAFB;
+  --ifm-background-surface-color: #F9FAFB;
+  background-color: #F9FAFB;
+}
+
+html.docs-wrapper[data-theme='light'] body,
+html.docs-wrapper[data-theme='light'] #__docusaurus,
+html.docs-wrapper[data-theme='light'] .main-wrapper,
+html.docs-wrapper[data-theme='light'] [class^='docsWrapper_'],
+html.docs-wrapper[data-theme='light'] [class*=' docsWrapper_'],
+html.docs-wrapper[data-theme='light'] [class^='docRoot_'],
+html.docs-wrapper[data-theme='light'] [class*=' docRoot_'] {
+  background-color: #F9FAFB;
+}
+
+html.docs-wrapper[data-theme='light'] main,
+html.docs-wrapper[data-theme='light'] [class^='docMainContainer_'],
+html.docs-wrapper[data-theme='light'] [class*=' docMainContainer_'],
+html.docs-wrapper[data-theme='light'] [class^='docItemContainer_'],
+html.docs-wrapper[data-theme='light'] [class*=' docItemContainer_'],
+html.docs-wrapper[data-theme='light'] .theme-doc-sidebar-container,
+html.docs-wrapper[data-theme='light'] .theme-doc-toc-desktop {
+  background-color: #F9FAFB;
 }
 
 .landingPage {

@@ -1,4 +1,12 @@
 /* ─── Navbar shell ────────────────────────────────────────────────── */
+.docsNavbar :global(.navbar) {
+  background-color: #ffffff !important;
+}
+
+:global(html[data-theme='dark']) .docsNavbar :global(.navbar) {
+  background-color: #000000 !important;
+}
+
 .navbar {
   background: rgba(0, 0, 0, 0.96) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
