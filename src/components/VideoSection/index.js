@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './styles.module.css';
 
 const items = [
@@ -20,6 +20,39 @@ const items = [
 ];
 
 export default function VideoSection() {
+  const videoRef = useRef(null);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+
+  useEffect(() => {
+    const videoNode = videoRef.current;
+
+    if (!videoNode || shouldLoadVideo) {
+      return undefined;
+    }
+
+    if (!('IntersectionObserver' in window)) {
+      setShouldLoadVideo(true);
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoadVideo(true);
+          observer.disconnect();
+        }
+      },
+      {
+        rootMargin: '0px 0px -20% 0px',
+        threshold: 0.35,
+      }
+    );
+
+    observer.observe(videoNode);
+
+    return () => observer.disconnect();
+  }, [shouldLoadVideo]);
+
   return (
     <section id="section-video" className={styles.section}>
       <div className={styles.inner}>
@@ -53,14 +86,18 @@ export default function VideoSection() {
 
         {/* ── Video card ── */}
         <div className={styles.videoWrap}>
-          <div className={styles.videoCard}>
-            <iframe
-              src="https://www.youtube.com/embed/Q4Jiv1UtgOk?autoplay=1&mute=1&rel=0&playsinline=1&modestbranding=1"
-              title="Autobase — PostgreSQL. Without Chaos."
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
+          <div ref={videoRef} className={styles.videoCard}>
+            {shouldLoadVideo ? (
+              <iframe
+                src="https://www.youtube.com/embed/Q4Jiv1UtgOk?autoplay=1&mute=1&rel=0&playsinline=1&modestbranding=1"
+                title="Autobase — PostgreSQL. Without Chaos."
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            ) : (
+              <div className={styles.videoPlaceholder} aria-label="Autobase video preview" />
+            )}
           </div>
         </div>
 

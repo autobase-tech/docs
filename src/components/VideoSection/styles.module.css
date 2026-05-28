@@ -109,6 +109,14 @@
   display: block;
 }
 
+.videoPlaceholder {
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)),
+    url('https://img.youtube.com/vi/Q4Jiv1UtgOk/maxresdefault.jpg') center / cover;
+}
+
 /* ─── Responsive ─────────────────────────────────────────────────── */
 @media (max-width: 1440px) {
   .inner { padding: 0 80px; }
