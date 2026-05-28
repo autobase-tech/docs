@@ -14,9 +14,8 @@ See the **[list of 500+ extensions](/docs/extensions/list)** available for insta
 
 ## Console (UI)
 
-Extension installation is available during new cluster deployment in Expert Mode.
-
 To install an extension:
+
 1. Enable the extension using the toggle switch.
 2. Select the target database(s) where the extension should be created.
 
@@ -31,7 +30,7 @@ sources={{
 />
 
 :::note
-Extensions can be installed via the UI only during cluster creation. For existing clusters, use the command line.
+In the Community Edition, extensions can be installed via the UI only during cluster creation. In the Enterprise Edition, extensions can also be installed after deployment from the **Extensions** page of the selected cluster.
 :::
 
 ## Command line
