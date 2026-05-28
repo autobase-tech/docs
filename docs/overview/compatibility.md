@@ -15,7 +15,7 @@ Autobase supports Red Hat-based and Debian-based Linux distributions.
 - **Rocky Linux**: 8, 9, 10
 - **AlmaLinux**: 8, 9, 10
 
-Supported architectures: `x86_64` (`amd64`) and `aarch64` (`arm64`).
+Supported architectures: x86_64 (amd64) and aarch64 (arm64).
 
 :::info
 When deploying to cloud providers (such as AWS, GCP, Azure, DigitalOcean, and Hetzner Cloud) using the Console UI, virtual machines running Ubuntu 24.04 LTS are created.
