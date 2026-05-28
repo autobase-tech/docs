@@ -2,11 +2,21 @@
 sidebar_position: 1
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+
 # Architecture
 
 ## Autobase Console
 
 Autobase Console is the web-based platform for managing the lifecycle of PostgreSQL clusters. It consists of the Console UI, Console API, and Console DB.
+
+<ThemedImage
+  alt="autobase-platform-scheme"
+  sources={{
+    light: '/img/autobase-platform.light.png',
+    dark: '/img/autobase-platform.dark.png',
+  }}
+/>
 
 - **Console UI** provides a web interface for creating clusters, launching operations, and monitoring status.
 - **Console API** receives requests from the UI, stores and reads data from the Console DB, and triggers automation tasks when required.
