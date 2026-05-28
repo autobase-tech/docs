@@ -32,6 +32,14 @@ Autobase supports three deployment schemes:
 
 This is a basic high-availability scheme without load balancing.
 
+<ThemedImage
+  alt="postgres-ha-scheme"
+  sources={{
+    light: '/img/postgres-ha.light.png',
+    dark: '/img/postgres-ha.dark.png',
+  }}
+/>
+
 #### Components:
 
 - [**Patroni**](https://github.com/zalando/patroni) is a template for building customized PostgreSQL high-availability solutions using a distributed configuration store such as etcd, Consul, or ZooKeeper. Patroni runs on each PostgreSQL node, continuously monitors the local PostgreSQL instance, and coordinates cluster state through the DCS. The node that holds the leader lock acts as the primary; if it becomes unavailable, eligible replicas participate in a leader race, and the first one that acquires the leader lock promotes itself to the new primary.
@@ -47,6 +55,14 @@ Optional:
 ### 2. High-Availability with Load Balancing
 
 This scheme enables load distribution for read operations and allows the cluster to scale out with read-only replicas.
+
+<ThemedImage
+  alt="postgres-ha-scheme"
+  sources={{
+    light: '/img/postgres-ha-lb.light.png',
+    dark: '/img/postgres-ha-lb.dark.png',
+  }}
+/>
 
 When deploying to cloud providers such as AWS, GCP, Azure, DigitalOcean, and Hetzner Cloud, a cloud load balancer is automatically created by default to provide a single entry point to the database.
 
