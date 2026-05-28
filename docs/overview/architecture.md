@@ -57,7 +57,7 @@ Optional:
 This scheme enables load distribution for read operations and allows the cluster to scale out with read-only replicas.
 
 <ThemedImage
-  alt="postgres-ha-scheme"
+  alt="postgres-ha-lb-scheme"
   sources={{
     light: '/img/postgres-ha-lb.light.png',
     dark: '/img/postgres-ha-lb.dark.png',
@@ -90,14 +90,24 @@ Optional:
 
 ### 3. High-Availability with Consul Service Discovery
 
-In this scheme, Consul [Service Discovery](https://developer.hashicorp.com/consul/docs/concepts/service-discovery) with [DNS resolution](https://developer.hashicorp.com/consul/docs/discovery/dns) is used as a client access point to the database. It is also suitable for primary access and read load balancing across replicas using DNS. Example:
+In this scheme, Consul [Service Discovery](https://developer.hashicorp.com/consul/docs/concepts/service-discovery) with [DNS resolution](https://developer.hashicorp.com/consul/docs/discovery/dns) is used as a client access point to the database. 
 
-- master.postgres-cluster.service.consul
-- replica.postgres-cluster.service.consul
+<ThemedImage
+  alt="postgres-ha-consul-scheme"
+  sources={{
+    light: '/img/postgres-ha-consul.light.png',
+    dark: '/img/postgres-ha-consul.dark.png',
+  }}
+/>
+
+It is also suitable for primary access and read load balancing across replicas using DNS. Example:
+
+- primary.postgres-cluster-01.service.consul
+- replica.postgres-cluster-01.service.consul
 
 This scheme can also be useful for distributed clusters across multiple data centers. You can specify the data center where each database server is located, then use that information for applications running in the same data center. Example:
 
-- replica.postgres-cluster.service.dc1.consul
-- replica.postgres-cluster.service.dc2.consul
+- replica.postgres-cluster-01.service.dc1.consul
+- replica.postgres-cluster-01.service.dc2.consul
 
 It requires Consul in client mode on each application server for service DNS resolution. Alternatively, use [DNS forwarding](https://developer.hashicorp.com/consul/tutorials/networking/dns-forwarding?utm_source=docs) to a remote Consul server instead of installing a local Consul client.
