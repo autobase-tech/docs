@@ -45,7 +45,7 @@ export default function AboutSection() {
           <div className="col-12 col-lg-9 text-center">
             <h2 className={styles.title}>
               <span className={styles.titleOrange}>Autobase — </span>
-              <span className={styles.titleBlack}>PostgreSQL infrastructure management platform</span>
+              <span className={styles.titleBlack}>Automated database platform for PostgreSQL®</span>
             </h2>
           </div>
         </div>

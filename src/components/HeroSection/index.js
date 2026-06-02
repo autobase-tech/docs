@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
 
-const TYPEWRITER_TEXT = 'without chaos';
+const TYPEWRITER_TEXT = 'DBaaS Platform';
 const CHAR_SPEED = 58;
 
 export default function HeroSection() {
@@ -89,8 +89,8 @@ export default function HeroSection() {
 
               <div ref={bodyRef} className={styles.bodyWrap} style={{ opacity: 0 }}>
                 <p className={styles.body}>
-                  As your infrastructure grows, so does operational complexity. Autobase brings it
-                  under control — a fully automated internal platform for PostgreSQL.
+                  Get the experience of a managed database service inside your own infrastructure.
+                  Deploy, operate, scale and manage PostgreSQL with a unified platform while keeping full control over your infrastructure and data.
                 </p>
                 <div className={styles.ctaRow}>
                   <Link className={styles.ctaPrimary} to="/docs">
