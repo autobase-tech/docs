@@ -51,10 +51,9 @@ function HomepageContent() {
       <HeroSection />
       <main>
         <AboutSection />
-        <ProblemSection />
-        <VideoSection />
         <WhatIsAutobaseSection />
         <ExplainSection />
+        <VideoSection />
         <HowItWorksSection />
         <WhatYouGetSection />
         <FeaturedSection />
