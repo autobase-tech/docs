@@ -57,8 +57,8 @@ function HomepageContent() {
         <HowItWorksSection />
         <WhatYouGetSection />
         <FeaturedSection />
-        <Sponsors />
         <CloudProviders />
+        <Sponsors />
         <PricingSection />
         <ComparisonSection />
       </main>
