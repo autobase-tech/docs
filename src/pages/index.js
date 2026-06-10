@@ -55,11 +55,11 @@ function HomepageContent() {
         <ExplainSection />
         <VideoSection />
         <HowItWorksSection />
-        <WhatYouGetSection />
         <FeaturedSection />
         <CloudProviders />
         <Sponsors />
         <PricingSection />
+        <WhatYouGetSection />
         <ComparisonSection />
       </main>
     </>
