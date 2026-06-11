@@ -48,7 +48,7 @@ export default function CloudProviderSection() {
   return (
     <section className={styles.section}>
       <h2 className={styles.heading}>
-        Deploy your own managed Postgres<br />
+        Your own managed Postgres<br />
         <span className={styles.orange}>on bare metal and in the cloud</span>
       </h2>
       <div className={styles.cloudProvidersList}>

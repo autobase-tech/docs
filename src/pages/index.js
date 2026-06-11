@@ -50,14 +50,13 @@ function HomepageContent() {
     <>
       <HeroSection />
       <main>
-        <AboutSection />
+        <CloudProviders />
+        <Sponsors />
         <WhatIsAutobaseSection />
         <ExplainSection />
         <VideoSection />
         <HowItWorksSection />
         <FeaturedSection />
-        <CloudProviders />
-        <Sponsors />
         <PricingSection />
         <WhatYouGetSection />
         <ComparisonSection />
