@@ -25,11 +25,10 @@ function HomepageContent() {
           document.querySelectorAll('main section').forEach((section) => {
             gsap.fromTo(
               section,
-              { y: 48, opacity: 0, filter: 'blur(10px)' },
+              { y: 48, opacity: 0 },
               {
                 y: 0,
                 opacity: 1,
-                filter: 'blur(0px)',
                 duration: 1.0,
                 ease: 'expo.out',
                 scrollTrigger: {
