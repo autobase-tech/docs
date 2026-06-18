@@ -81,6 +81,12 @@
   opacity: 0; /* GSAP takes over */
 }
 
+@media (max-width: 768px) {
+  .resultRow {
+    opacity: 1;
+  }
+}
+
 .resultHeading {
   font-family: var(--font-base);
   font-size: var(--fs-h2);

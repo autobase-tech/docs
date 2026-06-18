@@ -51,6 +51,18 @@ export default function ComparisonSection() {
 
   useEffect(() => {
     let mounted = true;
+    const isMobile =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(max-width: 768px)').matches;
+
+    if (isMobile) {
+      if (resultRef.current) {
+        resultRef.current.style.opacity = '1';
+        resultRef.current.style.transform = 'none';
+      }
+      return () => { mounted = false; };
+    }
+
     Promise.all([import('gsap'), import('gsap/ScrollTrigger')]).then(
       ([{ gsap }, { ScrollTrigger }]) => {
         if (!mounted) return;
