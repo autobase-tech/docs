@@ -23,22 +23,20 @@ function HomepageContent() {
         gsap.registerPlugin(ScrollTrigger);
         ctx = gsap.context(() => {
           document.querySelectorAll('main section').forEach((section) => {
-            gsap.fromTo(
-              section,
-              { y: 48, opacity: 0 },
-              {
-                y: 0,
-                opacity: 1,
-                duration: 1.0,
-                ease: 'expo.out',
-                immediateRender: false,
-                scrollTrigger: {
-                  trigger: section,
-                  start: 'top 88%',
-                  once: true,
-                },
-              }
-            );
+            gsap.from(section, {
+              y: 48,
+              opacity: 0,
+              duration: 1.0,
+              ease: 'expo.out',
+              immediateRender: false,
+              scrollTrigger: {
+                trigger: section,
+                start: 'top 88%',
+                once: true,
+                invalidateOnRefresh: true,
+                toggleActions: 'play none none none',
+              },
+            });
           });
         });
       }
