@@ -32,7 +32,7 @@ function HomepageContent() {
               opacity: 0,
               duration: 1.0,
               ease: 'expo.out',
-              immediateRender: false,
+              immediateRender: true,
               scrollTrigger: {
                 trigger: section,
                 start: 'top 88%',
