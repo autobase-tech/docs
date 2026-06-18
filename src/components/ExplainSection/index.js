@@ -86,7 +86,7 @@ export default function ExplainSection() {
             PostgreSQL stops being a risk.
           </h2>
           <p className={styles.subtext}>
-            It becomes a <span className={styles.orange}>controlled</span> system.
+            It becomes a <span className={styles.orange}>controlled, predictable</span> system.
           </p>
         </div>
 

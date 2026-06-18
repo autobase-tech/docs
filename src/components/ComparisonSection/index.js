@@ -18,9 +18,9 @@ const withItems = [
 
 const resultItems = [
   'Save $3,000+/month',
-  'Stay 5–20x cheaper than managed databases',
-  'Reduce risk',
-  'Gain control',
+  'Spend 5–20x less than managed DB services',
+  'Reduce operational risk',
+  'Gain real infrastructure control',
 ];
 
 function FeatureList({ items, dark }) {

@@ -89,8 +89,8 @@ export default function HeroSection() {
 
               <div ref={bodyRef} className={styles.bodyWrap} style={{ opacity: 0 }}>
                 <p className={styles.body}>
-                  Get the experience of a managed database service inside your own infrastructure.
-                  Deploy, operate, scale and manage PostgreSQL with a unified platform while keeping full control over your infrastructure and data.
+                  Get the managed database experience inside your own infrastructure.
+                  Deploy, operate, scale and manage PostgreSQL with one unified platform and full infrastructure control.
                 </p>
                 <div className={styles.ctaRow}>
                   <Link className={styles.ctaPrimary} to="/docs">
