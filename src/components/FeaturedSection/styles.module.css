@@ -76,7 +76,8 @@
 
 /* ─── Git clone chart ───────────────────────────────────────────── */
 .chartCard {
-  max-width: 860px;
+  max-width: 760px;
+  width: 100%;
   margin: 28px auto 32px;
   padding: 22px 24px 14px;
   background: rgba(255, 255, 255, 0.82);
