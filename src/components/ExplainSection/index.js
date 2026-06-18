@@ -28,7 +28,7 @@ const row2 = [
     imgLeft: '-152.73%', imgTop: '-133.6%', imgW: '398.96%', imgH: '268.77%',
   },
   {
-    text: ['Fewer errors', 'and less downtime'],
+    text: ['Fewer errors', 'and no downtime'],
     containerW: 77.929, containerH: 85.565,
     imgLeft: '-303.75%', imgTop: '-133.6%', imgW: '442.65%', imgH: '268.77%',
   },
