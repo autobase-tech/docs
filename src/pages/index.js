@@ -17,6 +17,10 @@ import Sponsors from '@site/src/components/Sponsors';
 function HomepageContent() {
   // GSAP scroll reveal — blur + fade from below, fires once per section
   useEffect(() => {
+    if (typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches) {
+      return undefined;
+    }
+
     let ctx;
     Promise.all([import('gsap'), import('gsap/ScrollTrigger')]).then(
       ([{ gsap }, { ScrollTrigger }]) => {
