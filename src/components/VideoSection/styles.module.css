@@ -48,6 +48,7 @@
 
 /* ─── Fancy rounded card — 947×613 from Figma ────────────────────── */
 .videoCard {
+  position: relative;
   width: 947px;
   max-width: 100%;
   aspect-ratio: 947 / 613;
@@ -63,6 +64,108 @@
   display: block;
 }
 
+.videoCover {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  overflow: hidden;
+  padding: 48px 56px;
+  border: 0;
+  background:
+    radial-gradient(circle at 72% 48%, rgba(255, 87, 34, 0.28), transparent 32%),
+    linear-gradient(120deg, rgba(0, 0, 0, 0.96) 0%, rgba(12, 3, 0, 0.98) 48%, rgba(58, 16, 0, 0.95) 100%);
+  color: var(--color-white);
+  cursor: pointer;
+  text-align: left;
+}
+
+.videoCover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.36), transparent 62%),
+    radial-gradient(circle at 78% 50%, rgba(255, 128, 34, 0.24), transparent 24%);
+  pointer-events: none;
+}
+
+.coverBrand,
+.coverCopy,
+.playButton {
+  z-index: 2;
+}
+
+.coverBrand {
+  position: relative;
+  align-self: start;
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-base);
+  font-size: var(--fs-navbar);
+  font-weight: var(--fw-regular);
+  line-height: 1;
+}
+
+.coverBrand img {
+  width: 42px;
+  height: auto;
+}
+
+.coverCopy {
+  position: absolute;
+  left: 56px;
+  top: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 320px;
+  font-family: var(--font-base);
+  font-size: 52px;
+  font-weight: var(--fw-black);
+  line-height: 1.02;
+  text-align: left;
+}
+
+.coverCopy span {
+  color: var(--color-primary);
+}
+
+.playButton {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  box-shadow: 0 18px 44px rgba(255, 87, 34, 0.34);
+  transform: translate(-50%, -50%);
+  transition: transform 0.16s ease;
+}
+
+.playButton span {
+  width: 0;
+  height: 0;
+  margin-left: 5px;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-left: 23px solid var(--color-white);
+}
+
+.videoCover:hover .playButton {
+  transform: translate(-50%, -50%) scale(1.04);
+}
+
 /* ─── Responsive ─────────────────────────────────────────────────── */
 @media (max-width: 1440px) {
   .inner { padding: 0 80px; }
@@ -71,12 +174,29 @@
 @media (max-width: 900px) {
   .inner { padding: 0 48px; gap: 40px; }
   .videoCard { border-radius: 32px; }
+  .videoCover { padding: 36px 40px; }
+  .coverCopy { font-size: 40px; left: 40px; top: 100px; max-width: 280px; }
+  .playButton { width: 66px; height: 66px; }
 }
 
 @media (max-width: 768px) {
   .inner { padding: 0 24px; gap: 32px; }
   .heading { font-size: var(--fs-h3); }
   .videoCard { width: 92%; border-radius: 24px; }
+  .videoCover {
+    gap: 18px;
+    padding: 28px 28px;
+    text-align: center;
+  }
+  .coverBrand { font-size: 22px; }
+  .coverBrand img { width: 34px; }
+  .coverCopy { display: none; }
+  .playButton { width: 58px; height: 58px; }
+  .playButton span {
+    border-top-width: 11px;
+    border-bottom-width: 11px;
+    border-left-width: 17px;
+  }
 }
 
 @media (max-width: 480px) {

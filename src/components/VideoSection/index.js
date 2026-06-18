@@ -1,55 +1,29 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styles from './styles.module.css';
 
 export default function VideoSection() {
-  const videoRef = useRef(null);
   const iframeRef = useRef(null);
-  const [shouldPlayVideo, setShouldPlayVideo] = useState(false);
+  const [hasStartedVideo, setHasStartedVideo] = useState(false);
 
-  useEffect(() => {
-    const videoNode = videoRef.current;
-
-    if (!videoNode || shouldPlayVideo) {
-      return undefined;
-    }
-
-    if (!('IntersectionObserver' in window)) {
-      setShouldPlayVideo(true);
-      return undefined;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShouldPlayVideo(true);
-          observer.disconnect();
-        }
-      },
-      {
-        rootMargin: '0px 0px -20% 0px',
-        threshold: 0.35,
-      }
-    );
-
-    observer.observe(videoNode);
-
-    return () => observer.disconnect();
-  }, [shouldPlayVideo]);
-
-  useEffect(() => {
-    if (!shouldPlayVideo || !iframeRef.current?.contentWindow) {
+  function playVideo() {
+    if (!iframeRef.current?.contentWindow) {
       return;
     }
 
-    iframeRef.current.contentWindow.postMessage(
-      JSON.stringify({
-        event: 'command',
-        func: 'playVideo',
-        args: [],
-      }),
-      'https://www.youtube.com'
-    );
-  }, [shouldPlayVideo]);
+    setHasStartedVideo(true);
+
+    setTimeout(() => {
+      if (!iframeRef.current?.contentWindow) return;
+
+      iframeRef.current.contentWindow.postMessage(
+        JSON.stringify({
+          event: 'command',
+          func: 'playVideo',
+        }),
+        '*'
+      );
+    }, 300);
+  }
 
   return (
     <section id="section-video" className={styles.section}>
@@ -63,22 +37,42 @@ export default function VideoSection() {
             </h2>
             <p className={styles.subtext}>
               From manual setup and operational chaos to a structured,<br />
-              automated PostgreSQL platform.
+              automated database platform.
             </p>
           </div>
         </div>
 
         {/* ── Video card ── */}
         <div className={styles.videoWrap}>
-          <div ref={videoRef} className={styles.videoCard}>
+          <div className={styles.videoCard}>
             <iframe
               ref={iframeRef}
-              src="https://www.youtube.com/embed/iji83uWMuNE?enablejsapi=1&mute=1&rel=0&playsinline=1&modestbranding=1"
+              src="https://www.youtube.com/embed/iji83uWMuNE?enablejsapi=1&mute=0&rel=0&playsinline=1&modestbranding=1"
               title="Autobase — PostgreSQL. Without Chaos."
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
+            {!hasStartedVideo && (
+              <button
+                type="button"
+                className={styles.videoCover}
+                onClick={playVideo}
+                aria-label="Play Autobase video"
+              >
+                <span className={styles.coverBrand}>
+                  <img src="/img/navbar/logo-icon.svg" alt="" width={42} height={37} />
+                  <span>autobase</span>
+                </span>
+                <span className={styles.coverCopy}>
+                  PostgreSQL
+                  <span>without chaos</span>
+                </span>
+                <span className={styles.playButton} aria-hidden="true">
+                  <span />
+                </span>
+              </button>
+            )}
           </div>
         </div>
 
