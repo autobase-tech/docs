@@ -218,8 +218,35 @@
 
 @media (max-width: 768px) {
   .section { margin: 0 24px; padding-top: 20px; }
-  .comparing { padding: 32px 24px 40px; }
-  .labelCell { flex: 0 0 80px; font-size: var(--fs-sm); }
-  .headerCell { font-size: var(--fs-sm); }
+  .comparing { padding: 32px 16px 40px; }
+  .tableRow {
+    display: grid;
+    grid-template-columns: 88px repeat(3, minmax(0, 1fr));
+    column-gap: 4px;
+    padding: 14px 0;
+  }
+  .tableHeaderRow {
+    padding-bottom: 10px;
+  }
+  .labelCell {
+    flex: none;
+    min-width: 0;
+    font-size: 14px;
+    line-height: 1.15;
+  }
+  .dataCell {
+    min-width: 0;
+  }
+  .headerCell {
+    font-size: 12px;
+    line-height: 1.2;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    text-align: center;
+  }
+  .dataCell img {
+    width: 22px;
+    height: 22px;
+  }
   .hiwRow { margin-bottom: 40px; }
 }
