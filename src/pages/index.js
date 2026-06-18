@@ -50,6 +50,8 @@ function HomepageContent() {
     <>
       <HeroSection />
       <main>
+        {/* <AboutSection /> */}
+        {/* <ProblemSection /> */}
         <CloudProviders />
         <Sponsors />
         <WhatIsAutobaseSection />
@@ -58,7 +60,7 @@ function HomepageContent() {
         <HowItWorksSection />
         <FeaturedSection />
         <PricingSection />
-        <WhatYouGetSection />
+        {/* <WhatYouGetSection /> */}
         <ComparisonSection />
       </main>
     </>

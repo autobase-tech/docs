@@ -1,11 +1,9 @@
 /* ─── Section ────────────────────────────────────────────────────── */
 .section {
   margin: 0 110px;
-  padding: var(--section-pt) 0 var(--section-pb);
-  min-height: 65vh;
+  padding: 64px 0 48px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 
@@ -19,8 +17,7 @@
   font-size: var(--fs-h2);
   font-weight: var(--fw-black);
   color: var(--color-black);
-  margin-top: 40px;
-  margin-bottom: 10px;
+  margin: 0;
   text-align: center;
   line-height: 1.15;
 }
@@ -30,7 +27,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 24px;
-  margin-top: 40px;
+  margin-top: 36px;
 }
 
 .orange { color: var(--color-primary); }
@@ -94,6 +91,10 @@
 
 /* Adaptive style for mobile devices */
 @media (max-width: 768px) {
+  .section {
+    padding: 48px 0 36px;
+  }
+
   .heading {
     padding-inline: 20px;
   }

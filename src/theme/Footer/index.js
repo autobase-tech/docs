@@ -68,7 +68,7 @@ export default function Footer(props) {
               {/* CTAs */}
               <div className={styles.ctaRow}>
                 <Link to="/docs" className={styles.ctaPrimary}>
-                  Get started
+                  Start a Free trial now
                 </Link>
                 <a
                   href="https://t.me/pavel_kovcheg"

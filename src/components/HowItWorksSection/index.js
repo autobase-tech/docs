@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import styles from './styles.module.css';
 
@@ -24,8 +24,6 @@ const tableRows = [
 ];
 
 export default function HowItWorksSection() {
-  const [active, setActive] = useState(0);
-
   return (
     <section className={styles.section}>
 
@@ -38,14 +36,13 @@ export default function HowItWorksSection() {
         <div className="col-12 col-lg-5">
           <div className={styles.tabs}>
             {slides.map((slide, i) => (
-              <button
+              <div
                 key={slide.title}
-                className={clsx(styles.tab, i === active && styles.tabActive)}
-                onClick={() => setActive(i)}
+                className={styles.tab}
               >
                 <span className={styles.tabTitle}>{slide.title}</span>
                 <span className={styles.tabBody}>{slide.body}</span>
-              </button>
+              </div>
             ))}
           </div>
         </div>

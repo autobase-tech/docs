@@ -4,7 +4,7 @@
   z-index: 1;
   overflow: hidden;
   border-radius: 48px;
-  margin: var(--section-pt) 110px 0;
+  margin: 48px 110px 0;
   aspect-ratio: 1312 / 782;
   background-color: #000000;
 
@@ -122,18 +122,18 @@
 
 /* ─── Responsive ─────────────────────────────────────────────────── */
 @media (max-width: 1440px) {
-  .section { margin: var(--section-pt) 80px 0; }
+  .section { margin: 48px 80px 0; }
   .inner { padding: 80px 80px; }
 }
 
 @media (max-width: 900px) {
-  .section { margin: var(--section-pt) 48px 0; aspect-ratio: unset; }
+  .section { margin: 40px 48px 0; aspect-ratio: unset; }
   .inner { padding: 60px 48px; }
   .bottomHeading { font-size: var(--fs-h3); }
 }
 
 @media (max-width: 768px) {
-  .section { margin: var(--section-pt) 24px 0; }
+  .section { margin: 32px 24px 0; }
   .inner { padding: 48px 24px; }
   .subtext { max-width: 100%; }
   .bottomHeading { font-size: var(--fs-h3); }

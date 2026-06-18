@@ -10,7 +10,7 @@ const plans = [
     description: 'Open-source version with limited platform functionality.',
     features: [
       'MIT License',
-      'No guarantees & support'
+      'No support included',
     ],
     cta: 'Try Free',
     href: 'https://github.com/autobase-tech/autobase',

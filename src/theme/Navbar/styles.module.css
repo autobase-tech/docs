@@ -213,6 +213,35 @@
   }
 }
 
+@media (max-width: 1919px) {
+  .inner {
+    height: 64px;
+  }
+
+  .logoIcon {
+    width: 36px;
+  }
+
+  .logoText {
+    font-size: 22px;
+  }
+
+  .actions {
+    gap: 16px;
+  }
+
+  .cta {
+    height: 42px;
+    width: 148px;
+    font-size: 16px;
+  }
+
+  .iconLink {
+    width: 26px;
+    height: 26px;
+  }
+}
+
 @media (max-width: 1440px) {
   .inner { padding: 0 96px; }
 }

@@ -1,6 +1,6 @@
 /* ─── Section ────────────────────────────────────────────────────── */
 .section {
-  margin: var(--section-pt) 110px var(--section-pb);
+  margin: 56px 110px 40px;
 }
 
 /* ─── Cards row ──────────────────────────────────────────────────── */
@@ -93,17 +93,17 @@
 
 /* ─── Responsive ─────────────────────────────────────────────────── */
 @media (max-width: 1440px) {
-  .section { margin: var(--section-pt) 80px var(--section-pb); }
+  .section { margin: 56px 80px 40px; }
 }
 
 @media (max-width: 900px) {
-  .section       { margin: var(--section-pt) 48px var(--section-pb); }
+  .section       { margin: 44px 48px 32px; }
   .cardTitle     { font-size: var(--fs-h3); }
   .resultHeading { font-size: var(--fs-h3); }
 }
 
 @media (max-width: 768px) {
-  .section       { margin: var(--section-pt) 24px var(--section-pb); }
+  .section       { margin: 36px 24px 28px; }
   .cardLight,
   .cardDark      { padding: 40px 28px; }
   .resultRow     { flex-direction: column; gap: 24px; }

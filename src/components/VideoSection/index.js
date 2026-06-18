@@ -1,44 +1,27 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './styles.module.css';
 
-const items = [
-  {
-    img: '/img/video/icon-deploy.svg',
-    alt: 'Cluster deployment icon',
-    label: <>How a cluster<br />is deployed</>,
-  },
-  {
-    img: '/img/video/icon-architecture.svg',
-    alt: 'Architecture icon',
-    label: <>How architecture<br />is standardized</>,
-  },
-  {
-    img: '/img/video/icon-control.svg',
-    alt: 'Control icon',
-    label: <>How control<br />is established</>,
-  },
-];
-
 export default function VideoSection() {
   const videoRef = useRef(null);
-  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+  const iframeRef = useRef(null);
+  const [shouldPlayVideo, setShouldPlayVideo] = useState(false);
 
   useEffect(() => {
     const videoNode = videoRef.current;
 
-    if (!videoNode || shouldLoadVideo) {
+    if (!videoNode || shouldPlayVideo) {
       return undefined;
     }
 
     if (!('IntersectionObserver' in window)) {
-      setShouldLoadVideo(true);
+      setShouldPlayVideo(true);
       return undefined;
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setShouldLoadVideo(true);
+          setShouldPlayVideo(true);
           observer.disconnect();
         }
       },
@@ -51,7 +34,22 @@ export default function VideoSection() {
     observer.observe(videoNode);
 
     return () => observer.disconnect();
-  }, [shouldLoadVideo]);
+  }, [shouldPlayVideo]);
+
+  useEffect(() => {
+    if (!shouldPlayVideo || !iframeRef.current?.contentWindow) {
+      return;
+    }
+
+    iframeRef.current.contentWindow.postMessage(
+      JSON.stringify({
+        event: 'command',
+        func: 'playVideo',
+        args: [],
+      }),
+      'https://www.youtube.com'
+    );
+  }, [shouldPlayVideo]);
 
   return (
     <section id="section-video" className={styles.section}>
@@ -70,34 +68,17 @@ export default function VideoSection() {
           </div>
         </div>
 
-        {/* ── Icon list ── */}
-        <div className="row justify-content-center">
-          {items.map((item, i) => (
-            <div key={i} className="col-12 col-md-4 col-lg-auto">
-              <div className={styles.item}>
-                <div className={styles.thumb}>
-                  <img src={item.img} alt={item.alt} width={48} height={48} />
-                </div>
-                <p className={styles.label}>{item.label}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
         {/* ── Video card ── */}
         <div className={styles.videoWrap}>
           <div ref={videoRef} className={styles.videoCard}>
-            {shouldLoadVideo ? (
-              <iframe
-                src="https://www.youtube.com/embed/iji83uWMuNE?autoplay=1&mute=1&rel=0&playsinline=1&modestbranding=1"
-                title="Autobase — PostgreSQL. Without Chaos."
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            ) : (
-              <div className={styles.videoPlaceholder} aria-label="Autobase video preview" />
-            )}
+            <iframe
+              ref={iframeRef}
+              src="https://www.youtube.com/embed/iji83uWMuNE?enablejsapi=1&mute=1&rel=0&playsinline=1&modestbranding=1"
+              title="Autobase — PostgreSQL. Without Chaos."
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
           </div>
         </div>
 
