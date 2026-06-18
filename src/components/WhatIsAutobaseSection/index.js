@@ -26,7 +26,7 @@ export default function WhatIsAutobaseSection() {
 
               {/* type.body-lg.500 */}
               <p className={styles.subtext}>
-                Autobase is not just a tool. It is a platform for running PostgreSQL as a system.
+                Autobase is a platform for running PostgreSQL as a system.
               </p>
 
               {/* sequence-list */}
