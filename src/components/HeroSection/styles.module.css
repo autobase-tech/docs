@@ -217,6 +217,11 @@
     border-bottom-left-radius: 32px;
     border-bottom-right-radius: 32px;
   }
+  .inner :global(.row) {
+    --bs-gutter-x: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
   .inner { padding: 120px 48px 80px; }
   .heading { font-size: 52px; }
   .gridDotsLg, .gridDotsSm { display: none; }

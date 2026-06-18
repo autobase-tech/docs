@@ -120,6 +120,22 @@ html.docs-wrapper[data-theme='light'] .theme-doc-toc-desktop {
   background-color: #ffffff;
 }
 
+@media (max-width: 768px) {
+  html:has(.landingPage),
+  body:has(.landingPage) {
+    overflow-x: hidden;
+  }
+
+  .landingPage {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  .landingPage main {
+    overflow-x: hidden;
+  }
+}
+
 /* Logo text styles */
 .navbar__title {
   font-weight: 400;
