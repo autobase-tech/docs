@@ -75,7 +75,7 @@ export default function HowItWorksSection() {
             A combination of <span className={styles.orange}>both</span> worlds:
           </p>
           <p className={styles.comparingSubtitle}>
-            Automation of managed services with the flexibility of self-hosted infrastructure
+            Convenience of managed services with the flexibility of self-hosted infrastructure
           </p>
         </div>
 
