@@ -131,7 +131,7 @@ function DiagramInner() {
         <div className={`${styles.box} ${styles.usersBox}`}>
           <div className={styles.usersTitle}>Users</div>
           <div className={styles.userRoles}>
-            <span>Developer</span>
+            <span>Developers</span>
             <span className={styles.sep}>|</span>
             <span>SRE</span>
             <span className={styles.sep}>|</span>
