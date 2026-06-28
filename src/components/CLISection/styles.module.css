@@ -1,0 +1,421 @@
+/* ─── Section ─────────────────────────────────────────────────────── */
+.section {
+  background: var(--color-bg);
+  padding: var(--section-pt) 0 var(--section-pb);
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 80px;
+}
+
+/* ─── Two-column layout ───────────────────────────────────────────── */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+/* ─── Terminal (inline) ───────────────────────────────────────────── */
+.terminal {
+  background: #0d0d0d;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+}
+
+.terminalBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 18px;
+  background: #1a1a1a;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #3a3a3a;
+}
+
+.expandBtn {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: #555;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.expandBtn:hover {
+  color: #bbb;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* ─── Terminal code block ─────────────────────────────────────────── */
+.terminalCode {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #c8c8c8;
+  padding: 24px 28px;
+  margin: 0;
+  white-space: pre;
+  overflow-x: auto;
+  background: transparent;
+  border: none;
+  min-height: 220px;
+}
+
+.terminalCodeFull {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 15px;
+  line-height: 1.75;
+  color: #c8c8c8;
+  padding: 36px 44px 28px;
+  margin: 0;
+  white-space: pre;
+  overflow-x: auto;
+  background: transparent;
+  border: none;
+  min-height: 160px;
+}
+
+.promptPg {
+  color: #569cd6;
+  font-weight: bold;
+}
+
+/* CRT phosphor flash */
+.terminalFlash {
+  animation: crtClear 0.42s ease-in forwards;
+}
+
+@keyframes crtClear {
+  0%   { opacity: 1;    filter: brightness(1)   blur(0px);  }
+  25%  { opacity: 1;    filter: brightness(3.5) blur(1px);  }
+  55%  { opacity: 0.15; filter: brightness(0.4) blur(2px);  }
+  100% { opacity: 0;    filter: brightness(0)   blur(0px);  }
+}
+
+.prompt {
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+.caret {
+  display: inline-block;
+  color: #c8c8c8;
+  animation: caretBlink 1s step-end infinite;
+  user-select: none;
+}
+
+@keyframes caretBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.success {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.dimmed {
+  color: #666666;
+}
+
+/* ─── Fullscreen layout ───────────────────────────────────────────── */
+.fsLayout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* ─── Fullscreen CTA menu ─────────────────────────────────────────── */
+.ctaMenu {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 44px 36px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.menuDivider {
+  height: 1px;
+  background: #1e1e1e;
+  margin-bottom: 20px;
+}
+
+.menuItem {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  grid-template-rows: auto auto;
+  gap: 2px 10px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s ease;
+  margin-bottom: 4px;
+}
+
+.menuItem:hover {
+  background: rgba(255, 255, 255, 0.04);
+  text-decoration: none;
+}
+
+.menuItem:hover .menuPrompt { color: #ff7043; }
+.menuItem:hover .menuTitle  { color: #ffffff;  }
+.menuItem:hover .menuSub    { color: #888888;  }
+
+.menuPrompt {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  align-self: center;
+  color: var(--color-primary);
+  font-weight: bold;
+  font-size: 17px;
+  transition: color 0.15s ease;
+}
+
+.menuTitle {
+  grid-column: 2;
+  grid-row: 1;
+  color: #d0d0d0;
+  font-weight: bold;
+  letter-spacing: 0.3px;
+  transition: color 0.15s ease;
+}
+
+.menuSub {
+  grid-column: 2;
+  grid-row: 2;
+  color: #444;
+  font-size: 13px;
+  transition: color 0.15s ease;
+}
+
+/* ─── CTAs column (original) ──────────────────────────────────────── */
+.ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ctaPrimary,
+.ctaSecondary {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px 28px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.ctaPrimary:hover,
+.ctaSecondary:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+.ctaPrimary {
+  border: 1.5px solid var(--color-primary);
+  background: transparent;
+}
+
+.ctaSecondary {
+  border: 1.5px solid var(--color-border);
+  outline: 1.5px solid transparent;
+  outline-offset: 0px;
+  background: transparent;
+  transform-style: preserve-3d;
+  transform-origin: center top;
+  transition: border-color 0.18s ease, outline-color 0.18s ease,
+              background 0.18s ease,
+              transform 0.18s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.18s ease;
+}
+
+.ctaSecondary:hover {
+  border-color: var(--color-primary);
+  outline-color: var(--color-primary);
+  background: var(--color-surface);
+  opacity: 1;
+  transform: perspective(600px) rotateX(-7deg) translateY(4px) scaleY(0.97);
+  box-shadow: 0 4px 0 rgba(0,0,0,0.07), inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.ctaArrow {
+  font-family: monospace;
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.ctaTitle {
+  font-family: var(--font-base);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.ctaSubtitle {
+  font-family: var(--font-base);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-regular);
+  color: var(--color-text-muted);
+  margin-top: 4px;
+}
+
+/* ─── Fullscreen overlay ──────────────────────────────────────────── */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99999;
+  /* Canvas handles darkening; keep bg as pure black base */
+  background: #040404;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: overlayIn 0.25s ease forwards;
+}
+
+.overlayClosing {
+  animation: overlayOut 0.28s ease forwards;
+}
+
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes overlayOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+.overlayTerminal {
+  position: relative;
+  z-index: 1;
+  background: rgba(10, 10, 10, 0.92);
+  backdrop-filter: blur(2px);
+  border-radius: 12px;
+  box-shadow:
+    0 0 0 1px #2a2a2a,
+    0 40px 100px rgba(0, 0, 0, 0.9),
+    0 0 120px rgba(255, 87, 34, 0.06),
+    0 0 40px rgba(30, 100, 50, 0.08);
+  width: min(860px, 90vw);
+  height: min(560px, 85vh);
+  overflow-y: auto;
+  animation: windowOpen 0.32s cubic-bezier(0.34, 1.46, 0.64, 1) forwards;
+  transform-origin: center center;
+}
+
+.overlayTerminalClosing {
+  animation: windowClose 0.22s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+}
+
+@keyframes windowClose {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: brightness(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.88) translateY(18px);
+    filter: brightness(0.4);
+  }
+}
+
+/* Scanline sweep on open */
+.overlayTerminal::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  height: 3px;
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    rgba(150, 255, 180, 0.18) 50%,
+    transparent 100%
+  );
+  animation: scanline 0.7s ease-in 0.08s forwards;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes scanline {
+  0%   { top: 0;    opacity: 0.7; }
+  85%  { top: 100%; opacity: 0.3; }
+  100% { top: 100%; opacity: 0;   }
+}
+
+@keyframes windowOpen {
+  from {
+    opacity: 0;
+    transform: scale(0.84) translateY(28px);
+    filter: brightness(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: brightness(1);
+  }
+}
+
+
+/* ─── Responsive ──────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .inner { padding: 0 48px; }
+  .layout { grid-template-columns: 1fr; }
+  .ctas { flex-direction: row; flex-wrap: wrap; gap: 12px; }
+  .ctaPrimary, .ctaSecondary { flex: 1; min-width: 200px; padding: 20px 20px; }
+}
+
+@media (max-width: 600px) {
+  .inner { padding: 0 20px; }
+  .terminalCode { font-size: 12px; padding: 16px; min-height: 160px; }
+  .ctas { flex-direction: column; }
+  .ctaPrimary, .ctaSecondary { width: 100%; }
+}
+
+/* ─── Fullscreen overlay — mobile ─────────────────────────────────── */
+@media (max-width: 768px) {
+  .overlayTerminal {
+    width: 96vw;
+    height: 90vh;
+    border-radius: 8px;
+  }
+  .terminalCodeFull {
+    font-size: 12px;
+    padding: 24px 20px 16px;
+    min-height: 120px;
+  }
+  .ctaMenu {
+    padding: 0 20px 24px;
+    font-size: 13px;
+  }
+  .menuItem {
+    padding: 8px 8px;
+    grid-template-columns: 20px 1fr;
+  }
+  .menuPrompt { font-size: 15px; }
+}

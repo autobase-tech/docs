@@ -1,0 +1,116 @@
+/* ─── Section ─────────────────────────────────────────────────────── */
+.section {
+  background: var(--color-bg);
+  padding: 0 0 16px;
+  margin-bottom: 0;
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 80px;
+}
+
+/* ─── Banner card ─────────────────────────────────────────────────── */
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  padding: 40px 52px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-bg);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 4px 8px rgba(0, 0, 0, 0.04),
+    0 12px 24px rgba(0, 0, 0, 0.04),
+    0 24px 48px rgba(0, 0, 0, 0.03);
+}
+
+/* ─── Text block ──────────────────────────────────────────────────── */
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.before {
+  font-family: var(--font-base);
+  font-size: clamp(22px, 2.5vw, 30px);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.after {
+  font-family: var(--font-base);
+  font-size: clamp(22px, 2.5vw, 30px);
+  font-weight: var(--fw-black);
+  color: var(--color-primary);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.underbar {
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: var(--color-primary);
+  border-radius: 2px;
+  margin-top: 10px;
+}
+
+/* ─── Visual block ────────────────────────────────────────────────── */
+.visual {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-shrink: 0;
+}
+
+.timeBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.timeLabel {
+  font-family: var(--font-base);
+  font-size: 12px;
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  letter-spacing: 1.2px;
+}
+
+.accentLabel {
+  color: var(--color-primary);
+}
+
+.arrow {
+  flex-shrink: 0;
+}
+
+.divider {
+  width: 1px;
+  height: 80px;
+  background: var(--color-border);
+  flex-shrink: 0;
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .inner { padding: 0 48px; }
+  .banner { flex-direction: column; gap: 32px; text-align: center; padding: 36px 40px; }
+  .underbar { margin: 10px auto 0; }
+}
+
+@media (max-width: 600px) {
+  .inner { padding: 0 20px; }
+  .banner { flex-direction: column; gap: 24px; padding: 28px 24px; }
+  .visual { gap: 16px; }
+  .divider { display: none; }
+  .before, .after { font-size: clamp(18px, 5vw, 24px); }
+}

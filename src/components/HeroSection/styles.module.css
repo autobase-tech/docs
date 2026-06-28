@@ -1,0 +1,66 @@
+/* ─── Section ─────────────────────────────────────────────────────── */
+.hero {
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 80px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ─── Heading — Quantico Bold ─────────────────────────────────────── */
+.heading {
+  font-family: 'Quantico', sans-serif;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--color-text);
+  letter-spacing: -1px;
+  margin: 0;
+}
+
+.line {
+  display: block;
+  min-height: 1.05em;
+}
+
+/* ─── Terminal cursor ─────────────────────────────────────────────── */
+.cursor {
+  display: inline-block;
+  color: var(--color-text);
+  animation: blink 1s step-end infinite;
+  user-select: none;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ─── Subheading ──────────────────────────────────────────────────── */
+.subheading {
+  font-family: var(--font-base);
+  font-size: clamp(20px, 2.5vw, 24px);
+  font-weight: var(--fw-regular);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .inner { padding: 48px 48px 32px; }
+}
+
+@media (max-width: 768px) {
+  .inner { padding: 40px 28px 28px; }
+}
+
+@media (max-width: 480px) {
+  .inner { padding: 32px 20px 24px; }
+}

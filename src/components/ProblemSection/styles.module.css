@@ -1,0 +1,145 @@
+/* ─── Wrapper: vertical room for the image that bleeds above ──────── */
+.wrapper {
+  padding-top: 149px;
+  padding-bottom: var(--section-pb);
+}
+
+/* ─── Section card: overflow visible so image can escape top ─────── */
+.section {
+  position: relative;
+  overflow: visible;
+  border-radius: 48px;
+  margin: 0 110px;
+  aspect-ratio: 1312 / 480;
+}
+
+/* ─── ::before fills the card shape with the gradient ────────────── */
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 48px;
+  background: var(--bg-gradient-extra1);
+  box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.25);
+  z-index: 0;
+}
+
+/* ─── Awareness image — bleeds above card via negative top ──────── */
+.awarenessImage {
+  position: absolute;
+  top: -149px;
+  right: 0;
+  width: 50%;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ─── Inner content sits above ::before ──────────────────────────── */
+.inner {
+  position: relative;
+  z-index: 1;
+  padding: 80px 90px;
+}
+
+/* ─── Heading — type.h3.900 ──────────────────────────────────────── */
+.heading {
+  font-family: var(--font-base);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-black);
+  line-height: 1.2;
+  margin: 0 0 24px;
+}
+
+/* ─── Subtext — type.body-lg.500 ────────────────────────────────── */
+.subtext {
+  font-family: var(--font-base);
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-medium);
+  color: var(--color-white);
+  margin: 0 0 40px;
+}
+
+/* ─── List ───────────────────────────────────────────────────────── */
+.list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.listItem {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  width: max-content;
+}
+
+.listIcon {
+  flex-shrink: 0;
+  width: 96px;
+  height: 96px;
+}
+
+/* ─── List text — type.btn.700 ──────────────────────────────────── */
+.listText {
+  font-family: var(--font-base);
+  font-size: var(--fs-btn);
+  font-weight: var(--fw-medium);
+  color: var(--color-white);
+}
+
+/* ─── Bottom bar ─────────────────────────────────────────────────── */
+.bottomRow {
+  margin-top: 100px;
+}
+
+/* type.extra.900 = h2 size */
+.bottomHeading {
+  font-family: var(--font-base);
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-black);
+  line-height: 1;
+  margin: 0;
+}
+
+/* type.body.500 */
+.bottomBody {
+  font-family: var(--font-base);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
+  color: var(--color-white);
+  margin: 0;
+}
+
+/* ─── Colour helpers ─────────────────────────────────────────────── */
+.white  { color: var(--color-white); }
+.orange { color: var(--color-primary-alt); }
+
+/* ─── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 1200px) {
+  .section { margin: 0 80px; }
+  .inner { padding: 80px 80px; }
+}
+
+@media (max-width: 900px) {
+  .section { margin: 0 48px; aspect-ratio: unset; }
+  .awarenessImage { width: 48%; }
+  .inner { padding: 60px 48px; }
+  .listIcon { width: 64px; height: 64px; }
+}
+
+@media (max-width: 768px) {
+  .wrapper { padding-top: 0; }
+  .section { margin: 0 24px; aspect-ratio: unset; }
+  .awarenessImage { display: none; }
+  .inner { padding: 48px 24px; }
+  .list { flex-direction: column; gap: 20px; }
+  .listItem { flex-direction: row; align-items: center; width: auto; }
+  .listIcon { width: 48px; height: 48px; }
+  .bottomRow { margin-top: 48px; }
+  .bottomHeading { font-size: var(--fs-h3); }
+}

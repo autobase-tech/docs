@@ -1,0 +1,294 @@
+/* ─── Section ────────────────────────────────────────────────────── */
+.section {
+  padding: var(--section-pt) 110px var(--section-pb);
+}
+
+/* ─── Hero block ─────────────────────────────────────────────────── */
+.hero {
+  text-align: center;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.heading {
+  font-family: var(--font-base);
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-black);
+  color: var(--color-black);
+  margin: 0;
+}
+
+.subtitle {
+  font-family: var(--font-base);
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-medium);
+  color: var(--color-black);
+  margin: 0;
+}
+
+.orange { color: var(--color-primary); }
+
+/* ─── Billing switcher ───────────────────────────────────────────── */
+.switcherWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 48px;
+}
+
+.billingLabel {
+  font-family: var(--font-base);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-regular);
+  color: rgba(0, 0, 0, 0.6);
+  margin: 0;
+}
+
+.switcher {
+  display: flex;
+  gap: 6px;
+  padding: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.7);
+  border-radius: 140px;
+}
+
+.switchBtn {
+  height: 44px;
+  padding: 0 24px;
+  border: none;
+  border-radius: 100px;
+  background: transparent;
+  font-family: var(--font-base);
+  font-size: 18px;
+  font-weight: var(--fw-medium);
+  color: var(--color-black);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.switchBtnActive {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* ─── Cards row ──────────────────────────────────────────────────── */
+.cardsRow {
+  row-gap: 24px;
+  margin-bottom: 48px;
+  align-items: stretch;
+}
+
+/* ─── Card ───────────────────────────────────────────────────────── */
+.card {
+  display: flex;
+  flex-direction: column;
+  background: rgba(162, 153, 153, 0.09);
+  border: 2px solid transparent;
+  border-radius: 24px;
+  overflow: hidden;
+  min-height: 728px;
+  height: 100%;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-primary);
+}
+
+.cardPremium {
+  border-color: var(--color-primary);
+  background: radial-gradient(
+    ellipse 130% 90% at 30% 130%,
+    rgba(200, 188, 204, 0.3),
+    rgba(255, 255, 255, 0.04)
+  );
+}
+
+/* ─── Card header ────────────────────────────────────────────────── */
+.cardHeader {
+  flex-shrink: 0;
+  height: 202px;
+  overflow: hidden;
+  position: relative;
+}
+
+.cardImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  pointer-events: none;
+  display: block;
+}
+
+.popularBadge {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-family: var(--font-base);
+  font-size: 16px;
+  font-weight: var(--fw-medium);
+  padding: 6px 24px 10px;
+  border-radius: 0 0 12px 12px;
+  white-space: nowrap;
+}
+
+/* ─── Card body ──────────────────────────────────────────────────── */
+.cardBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 30px 30px;
+  gap: 20px;
+}
+
+/* 32px plan name */
+.planName {
+  font-family: var(--font-base);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-semibold);
+  color: var(--color-black);
+  margin: 0;
+}
+
+/* ─── Price block ────────────────────────────────────────────────── */
+.priceBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 60px;
+}
+
+.price {
+  font-family: var(--font-base);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-regular);
+  color: var(--color-primary);
+  margin: 0;
+  line-height: 1;
+}
+
+.currency {
+  color: var(--color-primary);
+}
+
+.billing {
+  font-family: var(--font-base);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-regular);
+  color: rgba(0, 0, 0, 0.6);
+  margin: 0;
+}
+
+.freeDesc {
+  font-family: var(--font-base);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-regular);
+  color: rgba(0, 0, 0, 0.6);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ─── Feature list ───────────────────────────────────────────────── */
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-base);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--color-black);
+}
+
+.checkIcon {
+  flex-shrink: 0;
+}
+
+/* ─── CTA ────────────────────────────────────────────────────────── */
+.ctaWrap {
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+.cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 54px;
+  background: var(--color-primary);
+  color: var(--color-white) !important;
+  font-family: var(--font-base);
+  font-size: 18px;
+  font-weight: var(--fw-bold);
+  border-radius: 6px;
+  text-decoration: none !important;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.cta:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+/* ─── Notes row ──────────────────────────────────────────────────── */
+.notes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.noteItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-base);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--color-black);
+  white-space: nowrap;
+}
+
+.stripeLogo {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 1200px) {
+  .section { padding: var(--section-pt) 80px var(--section-pb); }
+}
+
+@media (max-width: 992px) {
+  .section { padding: var(--section-pt) 48px var(--section-pb); }
+  .notes { gap: 32px; }
+}
+
+@media (max-width: 768px) {
+  .section { padding: var(--section-pt) 24px var(--section-pb); }
+  .heading { font-size: var(--fs-h3); }
+  .subtitle { font-size: var(--fs-body); }
+  .notes { gap: 20px; flex-direction: column; align-items: center; }
+}

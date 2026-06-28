@@ -1,11 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Zalando+Sans+SemiExpanded:ital,wght@0,200..900;1,200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import 'bootstrap/dist/css/bootstrap-grid.min.css';
+
 /**
  * Any CSS included here will be global. The classic template
  * bundles Infima by default. Infima is a CSS framework designed to
  * work well for content-centric websites.
  */
 
-/* You can override the default Infima variables here. */
 :root {
+  /* ── Infima theme ───────────────────────────────────────────────── */
   --ifm-color-primary: #0366d6;
   --ifm-color-primary-dark: #024aaa;
   --ifm-color-primary-darker: #023e8a;
@@ -13,13 +18,69 @@
   --ifm-color-primary-light: #2b8cd8;
   --ifm-color-primary-lighter: #69b0e3;
   --ifm-color-primary-lightest: #a8d1ef;
+  --ifm-background-color: #ffffff;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-font-family-base: 'Quantico', sans-serif;
+
+  /* ── Font family ────────────────────────────────────────────────── */
+  --font-base: 'Quantico', sans-serif;
+
+  /* ── Font weights ───────────────────────────────────────────────── */
+  /* layer: type.*.200  */ --fw-light:    200;
+  /* layer: type.*.400  */ --fw-regular:  400;
+  /* layer: type.*.500  */ --fw-medium:   500;
+  /* layer: type.*.600  */ --fw-semibold: 600;
+  /* layer: type.*.700  */ --fw-bold:     700;
+  /* layer: type.*.900  */ --fw-black:    900;
+
+  /* ── Font sizes — ×1.2 scale, clamp() for fluid responsiveness ──── */
+  /* 72  → 86  */ --fs-hero:    clamp(48px, 6vw,   86px);
+  /* 48  → 58  */ --fs-h2:      clamp(32px, 4vw,   58px);
+  /* 32  → 38  */ --fs-h3:      clamp(22px, 2.8vw, 38px);
+  /* 27  → 33  */ --fs-navbar:  clamp(18px, 2.2vw, 33px);
+  /* 24  → 29  */ --fs-body-lg: clamp(18px, 2vw,   29px);
+  /* 20  → 24  */ --fs-body:    clamp(16px, 1.7vw, 24px);
+  /* 18  → 22  */ --fs-btn:     clamp(14px, 1.4vw, 22px);
+  /* 16  → 19  */ --fs-sm:      clamp(13px, 1.2vw, 19px);
+
+  /* ── Brand colours ──────────────────────────────────────────────── */
+  /* Figma var: COLOR-SECONDARY */ --color-primary:      #ff5722;
+                                   --color-primary-alt:  #fc6902;
+                                   --color-gradient-end: #be987d;
+                                   --color-white:        #ffffff;
+                                   --color-black:        #000000;
+                                   --color-muted:        #c7c7c7;
+
+  /* ── Light theme tokens ──────────────────────────────────────────── */
+  --color-bg:      #ffffff;
+  --color-bg-alt:  #f5f5f5;
+  --color-surface: #f9f9f9;
+  --color-text:    #111111;
+  --color-text-muted: #555555;
+  --color-border:  #e0e0e0;
+
+  /* ── Section vertical rhythm ─────────────────────────────────────── */
+  --section-pt: 72px;
+  --section-pb: 72px;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+@media (max-width: 900px) {
+  :root {
+    --section-pt: 52px;
+    --section-pb: 52px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --section-pt: 40px;
+    --section-pb: 40px;
+  }
+}
+
 [data-theme='dark'] {
-  --ifm-background-color: #121212 !important;
+  --ifm-background-color: #ffffff !important;
   --ifm-color-primary: #58a6ff;
   --ifm-color-primary-dark: #3f8cfd;
   --ifm-color-primary-darker: #2a74d8;
@@ -30,48 +91,106 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-/* Logo text styles */
-.navbar__title {
-  font-weight: 400;
-  font-size: 1.4rem;
-  line-height: 1.2;
-  white-space: nowrap;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+/* ─── Global typography ───────────────────────────────────────────── */
+body {
+  font-family: 'Quantico', sans-serif;
+  color: var(--color-text);
+  background-color: var(--color-bg) !important;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Quantico', sans-serif;
+  font-weight: 700;
+}
+
+p {
+  font-family: var(--font-base);
+  font-weight: var(--fw-light);
+}
+
+/* ─── Navbar — Light theme ────────────────────────────────────────── */
 .navbar {
-  padding-left: 4rem;
-  padding-right: 4rem;
+  background: var(--color-bg) !important;
+  border-bottom: 1px solid var(--color-border) !important;
+  box-shadow: none !important;
+}
+
+/* ─── Navbar hide-on-scroll transition ───────────────────────────── */
+.navbar--fixed-top {
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s ease !important;
+}
+
+.navbar--scrolled {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* ─── Mobile navbar sidebar — glass effect ───────────────────────── */
+.navbar-sidebar {
+  background: rgba(255, 255, 255, 0.97) !important;
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.08);
+}
+
+.navbar-sidebar__brand {
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.navbar-sidebar__items .menu__link {
+  font-family: var(--font-base);
+  font-size: var(--fs-btn);
+  font-weight: var(--fw-medium);
+  color: var(--color-black);
+  border-radius: 8px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.navbar-sidebar__items .menu__link:hover {
+  background: rgba(255, 87, 34, 0.08);
+  color: var(--color-primary);
+}
+
+.navbar-sidebar__backdrop {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* ─── Navbar brand/logo sizing ───────────────────────────────────── */
+.navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navbar__logo {
+  height: 28px;
+  width: auto;
+}
+
+.navbar__title {
+  font-family: var(--font-base);
+  font-weight: var(--fw-bold);
+  font-size: 18px;
 }
 
 @media (max-width: 768px) {
-  .navbar {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
+  .navbar__logo { height: 24px; }
+  .navbar__title { font-size: 16px; }
 }
 
-.navbar.navbar--transparent {
-  background: rgba(15, 15, 30, 0.15);
-  backdrop-filter: blur(18px) saturate(160%);
-  -webkit-backdrop-filter: blur(18px) saturate(160%);
-  box-shadow: none;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
-}
-
-.navbar.navbar--transparent.navbar--scrolled {
-  background: rgba(15, 15, 30, 0.55);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-}
-
-:root[data-theme='light'] .navbar.navbar--transparent {
-  background: rgba(255, 255, 255, 0.25);
-}
-
-:root[data-theme='light'] .navbar.navbar--transparent.navbar--scrolled {
-  background: rgba(255, 255, 255, 0.65);
-}
-
-.navbar.navbar--transparent :is(.navbar__item, .navbar__link, .navbar__brand) {
-  transition: color 0.2s ease;
+/* ─── Docs pages — light theme (orange accent) ────────────────────── */
+html.docs-doc-page {
+  --ifm-color-primary:          var(--color-primary);
+  --ifm-color-primary-dark:     var(--color-primary-alt);
+  --ifm-color-primary-darker:   #e04d1a;
+  --ifm-color-primary-darkest:  #c23c0e;
+  --ifm-color-primary-light:    #ff7043;
+  --ifm-color-primary-lighter:  #ff8a65;
+  --ifm-color-primary-lightest: #ffab91;
+  --ifm-link-color:             var(--color-primary);
+  --ifm-link-hover-color:       var(--color-primary-alt);
+  --ifm-tabs-color-active:      var(--color-primary);
 }

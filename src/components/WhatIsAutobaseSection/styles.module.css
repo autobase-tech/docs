@@ -1,0 +1,140 @@
+/* ─── Card — same margin setup as ProblemSection ─────────────────── */
+.section {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  border-radius: 48px;
+  margin: var(--section-pt) 110px 0;
+  aspect-ratio: 1312 / 782;
+  background-color: #000000;
+
+  /*
+   * Two-layer background:
+   * 1. Black-to-transparent gradient (left 45%) — keeps text readable
+   * 2. The Figma image, right-anchored, filling the full card height
+   *
+   * The gradient covers the entire left column so text never sits
+   * directly on the vivid orange/glow portion of the image.
+   */
+  background-image:
+    linear-gradient(to right, #000000 35%, rgba(0, 0, 0, 0.6) 50%, transparent 70%),
+    url('/img/whatisautobase/bg.png');
+  background-position: right top, left 10vw top 0;
+  background-size: auto 100%, auto 100%;
+  background-repeat: no-repeat, no-repeat;
+
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Inner — distributes content row and bottom bar ─────────────── */
+.inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 80px 90px;
+  min-height: 0;
+}
+
+/* ─── Left column content ────────────────────────────────────────── */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+/* ─── Heading — type.h3.900 ──────────────────────────────────────── */
+.heading {
+  font-family: var(--font-base);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-black);
+  color: var(--color-white);
+  margin: 0;
+}
+
+.orange { color: var(--color-primary); }
+.white  { color: var(--color-white); }
+
+/* ─── Subtext — type.body-lg.500 ────────────────────────────────── */
+.subtext {
+  font-family: var(--font-base);
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-medium);
+  color: var(--color-white);
+  max-width: 500px;
+  margin: 0;
+}
+
+/* ─── List ───────────────────────────────────────────────────────── */
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.listIcon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+}
+
+/* ─── List text — type.btn.500 / 18px ───────────────────────────── */
+.listText {
+  font-family: var(--font-base);
+  font-size: var(--fs-btn);
+  font-weight: var(--fw-medium);
+  color: var(--color-white);
+}
+
+/* ─── Bottom bar ─────────────────────────────────────────────────── */
+.bottomRow {
+  margin-top: 40px;
+}
+
+/* type.h2.900 */
+.bottomHeading {
+  font-family: var(--font-base);
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-black);
+  line-height: 1.1;
+  margin: 0;
+}
+
+/* type.body.500 */
+.bottomBody {
+  font-family: var(--font-base);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
+  color: var(--color-white);
+  margin: 0;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 1200px) {
+  .section { margin: var(--section-pt) 80px 0; }
+  .inner { padding: 80px 80px; }
+}
+
+@media (max-width: 900px) {
+  .section { margin: var(--section-pt) 48px 0; aspect-ratio: unset; }
+  .inner { padding: 60px 48px; }
+  .bottomHeading { font-size: var(--fs-h3); }
+}
+
+@media (max-width: 768px) {
+  .section { margin: var(--section-pt) 24px 0; }
+  .inner { padding: 48px 24px; }
+  .subtext { max-width: 100%; }
+  .bottomHeading { font-size: var(--fs-h3); }
+}

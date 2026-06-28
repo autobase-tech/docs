@@ -1,0 +1,127 @@
+/* ─── Section shell ───────────────────────────────────────────────── */
+.section {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  padding: var(--section-pt) 0 var(--section-pb);
+}
+
+/* ─── Inner wrapper ───────────────────────────────────────────────── */
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 110px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+/* ─── Heading — type.h2.900 ──────────────────────────────────────── */
+.heading {
+  font-family: var(--font-base);
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-black);
+  line-height: 1.2;
+  color: var(--color-black);
+  text-align: center;
+  margin: 0 0 16px;
+}
+
+.orange {
+  color: var(--color-primary);
+}
+
+/* ─── Subtext — type.body-lg.500 ────────────────────────────────── */
+.subtext {
+  font-family: var(--font-base);
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-medium);
+  color: var(--color-black);
+  text-align: center;
+  margin: 0;
+}
+
+/* ─── Icon item ───────────────────────────────────────────────────── */
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 29px;
+  width: 343px;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ─── Circle thumb — border-box so padding stays inside 92px ─────── */
+.thumb {
+  box-sizing: border-box;
+  width: 92px;
+  height: 92px;
+  border-radius: 70.933px;
+  border: 2px solid var(--color-primary-alt);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow:
+    inset 3.733px 3.733px 3.733px 0px var(--color-white),
+    inset -3.73px -3.73px 20px 0px rgba(179, 179, 179, 0.5);
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ─── Label — type.body.500 ──────────────────────────────────────── */
+.label {
+  font-family: var(--font-base);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
+  color: var(--color-black);
+  text-align: center;
+  margin: 0;
+}
+
+/* ─── Video wrapper ───────────────────────────────────────────────── */
+.videoWrap {
+  display: flex;
+  justify-content: center;
+}
+
+/* ─── Fancy rounded card — 947×613 from Figma ────────────────────── */
+.videoCard {
+  width: 947px;
+  max-width: 100%;
+  aspect-ratio: 947 / 613;
+  border-radius: 48px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.16);
+}
+
+.videoCard iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 1200px) {
+  .inner { padding: 0 80px; }
+}
+
+@media (max-width: 900px) {
+  .inner { padding: 0 48px; gap: 40px; }
+  .item { width: auto; }
+  .videoCard { border-radius: 32px; }
+}
+
+@media (max-width: 768px) {
+  .inner { padding: 0 24px; gap: 32px; }
+  .heading { font-size: var(--fs-h3); }
+  .videoCard { width: 85%; border-radius: 24px; }
+}

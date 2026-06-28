@@ -1,0 +1,167 @@
+/* ─── Navbar shell ────────────────────────────────────────────────── */
+.navbar {
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0;
+  height: auto;
+}
+
+/* ─── Inner container — matches hero padding ──────────────────────── */
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 80px;
+  height: 72px;
+  width: 100%;
+}
+
+/* ─── Logo ────────────────────────────────────────────────────────── */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logo:hover {
+  text-decoration: none;
+  opacity: 0.75;
+}
+
+.logoIcon { display: block; }
+
+.logoText {
+  font-family: var(--font-base);
+  font-size: 22px;
+  font-weight: var(--fw-regular);
+  color: var(--color-text);
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* ─── Right nav links ─────────────────────────────────────────────── */
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-left: auto;
+}
+
+.navLink {
+  font-family: var(--font-base);
+  font-size: 15px;
+  font-weight: 400;
+  color: hsl(0, 0%, 52%);
+  text-decoration: none;
+  position: relative;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: var(--color-text);
+  transition: width 0.25s ease;
+}
+
+.navLink:hover {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.navLink:hover::after {
+  width: 100%;
+}
+
+/* ─── Right actions ───────────────────────────────────────────────── */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+/* ─── CTA buttons (unchanged) ─────────────────────────────────────── */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 20px;
+  border-radius: 6px;
+  font-family: var(--font-base);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-regular);
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.cta:hover {
+  text-decoration: none;
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.ctaPrimary {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+}
+
+.ctaPrimary:hover { color: var(--color-white); }
+
+.ctaSecondary {
+  background: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.ctaSecondary:hover { color: var(--color-text); border-color: #aaaaaa; }
+
+/* ─── Icon links ──────────────────────────────────────────────────── */
+.iconLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  opacity: 0.55;
+  transition: opacity 0.2s ease;
+}
+
+.iconLink:hover { opacity: 1; }
+
+.iconLink img { filter: brightness(0); }
+
+/* ─── Mobile ──────────────────────────────────────────────────────── */
+.mobileActions { display: none; }
+
+/* ─── Responsive ──────────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .inner { padding: 0 48px; }
+  .navLinks { gap: 20px; }
+}
+
+@media (max-width: 900px) {
+  .navLinks { display: none; }
+  .inner { padding: 0 32px; }
+}
+
+@media (max-width: 768px) {
+  .inner { padding: 0 24px; height: 60px; }
+  .actions { display: none; }
+  .mobileActions { display: flex; align-items: center; }
+  .mobileActions .cta { height: 40px; }
+}
