@@ -55,7 +55,7 @@
 /* ─── Legal text ──────────────────────────────────────────────────── */
 .legal {
   font-family: var(--font-base);
-  font-size: var(--fs-sm);
+  font-size: clamp(12px, 1vw, 16px);
   font-weight: var(--fw-regular);
   color: var(--color-text-muted);
   margin: 0;

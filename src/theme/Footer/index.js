@@ -37,13 +37,8 @@ export default function Footer(props) {
         </p>
 
         <p className={styles.legal}>
-          Payments are processed by NovaBridge Tech OÜ,<br />
-          which acts as the authorized payment and billing partner for Autobase.
-        </p>
-
-        <p className={styles.legal}>
-          NovaBridge Tech OÜ. Reg. nr 17390133 · Võru tn 11,<br />
-          Lasnamäe linnaosa, Tallinn 13612, Harjumaa, Estonia
+          Payments are processed by NovaBridge Tech OÜ, which acts as the authorized payment and billing partner for Autobase.<br />
+          NovaBridge Tech OÜ. Reg. nr 17390133 · Võru tn 11, Lasnamäe linnaosa, Tallinn 13612, Harjumaa, Estonia
         </p>
 
       </div>
