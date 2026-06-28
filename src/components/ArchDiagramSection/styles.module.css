@@ -22,37 +22,6 @@
   align-items: center;
 }
 
-/* ─── Diagram wrapper (for expand button) ─────────────────────────── */
-.diagramWrapper {
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* ─── Expand button ───────────────────────────────────────────────── */
-.expandBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 20px;
-  padding: 8px 16px;
-  border-radius: 6px;
-  border: 1px solid var(--color-border);
-  background: var(--color-bg);
-  color: var(--color-text-muted);
-  font-family: var(--font-base);
-  font-size: 13px;
-  cursor: pointer;
-  transition: color 0.15s ease, border-color 0.15s ease;
-}
-
-.expandBtn:hover {
-  color: var(--color-text);
-  border-color: var(--color-text-muted);
-}
-
 /* ─── Diagram ─────────────────────────────────────────────────────── */
 .diagram {
   width: 100%;
@@ -86,6 +55,27 @@
 .muted {
   color: var(--color-text-muted);
   margin-left: 8px;
+}
+
+.usersBox {
+  flex-direction: column;
+  gap: 12px;
+  width: 48%;
+}
+
+.usersTitle {
+  font-size: 22px;
+  color: var(--color-text);
+}
+
+.userRoles {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 16px;
+  color: var(--color-text-muted);
 }
 
 /* ─── Arrow down ──────────────────────────────────────────────────── */
@@ -145,6 +135,7 @@
 .clustersRow {
   display: flex;
   align-items: center;
+  gap: 56px;
   width: 80%;
 }
 
@@ -164,7 +155,9 @@
   background: var(--color-surface);
 }
 
-.arrowBi { display: block; flex-shrink: 0; }
+.clusterBoxOptional {
+  border-style: dashed;
+}
 
 /* ─── Storage ─────────────────────────────────────────────────────── */
 .storageRow {
@@ -229,127 +222,11 @@
   line-height: 1.5;
 }
 
-/* ─── Lightbox overlay ────────────────────────────────────────────── */
-.lbOverlay {
-  --font-base: 'Quantico', sans-serif;
-  --fw-bold: 700;
-  --fs-sm: clamp(13px, 1.2vw, 19px);
-  --color-primary: #ff5722;
-  --color-bg: #ffffff;
-  --color-surface: #f9f9f9;
-  --color-text: #111111;
-  --color-text-muted: #555555;
-  --color-border: #e0e0e0;
-  position: fixed;
-  inset: 0;
-  z-index: 99998;
-  background: rgba(0, 0, 0, 0.88);
-  display: flex;
-  flex-direction: column;
-  animation: lbFadeIn 0.2s ease forwards;
-}
-
-@keyframes lbFadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-.lbCanvas {
-  flex: 1;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: grab;
-  user-select: none;
-  touch-action: none;
-}
-
-.lbCanvas:active { cursor: grabbing; }
-
-.lbContent {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 48px 60px;
-  transform-origin: center center;
-  will-change: transform;
-}
-
-/* ─── Lightbox controls ───────────────────────────────────────────── */
-.lbControls {
-  position: absolute;
-  bottom: 28px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  background: rgba(10, 10, 10, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 100px;
-  padding: 6px 12px;
-  backdrop-filter: blur(12px);
-  z-index: 1;
-}
-
-.lbBtn {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: none;
-  background: transparent;
-  color: #ccc;
-  font-size: 20px;
-  font-weight: 300;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-  transition: color 0.15s ease, background 0.15s ease;
-}
-
-.lbBtn:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.lbScale {
-  color: #888;
-  font-family: monospace;
-  font-size: 13px;
-  min-width: 46px;
-  text-align: center;
-}
-
-.lbClose {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(0, 0, 0, 0.5);
-  color: #ccc;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(8px);
-  transition: color 0.15s ease, background 0.15s ease;
-  z-index: 2;
-}
-
-.lbClose:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.12);
-}
-
 /* ─── Responsive ──────────────────────────────────────────────────── */
 @media (max-width: 1100px) {
   .inner { padding: 0 48px; }
   .box, .controlPlane, .splitArrows, .clustersRow { width: 90%; }
+  .usersBox { width: 64%; }
   .featuresGrid { grid-template-columns: repeat(3, 1fr); }
   .featureCard:nth-child(3) { border-right: none; }
   .featureCard:nth-child(n+4) { border-top: 2px solid var(--color-border); }
@@ -359,9 +236,13 @@
   .inner { padding: 40px 24px; }
   .section { min-height: auto; }
   .box, .controlPlane, .splitArrows, .clustersRow { width: 100%; }
+  .usersBox { width: 100%; }
   .box { font-size: 15px; padding: 20px 12px; }
+  .usersTitle { font-size: 18px; }
+  .userRoles { font-size: 13px; gap: 8px; }
   .cpTitle { font-size: 18px; }
   .cpPills { font-size: 13px; gap: 8px; }
+  .clustersRow { gap: 24px; }
   .clusterBox { padding: 20px 8px; font-size: 13px; gap: 8px; }
   .storageTitle { font-size: 15px; }
   .storageSub { font-size: 13px; }
@@ -375,7 +256,6 @@
   .featureCard:nth-child(5) { border-right: 1px solid var(--color-border); }
   .featureDesc { font-size: 13px; }
   .divider { margin: 32px auto; }
-  .lbContent { padding: 32px 24px; }
 }
 
 @media (max-width: 480px) {
@@ -385,7 +265,6 @@
   .featureCard:last-child { border-bottom: none; }
   .featureCard:nth-child(n) { border-top: none; border-right: none; }
   .clustersRow { flex-direction: column; gap: 0; }
-  .arrowBi { transform: rotate(90deg); }
   .splitArrows { display: none; }
   .clusterBox { width: 100%; border-radius: 0; }
   .clusterBox:first-child { border-radius: 6px 6px 0 0; }
