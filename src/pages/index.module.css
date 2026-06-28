@@ -67,7 +67,7 @@
 }
 
 /* Adaptive style for mobile devices */
-@media (max-width: 1440px) {
+@media (max-width: 1200px) {
   .heroBanner_description,
   .heroLead,
   .heroBenefits {
