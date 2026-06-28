@@ -134,19 +134,17 @@ function DiagramInner({ compact }) {
       </div>
       <div className={styles.arrowRow}><ArrowDown /></div>
       <div className={styles.row}>
-        <div className={`${styles.box} ${styles.controlPlane}`}>
+        <div className={`${styles.box} ${styles.platform}`}>
           <div className={styles.cpHeader}>
             <img src="/img/navbar/logo-icon.svg" alt="" width={28} height={25} />
-            <span className={styles.cpTitle}>Autobase Control Plane</span>
+            <span className={styles.cpTitle}>Autobase Platform</span>
           </div>
           <div className={styles.cpPills}>
             <span>Provisioning</span>
             <span className={styles.sep}>|</span>
-            <span>Orchestration</span>
+            <span>Maintenance</span>
             <span className={styles.sep}>|</span>
-            <span>Automation</span>
-            <span className={styles.sep}>|</span>
-            <span>Monitoring</span>
+            <span>Scaling</span>
           </div>
         </div>
       </div>
