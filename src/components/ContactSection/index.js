@@ -58,7 +58,7 @@ const columns = [
     title: 'Support',
     subtitle: 'Get help and resources.',
     links: [
-      { label: '→ autobase.tech/support', href: '/support' },
+      { label: '→ autobase.tech/support', href: '/docs/support' },
     ],
   },
 ];
