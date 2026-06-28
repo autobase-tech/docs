@@ -10,14 +10,13 @@
 .navbar {
   --font-base: 'Quantico', sans-serif;
   --fw-regular: 400;
-  --color-bg: #ffffff;
+  --color-bg: #F9FAFB;
   --color-surface: #f9f9f9;
   --color-text: #111111;
   --color-border: #e0e0e0;
   --color-white: #ffffff;
   --color-primary: #ff5722;
   background: var(--color-bg);
-  border-bottom: 1px solid var(--color-border);
   padding: 0 !important;
   height: auto;
 }
@@ -30,7 +29,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 80px;
-  height: 72px;
+  height: 88px;
   width: 100%;
 }
 
@@ -48,11 +47,15 @@
   opacity: 0.75;
 }
 
-.logoIcon { display: block; }
+.logoIcon {
+  display: block;
+  width: 48px;
+  height: auto;
+}
 
 .logoText {
   font-family: var(--font-base);
-  font-size: 22px;
+  font-size: 26px;
   font-weight: var(--fw-regular);
   color: var(--color-text);
   white-space: nowrap;
@@ -69,7 +72,7 @@
 
 .navLink {
   font-family: var(--font-base);
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 400;
   color: hsl(0, 0%, 52%);
   text-decoration: none;
@@ -176,7 +179,9 @@
 }
 
 @media (max-width: 768px) {
-  .inner { padding: 0 24px; height: 60px; }
+  .inner { padding: 0 24px; height: 72px; }
+  .logoIcon { width: 42px; }
+  .logoText { font-size: 23px; }
   .actions { display: none; }
   .mobileActions { display: flex; align-items: center; }
   .mobileActions .cta { height: 40px; }
