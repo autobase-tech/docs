@@ -1,5 +1,12 @@
 /* ─── Footer ──────────────────────────────────────────────────────── */
 .footer {
+  --font-base: 'Quantico', sans-serif;
+  --fw-regular: 400;
+  --fs-sm: clamp(13px, 1.2vw, 19px);
+  --color-bg: #ffffff;
+  --color-text: #111111;
+  --color-text-muted: #555555;
+  --color-border: #e0e0e0;
   background: var(--color-bg);
 }
 

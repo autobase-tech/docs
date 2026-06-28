@@ -42,6 +42,7 @@ export default function Home() {
 
   return (
     <Layout
+      wrapperClassName="landingPage"
       title="autobase"
       description="Automated database platform for PostgreSQL">
       <HeroSection />

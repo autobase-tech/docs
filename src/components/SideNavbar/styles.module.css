@@ -1,5 +1,11 @@
 /* ─── Sidebar shell ────────────────────────────────────────────────── */
 .sidebar {
+  --font-base: 'Quantico', sans-serif;
+  --color-bg: #ffffff;
+  --color-surface: #f9f9f9;
+  --color-text: #111111;
+  --color-border: #e0e0e0;
+  --color-primary: #ff5722;
   position: fixed;
   left: 0;
   top: 0;

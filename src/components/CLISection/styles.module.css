@@ -283,6 +283,16 @@
 
 /* ─── Fullscreen overlay ──────────────────────────────────────────── */
 .overlay {
+  --font-base: 'Quantico', sans-serif;
+  --fw-regular: 400;
+  --fw-bold: 700;
+  --fs-body: clamp(16px, 1.7vw, 24px);
+  --fs-sm: clamp(13px, 1.2vw, 19px);
+  --color-primary: #ff5722;
+  --color-surface: #f9f9f9;
+  --color-text: #111111;
+  --color-text-muted: #555555;
+  --color-border: #e0e0e0;
   position: fixed;
   top: 0;
   left: 0;
