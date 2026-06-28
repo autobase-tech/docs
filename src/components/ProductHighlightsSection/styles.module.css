@@ -1,0 +1,86 @@
+/* ─── Section ─────────────────────────────────────────────────────── */
+.section {
+  background:
+    linear-gradient(to right, transparent 10%, var(--color-border) 10%, var(--color-border) 90%, transparent 90%) no-repeat 0 0 / 100% 1px,
+    linear-gradient(to right, transparent 10%, var(--color-border) 10%, var(--color-border) 90%, transparent 90%) no-repeat 0 100% / 100% 1px,
+    var(--color-bg);
+  padding: var(--section-pt) 0 var(--section-pb);
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 80px;
+}
+
+/* ─── Row ─────────────────────────────────────────────────────────── */
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+/* ─── Item ────────────────────────────────────────────────────────── */
+.item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+  justify-content: center;
+  padding: 0 40px;
+}
+
+/* ─── Icon ────────────────────────────────────────────────────────── */
+.icon {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+/* ─── Text ────────────────────────────────────────────────────────── */
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.title {
+  font-family: var(--font-base);
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-bold);
+  line-height: 1.1;
+  color: var(--color-text);
+}
+
+.description {
+  font-family: var(--font-base);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-regular);
+  color: var(--color-text-muted);
+}
+
+/* ─── Divider ─────────────────────────────────────────────────────── */
+.divider {
+  width: 1px;
+  height: 60px;
+  background: var(--color-border);
+  flex-shrink: 0;
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .inner { padding: 0 48px; }
+  .row { flex-direction: column; gap: 28px; }
+  .divider { width: 48px; height: 1px; }
+  .item { padding: 0; justify-content: flex-start; }
+}
+
+@media (max-width: 600px) {
+  .inner { padding: 0 20px; }
+  .item { gap: 16px; }
+  .icon svg { width: 32px; height: 32px; }
+}
+
+@media (max-width: 480px) {
+  .inner { padding: 0 16px; }
+}

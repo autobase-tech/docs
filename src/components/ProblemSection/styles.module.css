@@ -120,7 +120,7 @@
 .orange { color: var(--color-primary-alt); }
 
 /* ─── Responsive ─────────────────────────────────────────────────── */
-@media (max-width: 1440px) {
+@media (max-width: 1200px) {
   .section { margin: 0 80px; }
   .inner { padding: 80px 80px; }
 }

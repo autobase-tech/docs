@@ -216,7 +216,7 @@
 }
 
 /* ─── Responsive ─────────────────────────────────────────────────── */
-@media (max-width: 1440px) {
+@media (max-width: 1200px) {
   .section { margin: 0 80px; }
   .comparing { padding: 40px 60px 60px; }
 }

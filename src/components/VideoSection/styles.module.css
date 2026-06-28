@@ -7,7 +7,7 @@
 
 /* ─── Inner wrapper ───────────────────────────────────────────────── */
 .inner {
-  max-width: 1440px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 110px;
   display: flex;
@@ -110,7 +110,7 @@
 }
 
 /* ─── Responsive ─────────────────────────────────────────────────── */
-@media (max-width: 1440px) {
+@media (max-width: 1200px) {
   .inner { padding: 0 80px; }
 }
 

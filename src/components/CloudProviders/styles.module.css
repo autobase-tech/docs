@@ -9,7 +9,7 @@
   align-items: center;
 }
 
-@media (max-width: 1440px) { .section { margin: 0 80px; } }
+@media (max-width: 1200px) { .section { margin: 0 80px; } }
 @media (max-width: 900px)  { .section { margin: 0 48px; } }
 @media (max-width: 768px)  { .section { margin: 0 24px; } }
 

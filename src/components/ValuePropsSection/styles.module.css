@@ -1,0 +1,86 @@
+/* ─── Section ─────────────────────────────────────────────────────── */
+.section {
+  background: var(--color-bg);
+  padding: var(--section-pt) 0 var(--section-pb);
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 80px;
+}
+
+/* ─── Grid ────────────────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* ─── Card ────────────────────────────────────────────────────────── */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-bg);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 4px 8px rgba(0, 0, 0, 0.03),
+    0 12px 24px rgba(0, 0, 0, 0.03),
+    0 24px 48px rgba(0, 0, 0, 0.02);
+  transition: box-shadow 0.2s ease;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.card:hover {
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.06),
+    0 6px 16px rgba(0, 0, 0, 0.06),
+    0 18px 36px rgba(0, 0, 0, 0.05),
+    0 32px 64px rgba(0, 0, 0, 0.04);
+}
+
+/* ─── Icon ────────────────────────────────────────────────────────── */
+.icon {
+  color: var(--color-text);
+}
+
+/* ─── Title ───────────────────────────────────────────────────────── */
+.title {
+  font-family: var(--font-base);
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-bold);
+  line-height: 1.1;
+  color: var(--color-text);
+  margin: 0;
+}
+
+/* ─── Description ─────────────────────────────────────────────────── */
+.description {
+  font-family: var(--font-base);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-regular);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .inner { padding: 0 48px; }
+  .grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+}
+
+@media (max-width: 600px) {
+  .inner { padding: 0 20px; }
+  .grid { grid-template-columns: 1fr; gap: 12px; }
+  .card { padding: 24px 20px; gap: 12px; }
+}
+
+@media (max-width: 480px) {
+  .inner { padding: 0 16px; }
+}

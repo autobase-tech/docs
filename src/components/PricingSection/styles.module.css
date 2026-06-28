@@ -277,7 +277,7 @@
 }
 
 /* ─── Responsive ─────────────────────────────────────────────────── */
-@media (max-width: 1440px) {
+@media (max-width: 1200px) {
   .section { padding: var(--section-pt) 80px var(--section-pb); }
 }
 

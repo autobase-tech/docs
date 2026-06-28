@@ -104,7 +104,7 @@
  * ≤900px   (WhatIsAutobase margin  48px): max(4px, calc(55px   - 7.5vw))
  * ≤768px   (WhatIsAutobase margin  24px): 4px
  */
-@media (max-width: 1440px) {
+@media (max-width: 1200px) {
   .section { margin: -5rem max(4px, calc(92px - 7.5vw)) 0; }
   .inner { padding: 140px 80px 80px; }
 }

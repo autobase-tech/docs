@@ -1,0 +1,93 @@
+/* ─── Section ─────────────────────────────────────────────────────── */
+.section {
+  background:
+    linear-gradient(to right, transparent 10%, var(--color-border) 10%, var(--color-border) 90%, transparent 90%) no-repeat 0 0 / 100% 1px,
+    var(--color-bg);
+  padding: var(--section-pt) 0 var(--section-pb);
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 200px;
+}
+
+/* ─── Grid ────────────────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* ─── Card ────────────────────────────────────────────────────────── */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 32px 24px;
+  border-right: 1px solid var(--color-border);
+  transition: background 0.2s ease;
+}
+
+.card:last-child {
+  border-right: none;
+}
+
+.card:hover {
+  background: var(--color-surface);
+}
+
+/* ─── Icon ────────────────────────────────────────────────────────── */
+.icon {
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+}
+
+/* ─── Label ───────────────────────────────────────────────────────── */
+.label {
+  font-family: var(--font-base);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+}
+
+/* ─── Description ─────────────────────────────────────────────────── */
+.description {
+  font-family: var(--font-base);
+  font-size: 13px;
+  font-weight: var(--fw-regular);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────── */
+@media (max-width: 1200px) {
+  .inner { padding: 0 80px; }
+}
+
+@media (max-width: 1100px) {
+  .inner { padding: 0 48px; }
+  .grid { grid-template-columns: repeat(3, 1fr); }
+  .card:nth-child(3) { border-right: none; }
+  .card:nth-child(n+4) { border-top: 1px solid var(--color-border); }
+}
+
+@media (max-width: 768px) {
+  .inner { padding: 0 20px; }
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  .card:nth-child(3) { border-right: 1px solid var(--color-border); }
+  .card:nth-child(2n) { border-right: none; }
+  .card:nth-child(n+3) { border-top: 1px solid var(--color-border); }
+}
+
+@media (max-width: 480px) {
+  .inner { padding: 0 16px; }
+  .grid { grid-template-columns: 1fr; }
+  .card { border-right: none; border-top: none; border-bottom: 1px solid var(--color-border); }
+  .card:last-child { border-bottom: none; }
+  .card:nth-child(n) { border-right: none; border-top: none; }
+}
