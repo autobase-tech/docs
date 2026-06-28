@@ -1,5 +1,7 @@
 /* ─── Section — full viewport width ──────────────────────────────── */
 .section {
+  --diagram-line: #8f8f8f;
+  --diagram-border: #b7b7b7;
   width: 100vw;
   min-height: 100vh;
   background: var(--color-surface);
@@ -43,12 +45,12 @@
   align-items: center;
   justify-content: center;
   padding: 28px 0;
-  border: 2px solid var(--color-border);
-  border-radius: 6px;
+  border: 2px dashed var(--diagram-border);
+  border-radius: 2px;
   font-size: 20px;
   font-weight: 400;
   color: var(--color-text);
-  background: var(--color-surface);
+  background: transparent;
   width: 80%;
 }
 
@@ -84,6 +86,7 @@
   justify-content: center;
   height: 48px;
   align-items: center;
+  color: var(--diagram-line);
 }
 
 .arrowDown { display: block; }
@@ -94,6 +97,7 @@
   gap: 14px;
   padding: 32px 0;
   border-color: var(--color-primary);
+  border-style: dashed;
   border-width: 2px;
   width: 80%;
 }
@@ -108,7 +112,7 @@
 .cpTitle {
   font-size: 24px;
   font-weight: 700;
-  color: var(--color-text);
+  color: var(--color-primary);
 }
 
 .cpPills {
@@ -123,12 +127,20 @@
 
 .sep { color: var(--color-border); }
 
-/* ─── Split arrows ────────────────────────────────────────────────── */
-.splitArrows {
+.clusterConnectors {
   width: 80%;
-  display: flex;
-  justify-content: space-around;
-  height: 48px;
+  height: 72px;
+  color: var(--diagram-line);
+}
+
+.storageConnectors {
+  width: 80%;
+  height: 72px;
+  color: var(--diagram-line);
+}
+
+.mobileConnector {
+  display: none;
 }
 
 /* ─── Clusters ────────────────────────────────────────────────────── */
@@ -145,18 +157,22 @@
   align-items: center;
   gap: 14px;
   padding: 32px 0;
-  border: 2px solid var(--color-border);
-  border-radius: 6px;
+  border: 2px dashed var(--diagram-border);
+  border-radius: 2px;
   font-size: 16px;
   color: var(--color-text);
   text-align: center;
   line-height: 1.5;
   flex: 1;
-  background: var(--color-surface);
+  background: transparent;
 }
 
 .clusterBoxOptional {
-  border-style: dashed;
+  opacity: 0.72;
+}
+
+.diagramIcon {
+  color: var(--diagram-line);
 }
 
 /* ─── Storage ─────────────────────────────────────────────────────── */
@@ -225,7 +241,7 @@
 /* ─── Responsive ──────────────────────────────────────────────────── */
 @media (max-width: 1100px) {
   .inner { padding: 0 48px; }
-  .box, .controlPlane, .splitArrows, .clustersRow { width: 90%; }
+  .box, .controlPlane, .clusterConnectors, .storageConnectors, .clustersRow { width: 90%; }
   .usersBox { width: 64%; }
   .featuresGrid { grid-template-columns: repeat(3, 1fr); }
   .featureCard:nth-child(3) { border-right: none; }
@@ -235,7 +251,7 @@
 @media (max-width: 768px) {
   .inner { padding: 40px 24px; }
   .section { min-height: auto; }
-  .box, .controlPlane, .splitArrows, .clustersRow { width: 100%; }
+  .box, .controlPlane, .clusterConnectors, .storageConnectors, .clustersRow { width: 100%; }
   .usersBox { width: 100%; }
   .box { font-size: 15px; padding: 20px 12px; }
   .usersTitle { font-size: 18px; }
@@ -265,8 +281,15 @@
   .featureCard:last-child { border-bottom: none; }
   .featureCard:nth-child(n) { border-top: none; border-right: none; }
   .clustersRow { flex-direction: column; gap: 0; }
-  .splitArrows { display: none; }
+  .clusterConnectors,
+  .storageConnectors { display: none; }
+  .mobileConnector {
+    display: flex;
+    justify-content: center;
+    height: 48px;
+    color: var(--diagram-line);
+  }
   .clusterBox { width: 100%; border-radius: 0; }
-  .clusterBox:first-child { border-radius: 6px 6px 0 0; }
-  .clusterBox:last-child  { border-radius: 0 0 6px 6px; }
+  .clusterBox:first-child { border-radius: 2px 2px 0 0; }
+  .clusterBox:last-child  { border-radius: 0 0 2px 2px; }
 }

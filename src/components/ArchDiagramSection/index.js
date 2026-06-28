@@ -4,29 +4,52 @@ import styles from './styles.module.css';
 function ArrowDown() {
   return (
     <svg className={styles.arrowDown} width="16" height="48" viewBox="0 0 16 48" fill="none" aria-hidden="true">
-      <line x1="8" y1="0" x2="8" y2="40" stroke="#999999" strokeWidth="2"/>
-      <polyline points="3,32 8,44 13,32" fill="none" stroke="#999999" strokeWidth="2" strokeLinejoin="round"/>
+      <line x1="8" y1="0" x2="8" y2="40" stroke="currentColor" strokeWidth="2"/>
+      <polyline points="3,32 8,44 13,32" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
+    </svg>
+  );
+}
+
+function ClusterConnectors() {
+  return (
+    <svg className={styles.clusterConnectors} viewBox="0 0 800 72" fill="none" aria-hidden="true" preserveAspectRatio="none">
+      <path d="M400 0V24H133V56" stroke="currentColor" strokeWidth="2"/>
+      <path d="M400 24V56" stroke="currentColor" strokeWidth="2"/>
+      <path d="M400 24H667V56" stroke="currentColor" strokeWidth="2"/>
+      <polyline points="126,48 133,64 140,48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
+      <polyline points="393,48 400,64 407,48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
+      <polyline points="660,48 667,64 674,48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
+    </svg>
+  );
+}
+
+function StorageConnectors() {
+  return (
+    <svg className={styles.storageConnectors} viewBox="0 0 800 72" fill="none" aria-hidden="true" preserveAspectRatio="none">
+      <path d="M133 0V24H667V0" stroke="currentColor" strokeWidth="2"/>
+      <path d="M400 0V56" stroke="currentColor" strokeWidth="2"/>
+      <polyline points="393,48 400,64 407,48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
     </svg>
   );
 }
 
 function DatabaseIcon() {
   return (
-    <svg width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
-      <ellipse cx="22" cy="11" rx="16" ry="6" stroke="#aaaaaa" strokeWidth="1.5"/>
-      <path d="M6 11v11c0 3.31 7.16 6 16 6s16-2.69 16-6V11" stroke="#aaaaaa" strokeWidth="1.5"/>
-      <path d="M6 22v11c0 3.31 7.16 6 16 6s16-2.69 16-6V22" stroke="#aaaaaa" strokeWidth="1.5"/>
+    <svg className={styles.diagramIcon} width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+      <ellipse cx="22" cy="11" rx="16" ry="6" stroke="currentColor" strokeWidth="1.5"/>
+      <path d="M6 11v11c0 3.31 7.16 6 16 6s16-2.69 16-6V11" stroke="currentColor" strokeWidth="1.5"/>
+      <path d="M6 22v11c0 3.31 7.16 6 16 6s16-2.69 16-6V22" stroke="currentColor" strokeWidth="1.5"/>
     </svg>
   );
 }
 
 function StorageIcon() {
   return (
-    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-      <rect x="3" y="4" width="30" height="12" rx="2" stroke="#aaaaaa" strokeWidth="1.5"/>
-      <rect x="3" y="20" width="30" height="12" rx="2" stroke="#aaaaaa" strokeWidth="1.5"/>
-      <circle cx="29" cy="10" r="2" fill="#aaaaaa"/>
-      <circle cx="29" cy="26" r="2" fill="#aaaaaa"/>
+    <svg className={styles.diagramIcon} width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+      <rect x="3" y="4" width="30" height="12" rx="1" stroke="currentColor" strokeWidth="1.5"/>
+      <rect x="3" y="20" width="30" height="12" rx="1" stroke="currentColor" strokeWidth="1.5"/>
+      <circle cx="29" cy="10" r="2" fill="currentColor"/>
+      <circle cx="29" cy="26" r="2" fill="currentColor"/>
     </svg>
   );
 }
@@ -132,22 +155,22 @@ function DiagramInner() {
           </div>
         </div>
       </div>
-      <div className={styles.splitArrows}>
-        <ArrowDown /><ArrowDown /><ArrowDown />
-      </div>
+      <ClusterConnectors />
+      <div className={styles.mobileConnector}><ArrowDown /></div>
       <div className={styles.clustersRow}>
         <div className={styles.clusterBox}><DatabaseIcon /><span>PostgreSQL<br />Cluster 1</span></div>
         <div className={styles.clusterBox}><DatabaseIcon /><span>PostgreSQL<br />Cluster 2</span></div>
         <div className={`${styles.clusterBox} ${styles.clusterBoxOptional}`}><DatabaseIcon /><span>PostgreSQL<br />Cluster N</span></div>
       </div>
-      <div className={styles.arrowRow}><ArrowDown /></div>
+      <StorageConnectors />
+      <div className={styles.mobileConnector}><ArrowDown /></div>
       <div className={styles.row}>
         <div className={styles.box}>
           <div className={styles.storageRow}>
             <StorageIcon />
             <div>
               <div className={styles.storageTitle}>Database Storage / Backup Storage</div>
-              <div className={styles.storageSub}>Local NVMe, SSD, EBS for data / S3, MinIO, NFS, etc. for backups</div>
+              <div className={styles.storageSub}>Local NVMe, SSD, EBS for data / S3, MinIO, etc. for backups</div>
             </div>
           </div>
         </div>
