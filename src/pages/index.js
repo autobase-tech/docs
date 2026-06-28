@@ -1,18 +1,12 @@
 import React, { useEffect } from 'react';
 import Layout from '@theme/Layout';
 import HeroSection from '@site/src/components/HeroSection';
-import AboutSection from '@site/src/components/AboutSection';
-import ProblemSection from '@site/src/components/ProblemSection';
-import WhatIsAutobaseSection from '@site/src/components/WhatIsAutobaseSection';
-import ExplainSection from '@site/src/components/ExplainSection';
-import HowItWorksSection from '@site/src/components/HowItWorksSection';
-import FeaturedSection from '@site/src/components/FeaturedSection';
-import CloudProviders from '@site/src/components/CloudProviders';
-import VideoSection from '@site/src/components/VideoSection';
-import WhatYouGetSection from '@site/src/components/WhatYouGetSection';
-import PricingSection from '@site/src/components/PricingSection';
-import ComparisonSection from '@site/src/components/ComparisonSection';
-import Sponsors from '@site/src/components/Sponsors';
+import ArchDiagramSection from '@site/src/components/ArchDiagramSection';
+import ValuePropsSection from '@site/src/components/ValuePropsSection';
+import ProductHighlightsSection from '@site/src/components/ProductHighlightsSection';
+import CLISection from '@site/src/components/CLISection';
+import ContactSection from '@site/src/components/ContactSection';
+import SocialProofSection from '@site/src/components/SocialProofSection';
 
 export default function Home() {
   // GSAP scroll reveal — blur + fade from below, fires once per section
@@ -25,16 +19,16 @@ export default function Home() {
           document.querySelectorAll('main section').forEach((section) => {
             gsap.fromTo(
               section,
-              { y: 48, opacity: 0, filter: 'blur(10px)' },
+              { y: 32, opacity: 0, filter: 'blur(6px)' },
               {
                 y: 0,
                 opacity: 1,
                 filter: 'blur(0px)',
-                duration: 1.0,
+                duration: 0.85,
                 ease: 'expo.out',
                 scrollTrigger: {
                   trigger: section,
-                  start: 'top 88%',
+                  start: 'top 90%',
                   once: true,
                 },
               }
@@ -45,24 +39,19 @@ export default function Home() {
     );
     return () => ctx?.revert();
   }, []);
+
   return (
     <Layout
       title="autobase"
       description="Automated database platform for PostgreSQL">
       <HeroSection />
       <main>
-        <AboutSection />
-        <ProblemSection />
-        <VideoSection />
-        <WhatYouGetSection />
-        <WhatIsAutobaseSection />
-        <ExplainSection />
-        <HowItWorksSection />
-        <FeaturedSection />
-        <CloudProviders />
-        <Sponsors />
-        <PricingSection />
-        <ComparisonSection />
+        <ArchDiagramSection />
+        <ValuePropsSection />
+        <ProductHighlightsSection />
+        <CLISection />
+        <ContactSection />
+        <SocialProofSection />
       </main>
     </Layout>
   );
