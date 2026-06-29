@@ -1,0 +1,183 @@
+/* ─── Section ─────────────────────────────────────────────────────── */
+.section {
+  background: var(--color-bg);
+  padding: var(--section-pt) 0 var(--section-pb);
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 80px;
+}
+
+/* ─── Two-column layout ───────────────────────────────────────────── */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+/* ─── Terminal (inline) ───────────────────────────────────────────── */
+.terminal {
+  background: #0d0d0d;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+}
+
+.terminalBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 18px;
+  background: #1a1a1a;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #3a3a3a;
+}
+
+/* ─── Terminal code block ─────────────────────────────────────────── */
+.terminalCode {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #c8c8c8;
+  padding: 24px 28px;
+  margin: 0;
+  white-space: pre;
+  overflow-x: auto;
+  background: transparent;
+  border: none;
+  min-height: 220px;
+}
+
+/* CRT phosphor flash */
+.terminalFlash {
+  animation: crtClear 0.42s ease-in forwards;
+}
+
+@keyframes crtClear {
+  0%   { opacity: 1;    filter: brightness(1)   blur(0px);  }
+  25%  { opacity: 1;    filter: brightness(3.5) blur(1px);  }
+  55%  { opacity: 0.15; filter: brightness(0.4) blur(2px);  }
+  100% { opacity: 0;    filter: brightness(0)   blur(0px);  }
+}
+
+.prompt {
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+.caret {
+  display: inline-block;
+  color: #c8c8c8;
+  animation: caretBlink 1s step-end infinite;
+  user-select: none;
+}
+
+@keyframes caretBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.success {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.dimmed {
+  color: #666666;
+}
+
+/* ─── CTAs column (original) ──────────────────────────────────────── */
+.ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ctaPrimary,
+.ctaSecondary {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px 28px;
+  border-radius: 2px;
+  outline: 1.5px solid transparent;
+  outline-offset: 0px;
+  background: transparent;
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+  transition: border-color 0.18s ease, outline-color 0.18s ease,
+              background 0.18s ease,
+              transform 0.18s ease,
+              box-shadow 0.18s ease;
+}
+
+.ctaPrimary:hover,
+.ctaSecondary:hover {
+  text-decoration: none;
+}
+
+.ctaPrimary {
+  border: 1.5px solid var(--color-primary);
+}
+
+.ctaSecondary {
+  border: 1.5px solid var(--color-border);
+}
+
+.ctaPrimary:hover,
+.ctaSecondary:hover {
+  border-color: var(--color-primary);
+  outline-color: var(--color-primary);
+  background: var(--color-surface);
+  opacity: 1;
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.ctaArrow {
+  font-family: monospace;
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.ctaTitle {
+  font-family: var(--font-base);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.ctaSubtitle {
+  font-family: var(--font-base);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-regular);
+  color: var(--color-text-muted);
+  margin-top: 4px;
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .inner { padding: 0 48px; }
+  .layout { grid-template-columns: 1fr; }
+  .ctas { flex-direction: row; flex-wrap: wrap; gap: 12px; }
+  .ctaPrimary, .ctaSecondary { flex: 1; min-width: 200px; padding: 20px 20px; }
+}
+
+@media (max-width: 600px) {
+  .inner { padding: 0 20px; }
+  .terminalCode { font-size: 12px; padding: 16px; min-height: 160px; }
+  .ctas { flex-direction: column; }
+  .ctaPrimary, .ctaSecondary { width: 100%; }
+}

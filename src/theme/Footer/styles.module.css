@@ -1,251 +1,76 @@
-/* ─── Footer wrapper ─────────────────────────────────────────────── */
-.footerSurface {
-  background-color: #ffffff;
-}
-
+/* ─── Footer ──────────────────────────────────────────────────────── */
 .footer {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  overflow: hidden;
-  border-top-left-radius: 48px;
-  border-top-right-radius: 48px;
-  background-color: #f7f5f3;
-  min-height: 100vh;
+  --font-base: 'Quantico', sans-serif;
+  --fw-regular: 400;
+  --fs-sm: clamp(13px, 1.2vw, 19px);
+  --color-bg: #F9FAFB;
+  --color-text: #111111;
+  --color-text-muted: #555555;
+  --color-border: #e0e0e0;
+  background: var(--color-bg);
 }
 
-/* ─── Inner — constrained width, full height ──────────────────────── */
-.inner {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  max-width: 1540px;
+.divider {
   width: 100%;
+  height: 1px;
+  background: var(--color-border);
+  margin: 0;
+}
+
+.inner {
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 160px;
-  position: relative;
-  z-index: 1;
-}
-
-/* ─── Decorative vector — right-anchored, bleeds off edge ─────────── */
-.vectorLine {
-  position: absolute;
-  right: -100px;
-  top: 36px;
-  width: 820px;
-  height: 717px;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* ─── Hero area — fills remaining height, centers content ────────── */
-.heroArea {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  padding: 80px 0;
-}
-
-.heroContent {
+  padding: 48px 80px 56px;
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  max-width: 535px;
+  gap: 20px;
 }
 
-/* type.hero.900 */
-.heroHeading {
-  font-family: var(--font-base);
-  font-size: var(--fs-hero);
-  font-weight: var(--fw-black);
-  color: var(--color-black);
-  line-height: 1.05;
-  margin: 0;
-}
-
-/* type.body-lg.500 */
-.heroSubtext {
-  font-family: var(--font-base);
-  font-size: var(--fs-body-lg);
-  font-weight: var(--fw-medium);
-  color: var(--color-black);
-  margin: 0;
-}
-
-.orange { color: var(--color-primary); }
-
-/* ─── CTAs ───────────────────────────────────────────────────────── */
-.ctaRow {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.ctaPrimary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 54px;
-  padding: 0 28px;
-  background: var(--color-primary);
-  color: var(--color-white);
-  border-radius: 6px;
-  font-family: var(--font-base);
-  font-size: var(--fs-btn);
-  font-weight: var(--fw-bold);
-  text-decoration: none;
-  transition: opacity 0.15s ease;
-}
-
-.ctaPrimary:hover {
-  color: var(--color-white);
-  opacity: 0.9;
-  text-decoration: none;
-}
-
-.ctaSecondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  height: 54px;
-  padding: 0 20px;
-  border: 1.5px solid var(--color-primary);
-  color: var(--color-black);
-  border-radius: 6px;
-  font-family: var(--font-base);
-  font-size: var(--fs-btn);
-  font-weight: var(--fw-bold);
-  text-decoration: none;
-  transition: opacity 0.15s ease;
-}
-
-.ctaSecondary:hover {
-  color: var(--color-black);
-  opacity: 0.85;
-  text-decoration: none;
-}
-
-/* ─── Footer bottom ──────────────────────────────────────────────── */
-.footerBottom {
-  padding: 60px 0 44px;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.navRow {
-  margin-bottom: 40px;
-}
-
-/* ─── Nav groups ─────────────────────────────────────────────────── */
-.navGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-right: 80px;
-  margin-bottom: 24px;
-}
-
-/* type.body-lg.600 */
-.navTitle {
-  font-family: var(--font-base);
-  font-size: var(--fs-body-lg);
-  font-weight: var(--fw-semibold);
-  color: var(--color-black);
-}
-
-/* type.caption.400 */
-.navLink {
-  font-family: var(--font-base);
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-regular);
-  color: rgba(0, 0, 0, 0.6);
-  text-decoration: none;
-  transition: color 0.15s ease;
-}
-
-.navLink:hover { color: var(--color-black); text-decoration: none; }
-
-/* ─── Social links ───────────────────────────────────────────────── */
-.socialGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 24px;
-}
-
-.socialItem {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font-base);
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-regular);
-  color: rgba(0, 0, 0, 0.6);
-  text-decoration: none;
-  transition: color 0.15s ease;
-}
-
-.socialItem:hover { color: var(--color-black); text-decoration: none; }
-
-/* ─── Copyright row ──────────────────────────────────────────────── */
-.copyrightRow {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
+/* ─── Logo ────────────────────────────────────────────────────────── */
 .logoMark {
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-bottom: 4px;
 }
 
-/* type.navbar.400 */
 .logoText {
   font-family: var(--font-base);
-  font-size: var(--fs-navbar);
+  font-size: 20px;
   font-weight: var(--fw-regular);
-  color: var(--color-black);
+  color: var(--color-text);
+  line-height: 1;
 }
 
-/* type.caption.400 */
+/* ─── Copyright ───────────────────────────────────────────────────── */
 .copyright {
   font-family: var(--font-base);
   font-size: var(--fs-sm);
   font-weight: var(--fw-regular);
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--color-text);
   margin: 0;
+  line-height: 1.6;
 }
 
-.billingInfo {
+/* ─── Legal text ──────────────────────────────────────────────────── */
+.legal {
   font-family: var(--font-base);
-  font-size: 14px;
+  font-size: clamp(12px, 1vw, 16px);
   font-weight: var(--fw-regular);
-  color: rgba(0, 0, 0, 0.6);
-  line-height: 1.45;
+  color: var(--color-text-muted);
   margin: 0;
+  line-height: 1.7;
 }
 
-/* ─── Responsive ─────────────────────────────────────────────────── */
-@media (min-width: 1920px) {
-  .inner {
-    max-width: 1700px;
-    padding: 0 112px;
-  }
-}
-
-@media (max-width: 1440px) {
-  .inner { padding: 0 96px; }
-}
-
+/* ─── Responsive ──────────────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .inner { padding: 0 48px; }
-  .heroHeading { font-size: var(--fs-h2); }
+  .inner { padding: 40px 48px 48px; }
 }
 
-@media (max-width: 768px) {
-  .inner { padding: 0 24px; }
-  .heroHeading { font-size: var(--fs-h3); }
-  .vectorLine { display: none; }
-  .navGroup { margin-right: 0; }
+@media (max-width: 600px) {
+  .inner { padding: 32px 20px 40px; }
+}
+
+@media (max-width: 480px) {
+  .inner { padding: 28px 16px 36px; }
 }

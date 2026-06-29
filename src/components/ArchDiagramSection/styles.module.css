@@ -1,0 +1,300 @@
+/* ─── Section — full viewport width ──────────────────────────────── */
+.section {
+  --diagram-line: #8f8f8f;
+  --diagram-border: #b7b7b7;
+  width: 100vw;
+  min-height: 100vh;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  left: 50%;
+  margin-left: -50vw;
+}
+
+.inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ─── Diagram ─────────────────────────────────────────────────────── */
+.diagram {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ─── Row ─────────────────────────────────────────────────────────── */
+.row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* ─── Box ─────────────────────────────────────────────────────────── */
+.box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 0;
+  border: 2px dashed var(--diagram-border);
+  border-radius: 2px;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--color-text);
+  background: transparent;
+  width: 80%;
+}
+
+.muted {
+  color: var(--color-text-muted);
+  margin-left: 8px;
+}
+
+.usersBox {
+  flex-direction: column;
+  gap: 12px;
+  width: 48%;
+}
+
+.usersTitle {
+  font-size: 22px;
+  color: var(--color-text);
+}
+
+.userRoles {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 16px;
+  color: var(--color-text-muted);
+}
+
+/* ─── Arrow down ──────────────────────────────────────────────────── */
+.arrowRow {
+  display: flex;
+  justify-content: center;
+  height: 48px;
+  align-items: center;
+  color: var(--diagram-line);
+}
+
+.arrowDown { display: block; }
+
+/* ─── Platform ───────────────────────────────────────────────────── */
+.platform {
+  flex-direction: column;
+  gap: 14px;
+  padding: 32px 0;
+  border-color: var(--color-primary);
+  border-style: dashed;
+  border-width: 2px;
+  width: 80%;
+}
+
+.cpHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.cpTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.cpPills {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--color-text-muted);
+}
+
+.sep { color: var(--color-border); }
+
+.clusterConnectors {
+  width: 80%;
+  height: 72px;
+  color: var(--diagram-line);
+}
+
+.storageConnectors {
+  width: 80%;
+  height: 72px;
+  color: var(--diagram-line);
+}
+
+.mobileConnector {
+  display: none;
+}
+
+/* ─── Clusters ────────────────────────────────────────────────────── */
+.clustersRow {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  width: 80%;
+}
+
+.clusterBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 32px 0;
+  border: 2px dashed var(--diagram-border);
+  border-radius: 2px;
+  font-size: 16px;
+  color: var(--color-text);
+  text-align: center;
+  line-height: 1.5;
+  flex: 1;
+  background: transparent;
+}
+
+.clusterBoxOptional {
+  opacity: 0.72;
+}
+
+.diagramIcon {
+  color: var(--diagram-line);
+}
+
+/* ─── Storage ─────────────────────────────────────────────────────── */
+.storageRow {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-align: left;
+}
+
+.storageTitle {
+  font-size: 20px;
+  color: var(--color-text);
+}
+
+.storageSub {
+  font-size: 15px;
+  color: var(--color-text-muted);
+  margin-top: 6px;
+}
+
+/* ─── Divider ─────────────────────────────────────────────────────── */
+.divider {
+  width: 80%;
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 48px auto;
+}
+
+/* ─── Features Grid ───────────────────────────────────────────────── */
+.featuresGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  border: 2px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.featureCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 32px 24px;
+  border-right: 2px solid var(--color-border);
+  transition: background 0.2s ease;
+}
+
+.featureCard:last-child { border-right: none; }
+.featureCard:hover { background: var(--color-surface); }
+
+.featureIcon {
+  color: var(--color-text);
+}
+
+.featureIcon svg {
+  display: block;
+  width: 48px;
+  height: 48px;
+}
+
+.featureLabel {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+}
+
+.featureDesc {
+  font-size: 16px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .inner { padding: 0 48px; }
+  .box, .controlPlane, .clusterConnectors, .storageConnectors, .clustersRow { width: 90%; }
+  .usersBox { width: 64%; }
+  .featuresGrid { grid-template-columns: repeat(3, 1fr); }
+  .featureCard:nth-child(3) { border-right: none; }
+  .featureCard:nth-child(n+4) { border-top: 2px solid var(--color-border); }
+}
+
+@media (max-width: 768px) {
+  .inner { padding: 40px 24px; }
+  .section { min-height: auto; }
+  .box, .controlPlane, .clusterConnectors, .storageConnectors, .clustersRow { width: 100%; }
+  .usersBox { width: 100%; }
+  .box { font-size: 15px; padding: 20px 12px; }
+  .usersTitle { font-size: 18px; }
+  .userRoles { font-size: 13px; gap: 8px; }
+  .cpTitle { font-size: 18px; }
+  .cpPills { font-size: 13px; gap: 8px; }
+  .clustersRow { gap: 24px; }
+  .clusterBox { padding: 20px 8px; font-size: 13px; gap: 8px; }
+  .storageTitle { font-size: 15px; }
+  .storageSub { font-size: 13px; }
+  .featuresGrid { grid-template-columns: repeat(2, 1fr); }
+  .featureCard:nth-child(n) { border-right: 2px solid var(--color-border); border-top: none; }
+  .featureCard:nth-child(2n) { border-right: none; }
+  .featureCard:last-child { border-right: none; }
+  .featureCard:nth-child(n+3) { border-top: 2px solid var(--color-border); }
+  .featureDesc { font-size: 13px; }
+  .divider { margin: 32px auto; }
+}
+
+@media (max-width: 480px) {
+  .inner { padding: 32px 16px; }
+  .featuresGrid { grid-template-columns: 1fr; }
+  .featureCard { border-right: none; border-bottom: 2px solid var(--color-border); }
+  .featureCard:last-child { border-bottom: none; }
+  .featureCard:nth-child(n) { border-top: none; border-right: none; }
+  .clustersRow { flex-direction: column; gap: 0; }
+  .clusterConnectors,
+  .storageConnectors { display: none; }
+  .mobileConnector {
+    display: flex;
+    justify-content: center;
+    height: 48px;
+    color: var(--diagram-line);
+  }
+  .clusterBox { width: 100%; border-radius: 0; }
+  .clusterBox:first-child { border-radius: 2px 2px 0 0; }
+  .clusterBox:last-child  { border-radius: 0 0 2px 2px; }
+}
