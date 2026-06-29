@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import TrustedByCarousel from '@site/src/components/TrustedByCarousel';
 import styles from './styles.module.css';
 
 const LINE1   = 'DATABASE PLATFORM';
@@ -59,6 +60,8 @@ export default function HeroSection() {
             </>
           )}
         </p>
+
+        <TrustedByCarousel />
       </div>
     </section>
   );

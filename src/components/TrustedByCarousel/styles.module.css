@@ -1,0 +1,128 @@
+.trustedBy {
+  width: 100%;
+  max-width: 920px;
+  margin: 10px auto 0;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-family: var(--font-base);
+  font-size: clamp(12px, 1vw, 14px);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+}
+
+.prompt {
+  color: var(--color-primary);
+}
+
+.strip {
+  position: relative;
+  overflow: hidden;
+}
+
+.strip::before,
+.strip::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 64px;
+  pointer-events: none;
+}
+
+.strip::before {
+  left: 0;
+  background: linear-gradient(to right, var(--color-bg), transparent);
+}
+
+.strip::after {
+  right: 0;
+  background: linear-gradient(to left, var(--color-bg), transparent);
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: marquee 48s linear infinite;
+}
+
+.strip:hover .track {
+  animation-play-state: paused;
+}
+
+.logoSet {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.logoLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 160px;
+  height: 58px;
+  padding: 12px 26px;
+  flex-shrink: 0;
+}
+
+.logoImg {
+  display: block;
+  max-width: 100%;
+  max-height: 34px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(100%) contrast(115%);
+  opacity: 0.58;
+  transition: filter 0.15s ease, opacity 0.15s ease;
+}
+
+.logoLink:hover .logoImg {
+  filter: grayscale(40%) contrast(110%);
+  opacity: 0.86;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (max-width: 768px) {
+  .trustedBy {
+    margin-top: 4px;
+  }
+
+  .logoLink {
+    width: 132px;
+    height: 52px;
+    padding: 12px 22px;
+  }
+
+  .logoImg {
+    max-height: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .strip::before,
+  .strip::after {
+    width: 32px;
+  }
+
+  .logoLink {
+    width: 118px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+}
