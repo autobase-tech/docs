@@ -56,17 +56,7 @@ function StorageIcon() {
 
 const features = [
   {
-    label: 'HA',
-    description: 'Automatic High Availability',
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <rect x="2" y="2" width="24" height="24" rx="3" stroke="currentColor" strokeWidth="1.4"/>
-        <path d="M8 14l4 4 8-8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    ),
-  },
-  {
-    label: 'Failover',
+    label: 'High Availability',
     description: 'Automatic Failover & Self-Healing',
     icon: (
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
@@ -118,6 +108,16 @@ const features = [
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
         <path d="M14 4v17M9 15l5-11 5 11" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
         <line x1="7" y1="24" x2="21" y2="24" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+      </svg>
+    ),
+  },
+  {
+    label: 'Scaling',
+    description: 'Cluster Scaling with read replicas',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <path d="M9 19L19 9M12 9h7v7" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M19 19H9V9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
   },

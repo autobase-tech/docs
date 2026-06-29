@@ -263,13 +263,10 @@
   .storageTitle { font-size: 15px; }
   .storageSub { font-size: 13px; }
   .featuresGrid { grid-template-columns: repeat(2, 1fr); }
+  .featureCard:nth-child(n) { border-right: 2px solid var(--color-border); border-top: none; }
   .featureCard:nth-child(2n) { border-right: none; }
-  .featureCard:nth-child(3),
-  .featureCard:nth-child(4),
-  .featureCard:nth-child(5),
-  .featureCard:nth-child(6) { border-top: 2px solid var(--color-border); }
-  .featureCard:nth-child(3) { border-right: 1px solid var(--color-border); }
-  .featureCard:nth-child(5) { border-right: 1px solid var(--color-border); }
+  .featureCard:last-child { border-right: none; }
+  .featureCard:nth-child(n+3) { border-top: 2px solid var(--color-border); }
   .featureDesc { font-size: 13px; }
   .divider { margin: 32px auto; }
 }
