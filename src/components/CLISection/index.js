@@ -276,7 +276,7 @@ function FullscreenBody({ fsSeq, fsTyped, fsPhase }) {
           className={styles.menuItem}
         >
           <span className={styles.menuPrompt}>&gt;</span>
-          <span className={styles.menuTitle}> Download Community Edition</span>
+          <span className={styles.menuTitle}> Download Platform</span>
           <span className={styles.menuSub}>Open Source · Self-Hosted · Free</span>
         </a>
         <a
@@ -437,15 +437,15 @@ export default function CLISection() {
 
           <div className={styles.ctas}>
             <a
-              href="https://github.com/autobase-tech/autobase"
+              href="/docs#getting-started"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.ctaPrimary}
             >
               <span className={styles.ctaArrow}>&gt;</span>
               <span>
-                <div className={styles.ctaTitle}>DOWNLOAD COMMUNITY EDITION</div>
-                <div className={styles.ctaSubtitle}>Open Source · Self-Hosted · Free</div>
+                <div className={styles.ctaTitle}>DOWNLOAD PLATFORM</div>
+                <div className={styles.ctaSubtitle}>Enterprise Edition · Free Trial 14 Days</div>
               </span>
             </a>
             <a
@@ -456,8 +456,8 @@ export default function CLISection() {
             >
               <span className={styles.ctaArrow}>&gt;</span>
               <span>
-                <div className={styles.ctaTitle}>BOOK DEMO</div>
-                <div className={styles.ctaSubtitle}>Talk to our engineers</div>
+                <div className={styles.ctaTitle}>GET A DEMO</div>
+                <div className={styles.ctaSubtitle}>use token 'demo' to access</div>
               </span>
             </a>
           </div>
