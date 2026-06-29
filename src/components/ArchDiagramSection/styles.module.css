@@ -1,10 +1,10 @@
 /* ─── Section — full viewport width ──────────────────────────────── */
 .section {
-  --diagram-line: #8f8f8f;
-  --diagram-border: #b7b7b7;
+  --diagram-line: var(--color-diagram-line, #8f8f8f);
+  --diagram-border: var(--color-diagram-border, #b7b7b7);
   width: 100vw;
   min-height: 100vh;
-  background: var(--color-surface);
+  background: var(--color-bg);
   border-bottom: 1px solid var(--color-border);
   display: flex;
   align-items: center;

@@ -1,6 +1,7 @@
 import React from 'react';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import { useLocation } from '@docusaurus/router';
+import { useColorMode } from '@docusaurus/theme-common';
 import OriginalFooter from '@theme-original/Footer';
 import styles from './styles.module.css';
 
@@ -14,8 +15,14 @@ function normalizePath(pathname) {
 
 export default function Footer(props) {
   const { pathname } = useLocation();
+  const { colorModeChoice, setColorMode } = useColorMode();
   const homePath = useBaseUrl('/');
   const isHomepage = normalizePath(pathname) === normalizePath(homePath);
+  const colorModeLabel = colorModeChoice ?? 'system';
+  const isSystemColorMode = colorModeChoice == null;
+  const nextColorModeChoice =
+    isSystemColorMode ? 'light' : colorModeChoice === 'light' ? 'dark' : null;
+  const nextColorModeLabel = nextColorModeChoice ?? 'system';
 
   if (!isHomepage) {
     return <OriginalFooter {...props} />;
@@ -27,9 +34,21 @@ export default function Footer(props) {
 
         <div className={styles.divider} />
 
-        <div className={styles.logoMark}>
-          <img src="/img/footer/logo-icon.svg" alt="" aria-hidden="true" width={40} height={35} />
-          <span className={styles.logoText}>Autobase</span>
+        <div className={styles.logoRow}>
+          <div className={styles.logoMark}>
+            <img src="/img/footer/logo-icon.svg" alt="" aria-hidden="true" width={40} height={35} />
+            <span className={styles.logoText}>Autobase</span>
+          </div>
+
+          <button
+            type="button"
+            className={styles.themeToggle}
+            onClick={() => setColorMode(nextColorModeChoice)}
+            aria-label={`Theme mode: ${colorModeLabel}. Switch to ${nextColorModeLabel}.`}
+          >
+            <span className={styles.themePrompt}>&gt;</span>
+            <span>{colorModeLabel}</span>
+          </button>
         </div>
 
         <p className={styles.copyright}>

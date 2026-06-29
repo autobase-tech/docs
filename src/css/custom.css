@@ -143,6 +143,10 @@ html.docs-wrapper[data-theme='light'] .theme-doc-toc-desktop {
   --color-text: #111111;
   --color-text-muted: #555555;
   --color-border: #e0e0e0;
+  --color-diagram-line: #8f8f8f;
+  --color-diagram-border: #b7b7b7;
+  --shadow-pixel: rgba(0, 0, 0, 0.05);
+  --shadow-pixel-hover: rgba(0, 0, 0, 0.1);
 
   --section-pt: 64px;
   --section-pb: 64px;
@@ -150,6 +154,30 @@ html.docs-wrapper[data-theme='light'] .theme-doc-toc-desktop {
   background-color: var(--color-bg);
   color: #111111;
   font-family: var(--font-base);
+}
+
+[data-theme='dark'] .landingPage {
+  --ifm-background-color: #11161d !important;
+  --ifm-background-surface-color: #11161d !important;
+  --ifm-font-color-base: #f9fafb;
+  --ifm-heading-color: #f9fafb;
+  --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.08);
+
+  --color-bg: #11161d;
+  --color-bg-alt: #11161d;
+  --color-surface: #11161d;
+  --color-text: #f9fafb;
+  --color-text-muted: #9ca3af;
+  --color-border: #252a31;
+  --color-black: #f9fafb;
+  --color-muted: #6b7280;
+  --color-diagram-line: #6f7782;
+  --color-diagram-border: #4b5563;
+  --shadow-pixel: rgba(255, 255, 255, 0.06);
+  --shadow-pixel-hover: rgba(255, 255, 255, 0.11);
+
+  background-color: var(--color-bg);
+  color: var(--color-text);
 }
 
 .landingPage h1,
@@ -169,6 +197,11 @@ html.docs-wrapper[data-theme='light'] .theme-doc-toc-desktop {
 
 .landingPage main {
   background-color: var(--color-bg);
+}
+
+[data-theme='dark'] body:has(.landingPage),
+[data-theme='dark'] .landingPage main {
+  background-color: #11161d;
 }
 
 @media (max-width: 900px) {

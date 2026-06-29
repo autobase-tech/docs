@@ -77,6 +77,7 @@
   height: 58px;
   padding: 12px 26px;
   flex-shrink: 0;
+  position: relative;
 }
 
 .logoImg {
@@ -91,8 +92,32 @@
   transition: filter 0.15s ease, opacity 0.15s ease;
 }
 
+.logoSquareAsset {
+  width: 72px;
+  max-height: none;
+}
+
 .logoLink:hover .logoImg {
   filter: grayscale(40%) contrast(110%);
+  opacity: 0.9;
+}
+
+.logoDark {
+  display: none;
+}
+
+:global(html[data-theme='dark']) .logoLight {
+  display: none;
+}
+
+:global(html[data-theme='dark']) .logoDark {
+  display: block;
+  filter: grayscale(100%) brightness(0.88) contrast(105%);
+  opacity: 0.68;
+}
+
+:global(html[data-theme='dark']) .logoLink:hover .logoDark {
+  filter: grayscale(40%) brightness(1) contrast(105%);
   opacity: 0.9;
 }
 

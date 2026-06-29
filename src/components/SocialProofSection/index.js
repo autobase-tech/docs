@@ -5,30 +5,30 @@ function CalendarWithClockIcon() {
   return (
     <svg width="72" height="72" viewBox="0 0 72 72" fill="none" aria-hidden="true">
       {/* Calendar body */}
-      <rect x="6" y="12" width="52" height="46" rx="4" stroke="#111" strokeWidth="2.2"/>
+      <rect x="6" y="12" width="52" height="46" rx="4" stroke="currentColor" strokeWidth="2.2"/>
       {/* Top bar */}
-      <rect x="6" y="12" width="52" height="14" rx="4" fill="#111" opacity="0.07"/>
-      <line x1="6" y1="26" x2="58" y2="26" stroke="#111" strokeWidth="2"/>
+      <rect x="6" y="12" width="52" height="14" rx="4" fill="currentColor" opacity="0.07"/>
+      <line x1="6" y1="26" x2="58" y2="26" stroke="currentColor" strokeWidth="2"/>
       {/* Ring tabs */}
-      <line x1="20" y1="6" x2="20" y2="18" stroke="#111" strokeWidth="2.5" strokeLinecap="round"/>
-      <line x1="44" y1="6" x2="44" y2="18" stroke="#111" strokeWidth="2.5" strokeLinecap="round"/>
+      <line x1="20" y1="6" x2="20" y2="18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+      <line x1="44" y1="6" x2="44" y2="18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
       {/* Date dots — row 1 */}
-      <circle cx="20" cy="34" r="2.5" fill="#ccc"/>
-      <circle cx="32" cy="34" r="2.5" fill="#ccc"/>
-      <circle cx="44" cy="34" r="2.5" fill="#ccc"/>
+      <circle cx="20" cy="34" r="2.5" fill="var(--color-border)"/>
+      <circle cx="32" cy="34" r="2.5" fill="var(--color-border)"/>
+      <circle cx="44" cy="34" r="2.5" fill="var(--color-border)"/>
       {/* Date dots — row 2 */}
-      <circle cx="20" cy="43" r="2.5" fill="#ccc"/>
-      <circle cx="32" cy="43" r="2.5" fill="#ff5722"/>
-      <circle cx="44" cy="43" r="2.5" fill="#ccc"/>
+      <circle cx="20" cy="43" r="2.5" fill="var(--color-border)"/>
+      <circle cx="32" cy="43" r="2.5" fill="var(--color-primary)"/>
+      <circle cx="44" cy="43" r="2.5" fill="var(--color-border)"/>
       {/* Date dots — row 3 */}
-      <circle cx="20" cy="52" r="2.5" fill="#ccc"/>
-      <circle cx="32" cy="52" r="2.5" fill="#ccc"/>
+      <circle cx="20" cy="52" r="2.5" fill="var(--color-border)"/>
+      <circle cx="32" cy="52" r="2.5" fill="var(--color-border)"/>
 
       {/* Clock overlay — bottom right */}
-      <circle cx="52" cy="54" r="13" fill="white" stroke="#111" strokeWidth="2"/>
-      <line x1="52" y1="46" x2="52" y2="54" stroke="#111" strokeWidth="2" strokeLinecap="round"/>
-      <line x1="52" y1="54" x2="58" y2="58" stroke="#111" strokeWidth="2" strokeLinecap="round"/>
-      <circle cx="52" cy="54" r="2" fill="#111"/>
+      <circle cx="52" cy="54" r="13" fill="var(--color-bg)" stroke="currentColor" strokeWidth="2"/>
+      <line x1="52" y1="46" x2="52" y2="54" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+      <line x1="52" y1="54" x2="58" y2="58" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+      <circle cx="52" cy="54" r="2" fill="currentColor"/>
     </svg>
   );
 }
@@ -37,16 +37,16 @@ function StopwatchIcon() {
   return (
     <svg width="72" height="72" viewBox="0 0 72 72" fill="none" aria-hidden="true">
       {/* Speed lines */}
-      <line x1="4"  y1="34" x2="14" y2="34" stroke="#ff5722" strokeWidth="2.5" strokeLinecap="round"/>
-      <line x1="6"  y1="42" x2="16" y2="42" stroke="#ff5722" strokeWidth="2.5" strokeLinecap="round"/>
-      <line x1="4"  y1="50" x2="14" y2="50" stroke="#ff5722" strokeWidth="2.5" strokeLinecap="round"/>
+      <line x1="4"  y1="34" x2="14" y2="34" stroke="var(--color-primary)" strokeWidth="2.5" strokeLinecap="round"/>
+      <line x1="6"  y1="42" x2="16" y2="42" stroke="var(--color-primary)" strokeWidth="2.5" strokeLinecap="round"/>
+      <line x1="4"  y1="50" x2="14" y2="50" stroke="var(--color-primary)" strokeWidth="2.5" strokeLinecap="round"/>
       {/* Top button */}
-      <rect x="30" y="4" width="12" height="6" rx="3" fill="#ff5722"/>
+      <rect x="30" y="4" width="12" height="6" rx="3" fill="var(--color-primary)"/>
       {/* Stopwatch circle */}
-      <circle cx="42" cy="44" r="25" stroke="#ff5722" strokeWidth="2.5"/>
+      <circle cx="42" cy="44" r="25" stroke="var(--color-primary)" strokeWidth="2.5"/>
       {/* Side crown/button */}
-      <line x1="54" y1="22" x2="60" y2="16" stroke="#ff5722" strokeWidth="2.2" strokeLinecap="round"/>
-      <rect x="57" y="11" width="8" height="5" rx="2" fill="#ff5722"/>
+      <line x1="54" y1="22" x2="60" y2="16" stroke="var(--color-primary)" strokeWidth="2.2" strokeLinecap="round"/>
+      <rect x="57" y="11" width="8" height="5" rx="2" fill="var(--color-primary)"/>
       {/* "10" text */}
       <text
         x="42" y="46"
@@ -54,7 +54,7 @@ function StopwatchIcon() {
         dominantBaseline="middle"
         fontSize="20"
         fontWeight="800"
-        fill="#111"
+        fill="currentColor"
         fontFamily="system-ui, sans-serif"
       >10</text>
       {/* "MIN" text */}
@@ -64,7 +64,7 @@ function StopwatchIcon() {
         dominantBaseline="middle"
         fontSize="8"
         fontWeight="700"
-        fill="#ff5722"
+        fill="var(--color-primary)"
         letterSpacing="1"
         fontFamily="system-ui, sans-serif"
       >MIN</text>
@@ -95,8 +95,8 @@ export default function SocialProofSection() {
 
             {/* Arrow */}
             <svg className={styles.arrow} width="48" height="24" viewBox="0 0 48 24" fill="none" aria-hidden="true">
-              <line x1="0" y1="12" x2="40" y2="12" stroke="#ff5722" strokeWidth="2.5" strokeLinecap="round"/>
-              <polyline points="30,4 42,12 30,20" fill="none" stroke="#ff5722" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <line x1="0" y1="12" x2="40" y2="12" stroke="var(--color-primary)" strokeWidth="2.5" strokeLinecap="round"/>
+              <polyline points="30,4 42,12 30,20" fill="none" stroke="var(--color-primary)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
 
             <div className={styles.divider} />

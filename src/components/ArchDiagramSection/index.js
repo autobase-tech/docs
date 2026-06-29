@@ -150,6 +150,8 @@ function DiagramInner() {
             <span>Maintenance</span>
             <span className={styles.sep}>|</span>
             <span>Scaling</span>
+           <span className={styles.sep}>|</span>
+            <span>Monitoring</span>
           </div>
         </div>
       </div>
