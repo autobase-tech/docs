@@ -103,15 +103,23 @@
 }
 
 .logoDark {
-  display: none;
+  display: none !important;
+}
+
+:global(html[data-theme='light']) .logoLight {
+  display: block;
+}
+
+:global(html[data-theme='light']) .logoDark {
+  display: none !important;
 }
 
 :global(html[data-theme='dark']) .logoLight {
-  display: none;
+  display: none !important;
 }
 
 :global(html[data-theme='dark']) .logoDark {
-  display: block;
+  display: block !important;
   filter: grayscale(100%) brightness(0.88) contrast(105%);
   opacity: 0.68;
 }
