@@ -10,7 +10,7 @@ const props = [
       </svg>
     ),
     title: 'Your Infrastructure',
-    description: 'Run anywhere. You are in control.',
+    description: 'Deploy anywhere. Stay in control.',
   },
   {
     icon: (
@@ -21,7 +21,7 @@ const props = [
       </svg>
     ),
     title: 'Your Data',
-    description: 'Your data stays where you deploy.',
+    description: 'Your data never leaves your infrastructure.',
   },
   {
     icon: (

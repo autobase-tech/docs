@@ -30,7 +30,7 @@ const highlights = [
       </svg>
     ),
     title: 'Production Ready',
-    description: 'Battle-tested. For reliability.',
+    description: 'Battle-tested. Built for reliability.',
   },
 ];
 
