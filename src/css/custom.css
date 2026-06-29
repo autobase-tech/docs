@@ -144,8 +144,8 @@ html.docs-wrapper[data-theme='light'] .theme-doc-toc-desktop {
   --color-text-muted: #555555;
   --color-border: #e0e0e0;
 
-  --section-pt: 72px;
-  --section-pb: 72px;
+  --section-pt: 64px;
+  --section-pb: 64px;
 
   background-color: var(--color-bg);
   color: #111111;
@@ -173,15 +173,15 @@ html.docs-wrapper[data-theme='light'] .theme-doc-toc-desktop {
 
 @media (max-width: 900px) {
   .landingPage {
-    --section-pt: 52px;
-    --section-pb: 52px;
+    --section-pt: 48px;
+    --section-pb: 48px;
   }
 }
 
 @media (max-width: 768px) {
   .landingPage {
-    --section-pt: 40px;
-    --section-pb: 40px;
+    --section-pt: 36px;
+    --section-pb: 36px;
   }
 
   html:has(.landingPage),

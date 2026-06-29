@@ -87,13 +87,13 @@
   height: auto;
   object-fit: contain;
   filter: grayscale(100%) contrast(115%);
-  opacity: 0.58;
+  opacity: 0.68;
   transition: filter 0.15s ease, opacity 0.15s ease;
 }
 
 .logoLink:hover .logoImg {
   filter: grayscale(40%) contrast(110%);
-  opacity: 0.86;
+  opacity: 0.9;
 }
 
 @keyframes marquee {
