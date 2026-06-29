@@ -59,10 +59,9 @@ const features = [
     label: 'High Availability',
     description: 'Automatic Failover & Self-Healing',
     icon: (
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <rect x="2" y="9" width="9" height="10" rx="2" stroke="currentColor" strokeWidth="1.4"/>
-        <rect x="17" y="9" width="9" height="10" rx="2" stroke="currentColor" strokeWidth="1.4"/>
-        <path d="M11 14h6M15 11.5l2.5 2.5-2.5 2.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+      <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <rect x="8" y="11" width="32" height="26" stroke="currentColor" strokeWidth="2" strokeDasharray="5 4"/>
+        <path d="M16 25l6 6 12-14" stroke="currentColor" strokeWidth="3" strokeLinecap="square" strokeLinejoin="miter"/>
       </svg>
     ),
   },
@@ -70,11 +69,10 @@ const features = [
     label: 'Backups',
     description: 'Continuous Backups',
     icon: (
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <rect x="5" y="3" width="18" height="22" rx="2" stroke="currentColor" strokeWidth="1.4"/>
-        <rect x="9" y="7" width="10" height="14" rx="1" stroke="currentColor" strokeWidth="1.4"/>
-        <line x1="12" y1="11" x2="17" y2="11" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
-        <line x1="12" y1="15" x2="17" y2="15" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+      <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <ellipse cx="24" cy="14" rx="12" ry="5" stroke="currentColor" strokeWidth="2"/>
+        <path d="M12 14v10c0 2.8 5.4 5 12 5s12-2.2 12-5V14" stroke="currentColor" strokeWidth="2"/>
+        <path d="M12 24v10c0 2.8 5.4 5 12 5s12-2.2 12-5V24" stroke="currentColor" strokeWidth="2"/>
       </svg>
     ),
   },
@@ -82,12 +80,10 @@ const features = [
     label: 'PITR',
     description: 'Point-in-Time Recovery',
     icon: (
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <line x1="3" y1="14" x2="25" y2="14" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
-        <line x1="7" y1="9" x2="7" y2="19" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
-        <line x1="13" y1="9" x2="13" y2="19" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
-        <line x1="19" y1="9" x2="19" y2="19" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
-        <circle cx="22" cy="14" r="2.5" fill="currentColor"/>
+      <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <path d="M7 17v14M41 17v14" stroke="currentColor" strokeWidth="2"/>
+        <path d="M11 24h7M30 24h7" stroke="currentColor" strokeWidth="2" strokeDasharray="5 4"/>
+        <circle cx="24" cy="24" r="4" fill="currentColor"/>
       </svg>
     ),
   },
@@ -95,9 +91,9 @@ const features = [
     label: 'Monitoring',
     description: 'Built-in Metrics & Alerting',
     icon: (
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <polyline points="3,20 9,13 14,17 19,9 25,9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-        <line x1="3" y1="24" x2="25" y2="24" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+      <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <rect x="7" y="10" width="34" height="26" stroke="currentColor" strokeWidth="2" strokeDasharray="5 4"/>
+        <path d="M13 31l7-10 6 7 9-14" stroke="currentColor" strokeWidth="3" strokeLinecap="square" strokeLinejoin="miter"/>
       </svg>
     ),
   },
@@ -105,9 +101,9 @@ const features = [
     label: 'Upgrades',
     description: 'Zero-Downtime Upgrades',
     icon: (
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <path d="M14 4v17M9 15l5-11 5 11" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-        <line x1="7" y1="24" x2="21" y2="24" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+      <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <rect x="7" y="10" width="34" height="26" stroke="currentColor" strokeWidth="2" strokeDasharray="5 4"/>
+        <path d="M24 32V16M17 23l7-7 7 7" stroke="currentColor" strokeWidth="3" strokeLinecap="square" strokeLinejoin="miter"/>
       </svg>
     ),
   },
@@ -115,9 +111,11 @@ const features = [
     label: 'Scaling',
     description: 'Cluster Scaling with read replicas',
     icon: (
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <path d="M9 19L19 9M12 9h7v7" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M19 19H9V9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+      <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <rect x="9" y="21" width="10" height="10" stroke="currentColor" strokeWidth="2"/>
+        <rect x="29" y="9" width="10" height="10" stroke="currentColor" strokeWidth="2"/>
+        <rect x="29" y="29" width="10" height="10" stroke="currentColor" strokeWidth="2"/>
+        <path d="M19 26h5V14h5M24 26v8h5" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter"/>
       </svg>
     ),
   },

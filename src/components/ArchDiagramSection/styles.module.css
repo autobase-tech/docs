@@ -224,7 +224,15 @@
 .featureCard:last-child { border-right: none; }
 .featureCard:hover { background: var(--color-surface); }
 
-.featureIcon { color: var(--color-text); }
+.featureIcon {
+  color: var(--color-text);
+}
+
+.featureIcon svg {
+  display: block;
+  width: 48px;
+  height: 48px;
+}
 
 .featureLabel {
   font-size: var(--fs-sm);
