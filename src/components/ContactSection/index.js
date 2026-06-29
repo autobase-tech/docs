@@ -5,8 +5,8 @@ const links = [
   { label: 'GitHub', href: 'https://github.com/autobase-tech/' },
   { label: 'X', href: 'https://x.com/autobase_tech' },
   { label: 'LinkedIn ', href: 'https://www.linkedin.com/company/autobasetech/' },
-  { label: 'Telegram', href: 'https://t.me/pavel_kovcheg' },
   { label: 'YouTube', href: 'https://youtube.com/@autobasetech' },
+  { label: 'Telegram', href: 'https://t.me/pavel_kovcheg' },
   { label: 'Email', href: 'mailto:info@autobase.tech' },
   { label: 'Support', href: '/docs/support' },
 ];
