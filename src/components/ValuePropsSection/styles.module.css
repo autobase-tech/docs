@@ -24,29 +24,30 @@
   gap: 16px;
   padding: 32px;
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: 2px;
   background: var(--color-bg);
-  box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.04),
-    0 4px 8px rgba(0, 0, 0, 0.03),
-    0 12px 24px rgba(0, 0, 0, 0.03),
-    0 24px 48px rgba(0, 0, 0, 0.02);
-  transition: box-shadow 0.2s ease;
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.05);
+  transition:
+    border-color 0.16s ease,
+    box-shadow 0.16s ease,
+    color 0.16s ease;
   opacity: 0;
   will-change: transform, opacity;
 }
 
 .card:hover {
-  box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.06),
-    0 6px 16px rgba(0, 0, 0, 0.06),
-    0 18px 36px rgba(0, 0, 0, 0.05),
-    0 32px 64px rgba(0, 0, 0, 0.04);
+  border-color: var(--color-primary);
+  box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
 }
 
 /* ─── Icon ────────────────────────────────────────────────────────── */
 .icon {
   color: var(--color-text);
+  transition: color 0.16s ease;
+}
+
+.card:hover .icon {
+  color: var(--color-primary);
 }
 
 /* ─── Title ───────────────────────────────────────────────────────── */
@@ -57,6 +58,11 @@
   line-height: 1.1;
   color: var(--color-text);
   margin: 0;
+  transition: color 0.16s ease;
+}
+
+.card:hover .title {
+  color: var(--color-primary);
 }
 
 /* ─── Description ─────────────────────────────────────────────────── */
