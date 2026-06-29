@@ -79,6 +79,11 @@
 @media (max-width: 900px) {
   .inner { padding: 0 48px; }
   .grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .card {
+    opacity: 1;
+    transform: none;
+    will-change: auto;
+  }
 }
 
 @media (max-width: 600px) {

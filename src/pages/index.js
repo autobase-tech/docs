@@ -11,6 +11,18 @@ import SocialProofSection from '@site/src/components/SocialProofSection';
 export default function Home() {
   // GSAP scroll reveal — blur + fade from below, fires once per section
   useEffect(() => {
+    if (
+      typeof window !== 'undefined' &&
+      window.matchMedia('(max-width: 768px)').matches
+    ) {
+      document.querySelectorAll('main section').forEach((section) => {
+        section.style.opacity = '1';
+        section.style.transform = 'none';
+        section.style.filter = 'none';
+      });
+      return undefined;
+    }
+
     let ctx;
     Promise.all([import('gsap'), import('gsap/ScrollTrigger')]).then(
       ([{ gsap }, { ScrollTrigger }]) => {

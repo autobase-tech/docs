@@ -39,6 +39,17 @@ export default function ValuePropsSection() {
   const gridRef = useRef(null);
 
   useEffect(() => {
+    if (
+      typeof window !== 'undefined' &&
+      window.matchMedia('(max-width: 768px)').matches
+    ) {
+      gridRef.current?.querySelectorAll(`.${styles.card}`).forEach((card) => {
+        card.style.opacity = '1';
+        card.style.transform = 'none';
+      });
+      return undefined;
+    }
+
     let ctx;
     import('gsap').then(({ gsap }) =>
       import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
