@@ -218,27 +218,10 @@
   gap: 20px;
   padding: 24px 28px;
   border-radius: 6px;
-  text-decoration: none;
-  transition: opacity 0.2s ease, transform 0.15s ease;
-}
-
-.ctaPrimary:hover,
-.ctaSecondary:hover {
-  opacity: 0.85;
-  transform: translateY(-1px);
-  text-decoration: none;
-}
-
-.ctaPrimary {
-  border: 1.5px solid var(--color-primary);
-  background: transparent;
-}
-
-.ctaSecondary {
-  border: 1.5px solid var(--color-border);
   outline: 1.5px solid transparent;
   outline-offset: 0px;
   background: transparent;
+  text-decoration: none;
   transform-style: preserve-3d;
   transform-origin: center top;
   transition: border-color 0.18s ease, outline-color 0.18s ease,
@@ -247,6 +230,20 @@
               box-shadow 0.18s ease;
 }
 
+.ctaPrimary:hover,
+.ctaSecondary:hover {
+  text-decoration: none;
+}
+
+.ctaPrimary {
+  border: 1.5px solid var(--color-primary);
+}
+
+.ctaSecondary {
+  border: 1.5px solid var(--color-border);
+}
+
+.ctaPrimary:hover,
 .ctaSecondary:hover {
   border-color: var(--color-primary);
   outline-color: var(--color-primary);
