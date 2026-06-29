@@ -19,13 +19,17 @@
   gap: 60px;
   padding: 40px 52px;
   border: 1px solid var(--color-border);
-  border-radius: 12px;
+  border-radius: 2px;
   background: var(--color-bg);
-  box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.04),
-    0 4px 8px rgba(0, 0, 0, 0.04),
-    0 12px 24px rgba(0, 0, 0, 0.04),
-    0 24px 48px rgba(0, 0, 0, 0.03);
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.05);
+  transition:
+    border-color 0.16s ease,
+    box-shadow 0.16s ease;
+}
+
+.banner:hover {
+  border-color: var(--color-primary);
+  box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
 }
 
 /* ─── Text block ──────────────────────────────────────────────────── */
