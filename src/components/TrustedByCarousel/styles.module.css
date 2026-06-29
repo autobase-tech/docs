@@ -1,7 +1,11 @@
 .trustedBy {
   width: 100%;
   max-width: 920px;
-  margin: 10px auto 0;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .label {
