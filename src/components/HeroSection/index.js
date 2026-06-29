@@ -4,7 +4,7 @@ import styles from './styles.module.css';
 
 const LINE1   = 'DATABASE PLATFORM';
 const LINE2   = 'FOR POSTGRESQL';
-const SUBTEXT = 'Self-Hosted DBaaS (Database as a Service)';
+const SUBTEXT = 'Self-Hosted DBaaS [Database as a Service]';
 const SPEED   = 60; // ms per character
 const H1_TOTAL = LINE1.length + LINE2.length;
 const SUB_DELAY = H1_TOTAL * SPEED + 200;     // starts after headline + 0.2s pause
