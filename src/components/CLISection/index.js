@@ -14,16 +14,6 @@ const SEQUENCES = [
     result:  '✓ Autobase Console started',
     detail:  '  http://your-server-address',
   },
-  {
-    command: '$ curl -fsSL https://autobase.tech/platform.ssl.yml \\\n    --output ./docker-compose.platform.ssl.yml',
-    result:  '✓ Downloaded',
-    detail:  '  ./docker-compose.platform.ssl.yml',
-  },
-  {
-    command: '$ docker compose \\\n    -f docker-compose.platform.ssl.yml up -d',
-    result:  '✓ Autobase Console started (SSL)',
-    detail:  '  https://autobase.example.com',
-  },
 ];
 
 /* ── Getting-started workflow (fullscreen terminal — sequential) ────── */
@@ -34,39 +24,9 @@ const FS_SEQUENCES = [
     detail:  '  ./docker-compose.platform.yml',
   },
   {
-    command: '$ echo "AUTH_TOKEN=secret-token" > .env',
-    result:  '✓ Environment configured',
-    detail:  '  .env',
-  },
-  {
     command: '$ docker compose \\\n    -f docker-compose.platform.yml up -d',
     result:  '✓ Autobase Console started',
     detail:  '  http://your-server-address',
-  },
-  {
-    command: '$ curl -fsSL https://autobase.tech/platform.ssl.yml \\\n    --output ./docker-compose.platform.ssl.yml',
-    result:  '✓ Downloaded',
-    detail:  '  ./docker-compose.platform.ssl.yml',
-  },
-  {
-    command: '$ echo "DOMAIN=autobase.example.com\nACME_EMAIL=admin@example.com\nAUTH_TOKEN=secret-token" > .env',
-    result:  '✓ SSL environment configured',
-    detail:  '  .env',
-  },
-  {
-    command: '$ docker compose \\\n    -f docker-compose.platform.ssl.yml up -d',
-    result:  '✓ Autobase Console started (SSL)',
-    detail:  '  https://autobase.example.com',
-  },
-  {
-    command: '$ autobase upgrade \\\n    --cluster production \\\n    --from 15 --to 16',
-    result:  '✓ Upgrade complete — zero downtime',
-    detail:  '  primary: 16.3  replicas: 16.3',
-  },
-  {
-    command: '=# CHECKPOINT;',
-    result:  'CHECKPOINT',
-    detail:  '  wal_lsn: 0/3B00000  duration: 0.21s',
   },
 ];
 
@@ -270,14 +230,14 @@ function FullscreenBody({ fsSeq, fsTyped, fsPhase }) {
       <div className={styles.ctaMenu}>
         <div className={styles.menuDivider} />
         <a
-          href="https://github.com/autobase-tech/autobase"
+          href="/docs#getting-started"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.menuItem}
         >
           <span className={styles.menuPrompt}>&gt;</span>
           <span className={styles.menuTitle}> Download Platform</span>
-          <span className={styles.menuSub}>Open Source · Self-Hosted · Free</span>
+          <span className={styles.menuSub}>Enterprise Edition · Free Trial 14 Days</span>
         </a>
         <a
           href="https://demo.autobase.tech"
@@ -286,8 +246,8 @@ function FullscreenBody({ fsSeq, fsTyped, fsPhase }) {
           className={styles.menuItem}
         >
           <span className={styles.menuPrompt}>&gt;</span>
-          <span className={styles.menuTitle}> Book Demo</span>
-          <span className={styles.menuSub}>Talk to our engineers</span>
+          <span className={styles.menuTitle}> Get a Demo</span>
+          <span className={styles.menuSub}>Use token 'demo' to access</span>
         </a>
       </div>
     </div>
@@ -457,7 +417,7 @@ export default function CLISection() {
               <span className={styles.ctaArrow}>&gt;</span>
               <span>
                 <div className={styles.ctaTitle}>GET A DEMO</div>
-                <div className={styles.ctaSubtitle}>use token 'demo' to access</div>
+                <div className={styles.ctaSubtitle}>Use token 'demo' to access</div>
               </span>
             </a>
           </div>
