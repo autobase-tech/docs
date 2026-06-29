@@ -13,12 +13,21 @@
   --color-bg: #F9FAFB;
   --color-surface: #f9f9f9;
   --color-text: #111111;
+  --color-text-muted: #858585;
   --color-border: #e0e0e0;
   --color-white: #ffffff;
   --color-primary: #ff5722;
   background: var(--color-bg);
   padding: 0 !important;
   height: auto;
+}
+
+:global(html[data-theme='dark']) .navbar {
+  --color-bg: #11161d;
+  --color-surface: #11161d;
+  --color-text: #f9fafb;
+  --color-text-muted: #9ca3af;
+  --color-border: #252a31;
 }
 
 /* ─── Inner container — matches hero padding ──────────────────────── */
@@ -74,7 +83,7 @@
   font-family: var(--font-base);
   font-size: 17px;
   font-weight: 400;
-  color: hsl(0, 0%, 52%);
+  color: var(--color-text-muted, hsl(0, 0%, 52%));
   text-decoration: none;
   position: relative;
   white-space: nowrap;
@@ -146,7 +155,7 @@
   border: 1px solid var(--color-border);
 }
 
-.ctaSecondary:hover { color: var(--color-text); border-color: #aaaaaa; }
+.ctaSecondary:hover { color: var(--color-text); border-color: var(--color-text-muted, #aaaaaa); }
 
 /* ─── Icon links ──────────────────────────────────────────────────── */
 .iconLink {
@@ -163,6 +172,8 @@
 .iconLink:hover { opacity: 1; }
 
 .iconLink img { filter: brightness(0); }
+
+:global(html[data-theme='dark']) .iconLink img { filter: brightness(0) invert(1); }
 
 /* ─── Mobile ──────────────────────────────────────────────────────── */
 .mobileActions { display: none; }

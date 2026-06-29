@@ -111,7 +111,7 @@
   outline: 1.5px solid transparent;
   outline-offset: 0px;
   background: transparent;
-  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 6px 6px 0 var(--shadow-pixel);
   text-decoration: none;
   transition: border-color 0.18s ease, outline-color 0.18s ease,
               background 0.18s ease,
@@ -139,7 +139,7 @@
   background: var(--color-surface);
   opacity: 1;
   transform: translate(3px, 3px);
-  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 3px 3px 0 var(--shadow-pixel-hover);
 }
 
 .ctaArrow {
