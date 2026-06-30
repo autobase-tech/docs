@@ -132,7 +132,15 @@
   border: 1.5px solid var(--color-border);
 }
 
-.ctaPrimary:hover,
+.ctaPrimary:hover {
+  border-color: var(--color-primary);
+  outline-color: var(--color-primary);
+  background: var(--color-surface);
+  opacity: 1;
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0 var(--shadow-pixel-hover);
+}
+
 .ctaSecondary:hover {
   border-color: var(--color-primary);
   outline-color: var(--color-primary);
@@ -148,6 +156,10 @@
   font-weight: bold;
   color: var(--color-primary);
   flex-shrink: 0;
+}
+
+.ctaSecondary .ctaArrow {
+  color: var(--color-text-muted);
 }
 
 .ctaTitle {

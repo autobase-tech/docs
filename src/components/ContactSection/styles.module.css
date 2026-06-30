@@ -38,12 +38,31 @@
 .link {
   color: var(--color-text-muted);
   text-decoration: none;
+  position: relative;
+  white-space: nowrap;
   transition: color 0.15s ease;
 }
 
-.link:hover {
+.link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: var(--color-text);
+  transition: width 0.25s ease;
+}
+
+.link:hover,
+.link:focus-visible {
   color: var(--color-text);
   text-decoration: none;
+}
+
+.link:hover::after,
+.link:focus-visible::after {
+  width: 100%;
 }
 
 .separator {
