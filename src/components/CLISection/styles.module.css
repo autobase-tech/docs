@@ -21,9 +21,10 @@
 /* ─── Terminal (inline) ───────────────────────────────────────────── */
 .terminal {
   background: #0d0d0d;
-  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 0;
   overflow: hidden;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+  box-shadow: 8px 8px 0 var(--shadow-pixel);
 }
 
 .terminalBar {
@@ -58,14 +59,14 @@
 
 /* CRT phosphor flash */
 .terminalFlash {
-  animation: crtClear 0.42s ease-in forwards;
+  animation: crtClear 0.32s steps(3, end) forwards;
 }
 
 @keyframes crtClear {
-  0%   { opacity: 1;    filter: brightness(1)   blur(0px);  }
-  25%  { opacity: 1;    filter: brightness(3.5) blur(1px);  }
-  55%  { opacity: 0.15; filter: brightness(0.4) blur(2px);  }
-  100% { opacity: 0;    filter: brightness(0)   blur(0px);  }
+  0%   { opacity: 1;    filter: brightness(1); }
+  35%  { opacity: 1;    filter: brightness(2.4); }
+  70%  { opacity: 0.2;  filter: brightness(0.5); }
+  100% { opacity: 0;    filter: brightness(0); }
 }
 
 .prompt {
@@ -107,16 +108,13 @@
   align-items: center;
   gap: 20px;
   padding: 24px 28px;
-  border-radius: 2px;
-  outline: 1.5px solid transparent;
+  border-radius: 0;
+  outline: 1px solid transparent;
   outline-offset: 0px;
   background: transparent;
   box-shadow: 6px 6px 0 var(--shadow-pixel);
   text-decoration: none;
-  transition: border-color 0.18s ease, outline-color 0.18s ease,
-              background 0.18s ease,
-              transform 0.18s ease,
-              box-shadow 0.18s ease;
+  transition: none;
 }
 
 .ctaPrimary:hover,
@@ -125,11 +123,11 @@
 }
 
 .ctaPrimary {
-  border: 1.5px solid var(--color-primary);
+  border: 1px solid var(--color-primary);
 }
 
 .ctaSecondary {
-  border: 1.5px solid var(--color-border);
+  border: 1px solid var(--color-border);
 }
 
 .ctaPrimary:hover {

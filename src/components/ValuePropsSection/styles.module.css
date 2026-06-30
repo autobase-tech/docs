@@ -24,13 +24,10 @@
   gap: 16px;
   padding: 32px;
   border: 1px solid var(--color-border);
-  border-radius: 2px;
+  border-radius: 0;
   background: var(--color-bg);
   box-shadow: 8px 8px 0 var(--shadow-pixel);
-  transition:
-    border-color 0.16s ease,
-    box-shadow 0.16s ease,
-    color 0.16s ease;
+  transition: none;
   opacity: 0;
   will-change: transform, opacity;
 }
@@ -43,7 +40,7 @@
 /* ─── Icon ────────────────────────────────────────────────────────── */
 .icon {
   color: var(--color-text);
-  transition: color 0.16s ease;
+  transition: none;
 }
 
 .card:hover .icon {
@@ -58,7 +55,7 @@
   line-height: 1.1;
   color: var(--color-text);
   margin: 0;
-  transition: color 0.16s ease;
+  transition: none;
 }
 
 .card:hover .title {

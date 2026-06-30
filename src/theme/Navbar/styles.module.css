@@ -87,7 +87,7 @@
   text-decoration: none;
   position: relative;
   white-space: nowrap;
-  transition: color 0.2s ease;
+  transition: none;
 }
 
 .navLink::after {
@@ -98,7 +98,7 @@
   width: 0;
   height: 1px;
   background: var(--color-text);
-  transition: width 0.25s ease;
+  transition: none;
 }
 
 .navLink:hover {
@@ -125,20 +125,19 @@
   justify-content: center;
   height: 44px;
   padding: 0 20px;
-  border-radius: 6px;
+  border-radius: 0;
   font-family: var(--font-base);
   font-size: var(--fs-sm);
   font-weight: var(--fw-regular);
   white-space: nowrap;
   text-decoration: none;
   cursor: pointer;
-  transition: opacity 0.2s ease, transform 0.15s ease;
+  transition: none;
 }
 
 .cta:hover {
   text-decoration: none;
   opacity: 0.85;
-  transform: translateY(-1px);
 }
 
 .ctaPrimary {
@@ -166,7 +165,7 @@
   height: 28px;
   flex-shrink: 0;
   opacity: 0.55;
-  transition: opacity 0.2s ease;
+  transition: none;
 }
 
 .iconLink:hover { opacity: 1; }

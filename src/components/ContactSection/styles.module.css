@@ -40,7 +40,7 @@
   text-decoration: none;
   position: relative;
   white-space: nowrap;
-  transition: color 0.15s ease;
+  transition: none;
 }
 
 .link::after {
@@ -51,7 +51,7 @@
   width: 0;
   height: 1px;
   background: var(--color-text);
-  transition: width 0.25s ease;
+  transition: none;
 }
 
 .link:hover,

@@ -45,8 +45,8 @@
   align-items: center;
   justify-content: center;
   padding: 28px 0;
-  border: 2px dashed var(--diagram-border);
-  border-radius: 2px;
+  border: 1px dashed var(--diagram-border);
+  border-radius: 0;
   font-size: 20px;
   font-weight: 400;
   color: var(--color-text);
@@ -98,7 +98,7 @@
   padding: 32px 0;
   border-color: var(--color-primary);
   border-style: dashed;
-  border-width: 2px;
+  border-width: 1px;
   width: 80%;
 }
 
@@ -157,8 +157,8 @@
   align-items: center;
   gap: 14px;
   padding: 32px 0;
-  border: 2px dashed var(--diagram-border);
-  border-radius: 2px;
+  border: 1px dashed var(--diagram-border);
+  border-radius: 0;
   font-size: 16px;
   color: var(--color-text);
   text-align: center;
@@ -207,8 +207,8 @@
   width: 100%;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  border: 2px solid var(--color-border);
-  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 0;
   overflow: hidden;
 }
 
@@ -217,8 +217,8 @@
   flex-direction: column;
   gap: 12px;
   padding: 32px 24px;
-  border-right: 2px solid var(--color-border);
-  transition: background 0.2s ease;
+  border-right: 1px solid var(--color-border);
+  transition: none;
 }
 
 .featureCard:last-child { border-right: none; }
@@ -253,7 +253,7 @@
   .usersBox { width: 64%; }
   .featuresGrid { grid-template-columns: repeat(3, 1fr); }
   .featureCard:nth-child(3) { border-right: none; }
-  .featureCard:nth-child(n+4) { border-top: 2px solid var(--color-border); }
+  .featureCard:nth-child(n+4) { border-top: 1px solid var(--color-border); }
 }
 
 @media (max-width: 768px) {
@@ -271,10 +271,10 @@
   .storageTitle { font-size: 15px; }
   .storageSub { font-size: 13px; }
   .featuresGrid { grid-template-columns: repeat(2, 1fr); }
-  .featureCard:nth-child(n) { border-right: 2px solid var(--color-border); border-top: none; }
+  .featureCard:nth-child(n) { border-right: 1px solid var(--color-border); border-top: none; }
   .featureCard:nth-child(2n) { border-right: none; }
   .featureCard:last-child { border-right: none; }
-  .featureCard:nth-child(n+3) { border-top: 2px solid var(--color-border); }
+  .featureCard:nth-child(n+3) { border-top: 1px solid var(--color-border); }
   .featureDesc { font-size: 13px; }
   .divider { margin: 32px auto; }
 }
@@ -282,7 +282,7 @@
 @media (max-width: 480px) {
   .inner { padding: 32px 16px; }
   .featuresGrid { grid-template-columns: 1fr; }
-  .featureCard { border-right: none; border-bottom: 2px solid var(--color-border); }
+  .featureCard { border-right: none; border-bottom: 1px solid var(--color-border); }
   .featureCard:last-child { border-bottom: none; }
   .featureCard:nth-child(n) { border-top: none; border-right: none; }
   .clustersRow { flex-direction: column; gap: 0; }
@@ -295,6 +295,4 @@
     color: var(--diagram-line);
   }
   .clusterBox { width: 100%; border-radius: 0; }
-  .clusterBox:first-child { border-radius: 2px 2px 0 0; }
-  .clusterBox:last-child  { border-radius: 0 0 2px 2px; }
 }

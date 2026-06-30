@@ -19,12 +19,10 @@
   gap: 60px;
   padding: 40px 52px;
   border: 1px solid var(--color-border);
-  border-radius: 2px;
+  border-radius: 0;
   background: var(--color-bg);
   box-shadow: 8px 8px 0 var(--shadow-pixel);
-  transition:
-    border-color 0.16s ease,
-    box-shadow 0.16s ease;
+  transition: none;
 }
 
 .banner:hover {
@@ -62,7 +60,6 @@
   width: 40px;
   height: 3px;
   background: var(--color-text-muted);
-  border-radius: 2px;
   margin-top: 10px;
 }
 

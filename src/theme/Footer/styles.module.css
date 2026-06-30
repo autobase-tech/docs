@@ -65,7 +65,7 @@
   gap: 10px;
   padding: 8px 12px;
   border: 1px solid var(--color-border);
-  border-radius: 2px;
+  border-radius: 0;
   background: transparent;
   color: var(--color-text-muted);
   font-family: var(--font-base);
@@ -75,11 +75,7 @@
   text-transform: uppercase;
   cursor: pointer;
   box-shadow: 4px 4px 0 var(--shadow-pixel, rgba(0, 0, 0, 0.05));
-  transition:
-    border-color 0.16s ease,
-    box-shadow 0.16s ease,
-    color 0.16s ease,
-    transform 0.16s ease;
+  transition: none;
 }
 
 .themeToggle:hover {

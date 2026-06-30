@@ -89,7 +89,7 @@
   object-fit: contain;
   filter: grayscale(100%) contrast(115%);
   opacity: 0.68;
-  transition: filter 0.15s ease, opacity 0.15s ease;
+  transition: none;
 }
 
 .logoSquareAsset {

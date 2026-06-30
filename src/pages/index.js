@@ -9,7 +9,7 @@ import ContactSection from '@site/src/components/ContactSection';
 import SocialProofSection from '@site/src/components/SocialProofSection';
 
 export default function Home() {
-  // GSAP scroll reveal — blur + fade from below, fires once per section
+  // GSAP scroll reveal — quick grid-like reveal, fires once per section
   useEffect(() => {
     if (
       typeof window !== 'undefined' &&
@@ -31,13 +31,12 @@ export default function Home() {
           document.querySelectorAll('main section').forEach((section) => {
             gsap.fromTo(
               section,
-              { y: 32, opacity: 0, filter: 'blur(6px)' },
+              { y: 16, opacity: 0 },
               {
                 y: 0,
                 opacity: 1,
-                filter: 'blur(0px)',
-                duration: 0.85,
-                ease: 'expo.out',
+                duration: 0.28,
+                ease: 'none',
                 scrollTrigger: {
                   trigger: section,
                   start: 'top 90%',

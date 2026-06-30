@@ -62,8 +62,8 @@ export default function ValuePropsSection() {
               opacity: 1,
               scale: 1,
               y: 0,
-              duration: 0.55,
-              ease: 'back.out(1.4)',
+              duration: 0.24,
+              ease: 'none',
               stagger: 0.12,
               scrollTrigger: {
                 trigger: gridRef.current,
