@@ -17,14 +17,18 @@ export default function Footer(props) {
   const { pathname } = useLocation();
   const { colorModeChoice, setColorMode } = useColorMode();
   const homePath = useBaseUrl('/');
-  const isHomepage = normalizePath(pathname) === normalizePath(homePath);
+  const pricingPath = useBaseUrl('/pricing');
+  const normalizedPath = normalizePath(pathname);
+  const isLandingFooter =
+    normalizedPath === normalizePath(homePath) ||
+    normalizedPath === normalizePath(pricingPath);
   const colorModeLabel = colorModeChoice ?? 'system';
   const isSystemColorMode = colorModeChoice == null;
   const nextColorModeChoice =
     isSystemColorMode ? 'light' : colorModeChoice === 'light' ? 'dark' : null;
   const nextColorModeLabel = nextColorModeChoice ?? 'system';
 
-  if (!isHomepage) {
+  if (!isLandingFooter) {
     return <OriginalFooter {...props} />;
   }
 
