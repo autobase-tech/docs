@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import { useLocation } from '@docusaurus/router';
 import Link from '@docusaurus/Link';
@@ -21,6 +21,7 @@ function normalizePath(pathname) {
 
 export default function Navbar(props) {
   const { pathname } = useLocation();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const homePath = useBaseUrl('/');
   const pricingPath = useBaseUrl('/pricing');
   const normalizedPath = normalizePath(pathname);
@@ -72,6 +73,46 @@ export default function Navbar(props) {
             )
           )}
         </nav>
+
+        <div className={styles.mobileMenu}>
+          <button
+            type="button"
+            className={styles.menuButton}
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMenuOpen}
+            onClick={() => setIsMenuOpen((value) => !value)}
+          >
+            <span>{isMenuOpen ? 'close' : 'menu'}</span>
+          </button>
+
+          {isMenuOpen && (
+            <nav className={styles.mobileNav} aria-label="Mobile navigation">
+              {navLinks.map((link) =>
+                link.to ? (
+                  <Link
+                    key={link.label}
+                    to={link.to}
+                    className={styles.mobileNavLink}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.mobileNavLink}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {link.label}
+                  </a>
+                )
+              )}
+            </nav>
+          )}
+        </div>
 
       </div>
     </nav>
