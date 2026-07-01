@@ -3,13 +3,12 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import { useLocation } from '@docusaurus/router';
 import Link from '@docusaurus/Link';
 import OriginalNavbar from '@theme-original/Navbar';
-import clsx from 'clsx';
 import styles from './styles.module.css';
 
 const navLinks = [
-  { label: '/docs',   to: '/docs' },
-  { label: '/github', href: 'https://github.com/autobase-tech/autobase' },
+  { label: '/pricing', to: '/pricing' },
   { label: '/demo',   href: 'https://demo.autobase.tech' },
+  { label: '/docs',   to: '/docs' },
 ];
 
 function normalizePath(pathname) {
@@ -23,9 +22,13 @@ function normalizePath(pathname) {
 export default function Navbar(props) {
   const { pathname } = useLocation();
   const homePath = useBaseUrl('/');
-  const isHomepage = normalizePath(pathname) === normalizePath(homePath);
+  const pricingPath = useBaseUrl('/pricing');
+  const normalizedPath = normalizePath(pathname);
+  const isLandingHeader =
+    normalizedPath === normalizePath(homePath) ||
+    normalizedPath === normalizePath(pricingPath);
 
-  if (!isHomepage) {
+  if (!isLandingHeader) {
     return (
       <div className={styles.docsNavbar}>
         <OriginalNavbar {...props} />
@@ -34,7 +37,7 @@ export default function Navbar(props) {
   }
 
   return (
-    <nav className={clsx('navbar', styles.navbar)}>
+    <nav className={`navbar ${styles.navbar}`}>
       <div className={styles.inner}>
 
         {/* Logo */}
@@ -69,7 +72,6 @@ export default function Navbar(props) {
             )
           )}
         </nav>
-
 
       </div>
     </nav>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
+import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
 
 const plans = [
@@ -28,7 +29,7 @@ const plans = [
       'SLA: up to 24 hours (5×8)',
     ],
     cta: 'Start now',
-    href: '/docs',
+    href: '/docs#getting-started',
   },
   {
     id: 'professional',
@@ -44,7 +45,7 @@ const plans = [
       'SLA: up to 8 hours (5×8)',
     ],
     cta: 'Launch production',
-    href: '/docs',
+    href: '/docs#getting-started',
   },
   {
     id: 'premium',
@@ -60,7 +61,7 @@ const plans = [
       'SLA: up to 1 hour (7×24)',
     ],
     cta: 'Scale with Autobase',
-    href: '/docs',
+    href: '/docs#getting-started',
   },
 ];
 
@@ -69,6 +70,29 @@ export default function PricingSection() {
   const getDisplayedPrice = (price) => (monthly ? price : price * 11);
   const getBillingLabel = () =>
     monthly ? 'per month if billed monthly.' : 'per year if billed yearly.';
+  const renderCta = (plan) => {
+    const isExternal = plan.href.startsWith('http');
+    const content = (
+      <>
+        <span className={styles.ctaPrompt}>&gt;</span>
+        <span className={styles.ctaText}>{plan.cta}</span>
+      </>
+    );
+
+    if (isExternal) {
+      return (
+        <a href={plan.href} className={styles.cta} target="_blank" rel="noreferrer">
+          {content}
+        </a>
+      );
+    }
+
+    return (
+      <Link to={plan.href} className={styles.cta}>
+        {content}
+      </Link>
+    );
+  };
 
   return (
     <section className={styles.section}>
@@ -102,62 +126,48 @@ export default function PricingSection() {
       </div>
 
       {/* ── Cards ── */}
-      <div className={clsx('row', styles.cardsRow)}>
+      <div className={styles.cardsRow}>
         {plans.map((plan) => (
-          <div key={plan.id} className="col-12 col-md-6 col-lg-3">
-            <div className={clsx(styles.card, plan.premium && styles.cardPremium)}>
+          <div
+            key={plan.id}
+            className={clsx(styles.card, plan.popular && styles.cardPopular, plan.premium && styles.cardPremium)}
+          >
+            <div className={styles.cardHeader}>
+              <span className={styles.planId}>/{plan.id}</span>
+              {plan.popular && (
+                <span className={styles.popularBadge}>Most popular</span>
+              )}
+            </div>
 
-              {/* Header image */}
-              <div className={styles.cardHeader}>
-                <img
-                  src={plan.image}
-                  alt={plan.name}
-                  className={styles.cardImg}
-                />
-                {plan.popular && (
-                  <div className={styles.popularBadge}>Most popular</div>
+            {/* Body */}
+            <div className={styles.cardBody}>
+              <p className={styles.planName}>{plan.name}</p>
+
+              <div className={styles.priceBlock}>
+                {plan.price ? (
+                  <>
+                    <p className={styles.price}>
+                      <span className={styles.currency}>$</span>
+                      {getDisplayedPrice(plan.price)}
+                    </p>
+                    <p className={styles.billing}>{getBillingLabel()}</p>
+                  </>
+                ) : (
+                  <p className={styles.freeDesc}>{plan.description}</p>
                 )}
               </div>
 
-              {/* Body */}
-              <div className={styles.cardBody}>
-                <p className={styles.planName}>{plan.name}</p>
+              <ul className={styles.featureList}>
+                {plan.features.map((f) => (
+                  <li key={f} className={styles.featureItem}>
+                    <span className={styles.checkIcon} aria-hidden="true">✓</span>
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
 
-                <div className={styles.priceBlock}>
-                  {plan.price ? (
-                    <>
-                      <p className={styles.price}>
-                        <span className={styles.currency}>$</span>
-                        {getDisplayedPrice(plan.price)}
-                      </p>
-                      <p className={styles.billing}>{getBillingLabel()}</p>
-                    </>
-                  ) : (
-                    <p className={styles.freeDesc}>{plan.description}</p>
-                  )}
-                </div>
-
-                <ul className={styles.featureList}>
-                  {plan.features.map((f) => (
-                    <li key={f} className={styles.featureItem}>
-                      <img
-                        src="/img/pricing/icon-check.svg"
-                        alt=""
-                        aria-hidden="true"
-                        width={18}
-                        height={18}
-                        className={styles.checkIcon}
-                      />
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className={styles.ctaWrap}>
-                  <a href={plan.href} className={styles.cta} target="_blank" rel="noreferrer">
-                    {plan.cta}
-                  </a>
-                </div>
+              <div className={styles.ctaWrap}>
+                {renderCta(plan)}
               </div>
             </div>
           </div>
@@ -167,11 +177,11 @@ export default function PricingSection() {
       {/* ── Notes ── */}
       <div className={styles.notes}>
         <div className={styles.noteItem}>
-          <img src="/img/pricing/icon-info.svg" alt="" aria-hidden="true" width={24} height={24} />
+          <span className={styles.notePrompt} aria-hidden="true">i</span>
           <span>1 month free with annual billing</span>
         </div>
         <div className={styles.noteItem}>
-          <img src="/img/pricing/icon-info.svg" alt="" aria-hidden="true" width={24} height={24} />
+          <span className={styles.notePrompt} aria-hidden="true">i</span>
           <span>additional DBA hours: $300/hour</span>
         </div>
         <div className={styles.noteItem}>
