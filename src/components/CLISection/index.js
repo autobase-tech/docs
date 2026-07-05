@@ -143,7 +143,7 @@ export default function CLISection() {
               <span className={styles.ctaArrow}>&gt;</span>
               <span>
                 <div className={styles.ctaTitle}>GET A DEMO</div>
-                <div className={styles.ctaSubtitle}>Use token 'demo' to access</div>
+                <div className={styles.ctaSubtitle}>Email & password: demo@autobase.tech</div>
               </span>
             </a>
           </div>
