@@ -18,10 +18,6 @@ Update to a new minor version (e.g., from version 18.1 to 18.2).
 
 Minor cluster upgrades are currently supported only through the command line.
 
-:::tip
-If you’re interested in having this functionality available through the UI, please consider becoming a [sponsor](/docs/sponsor).
-:::
-
 ### Command line
 
 By default, only PostgreSQL packages defined in the `postgresql_packages` variable are updated. In addition, you can update Patroni or the entire system.
@@ -196,10 +192,6 @@ Upgrade to a new major version (e.g., from version 17 to 18).
 ### Console (UI)
 
 Major cluster upgrades are currently supported only through the command line.
-
-:::tip
-If you’re interested in having this functionality available through the UI, please consider becoming a [sponsor](/docs/sponsor).
-:::
 
 ### Command line
 

@@ -10,10 +10,6 @@ Restore and Cloning
 
 Restoring a cluster from backup (PITR) is currently supported only through the command line.
 
-:::tip
-If you’re interested in having this functionality available through the UI, please consider becoming a [sponsor](/docs/sponsor).
-:::
-
 ## Command line
 
 You can restore your PostgreSQL cluster in place (Point-In-Time Recovery), which is useful for recovering an existing cluster, or create a new cluster from a backup (Cloning), which involves creating a new cluster based on an existing backup.

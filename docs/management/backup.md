@@ -22,8 +22,6 @@ Both [DigitalOcean](../deployment/digitalocean.md) and [Hetzner Cloud](../deploy
 
 :::info
 Backup configuration changes after deployment are currently supported only through the command line.
-  :::tip
-  If you’re interested in having this functionality available through the UI, please consider becoming a [sponsor](/docs/sponsor).
 :::
 
 ### Command line
