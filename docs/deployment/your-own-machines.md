@@ -150,8 +150,7 @@ See also the [Requirements](../overview/requirements.md) and [Compatibility](../
         Designed for experienced users.
 
         :::info
-        To use **Expert Mode**, go to the **Settings** page and turn on “Enable expert mode”. \
-        *(available since Autobase 2.5)*
+        To use **Expert Mode**, go to the **Settings** page and turn on “Enable expert mode”.
         :::
 
         Select **Your Own Machines** in the deployment destination.
@@ -411,8 +410,7 @@ See also the [Requirements](../overview/requirements.md) and [Compatibility](../
         Designed for experienced users.
 
         :::info
-        To use the **YAML** tab, go to the **Settings** page and turn on “Enable expert mode” and “Enable YAML tab”. \
-        *(available since Autobase 2.5)*
+        To use the **YAML** tab, go to the **Settings** page and turn on “Enable expert mode” and “Enable YAML editor”.
         :::
 
         <ThemedImage
