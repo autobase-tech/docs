@@ -46,12 +46,7 @@ curl -fsSL https://autobase.tech/platform.yml \
   --output ./docker-compose.platform.yml
 ```
 
-2. Create environment `.env` file:
-```yaml
-AUTH_TOKEN=secret-token  # Your authorization token
-```
-
-3. Run Autobase Console:
+2. Run Autobase Console:
 
 ```
 docker compose -f docker-compose.platform.yml up -d
@@ -59,7 +54,7 @@ docker compose -f docker-compose.platform.yml up -d
 
 #### Open the Console UI
 
-Go to http://your-server-address (_your autobase server_) and use `secret-token` for authorization.
+Go to http://your-autobase-server and use `secret-token` for authorization.
 
   </TabItem>
   <TabItem value="https" label="With SSL (recommended)">
@@ -76,7 +71,6 @@ curl -fsSL https://autobase.tech/platform.ssl.yml \
 ```yaml
 DOMAIN=autobase.example.com  # Your domain
 EMAIL=admin@example.com      # Email used for ACME/Let's Encrypt
-AUTH_TOKEN=secret-token      # Your authorization token
 ```
 
 4. Run Autobase Console:
