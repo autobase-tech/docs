@@ -170,7 +170,7 @@ function DiagramInner() {
             <StorageIcon />
             <div>
               <div className={styles.storageTitle}>Database Storage / Backup Storage</div>
-              <div className={styles.storageSub}>Local NVMe, SSD, EBS for data / S3, MinIO, etc. for backups</div>
+              <div className={styles.storageSub}>Local NVMe, SSD, EBS for data / S3 for backups</div>
             </div>
           </div>
         </div>
