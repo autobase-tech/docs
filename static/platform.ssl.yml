@@ -26,7 +26,7 @@ services:
     healthcheck:
       test: ["CMD", "curl", "-fsS",
             "-H", "accept: application/json",
-            "-H", "Authorization: Bearer ${AUTH_TOKEN}",
+            "-H", "Authorization: Bearer ${AUTH_TOKEN:-auth_token}",
             "http://localhost:8080/api/v1/version"]
       interval: 10s
       timeout: 5s
@@ -39,7 +39,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /tmp/ansible:/tmp/ansible
     environment:
-      - PG_CONSOLE_AUTHORIZATION_TOKEN=${AUTH_TOKEN}
+      - PG_CONSOLE_AUTHORIZATION_TOKEN=${AUTH_TOKEN:-auth_token}
       - PG_CONSOLE_LOGGER_LEVEL=${PG_CONSOLE_LOGGER_LEVEL:-DEBUG}
       - PG_CONSOLE_DB_HOST=${PG_CONSOLE_DB_HOST:-autobase-console-db}
     networks:
@@ -62,7 +62,7 @@ services:
       caddy: ${DOMAIN}
       caddy.reverse_proxy: autobase-console-ui:80
     environment:
-      - PG_CONSOLE_AUTHORIZATION_TOKEN=${AUTH_TOKEN}
+      - PG_CONSOLE_AUTHORIZATION_TOKEN=${AUTH_TOKEN:-auth_token}
       - PG_CONSOLE_API_HOST=autobase-console-api
       - PG_CONSOLE_DBDESK_STUDIO_HOST=dbdesk-studio
       - PG_CONSOLE_DBDESK_STUDIO_PORT=${PG_CONSOLE_DBDESK_STUDIO_PORT:-9876}
