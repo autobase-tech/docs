@@ -124,16 +124,6 @@ const features = [
     ),
   },
   {
-    label: 'Monitoring',
-    description: 'Built-in Metrics & Alerting',
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
-        <rect x="7" y="10" width="34" height="26" stroke="currentColor" strokeWidth="2" strokeDasharray="5 4"/>
-        <path d="M13 31l7-10 6 7 9-14" stroke="currentColor" strokeWidth="3" strokeLinecap="square" strokeLinejoin="miter"/>
-      </svg>
-    ),
-  },
-  {
     label: 'Upgrades',
     description: 'Zero-Downtime Upgrades',
     icon: (
@@ -152,6 +142,16 @@ const features = [
         <rect x="29" y="9" width="10" height="10" stroke="currentColor" strokeWidth="2"/>
         <rect x="29" y="29" width="10" height="10" stroke="currentColor" strokeWidth="2"/>
         <path d="M19 26h5V14h5M24 26v8h5" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter"/>
+      </svg>
+    ),
+  },
+  {
+    label: 'Monitoring',
+    description: 'Built-in Metrics & Alerting',
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <rect x="7" y="10" width="34" height="26" stroke="currentColor" strokeWidth="2" strokeDasharray="5 4"/>
+        <path d="M13 31l7-10 6 7 9-14" stroke="currentColor" strokeWidth="3" strokeLinecap="square" strokeLinejoin="miter"/>
       </svg>
     ),
   },
