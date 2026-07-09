@@ -33,11 +33,15 @@ Autobase Automation runs Ansible [playbooks](https://github.com/autobase-tech/au
 
 ## PostgreSQL Cluster
 
-Autobase supports three deployment schemes:
+A highly available PostgreSQL cluster keeps the database service running when a server fails.
+
+It consists of one Primary node that handles write traffic and one or more Replica nodes that continuously receive changes from it. If the Primary becomes unavailable, one of the Replicas can be promoted to become the new Primary.
+
+Autobase supports three deployment schemes depending on how clients connect to the cluster:
 
 ### 1. High-Availability Only
 
-This is a basic high-availability scheme without load balancing.
+This is the simplest high-availability setup. Clients connect directly to PostgreSQL nodes, while Patroni manages failover between the Primary and Replicas.
 
 <ThemedImage
   alt="postgres-ha-scheme"
