@@ -44,6 +44,41 @@ function DatabaseIcon() {
   );
 }
 
+function ClusterNodeIcon() {
+  return (
+    <svg className={styles.clusterNodeIcon} width="32" height="32" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+      <ellipse cx="14" cy="7" rx="9" ry="3.5" stroke="currentColor" strokeWidth="1.5"/>
+      <path d="M5 7v7c0 1.93 4.03 3.5 9 3.5s9-1.57 9-3.5V7" stroke="currentColor" strokeWidth="1.5"/>
+      <path d="M5 14v7c0 1.93 4.03 3.5 9 3.5s9-1.57 9-3.5v-7" stroke="currentColor" strokeWidth="1.5"/>
+    </svg>
+  );
+}
+
+function ClusterTopology() {
+  return (
+    <div className={styles.clusterTopology} aria-hidden="true">
+      <svg className={styles.clusterTopologyLines} viewBox="0 0 120 70" fill="none" preserveAspectRatio="none">
+        <path d="M60 28V36" stroke="currentColor" strokeWidth="1.5"/>
+        <path d="M26 40H94" stroke="currentColor" strokeWidth="1.5"/>
+        <path d="M26 40V48" stroke="currentColor" strokeWidth="1.5"/>
+        <path d="M94 40V48" stroke="currentColor" strokeWidth="1.5"/>
+      </svg>
+      <div className={`${styles.clusterNode} ${styles.clusterNodePrimary}`}>
+        <ClusterNodeIcon />
+        <span>Primary</span>
+      </div>
+      <div className={`${styles.clusterNode} ${styles.clusterNodeReplica} ${styles.clusterNodeReplicaLeft}`}>
+        <ClusterNodeIcon />
+        <span>Replica</span>
+      </div>
+      <div className={`${styles.clusterNode} ${styles.clusterNodeReplica} ${styles.clusterNodeReplicaRight}`}>
+        <ClusterNodeIcon />
+        <span>Replica</span>
+      </div>
+    </div>
+  );
+}
+
 function StorageIcon() {
   return (
     <svg className={styles.diagramIcon} width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
@@ -159,9 +194,18 @@ function DiagramInner() {
       <ClusterConnectors />
       <div className={styles.mobileConnector}><ArrowDown /></div>
       <div className={styles.clustersRow}>
-        <div className={styles.clusterBox}><DatabaseIcon /><span>PostgreSQL<br />Cluster 1</span></div>
-        <div className={styles.clusterBox}><DatabaseIcon /><span>PostgreSQL<br />Cluster 2</span></div>
-        <div className={`${styles.clusterBox} ${styles.clusterBoxOptional}`}><DatabaseIcon /><span>PostgreSQL<br />Cluster N</span></div>
+        <div className={styles.clusterBox}>
+          <ClusterTopology />
+          <span className={styles.clusterHint}>PostgreSQL Cluster 1</span>
+        </div>
+        <div className={styles.clusterBox}>
+          <ClusterTopology />
+          <span className={styles.clusterHint}>PostgreSQL Cluster 2</span>
+        </div>
+        <div className={`${styles.clusterBox} ${styles.clusterBoxOptional}`}>
+          <ClusterTopology />
+          <span className={styles.clusterHint}>PostgreSQL Cluster N</span>
+        </div>
       </div>
       <StorageConnectors />
       <div className={styles.mobileConnector}><ArrowDown /></div>
