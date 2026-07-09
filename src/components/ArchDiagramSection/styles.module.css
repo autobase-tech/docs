@@ -205,12 +205,37 @@
   margin-top: 6px;
 }
 
+/* ─── Architecture Link ───────────────────────────────────────────── */
+.architectureLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  color: var(--color-primary);
+  font-size: 16px;
+  font-weight: var(--fw-regular);
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+.architectureLink:hover,
+.architectureLink:focus {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.architectureLink:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
+}
+
 /* ─── Divider ─────────────────────────────────────────────────────── */
 .divider {
   width: 80%;
   border: none;
   border-top: 1px solid var(--color-border);
-  margin: 48px auto;
+  margin: 20px auto 32px;
 }
 
 /* ─── Features Grid ───────────────────────────────────────────────── */
@@ -295,7 +320,8 @@
   .featureCard:last-child { border-right: none; }
   .featureCard:nth-child(n+3) { border-top: 1px solid var(--color-border); }
   .featureDesc { font-size: 13px; }
-  .divider { margin: 32px auto; }
+  .architectureLink { margin-top: 14px; font-size: 15px; }
+  .divider { margin: 18px auto 24px; }
 }
 
 @media (max-width: 480px) {

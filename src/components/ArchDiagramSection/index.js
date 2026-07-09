@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
 
 function ArrowDown() {
@@ -186,6 +187,11 @@ export default function ArchDiagramSection() {
 
         {/* ── Architecture Diagram ── */}
         <DiagramInner />
+
+        <Link to="/docs/overview/architecture" className={styles.architectureLink}>
+          Architecture details
+          <span aria-hidden="true">-&gt;</span>
+        </Link>
 
         {/* ── Divider ── */}
         <hr className={styles.divider} />
