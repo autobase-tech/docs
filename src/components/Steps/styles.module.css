@@ -1,0 +1,89 @@
+.steps {
+  --step-accent: var(--ifm-color-primary);
+  --step-line: var(--ifm-color-emphasis-300);
+  --step-marker-bg: var(--ifm-background-color);
+  --step-marker-size: 2rem;
+  --step-gap: 1.25rem;
+
+  margin: 1.5rem 0 2rem;
+  counter-reset: step;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: var(--step-marker-size) minmax(0, 1fr);
+  column-gap: var(--step-gap);
+  min-height: 4.25rem;
+  position: relative;
+}
+
+.step::after {
+  content: '';
+  position: absolute;
+  top: var(--step-marker-size);
+  bottom: 0;
+  left: calc(var(--step-marker-size) / 2);
+  width: 2px;
+  background: var(--step-line);
+  transform: translateX(-50%);
+}
+
+.step:last-child::after {
+  display: none;
+}
+
+.marker {
+  align-items: center;
+  background: var(--step-marker-bg);
+  border: 2px solid var(--step-accent);
+  border-radius: 999px;
+  color: var(--step-accent);
+  display: flex;
+  font-size: 0.95rem;
+  font-weight: 700;
+  height: var(--step-marker-size);
+  justify-content: center;
+  position: relative;
+  width: var(--step-marker-size);
+  z-index: 1;
+}
+
+.marker::before {
+  counter-increment: step;
+  content: counter(step);
+}
+
+.body {
+  min-width: 0;
+  padding-bottom: 2rem;
+}
+
+.title {
+  font-size: 1.05rem;
+  line-height: 1.35;
+  margin: 0 0 0.75rem;
+}
+
+.content > :last-child {
+  margin-bottom: 0;
+}
+
+.content :global(.tabs-container) {
+  margin-top: 0;
+}
+
+[data-theme='dark'] .steps {
+  --step-line: var(--ifm-color-emphasis-400);
+  --step-marker-bg: var(--ifm-background-color);
+}
+
+@media (max-width: 600px) {
+  .steps {
+    --step-marker-size: 1.75rem;
+    --step-gap: 0.9rem;
+  }
+
+  .body {
+    padding-bottom: 1.5rem;
+  }
+}

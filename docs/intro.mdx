@@ -13,6 +13,9 @@ This solution is tailored for use on dedicated physical servers (recommended), v
 ### Architecture
 
 import ThemedImage from '@theme/ThemedImage';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Steps, {Step} from '@site/src/components/Steps';
 
 <ThemedImage
   alt="autobase-postgres-scheme"
@@ -26,69 +29,89 @@ For a detailed description of the cluster components, visit the [Architecture](.
 
 ## Getting Started
 
-#### Deploy the Autobase Console
+Follow the step-by-step guide below to start the Autobase Console and create your first PostgreSQL cluster.
 
 :::info
-It is recommended to run the console in the same network as your database servers to enable monitoring of the cluster status.
+Review the [Requirements](./docs/overview/Requirements) section before deployment.
 :::
-
-To run the Autobase Console, execute the following commands:
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 <Tabs>
   <TabItem value="http" label="Quick start" default>
 
-1. Get docker-compose file:
+<Steps>
+  <Step title="Get the docker-compose file">
+
 ```
 curl -fsSL https://autobase.tech/platform.yml \
   --output ./docker-compose.platform.yml
 ```
 
-2. Run Autobase Console:
+  </Step>
+  <Step title="Run the Autobase Console">
 
 ```
 docker compose -f docker-compose.platform.yml up -d
 ```
 
-#### Open the Console UI
+  </Step>
+  <Step title="Open the Console UI">
 
 Go to http://your-autobase-server and complete setup.
+
+  </Step>
+  <Step title="Create a PostgreSQL cluster">
+
+Refer to the [Deployment](/docs/category/deployment) section to learn more about the different deployment methods.
+
+  </Step>
+</Steps>
 
   </TabItem>
   <TabItem value="https" label="With SSL (recommended)">
 
-1. Create a DNS A record pointing your domain to the Autobase server IP address.
+<Steps>
+  <Step title="Create a DNS record">
 
-2. Get docker-compose file:
+Create a DNS A record pointing your domain to the Autobase server IP address.
+
+  </Step>
+  <Step title="Get the docker-compose file">
+
 ```
 curl -fsSL https://autobase.tech/platform.ssl.yml \
   --output ./docker-compose.platform.ssl.yml
 ```
 
-3. Create environment `.env` file:
+  </Step>
+  <Step title="Create the environment file">
+
 ```yaml
 DOMAIN=autobase.example.com  # Your domain
 EMAIL=admin@example.com      # Email used for ACME/Let's Encrypt
 ```
 
-4. Run Autobase Console:
+  </Step>
+  <Step title="Run the Autobase Console">
 
 ```
 docker compose -f docker-compose.platform.ssl.yml up -d
 ```
 
-#### Open the Console UI
+  </Step>
+  <Step title="Open the Console UI">
 
 Go to https://autobase.example.com (DNS name of your autobase server) and complete setup.
 
-  </TabItem>
-</Tabs>
-
-#### Create a PostgreSQL cluster
+  </Step>
+  <Step title="Create a PostgreSQL cluster">
 
 Refer to the [Deployment](/docs/category/deployment) section to learn more about the different deployment methods.
+
+  </Step>
+</Steps>
+
+  </TabItem>
+</Tabs>
 
 :::tip
 📩 Contact us at info@autobase.tech, and our team will help you implement Autobase into your infrastructure.
