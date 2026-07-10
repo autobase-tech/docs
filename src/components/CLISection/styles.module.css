@@ -36,9 +36,9 @@
 }
 
 .dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 0;
   background: #3a3a3a;
 }
 
@@ -190,4 +190,11 @@
   .terminalCode { font-size: 12px; padding: 16px; min-height: 160px; }
   .ctas { flex-direction: column; }
   .ctaPrimary, .ctaSecondary { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret,
+  .terminalFlash {
+    animation: none;
+  }
 }

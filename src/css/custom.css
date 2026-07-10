@@ -2,6 +2,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import 'bootstrap/dist/css/bootstrap-grid.min.css';
 
+[class*='announcementBar_'] {
+  border-bottom: 1px solid rgb(255 87 34 / 55%);
+  color: var(--ifm-font-color-base) !important;
+  font-family: 'Quantico', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+[class*='announcementBar_'] [class*='announcementBarContent_'],
+[class*='announcementBar_'] a {
+  color: inherit !important;
+  text-decoration-color: #ff5722;
+  text-underline-offset: 3px;
+}
+
+.announcement-system {
+  color: #ff5722 !important;
+}
+
 /**
  * Any CSS included here will be global. The classic template
  * bundles Infima by default. Infima is a CSS framework designed to
@@ -195,6 +214,18 @@ html.docs-wrapper[data-theme='light'] .theme-doc-toc-desktop {
   font-weight: var(--fw-light);
 }
 
+.landing-sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
 .landingPage main {
   background-color: var(--color-bg);
 }
@@ -224,11 +255,11 @@ html.docs-wrapper[data-theme='light'] .theme-doc-toc-desktop {
 
   .landingPage {
     max-width: 100vw;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   .landingPage main {
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 }
 

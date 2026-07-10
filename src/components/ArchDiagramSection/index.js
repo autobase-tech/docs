@@ -176,6 +176,10 @@ function DiagramInner() {
       <div className={styles.arrowRow}><ArrowDown /></div>
       <div className={styles.row}>
         <div className={`${styles.box} ${styles.platform}`}>
+          <span className={`${styles.corner} ${styles.cornerTopLeft}`} aria-hidden="true">+</span>
+          <span className={`${styles.corner} ${styles.cornerTopRight}`} aria-hidden="true">+</span>
+          <span className={`${styles.corner} ${styles.cornerBottomLeft}`} aria-hidden="true">+</span>
+          <span className={`${styles.corner} ${styles.cornerBottomRight}`} aria-hidden="true">+</span>
           <div className={styles.cpHeader}>
             <img src="/img/navbar/logo-icon.svg" alt="" width={28} height={25} />
             <span className={styles.cpTitle}>Autobase Platform</span>
@@ -196,7 +200,8 @@ function DiagramInner() {
       <div className={styles.clustersRow}>
         <div className={styles.clusterBox}>
           <ClusterTopology />
-          <span className={styles.clusterHint}>PostgreSQL Cluster 1</span>
+          <span className={`${styles.clusterHint} ${styles.clusterHintDesktop}`}>PostgreSQL Cluster 1</span>
+          <span className={`${styles.clusterHint} ${styles.clusterHintMobile}`}>PostgreSQL Clusters</span>
         </div>
         <div className={styles.clusterBox}>
           <ClusterTopology />
@@ -226,8 +231,12 @@ function DiagramInner() {
 
 export default function ArchDiagramSection() {
   return (
-    <section className={styles.section}>
+    <section className={styles.section} aria-labelledby="system-overview-title">
       <div className={styles.inner}>
+        <h2 id="system-overview-title" className={styles.sectionLabel}>
+          <span aria-hidden="true">//</span>
+          System overview
+        </h2>
 
         {/* ── Architecture Diagram ── */}
         <DiagramInner />
@@ -241,7 +250,7 @@ export default function ArchDiagramSection() {
         <hr className={styles.divider} />
 
         {/* ── Features Grid ── */}
-        <div className={styles.featuresGrid}>
+        <div className={styles.featuresGrid} aria-label="Platform capabilities">
           {features.map((f) => (
             <div key={f.label} className={styles.featureCard}>
               <div className={styles.featureIcon}>{f.icon}</div>

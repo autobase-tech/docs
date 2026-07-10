@@ -4,7 +4,6 @@
   --diagram-border: var(--color-diagram-border, #b7b7b7);
   --feature-hover-bg: rgba(255, 87, 34, 0.08);
   width: 100vw;
-  min-height: 100vh;
   background: var(--color-bg);
   display: flex;
   align-items: center;
@@ -34,10 +33,28 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 60px 80px;
+  padding: 40px 80px 48px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.sectionLabel {
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 8px;
+  margin: 0 0 24px;
+  color: var(--color-text-muted);
+  font-size: 13px;
+  font-weight: var(--fw-regular);
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.sectionLabel span {
+  color: var(--color-primary);
 }
 
 /* ─── Diagram ─────────────────────────────────────────────────────── */
@@ -60,7 +77,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 28px 0;
+  padding: 24px 0;
   border: 1px dashed var(--diagram-border);
   border-radius: 0;
   font-size: 20px;
@@ -100,7 +117,7 @@
 .arrowRow {
   display: flex;
   justify-content: center;
-  height: 48px;
+  height: 40px;
   align-items: center;
   color: var(--diagram-line);
 }
@@ -109,13 +126,42 @@
 
 /* ─── Platform ───────────────────────────────────────────────────── */
 .platform {
+  position: relative;
   flex-direction: column;
   gap: 14px;
-  padding: 32px 0;
-  border-color: var(--color-primary);
-  border-style: dashed;
+  padding: 28px 0;
+  border-color: color-mix(in srgb, var(--color-primary) 52%, var(--color-border));
+  border-style: solid;
   border-width: 1px;
   width: 80%;
+  background: transparent;
+  box-shadow: none;
+  transition: none;
+}
+
+.platform:hover {
+  border-color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 2.5%, var(--color-bg));
+}
+
+.corner {
+  position: absolute;
+  z-index: 1;
+  color: var(--color-primary);
+  font-family: monospace;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.cornerTopLeft { top: -7px; left: -5px; }
+.cornerTopRight { top: -7px; right: -5px; }
+.cornerBottomLeft { bottom: -7px; left: -5px; }
+.cornerBottomRight { right: -5px; bottom: -7px; }
+
+[data-theme='dark'] .platform:hover {
+  background: color-mix(in srgb, var(--color-primary) 4%, var(--color-bg));
 }
 
 .cpHeader {
@@ -145,13 +191,13 @@
 
 .clusterConnectors {
   width: 80%;
-  height: 72px;
+  height: 56px;
   color: var(--diagram-line);
 }
 
 .storageConnectors {
   width: 80%;
-  height: 72px;
+  height: 56px;
   color: var(--diagram-line);
 }
 
@@ -181,7 +227,7 @@
   line-height: 1.5;
   flex: 1;
   background: transparent;
-  transition: border-color 160ms ease, color 160ms ease;
+  transition: none;
 }
 
 .clusterBox:hover {
@@ -203,7 +249,7 @@
   position: absolute;
   inset: 0;
   color: var(--diagram-line);
-  transition: color 160ms ease, opacity 160ms ease;
+  transition: none;
 }
 
 .clusterNode {
@@ -215,13 +261,13 @@
   color: var(--diagram-line);
   font-size: 10px;
   line-height: 1;
-  transition: color 160ms ease, transform 160ms ease;
+  transition: none;
 }
 
 .clusterNode span {
   opacity: 0;
   transform: translateY(-2px);
-  transition: opacity 160ms ease, transform 160ms ease;
+  transition: none;
 }
 
 .clusterNodePrimary {
@@ -271,6 +317,10 @@
   font-size: 12px;
   line-height: 1.3;
   margin-top: 10px;
+}
+
+.clusterHintMobile {
+  display: none;
 }
 
 .diagramIcon {
@@ -345,7 +395,7 @@
   gap: 12px;
   padding: 32px 24px;
   border-right: 1px solid var(--color-border);
-  transition: background-color 160ms ease, color 160ms ease;
+  transition: none;
 }
 
 .featureCard:last-child { border-right: none; }
@@ -379,7 +429,7 @@
 
 /* ─── Responsive ──────────────────────────────────────────────────── */
 @media (max-width: 1100px) {
-  .inner { padding: 0 48px; }
+  .inner { padding: 36px 48px 44px; }
   .section::after {
     right: 48px;
     left: 48px;
@@ -392,7 +442,7 @@
 }
 
 @media (max-width: 768px) {
-  .inner { padding: 40px 24px; }
+  .inner { padding: 28px 24px 36px; }
   .section { min-height: auto; }
   .section::after {
     right: 24px;
@@ -401,6 +451,7 @@
   .box, .controlPlane, .clusterConnectors, .storageConnectors, .clustersRow { width: 100%; }
   .usersBox { width: 100%; }
   .box { font-size: 15px; padding: 20px 12px; }
+  .sectionLabel { margin-bottom: 18px; font-size: 12px; }
   .usersTitle { font-size: 18px; }
   .userRoles { font-size: 13px; gap: 8px; }
   .cpTitle { font-size: 18px; }
@@ -427,23 +478,46 @@
 }
 
 @media (max-width: 480px) {
-  .inner { padding: 32px 16px; }
+  .inner { padding: 24px 16px 32px; }
   .section::after {
     right: 16px;
     left: 16px;
   }
-  .featuresGrid { grid-template-columns: 1fr; }
-  .featureCard { border-right: none; border-bottom: 1px solid var(--color-border); }
-  .featureCard:last-child { border-bottom: none; }
-  .featureCard:nth-child(n) { border-top: none; border-right: none; }
+  .featuresGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .featureCard {
+    min-width: 0;
+    padding: 18px 14px;
+    border-right: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .featureCard:nth-child(n) { border-top: none; }
+  .featureCard:nth-child(2n) { border-right: none; }
+  .featureCard:nth-last-child(-n+2) { border-bottom: none; }
+  .featureIcon svg { width: 36px; height: 36px; }
+  .featureDesc { line-height: 1.35; }
   .clustersRow { flex-direction: column; gap: 0; }
   .clusterConnectors,
   .storageConnectors { display: none; }
   .mobileConnector {
     display: flex;
     justify-content: center;
-    height: 48px;
+    height: 32px;
     color: var(--diagram-line);
+    overflow: hidden;
   }
+  .arrowDown { width: 12px; height: 32px; }
   .clusterBox { width: 100%; border-radius: 0; }
+  .clusterBox:not(:first-child) { display: none; }
+  .clusterHintDesktop { display: none; }
+  .clusterHintMobile { display: inline; }
+  .arrowRow { height: 32px; overflow: hidden; }
+  .platform { padding: 22px 10px; }
+  .storageRow { gap: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clusterBox:hover .clusterNodeReplicaLeft,
+  .clusterBox:hover .clusterNodeReplicaRight {
+    transform: none;
+  }
 }

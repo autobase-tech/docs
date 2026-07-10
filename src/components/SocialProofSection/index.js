@@ -74,8 +74,9 @@ function StopwatchIcon() {
 
 export default function SocialProofSection() {
   return (
-    <section className={styles.section}>
+    <section className={styles.section} aria-labelledby="time-to-value-title">
       <div className={styles.inner}>
+        <h2 id="time-to-value-title" className="landing-sr-only">Time to value</h2>
         <div className={styles.banner}>
 
           {/* Left — text */}

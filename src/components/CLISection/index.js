@@ -21,6 +21,21 @@ const CLS_SPEED  = 90;
 const HOLD_MS    = 2600;
 const FLASH_MS   = 420;
 
+function usePrefersReducedMotion() {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const updatePreference = () => setPrefersReducedMotion(mediaQuery.matches);
+
+    updatePreference();
+    mediaQuery.addEventListener?.('change', updatePreference);
+    return () => mediaQuery.removeEventListener?.('change', updatePreference);
+  }, []);
+
+  return prefersReducedMotion;
+}
+
 /* ── Inline terminal body (cycles SEQUENCES) ──────────────────────── */
 function InlineBody({ typed, clsTyped, phase, seq }) {
   const showResult = phase === 'showing' || phase === 'typing_cls' || phase === 'flash';
@@ -62,12 +77,13 @@ export default function CLISection() {
   const [clsTyped, setClsTyped] = useState('');
   const [phase,    setPhase]    = useState('typing');
   const timer = useRef(null);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   const seq = SEQUENCES[seqIdx];
 
   /* ── Inline typewriter ── */
   useEffect(() => {
-    if (phase !== 'typing') return;
+    if (prefersReducedMotion || phase !== 'typing') return undefined;
     clearTimeout(timer.current);
     const cmd = seq.command;
     if (typed.length < cmd.length) {
@@ -76,16 +92,16 @@ export default function CLISection() {
       timer.current = setTimeout(() => setPhase('showing'), 300);
     }
     return () => clearTimeout(timer.current);
-  }, [phase, typed, seq.command]);
+  }, [phase, typed, seq.command, prefersReducedMotion]);
 
   useEffect(() => {
-    if (phase !== 'showing') return;
+    if (prefersReducedMotion || phase !== 'showing') return undefined;
     timer.current = setTimeout(() => { setClsTyped(''); setPhase('typing_cls'); }, HOLD_MS);
     return () => clearTimeout(timer.current);
-  }, [phase]);
+  }, [phase, prefersReducedMotion]);
 
   useEffect(() => {
-    if (phase !== 'typing_cls') return;
+    if (prefersReducedMotion || phase !== 'typing_cls') return undefined;
     clearTimeout(timer.current);
     if (clsTyped.length < CLEAR_CMD.length) {
       timer.current = setTimeout(() => setClsTyped(CLEAR_CMD.slice(0, clsTyped.length + 1)), CLS_SPEED);
@@ -93,17 +109,20 @@ export default function CLISection() {
       timer.current = setTimeout(() => setPhase('flash'), 180);
     }
     return () => clearTimeout(timer.current);
-  }, [phase, clsTyped]);
+  }, [phase, clsTyped, prefersReducedMotion]);
 
   useEffect(() => {
-    if (phase !== 'flash') return;
+    if (prefersReducedMotion || phase !== 'flash') return undefined;
     timer.current = setTimeout(() => {
       setTyped(''); setClsTyped('');
       setSeqIdx(i => (i + 1) % SEQUENCES.length);
       setPhase('typing');
     }, FLASH_MS);
     return () => clearTimeout(timer.current);
-  }, [phase]);
+  }, [phase, prefersReducedMotion]);
+
+  const visibleTyped = prefersReducedMotion ? seq.command : typed;
+  const visiblePhase = prefersReducedMotion ? 'showing' : phase;
 
   const bar = (
     <div className={styles.terminalBar}>
@@ -112,13 +131,14 @@ export default function CLISection() {
   );
 
   return (
-    <section className={styles.section}>
+    <section className={styles.section} aria-labelledby="get-started-title">
       <div className={styles.inner}>
+        <h2 id="get-started-title" className="landing-sr-only">Get started with Autobase</h2>
         <div className={styles.layout}>
 
           <div className={styles.terminal}>
             {bar}
-            <InlineBody typed={typed} clsTyped={clsTyped} phase={phase} seq={seq} />
+            <InlineBody typed={visibleTyped} clsTyped={clsTyped} phase={visiblePhase} seq={seq} />
           </div>
 
           <div className={styles.ctas}>
@@ -129,10 +149,10 @@ export default function CLISection() {
               className={styles.ctaPrimary}
             >
               <span className={styles.ctaArrow}>&gt;</span>
-              <span>
+              <div>
                 <div className={styles.ctaTitle}>DOWNLOAD PLATFORM</div>
                 <div className={styles.ctaSubtitle}>Enterprise Edition · Free Trial 14 Days</div>
-              </span>
+              </div>
             </a>
             <a
               href="https://demo.autobase.tech"
@@ -141,10 +161,10 @@ export default function CLISection() {
               className={styles.ctaSecondary}
             >
               <span className={styles.ctaArrow}>&gt;</span>
-              <span>
+              <div>
                 <div className={styles.ctaTitle}>GET A DEMO</div>
                 <div className={styles.ctaSubtitle}>Email & password: demo@autobase.tech</div>
-              </span>
+              </div>
             </a>
           </div>
 

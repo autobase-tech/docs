@@ -31,35 +31,47 @@ function normalizeLogoSize(event) {
 function LogoSet({ hidden = false }) {
   return (
     <div className={styles.logoSet} aria-hidden={hidden}>
-      {sponsors.map((sponsor) => (
-        <a
-          key={sponsor.name}
-          href={sponsor.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.logoLink}
-        >
-          <img
-            src={sponsor.img}
-            alt={hidden ? '' : sponsor.name}
-            className={`${styles.logoImg} ${sponsor.darkImg ? styles.logoLight : ''}`}
-            onLoad={normalizeLogoSize}
-            loading="lazy"
-            decoding="async"
-          />
-          {sponsor.darkImg && (
+      {sponsors.map((sponsor) => {
+        const content = (
+          <>
             <img
-              src={sponsor.darkImg}
-              alt=""
-              aria-hidden="true"
-              className={`${styles.logoImg} ${styles.logoDark}`}
+              src={sponsor.img}
+              alt={hidden ? '' : sponsor.name}
+              className={`${styles.logoImg} ${sponsor.darkImg ? styles.logoLight : ''}`}
               onLoad={normalizeLogoSize}
               loading="lazy"
               decoding="async"
             />
-          )}
-        </a>
-      ))}
+            {sponsor.darkImg && (
+              <img
+                src={sponsor.darkImg}
+                alt=""
+                aria-hidden="true"
+                className={`${styles.logoImg} ${styles.logoDark}`}
+                onLoad={normalizeLogoSize}
+                loading="lazy"
+                decoding="async"
+              />
+            )}
+          </>
+        );
+
+        return hidden ? (
+          <span key={sponsor.name} className={styles.logoLink}>
+            {content}
+          </span>
+        ) : (
+          <a
+            key={sponsor.name}
+            href={sponsor.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.logoLink}
+          >
+            {content}
+          </a>
+        );
+      })}
     </div>
   );
 }

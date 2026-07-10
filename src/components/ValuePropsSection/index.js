@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import styles from './styles.module.css';
 
 const props = [
@@ -36,52 +36,11 @@ const props = [
 ];
 
 export default function ValuePropsSection() {
-  const gridRef = useRef(null);
-
-  useEffect(() => {
-    if (
-      typeof window !== 'undefined' &&
-      window.matchMedia('(max-width: 768px)').matches
-    ) {
-      gridRef.current?.querySelectorAll(`.${styles.card}`).forEach((card) => {
-        card.style.opacity = '1';
-        card.style.transform = 'none';
-      });
-      return undefined;
-    }
-
-    let ctx;
-    import('gsap').then(({ gsap }) =>
-      import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
-        gsap.registerPlugin(ScrollTrigger);
-        ctx = gsap.context(() => {
-          gsap.fromTo(
-            gridRef.current?.querySelectorAll(`.${styles.card}`),
-            { opacity: 0, scale: 0.6, y: -10 },
-            {
-              opacity: 1,
-              scale: 1,
-              y: 0,
-              duration: 0.24,
-              ease: 'none',
-              stagger: 0.12,
-              scrollTrigger: {
-                trigger: gridRef.current,
-                start: 'top 85%',
-                once: true,
-              },
-            }
-          );
-        });
-      })
-    );
-    return () => ctx?.revert();
-  }, []);
-
   return (
-    <section className={styles.section}>
+    <section className={styles.section} aria-labelledby="control-boundaries-title">
       <div className={styles.inner}>
-        <div className={styles.grid} ref={gridRef}>
+        <h2 id="control-boundaries-title" className="landing-sr-only">Control boundaries</h2>
+        <div className={styles.grid}>
           {props.map((p) => (
             <div key={p.title} className={styles.card}>
               <div className={styles.icon}>{p.icon}</div>

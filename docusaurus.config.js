@@ -80,10 +80,9 @@ const config = {
       image: 'img/autobase-social-card.png',
       announcementBar: {
         content:
-          '🎉️ Introducing <b><a target="_blank" href="https://github.com/autobase-tech/autobase/releases/tag/2.9.0">Autobase 2.9</a></b> release 🥳',
-          // '<b>Spread the word!</b> Help others discover <b>Autobase</b> — star us on <a target="_blank" rel="noopener noreferrer" href="https://github.com/autobase-tech/autobase">GitHub</a>! ⭐',
-          backgroundColor: '#f39c12',
-          isCloseable: true,
+          '<span class="announcement-system">[ SYSTEM UPDATE ]</span> <a target="_blank" rel="noopener noreferrer" href="https://github.com/autobase-tech/autobase/releases/tag/2.9.0">Autobase 2.9 released -&gt;</a>',
+        backgroundColor: 'rgb(255 92 40 / 15%)',
+        isCloseable: true,
       },
       navbar: {
         hideOnScroll: true,

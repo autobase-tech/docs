@@ -36,8 +36,9 @@ const highlights = [
 
 export default function ProductHighlightsSection() {
   return (
-    <section className={styles.section}>
+    <section className={styles.section} aria-labelledby="product-highlights-title">
       <div className={styles.inner}>
+        <h2 id="product-highlights-title" className="landing-sr-only">Product highlights</h2>
         <div className={styles.row}>
           {highlights.map((h, i) => (
             <React.Fragment key={h.title}>
