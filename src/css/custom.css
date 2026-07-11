@@ -175,6 +175,13 @@ html.docs-wrapper[data-theme='light'] .theme-doc-toc-desktop {
   font-family: var(--font-base);
 }
 
+html:has(.landingPage),
+html:has(.landingPage) body,
+html:has(.landingPage) #__docusaurus,
+html:has(.landingPage) .main-wrapper {
+  background-color: #F9FAFB;
+}
+
 [data-theme='dark'] .landingPage {
   --ifm-background-color: #11161d !important;
   --ifm-background-surface-color: #11161d !important;
@@ -197,6 +204,13 @@ html.docs-wrapper[data-theme='light'] .theme-doc-toc-desktop {
 
   background-color: var(--color-bg);
   color: var(--color-text);
+}
+
+html[data-theme='dark']:has(.landingPage),
+html[data-theme='dark']:has(.landingPage) body,
+html[data-theme='dark']:has(.landingPage) #__docusaurus,
+html[data-theme='dark']:has(.landingPage) .main-wrapper {
+  background-color: #11161d;
 }
 
 .landingPage h1,
@@ -230,7 +244,6 @@ html.docs-wrapper[data-theme='light'] .theme-doc-toc-desktop {
   background-color: var(--color-bg);
 }
 
-[data-theme='dark'] body:has(.landingPage),
 [data-theme='dark'] .landingPage main {
   background-color: #11161d;
 }
