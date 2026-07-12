@@ -36,6 +36,30 @@ function usePrefersReducedMotion() {
   return prefersReducedMotion;
 }
 
+function useElementInView(elementRef) {
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const element = elementRef.current;
+    if (!element) return undefined;
+
+    if (!('IntersectionObserver' in window)) {
+      setIsInView(true);
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInView(entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [elementRef]);
+
+  return isInView;
+}
+
 /* ── Inline terminal body (cycles SEQUENCES) ──────────────────────── */
 function InlineBody({ typed, clsTyped, phase, seq }) {
   const showResult = phase === 'showing' || phase === 'typing_cls' || phase === 'flash';
@@ -77,13 +101,15 @@ export default function CLISection() {
   const [clsTyped, setClsTyped] = useState('');
   const [phase,    setPhase]    = useState('typing');
   const timer = useRef(null);
+  const terminalRef = useRef(null);
   const prefersReducedMotion = usePrefersReducedMotion();
+  const isTerminalInView = useElementInView(terminalRef);
 
   const seq = SEQUENCES[seqIdx];
 
   /* ── Inline typewriter ── */
   useEffect(() => {
-    if (prefersReducedMotion || phase !== 'typing') return undefined;
+    if (prefersReducedMotion || !isTerminalInView || phase !== 'typing') return undefined;
     clearTimeout(timer.current);
     const cmd = seq.command;
     if (typed.length < cmd.length) {
@@ -92,16 +118,16 @@ export default function CLISection() {
       timer.current = setTimeout(() => setPhase('showing'), 300);
     }
     return () => clearTimeout(timer.current);
-  }, [phase, typed, seq.command, prefersReducedMotion]);
+  }, [phase, typed, seq.command, prefersReducedMotion, isTerminalInView]);
 
   useEffect(() => {
-    if (prefersReducedMotion || phase !== 'showing') return undefined;
+    if (prefersReducedMotion || !isTerminalInView || phase !== 'showing') return undefined;
     timer.current = setTimeout(() => { setClsTyped(''); setPhase('typing_cls'); }, HOLD_MS);
     return () => clearTimeout(timer.current);
-  }, [phase, prefersReducedMotion]);
+  }, [phase, prefersReducedMotion, isTerminalInView]);
 
   useEffect(() => {
-    if (prefersReducedMotion || phase !== 'typing_cls') return undefined;
+    if (prefersReducedMotion || !isTerminalInView || phase !== 'typing_cls') return undefined;
     clearTimeout(timer.current);
     if (clsTyped.length < CLEAR_CMD.length) {
       timer.current = setTimeout(() => setClsTyped(CLEAR_CMD.slice(0, clsTyped.length + 1)), CLS_SPEED);
@@ -109,17 +135,17 @@ export default function CLISection() {
       timer.current = setTimeout(() => setPhase('flash'), 180);
     }
     return () => clearTimeout(timer.current);
-  }, [phase, clsTyped, prefersReducedMotion]);
+  }, [phase, clsTyped, prefersReducedMotion, isTerminalInView]);
 
   useEffect(() => {
-    if (prefersReducedMotion || phase !== 'flash') return undefined;
+    if (prefersReducedMotion || !isTerminalInView || phase !== 'flash') return undefined;
     timer.current = setTimeout(() => {
       setTyped(''); setClsTyped('');
       setSeqIdx(i => (i + 1) % SEQUENCES.length);
       setPhase('typing');
     }, FLASH_MS);
     return () => clearTimeout(timer.current);
-  }, [phase, prefersReducedMotion]);
+  }, [phase, prefersReducedMotion, isTerminalInView]);
 
   const visibleTyped = prefersReducedMotion ? seq.command : typed;
   const visiblePhase = prefersReducedMotion ? 'showing' : phase;
@@ -136,7 +162,7 @@ export default function CLISection() {
         <h2 id="get-started-title" className="landing-sr-only">Get started with Autobase</h2>
         <div className={styles.layout}>
 
-          <div className={styles.terminal}>
+          <div ref={terminalRef} className={styles.terminal}>
             {bar}
             <InlineBody typed={visibleTyped} clsTyped={clsTyped} phase={visiblePhase} seq={seq} />
           </div>
