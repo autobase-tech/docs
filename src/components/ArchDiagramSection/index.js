@@ -90,69 +90,81 @@ function StorageIcon() {
   );
 }
 
+function FeatureGlyph({ children }) {
+  return (
+    <svg viewBox="0 0 48 48" fill="none" aria-hidden="true" focusable="false">
+      <g
+        stroke="currentColor"
+        strokeWidth="1"
+        strokeLinecap="square"
+        strokeLinejoin="miter"
+      >
+        <path d="M8 16V8h8M32 8h8v8M40 32v8h-8M16 40H8v-8" />
+        {children}
+      </g>
+    </svg>
+  );
+}
+
 const features = [
   {
     label: 'High Availability',
     description: 'Automatic Failover & Self-Healing',
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
-        <rect x="8" y="11" width="32" height="26" stroke="currentColor" strokeWidth="2" strokeDasharray="5 4"/>
-        <path d="M16 25l6 6 12-14" stroke="currentColor" strokeWidth="3" strokeLinecap="square" strokeLinejoin="miter"/>
-      </svg>
+      <FeatureGlyph>
+        <path d="M24 13l10 4v7c0 6-4 10-10 12-6-2-10-6-10-12v-7l10-4z" />
+        <path d="M18 24l4 4 8-9" />
+      </FeatureGlyph>
     ),
   },
   {
     label: 'Backups',
     description: 'Continuous Backups',
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
-        <ellipse cx="24" cy="14" rx="12" ry="5" stroke="currentColor" strokeWidth="2"/>
-        <path d="M12 14v10c0 2.8 5.4 5 12 5s12-2.2 12-5V14" stroke="currentColor" strokeWidth="2"/>
-        <path d="M12 24v10c0 2.8 5.4 5 12 5s12-2.2 12-5V24" stroke="currentColor" strokeWidth="2"/>
-      </svg>
+      <FeatureGlyph>
+        <path d="M14 24h20v11H14zM14 28h20" />
+        <path d="M24 13v9M20 18l4 4 4-4" />
+      </FeatureGlyph>
     ),
   },
   {
     label: 'PITR',
     description: 'Point-in-Time Recovery',
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
-        <path d="M7 17v14M41 17v14" stroke="currentColor" strokeWidth="2"/>
-        <path d="M11 24h7M30 24h7" stroke="currentColor" strokeWidth="2" strokeDasharray="5 4"/>
-        <circle cx="24" cy="24" r="4" fill="currentColor"/>
-      </svg>
+      <FeatureGlyph>
+        <path d="M19 14h10l5 5v10l-5 5H19l-5-5V19l5-5z" />
+        <path d="M24 18v7h6" />
+      </FeatureGlyph>
     ),
   },
   {
     label: 'Upgrades',
     description: 'Zero-Downtime Upgrades',
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
-        <rect x="7" y="10" width="34" height="26" stroke="currentColor" strokeWidth="2" strokeDasharray="5 4"/>
-        <path d="M24 32V16M17 23l7-7 7 7" stroke="currentColor" strokeWidth="3" strokeLinecap="square" strokeLinejoin="miter"/>
-      </svg>
+      <FeatureGlyph>
+        <path d="M24 34V15M17 22l7-7 7 7M15 34h18" />
+      </FeatureGlyph>
     ),
   },
   {
     label: 'Scaling',
     description: 'Cluster Scaling with read replicas',
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
-        <rect x="9" y="21" width="10" height="10" stroke="currentColor" strokeWidth="2"/>
-        <rect x="29" y="9" width="10" height="10" stroke="currentColor" strokeWidth="2"/>
-        <rect x="29" y="29" width="10" height="10" stroke="currentColor" strokeWidth="2"/>
-        <path d="M19 26h5V14h5M24 26v8h5" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter"/>
-      </svg>
+      <FeatureGlyph>
+        <path d="M13 20h8v8h-8zM28 13h8v8h-8zM28 28h8v8h-8z" />
+        <path d="M21 24h4v-7h3M25 24v8h3" />
+      </FeatureGlyph>
     ),
   },
   {
     label: 'Monitoring',
     description: 'Built-in Metrics & Alerting',
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
-        <rect x="7" y="10" width="34" height="26" stroke="currentColor" strokeWidth="2" strokeDasharray="5 4"/>
-        <path d="M13 31l7-10 6 7 9-14" stroke="currentColor" strokeWidth="3" strokeLinecap="square" strokeLinejoin="miter"/>
-      </svg>
+      <FeatureGlyph>
+        <path d="M14 34V15M14 34h21" />
+        <path d="M17 30l5-7 5 4 7-11" />
+        <path d="M31 16h3v3" />
+      </FeatureGlyph>
     ),
   },
 ];
