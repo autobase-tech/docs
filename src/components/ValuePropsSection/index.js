@@ -21,7 +21,7 @@ const props = [
       </svg>
     ),
     title: 'Your Data',
-    description: 'Your data never leaves your infrastructure.',
+    description: 'Keep your data secure within your infrastructure.',
   },
   {
     icon: (
@@ -30,8 +30,8 @@ const props = [
         <path d="M13 18l3.5 3.5 6.5-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
-    title: 'Your Security',
-    description: 'Your network. Your rules.',
+    title: 'Your Rules',
+    description: 'Customize and operate without limits.',
   },
 ];
 
