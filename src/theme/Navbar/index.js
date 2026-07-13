@@ -7,8 +7,8 @@ import styles from './styles.module.css';
 
 const navLinks = [
   { label: '/pricing', to: '/pricing' },
-  { label: '/demo',   href: 'https://demo.autobase.tech' },
   { label: '/docs',   to: '/docs' },
+  { label: '/github',   href: 'https://github.com/autobase-tech/autobase' },
 ];
 
 function normalizePath(pathname) {
