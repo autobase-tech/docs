@@ -21,7 +21,7 @@ const plans = [
     name: 'Standard',
     image: '/img/pricing/header-standard.png',
     price: 256,
-    billing: 'per month if billed monthly.',
+    billing: 'per month',
     features: [
       'Commercial license',
       'Up to 2 clusters',
@@ -36,7 +36,7 @@ const plans = [
     name: 'Professional',
     image: '/img/pricing/header-professional.png',
     price: 1024,
-    billing: 'per month if billed monthly.',
+    billing: 'per month',
     popular: true,
     features: [
       'Commercial license',
@@ -52,7 +52,7 @@ const plans = [
     name: 'Premium',
     image: '/img/pricing/header-premium.png',
     price: 4096,
-    billing: 'per month if billed monthly.',
+    billing: 'per month',
     premium: true,
     features: [
       'Commercial license',
@@ -69,7 +69,7 @@ export default function PricingSection() {
   const [monthly, setMonthly] = useState(true);
   const getDisplayedPrice = (price) => (monthly ? price : price * 11);
   const getBillingLabel = () =>
-    monthly ? 'per month if billed monthly.' : 'per year if billed yearly.';
+    monthly ? 'per month' : 'per year';
   const renderCta = (plan) => {
     const isExternal = plan.href.startsWith('http');
     const content = (
