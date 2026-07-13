@@ -93,11 +93,6 @@ const config = {
         },
         items: [
           {
-            to: '/docs',
-            label: 'Docs',
-            position: 'right'
-          },
-          {
             href: '/docs/support',
             label: 'Support',
             position: 'right',
