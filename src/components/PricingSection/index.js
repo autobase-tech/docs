@@ -14,7 +14,7 @@ const plans = [
       'No support included',
     ],
     cta: 'Try Free',
-    href: 'https://github.com/autobase-tech/autobase',
+    href: 'https://github.com/autobase-tech/autobase/blob/main/README.md#getting-started',
   },
   {
     id: 'standard',
