@@ -299,17 +299,41 @@ function ControlBus({ active }) {
   );
 }
 
-function FleetCluster({ activity, index, online, replicaCount }) {
+function FleetCluster({
+  activity,
+  index,
+  online,
+  onPreviewClose,
+  onPreviewToggle,
+  previewOpen,
+  replicaCount,
+}) {
   const number = String(index + 1).padStart(3, '0');
   const isScaling = activity?.type === 'scaling' && activity.index === index;
   const activityClass = activity?.index === index
     ? styles[`cluster${activity.type[0].toUpperCase()}${activity.type.slice(1)}`]
     : '';
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      onPreviewToggle();
+    } else if (event.key === 'Escape' && previewOpen) {
+      event.preventDefault();
+      onPreviewClose();
+    }
+  };
 
   return (
     <div
-      className={`${styles.fleetCluster} ${online ? styles.fleetClusterOnline : styles.fleetClusterPending} ${activityClass}`}
-      aria-hidden="true"
+      className={`${styles.fleetCluster} ${online ? styles.fleetClusterOnline : styles.fleetClusterPending} ${previewOpen ? styles.fleetClusterPreviewOpen : ''} ${activityClass}`}
+      role={online ? 'button' : undefined}
+      tabIndex={online ? 0 : -1}
+      aria-expanded={online ? previewOpen : undefined}
+      aria-hidden={online ? undefined : true}
+      aria-label={online ? `PostgreSQL cluster ${number}: one primary and ${replicaCount} replicas` : undefined}
+      data-cluster-tile={online ? '' : undefined}
+      onClick={online ? onPreviewToggle : undefined}
+      onKeyDown={online ? handleKeyDown : undefined}
     >
       <span className={styles.clusterNumber}>{number}</span>
       <span className={styles.miniTopology}>
@@ -325,7 +349,7 @@ function FleetCluster({ activity, index, online, replicaCount }) {
           );
         })}
       </span>
-      <span className={styles.clusterPreview}>
+      <span className={styles.clusterPreview} aria-hidden="true">
         <span className={styles.previewHeader}>
           <span>CLUSTER_{number}</span>
           <span>{replicaCount} REPLICAS</span>
@@ -350,11 +374,34 @@ function FleetCluster({ activity, index, online, replicaCount }) {
 }
 
 function ClusterFleet({ fleetRef, replicaCounts, stage }) {
+  const [openPreviewIndex, setOpenPreviewIndex] = useState(null);
+
+  useEffect(() => {
+    if (openPreviewIndex === null) return undefined;
+
+    const closeOutside = (event) => {
+      if (!(event.target instanceof Element) || !event.target.closest('[data-cluster-tile]')) {
+        setOpenPreviewIndex(null);
+      }
+    };
+    const closeOnEscape = (event) => {
+      if (event.key === 'Escape') setOpenPreviewIndex(null);
+    };
+
+    document.addEventListener('pointerdown', closeOutside);
+    document.addEventListener('keydown', closeOnEscape);
+
+    return () => {
+      document.removeEventListener('pointerdown', closeOutside);
+      document.removeEventListener('keydown', closeOnEscape);
+    };
+  }, [openPreviewIndex]);
+
   return (
     <div
       ref={fleetRef}
       className={styles.fleet}
-      role="img"
+      role="group"
       aria-label="One Autobase platform continuously provisions, scales, monitors, and heals hundreds or thousands of PostgreSQL clusters"
     >
       <span className={`${styles.corner} ${styles.cornerTopLeft}`} aria-hidden="true">+</span>
@@ -373,13 +420,18 @@ function ClusterFleet({ fleetRef, replicaCounts, stage }) {
         </div>
       </div>
 
-      <div className={styles.fleetGrid} aria-hidden="true">
+      <div className={styles.fleetGrid}>
         {Array.from({ length: clusterCount }, (_, index) => (
           <FleetCluster
             key={index}
             index={index}
             online={index < stage.visibleCount}
             activity={stage.service}
+            previewOpen={openPreviewIndex === index}
+            onPreviewClose={() => setOpenPreviewIndex(null)}
+            onPreviewToggle={() => setOpenPreviewIndex((current) => (
+              current === index ? null : index
+            ))}
             replicaCount={replicaCounts[index]}
           />
         ))}

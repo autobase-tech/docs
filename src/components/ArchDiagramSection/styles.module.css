@@ -280,6 +280,7 @@
 
 .fleetClusterOnline {
   animation: clusterBoot 560ms steps(1, end) both;
+  cursor: pointer;
 }
 
 .fleetClusterOnline .miniPrimary {
@@ -493,19 +494,17 @@
   opacity: 0.55;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .fleetClusterOnline:hover {
-    z-index: 30;
-    overflow: visible;
-  }
+.fleetClusterPreviewOpen {
+  z-index: 30;
+  overflow: visible;
+}
 
-  .fleetClusterOnline:hover .clusterPreview {
-    display: block;
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-    visibility: visible;
-    animation: previewReveal 140ms steps(2, end) both;
-  }
+.fleetClusterPreviewOpen .clusterPreview {
+  display: block;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  visibility: visible;
+  animation: previewReveal 140ms steps(2, end) both;
 }
 
 .fleetCluster:hover {
@@ -514,6 +513,12 @@
 }
 
 .fleetCluster:hover .clusterNumber { color: var(--color-primary); }
+
+.fleetClusterOnline:focus-visible {
+  z-index: 31;
+  outline: 1px solid var(--color-primary);
+  outline-offset: 2px;
+}
 
 .fleetFooter {
   display: flex;
@@ -763,7 +768,7 @@
     transform: translate(0, -50%) scale(0.9);
     transform-origin: left center;
   }
-  .fleetClusterOnline:nth-child(6n+1):hover .clusterPreview {
+  .fleetClusterOnline.fleetClusterPreviewOpen:nth-child(6n+1) .clusterPreview {
     transform: translate(0, -50%) scale(1);
   }
   .fleetCluster:nth-child(6n) .clusterPreview {
@@ -772,7 +777,7 @@
     transform: translate(0, -50%) scale(0.9);
     transform-origin: right center;
   }
-  .fleetClusterOnline:nth-child(6n):hover .clusterPreview {
+  .fleetClusterOnline.fleetClusterPreviewOpen:nth-child(6n) .clusterPreview {
     transform: translate(0, -50%) scale(1);
   }
   .featuresGrid { grid-template-columns: repeat(2, 1fr); }
@@ -824,7 +829,7 @@
     transform: translate(-50%, -50%) scale(0.9);
     transform-origin: center;
   }
-  .fleetClusterOnline:nth-child(n):hover .clusterPreview {
+  .fleetClusterOnline.fleetClusterPreviewOpen:nth-child(n) .clusterPreview {
     transform: translate(-50%, -50%) scale(1);
   }
   .fleetCluster:nth-child(4n+1) .clusterPreview {
@@ -833,7 +838,7 @@
     transform: translate(0, -50%) scale(0.9);
     transform-origin: left center;
   }
-  .fleetClusterOnline:nth-child(4n+1):hover .clusterPreview {
+  .fleetClusterOnline.fleetClusterPreviewOpen:nth-child(4n+1) .clusterPreview {
     transform: translate(0, -50%) scale(1);
   }
   .fleetCluster:nth-child(4n) .clusterPreview {
@@ -842,7 +847,7 @@
     transform: translate(0, -50%) scale(0.9);
     transform-origin: right center;
   }
-  .fleetClusterOnline:nth-child(4n):hover .clusterPreview {
+  .fleetClusterOnline.fleetClusterPreviewOpen:nth-child(4n) .clusterPreview {
     transform: translate(0, -50%) scale(1);
   }
   .fleetFooter { gap: 10px; font-size: 8px; }
