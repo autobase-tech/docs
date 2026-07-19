@@ -36,6 +36,21 @@ function randomBetween(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function createReplicaTargets() {
+  const targetRange = maxReplicaCount - initialReplicaCount + 1;
+  const targets = Array.from(
+    { length: clusterCount },
+    (_, index) => initialReplicaCount + (index % targetRange),
+  );
+
+  for (let index = targets.length - 1; index > 0; index -= 1) {
+    const swapIndex = randomBetween(0, index);
+    [targets[index], targets[swapIndex]] = [targets[swapIndex], targets[index]];
+  }
+
+  return targets;
+}
+
 function formatServiceMessage(service) {
   const number = String(service.index + 1).padStart(3, '0');
 
@@ -59,15 +74,22 @@ function useFleetSequence() {
   const [settledActivity, setSettledActivity] = useState(settledActivities[2]);
   const [reduceMotion, setReduceMotion] = useState(false);
   const replicaCountsRef = useRef(Array(clusterCount).fill(initialReplicaCount));
+  const replicaTargetsRef = useRef(null);
   const lastServiceIndexRef = useRef(-1);
   const [replicaCounts, setReplicaCounts] = useState(replicaCountsRef.current);
+
+  if (replicaTargetsRef.current === null) {
+    replicaTargetsRef.current = createReplicaTargets();
+  }
 
   const activateService = useCallback((requestedType, onlineClusterCount) => {
     const availableCount = Math.max(1, Math.min(clusterCount, onlineClusterCount));
     const allCandidates = Array.from({ length: availableCount }, (_, index) => index);
     let type = requestedType;
     let candidates = requestedType === 'scaling'
-      ? allCandidates.filter((index) => replicaCountsRef.current[index] < maxReplicaCount)
+      ? allCandidates.filter((index) => (
+        replicaCountsRef.current[index] < replicaTargetsRef.current[index]
+      ))
       : allCandidates;
 
     if (candidates.length === 0) {
@@ -96,6 +118,8 @@ function useFleetSequence() {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (prefersReducedMotion) {
+      replicaCountsRef.current = [...replicaTargetsRef.current];
+      setReplicaCounts(replicaCountsRef.current);
       setReduceMotion(true);
       setStage({
         visibleCount: clusterCount,
