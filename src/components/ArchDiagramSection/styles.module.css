@@ -360,6 +360,154 @@
 .miniReplica3 { left: 33%; }
 .miniReplica4 { right: 33%; }
 
+.clusterPreview {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 20;
+  display: none;
+  width: 240px;
+  height: 136px;
+  border: 1px solid var(--color-primary);
+  color: var(--diagram-line);
+  background: var(--color-bg);
+  box-shadow: 5px 5px 0 color-mix(in srgb, var(--color-primary) 22%, var(--color-bg));
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.9);
+  transform-origin: center;
+  visibility: hidden;
+}
+
+.previewHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 29px;
+  padding: 0 10px;
+  border-bottom: 1px dashed color-mix(in srgb, var(--diagram-border) 75%, transparent);
+  color: var(--color-primary);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+
+.previewHeader > span:last-child {
+  color: var(--color-text-muted);
+  font-size: 8px;
+}
+
+.previewBody {
+  position: relative;
+  display: flex;
+  height: 105px;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px 12px 9px;
+}
+
+.previewBody::before {
+  content: '';
+  position: absolute;
+  top: 34px;
+  left: 50%;
+  width: 1px;
+  height: 18px;
+  background: currentColor;
+  opacity: 0.55;
+}
+
+.previewPrimary {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 24px;
+  justify-content: center;
+}
+
+.previewPrimaryLabel {
+  position: absolute;
+  top: 4px;
+  left: calc(50% + 14px);
+  color: var(--color-primary);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+
+.previewNode {
+  display: block;
+  width: 17px;
+  height: 13px;
+  border: 1px solid currentColor;
+  background: var(--color-bg);
+  box-shadow: inset 0 -4px 0 color-mix(in srgb, currentColor 18%, transparent);
+}
+
+.previewPrimary > .previewNode {
+  color: var(--color-primary);
+}
+
+.previewReplicaRow {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex: 1;
+  align-items: flex-start;
+  justify-content: space-around;
+  margin-top: 23px;
+}
+
+.previewReplicaRow::before {
+  content: '';
+  position: absolute;
+  top: -9px;
+  right: 9%;
+  left: 9%;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.55;
+}
+
+.previewReplica {
+  position: relative;
+  display: flex;
+  min-width: 40px;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  color: var(--color-text-muted);
+  font-size: 8px;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.previewReplica::before {
+  content: '';
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  width: 1px;
+  height: 9px;
+  background: var(--diagram-line);
+  opacity: 0.55;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .fleetClusterOnline:hover {
+    z-index: 30;
+    overflow: visible;
+  }
+
+  .fleetClusterOnline:hover .clusterPreview {
+    display: block;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    visibility: visible;
+    animation: previewReveal 140ms steps(2, end) both;
+  }
+}
+
 .fleetCluster:hover {
   border-color: var(--color-primary);
   color: var(--color-primary);
@@ -480,6 +628,11 @@
   50%, 64% { opacity: 0; }
   65%, 79% { color: var(--color-primary); opacity: 1; }
   80%, 100% { color: var(--diagram-line); opacity: 0.72; }
+}
+
+@keyframes previewReveal {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 @keyframes serviceHeal {
@@ -604,6 +757,24 @@
   .fleet { padding: 20px; }
   .fleetGrid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
   .fleetCluster:nth-child(n+25) { display: none; }
+  .fleetCluster:nth-child(6n+1) .clusterPreview {
+    right: auto;
+    left: 0;
+    transform: translate(0, -50%) scale(0.9);
+    transform-origin: left center;
+  }
+  .fleetClusterOnline:nth-child(6n+1):hover .clusterPreview {
+    transform: translate(0, -50%) scale(1);
+  }
+  .fleetCluster:nth-child(6n) .clusterPreview {
+    right: 0;
+    left: auto;
+    transform: translate(0, -50%) scale(0.9);
+    transform-origin: right center;
+  }
+  .fleetClusterOnline:nth-child(6n):hover .clusterPreview {
+    transform: translate(0, -50%) scale(1);
+  }
   .featuresGrid { grid-template-columns: repeat(2, 1fr); }
   .featureCard:nth-child(n) { border-right: 1px solid var(--color-border); border-top: none; }
   .featureCard:nth-child(2n) { border-right: none; }
@@ -647,6 +818,33 @@
   .fleetGrid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
   .fleetCluster { height: 52px; }
   .fleetCluster:nth-child(n+17) { display: none; }
+  .fleetCluster:nth-child(n) .clusterPreview {
+    right: auto;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    transform-origin: center;
+  }
+  .fleetClusterOnline:nth-child(n):hover .clusterPreview {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  .fleetCluster:nth-child(4n+1) .clusterPreview {
+    right: auto;
+    left: 0;
+    transform: translate(0, -50%) scale(0.9);
+    transform-origin: left center;
+  }
+  .fleetClusterOnline:nth-child(4n+1):hover .clusterPreview {
+    transform: translate(0, -50%) scale(1);
+  }
+  .fleetCluster:nth-child(4n) .clusterPreview {
+    right: 0;
+    left: auto;
+    transform: translate(0, -50%) scale(0.9);
+    transform-origin: right center;
+  }
+  .fleetClusterOnline:nth-child(4n):hover .clusterPreview {
+    transform: translate(0, -50%) scale(1);
+  }
   .fleetFooter { gap: 10px; font-size: 8px; }
   .fleetOnline { gap: 5px; }
 }

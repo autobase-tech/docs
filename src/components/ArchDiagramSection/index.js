@@ -325,6 +325,26 @@ function FleetCluster({ activity, index, online, replicaCount }) {
           );
         })}
       </span>
+      <span className={styles.clusterPreview}>
+        <span className={styles.previewHeader}>
+          <span>CLUSTER_{number}</span>
+          <span>{replicaCount} REPLICAS</span>
+        </span>
+        <span className={styles.previewBody}>
+          <span className={styles.previewPrimary}>
+            <span className={styles.previewNode} />
+            <span className={styles.previewPrimaryLabel}>PRIMARY</span>
+          </span>
+          <span className={styles.previewReplicaRow}>
+            {Array.from({ length: replicaCount }, (_, replicaIndex) => (
+              <span key={replicaIndex} className={styles.previewReplica}>
+                <span className={styles.previewNode} />
+                <span>REPLICA</span>
+              </span>
+            ))}
+          </span>
+        </span>
+      </span>
     </div>
   );
 }
@@ -372,7 +392,7 @@ function ClusterFleet({ fleetRef, replicaCounts, stage }) {
             <span className={styles.activityMessage}>{stage.message}</span>
           </div>
         </div>
-        <span className={styles.fleetOnline}><span /> AUTOMATION ACTIVE</span>
+        <span className={styles.fleetOnline}><span /> SYSTEM ACTIVE</span>
       </div>
     </div>
   );
