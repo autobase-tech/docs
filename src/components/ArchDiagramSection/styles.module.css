@@ -428,10 +428,6 @@
   animation: serviceBorder 1.4s steps(1, end) infinite;
 }
 
-.clusterMonitoring .clusterNumber {
-  animation: serviceMonitor 1.4s steps(1, end) infinite;
-}
-
 .clusterScaling .miniReplicaAdded {
   animation: replicaProvision 1.4s steps(1, end) both;
 }
@@ -476,11 +472,6 @@
 @keyframes serviceBorder {
   0%, 24%, 50%, 100% { border-color: color-mix(in srgb, var(--diagram-border) 70%, transparent); }
   25%, 49% { border-color: var(--color-primary); }
-}
-
-@keyframes serviceMonitor {
-  0%, 49%, 100% { color: var(--color-text-muted); }
-  50%, 79% { color: var(--color-primary); }
 }
 
 @keyframes replicaProvision {
@@ -666,7 +657,6 @@
   .fleetClusterOnline,
   .fleetClusterOnline .miniNode,
   .clusterMaintaining,
-  .clusterMonitoring .clusterNumber,
   .clusterScaling .miniNode,
   .clusterHealing .miniNode { animation: none; }
 }

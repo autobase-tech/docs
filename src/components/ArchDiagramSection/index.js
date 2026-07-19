@@ -10,14 +10,10 @@ const initialFleetStage = {
   visibleCount: 1,
   onlineCount: '0001',
   message: 'CLUSTER_001 ONLINE',
-  service: { type: 'monitoring', index: 0 },
+  service: null,
 };
 
 const settledActivities = [
-  {
-    message: 'MONITOR FLEET HEALTH',
-    service: { type: 'monitoring', index: 20 },
-  },
   {
     message: 'SCALE REPLICA_013',
     service: { type: 'scaling', index: 12 },
@@ -51,7 +47,7 @@ function formatServiceMessage(service) {
     case 'maintaining':
       return `MAINTAIN CLUSTER_${number}`;
     default:
-      return `MONITOR CLUSTER_${number}`;
+      return `CLUSTER_${number} ONLINE`;
   }
 }
 
@@ -60,7 +56,7 @@ function useFleetSequence() {
   const [hasStarted, setHasStarted] = useState(false);
   const [stage, setStage] = useState(initialFleetStage);
   const [isSettled, setIsSettled] = useState(false);
-  const [settledActivity, setSettledActivity] = useState(settledActivities[0]);
+  const [settledActivity, setSettledActivity] = useState(settledActivities[2]);
   const [reduceMotion, setReduceMotion] = useState(false);
   const replicaCountsRef = useRef(Array(clusterCount).fill(initialReplicaCount));
   const lastServiceIndexRef = useRef(-1);
@@ -75,7 +71,7 @@ function useFleetSequence() {
       : allCandidates;
 
     if (candidates.length === 0) {
-      type = 'monitoring';
+      type = 'maintaining';
       candidates = allCandidates;
     }
 
@@ -104,7 +100,7 @@ function useFleetSequence() {
       setStage({
         visibleCount: clusterCount,
         onlineCount: '1000+',
-        ...settledActivities[0],
+        ...settledActivities[2],
       });
       setHasStarted(true);
       setIsSettled(true);
