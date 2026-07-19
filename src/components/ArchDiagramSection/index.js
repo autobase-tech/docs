@@ -4,109 +4,59 @@ import styles from './styles.module.css';
 
 const clusterCount = 32;
 
-const growthStages = [
-  {
-    at: 0,
-    visibleCount: 1,
-    onlineCount: '0001',
-    messages: ['CLUSTER_001 ONLINE', 'MONITOR CLUSTER_001'],
-    service: { type: 'monitoring', index: 0 },
-  },
-  {
-    at: 900,
-    visibleCount: 2,
-    onlineCount: '0002',
-    messages: ['PROVISION CLUSTER_002', 'MAINTAIN CLUSTER_001'],
-    service: { type: 'maintaining', index: 0 },
-  },
-  {
-    at: 1800,
-    visibleCount: 4,
-    onlineCount: '0004',
-    messages: ['PROVISION CLUSTERS_003-004', 'MONITOR CLUSTERS_001-002'],
-    service: { type: 'monitoring', index: 0 },
-  },
-  {
-    at: 2800,
-    visibleCount: 8,
-    onlineCount: '0008',
-    messages: ['PROVISION CLUSTERS_005-008', 'SCALE REPLICA_002'],
-    service: { type: 'scaling', index: 1 },
-  },
-  {
-    at: 4000,
-    visibleCount: 16,
-    onlineCount: '0016',
-    messages: ['PROVISION CLUSTERS_009-016', 'HEAL PRIMARY_005'],
-    service: { type: 'healing', index: 4 },
-  },
-  {
-    at: 5400,
-    visibleCount: 32,
-    onlineCount: '0032',
-    messages: ['PROVISION CLUSTERS_017-032', 'SCALE REPLICA_013'],
-    service: { type: 'scaling', index: 12 },
-  },
-  {
-    at: 6500,
-    visibleCount: 32,
-    onlineCount: '0064',
-    messages: ['PROVISION BATCH_0064', 'MAINTAIN CLUSTERS_001-032'],
-    service: { type: 'maintaining', index: 15 },
-  },
-  {
-    at: 7100,
-    visibleCount: 32,
-    onlineCount: '0128',
-    messages: ['PROVISION BATCH_0128', 'MONITOR FLEET HEALTH'],
-    service: { type: 'monitoring', index: 20 },
-  },
-  {
-    at: 7700,
-    visibleCount: 32,
-    onlineCount: '0256',
-    messages: ['PROVISION BATCH_0256', 'SCALE REPLICA_013'],
-    service: { type: 'scaling', index: 12 },
-  },
-  {
-    at: 8300,
-    visibleCount: 32,
-    onlineCount: '0512',
-    messages: ['PROVISION BATCH_0512', 'HEAL PRIMARY_009'],
-    service: { type: 'healing', index: 8 },
-  },
-  {
-    at: 8900,
-    visibleCount: 32,
-    onlineCount: '1000+',
-    messages: ['FLEET EXPANDED TO 1000+', 'ALL CLUSTERS ONLINE'],
-    service: { type: 'monitoring', index: 31 },
-  },
-];
+const initialFleetStage = {
+  visibleCount: 1,
+  onlineCount: '0001',
+  message: 'CLUSTER_001 ONLINE',
+  service: { type: 'monitoring', index: 0 },
+};
 
 const settledActivities = [
   {
-    messages: ['MONITOR FLEET_1000+', 'ALL SYSTEMS NOMINAL'],
+    message: 'MONITOR FLEET HEALTH',
     service: { type: 'monitoring', index: 20 },
   },
   {
-    messages: ['SCALE REPLICA_013', '1000+ CLUSTERS ONLINE'],
+    message: 'SCALE REPLICA_013',
     service: { type: 'scaling', index: 12 },
   },
   {
-    messages: ['HEAL PRIMARY_009', 'FAILOVER COMPLETE'],
+    message: 'HEAL PRIMARY_009',
     service: { type: 'healing', index: 8 },
   },
   {
-    messages: ['MAINTAIN CLUSTER_016', 'ZERO-DOWNTIME'],
+    message: 'MAINTAIN CLUSTER_016',
     service: { type: 'maintaining', index: 15 },
   },
 ];
+
+function formatOnlineCount(count) {
+  return String(count).padStart(4, '0');
+}
+
+function randomBetween(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function formatServiceMessage(service) {
+  const number = String(service.index + 1).padStart(3, '0');
+
+  switch (service.type) {
+    case 'scaling':
+      return `SCALE REPLICA_${number}`;
+    case 'healing':
+      return `HEAL PRIMARY_${number}`;
+    case 'maintaining':
+      return `MAINTAIN CLUSTER_${number}`;
+    default:
+      return `MONITOR CLUSTER_${number}`;
+  }
+}
 
 function useFleetSequence() {
   const fleetRef = useRef(null);
   const [hasStarted, setHasStarted] = useState(false);
-  const [stageIndex, setStageIndex] = useState(0);
+  const [stage, setStage] = useState(initialFleetStage);
   const [isSettled, setIsSettled] = useState(false);
   const [settledIndex, setSettledIndex] = useState(0);
   const [reduceMotion, setReduceMotion] = useState(false);
@@ -116,7 +66,11 @@ function useFleetSequence() {
 
     if (prefersReducedMotion) {
       setReduceMotion(true);
-      setStageIndex(growthStages.length - 1);
+      setStage({
+        visibleCount: clusterCount,
+        onlineCount: '1000+',
+        ...settledActivities[0],
+      });
       setHasStarted(true);
       setIsSettled(true);
       return undefined;
@@ -139,17 +93,80 @@ function useFleetSequence() {
   useEffect(() => {
     if (!hasStarted || reduceMotion || isSettled) return undefined;
 
-    const stageTimers = growthStages.slice(1).map((stage, index) => (
-      window.setTimeout(() => setStageIndex(index + 1), stage.at)
-    ));
-    const settleTimer = window.setTimeout(
-      () => setIsSettled(true),
-      growthStages[growthStages.length - 1].at + 1400,
-    );
+    const timers = new Set();
+    let visibleCount = 1;
+    let onlineCountValue = clusterCount;
+    let growthActivityIndex = 0;
+
+    const schedule = (callback, minDelay, maxDelay) => {
+      const timer = window.setTimeout(() => {
+        timers.delete(timer);
+        callback();
+      }, randomBetween(minDelay, maxDelay));
+      timers.add(timer);
+    };
+
+    const growCounter = () => {
+      if (onlineCountValue >= 1000) {
+        schedule(() => setIsSettled(true), 1400, 1900);
+        return;
+      }
+
+      const batchSize = Math.min(randomBetween(1, 4), 1000 - onlineCountValue);
+      onlineCountValue += batchSize;
+      const activity = settledActivities[onlineCountValue % settledActivities.length];
+
+      setStage({
+        visibleCount: clusterCount,
+        onlineCount: onlineCountValue === 1000 ? '1000+' : formatOnlineCount(onlineCountValue),
+        message: onlineCountValue === 1000
+          ? 'FLEET EXPANDED TO 1000+'
+          : activity.message,
+        service: activity.service,
+      });
+
+      if (onlineCountValue < 1000) {
+        schedule(growCounter, 900, 1800);
+      } else {
+        schedule(() => setIsSettled(true), 1600, 2200);
+      }
+    };
+
+    const growVisibleFleet = () => {
+      const batchSize = Math.min(randomBetween(1, 4), clusterCount - visibleCount);
+      const firstCluster = visibleCount + 1;
+      visibleCount += batchSize;
+      const lastCluster = visibleCount;
+      const range = firstCluster === lastCluster
+        ? `CLUSTER_${String(firstCluster).padStart(3, '0')}`
+        : `CLUSTERS_${String(firstCluster).padStart(3, '0')}-${String(lastCluster).padStart(3, '0')}`;
+      const cyclePosition = growthActivityIndex % (settledActivities.length + 1);
+      const showProvisioning = cyclePosition === settledActivities.length;
+      const serviceTemplate = settledActivities[cyclePosition % settledActivities.length].service;
+      const service = {
+        ...serviceTemplate,
+        index: Math.min(serviceTemplate.index, Math.max(0, firstCluster - 2)),
+      };
+      growthActivityIndex += 1;
+
+      setStage({
+        visibleCount,
+        onlineCount: formatOnlineCount(visibleCount),
+        message: showProvisioning ? `PROVISION ${range}` : formatServiceMessage(service),
+        service: showProvisioning ? null : service,
+      });
+
+      if (visibleCount < clusterCount) {
+        schedule(growVisibleFleet, 1200, 2100);
+      } else {
+        schedule(growCounter, 1500, 2200);
+      }
+    };
+
+    schedule(growVisibleFleet, 1200, 1800);
 
     return () => {
-      stageTimers.forEach(window.clearTimeout);
-      window.clearTimeout(settleTimer);
+      timers.forEach(window.clearTimeout);
     };
   }, [hasStarted, isSettled, reduceMotion]);
 
@@ -158,17 +175,20 @@ function useFleetSequence() {
 
     const interval = window.setInterval(() => {
       setSettledIndex((current) => (current + 1) % settledActivities.length);
-    }, 2800);
+    }, 3200);
 
     return () => window.clearInterval(interval);
   }, [isSettled, reduceMotion]);
 
-  const finalStage = growthStages[growthStages.length - 1];
-  const stage = isSettled
-    ? { ...finalStage, ...settledActivities[settledIndex] }
-    : growthStages[stageIndex];
+  const currentStage = isSettled
+    ? {
+      visibleCount: clusterCount,
+      onlineCount: '1000+',
+      ...settledActivities[settledIndex],
+    }
+    : stage;
 
-  return { fleetRef, hasStarted, stage };
+  return { fleetRef, hasStarted, stage: currentStage };
 }
 
 function ControlBus({ active }) {
@@ -280,12 +300,10 @@ function ClusterFleet({ fleetRef, stage }) {
 
       <div className={styles.fleetFooter} aria-hidden="true">
         <div className={styles.fleetActivity}>
-          {stage.messages.map((message, index) => (
-            <div className={styles.activityLine} key={message}>
-              <span className={styles.activityPrompt}>{index === 0 ? '>' : '+'}</span>
-              <span className={styles.activityMessage}>{message}</span>
-            </div>
-          ))}
+          <div className={styles.activityLine}>
+            <span className={styles.activityPrompt}>&gt;</span>
+            <span className={styles.activityMessage}>{stage.message}</span>
+          </div>
         </div>
         <span className={styles.fleetOnline}><span /> AUTOMATION ACTIVE</span>
       </div>
