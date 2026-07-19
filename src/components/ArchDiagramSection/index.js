@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
 
@@ -60,11 +60,41 @@ function useFleetSequence() {
   const [hasStarted, setHasStarted] = useState(false);
   const [stage, setStage] = useState(initialFleetStage);
   const [isSettled, setIsSettled] = useState(false);
-  const [settledIndex, setSettledIndex] = useState(0);
+  const [settledActivity, setSettledActivity] = useState(settledActivities[0]);
   const [reduceMotion, setReduceMotion] = useState(false);
-  const [replicaCounts, setReplicaCounts] = useState(
-    () => Array(clusterCount).fill(initialReplicaCount),
-  );
+  const replicaCountsRef = useRef(Array(clusterCount).fill(initialReplicaCount));
+  const lastServiceIndexRef = useRef(-1);
+  const [replicaCounts, setReplicaCounts] = useState(replicaCountsRef.current);
+
+  const activateService = useCallback((requestedType, onlineClusterCount) => {
+    const availableCount = Math.max(1, Math.min(clusterCount, onlineClusterCount));
+    const allCandidates = Array.from({ length: availableCount }, (_, index) => index);
+    let type = requestedType;
+    let candidates = requestedType === 'scaling'
+      ? allCandidates.filter((index) => replicaCountsRef.current[index] < maxReplicaCount)
+      : allCandidates;
+
+    if (candidates.length === 0) {
+      type = 'monitoring';
+      candidates = allCandidates;
+    }
+
+    if (candidates.length > 1) {
+      candidates = candidates.filter((index) => index !== lastServiceIndexRef.current);
+    }
+
+    const index = candidates[randomBetween(0, candidates.length - 1)];
+    lastServiceIndexRef.current = index;
+
+    if (type === 'scaling') {
+      const nextCounts = [...replicaCountsRef.current];
+      nextCounts[index] += 1;
+      replicaCountsRef.current = nextCounts;
+      setReplicaCounts(nextCounts);
+    }
+
+    return { type, index };
+  }, []);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -124,6 +154,9 @@ function useFleetSequence() {
       counterActivityIndex += 1;
       const activity = settledActivities[onlineCountValue % settledActivities.length];
       const showProvisioning = counterActivityIndex % 9 === 0;
+      const service = onlineCountValue === 1000 || showProvisioning
+        ? null
+        : activateService(activity.service.type, clusterCount);
       const range = firstCluster === onlineCountValue
         ? `CLUSTER_${String(firstCluster).padStart(4, '0')}`
         : `CLUSTERS_${String(firstCluster).padStart(4, '0')}-${String(onlineCountValue).padStart(4, '0')}`;
@@ -133,8 +166,8 @@ function useFleetSequence() {
         onlineCount: onlineCountValue === 1000 ? '1000+' : formatOnlineCount(onlineCountValue),
         message: onlineCountValue === 1000
           ? 'FLEET EXPANDED TO 1000+'
-          : showProvisioning ? `PROVISION ${range}` : activity.message,
-        service: showProvisioning ? null : activity.service,
+          : showProvisioning ? `PROVISION ${range}` : formatServiceMessage(service),
+        service,
       });
 
       if (onlineCountValue < 1000) {
@@ -145,6 +178,7 @@ function useFleetSequence() {
     };
 
     const growVisibleFleet = () => {
+      const previouslyVisibleCount = visibleCount;
       const batchSize = Math.min(randomBetween(1, 4), clusterCount - visibleCount);
       const firstCluster = visibleCount + 1;
       visibleCount += batchSize;
@@ -155,63 +189,60 @@ function useFleetSequence() {
       const cyclePosition = growthActivityIndex % (settledActivities.length + 1);
       const showProvisioning = cyclePosition === settledActivities.length;
       const serviceTemplate = settledActivities[cyclePosition % settledActivities.length].service;
-      const service = {
-        ...serviceTemplate,
-        index: Math.min(serviceTemplate.index, Math.max(0, firstCluster - 2)),
-      };
+      const service = showProvisioning
+        ? null
+        : activateService(serviceTemplate.type, previouslyVisibleCount);
       growthActivityIndex += 1;
 
       setStage({
         visibleCount,
         onlineCount: formatOnlineCount(visibleCount),
         message: showProvisioning ? `PROVISION ${range}` : formatServiceMessage(service),
-        service: showProvisioning ? null : service,
+        service,
       });
 
       if (visibleCount < clusterCount) {
-        schedule(growVisibleFleet, 1200, 2100);
+        schedule(growVisibleFleet, 950, 1650);
       } else {
         schedule(growCounter, 1500, 2200);
       }
     };
 
-    schedule(growVisibleFleet, 1200, 1800);
+    schedule(growVisibleFleet, 900, 1400);
 
     return () => {
       timers.forEach(window.clearTimeout);
     };
-  }, [hasStarted, isSettled, reduceMotion]);
+  }, [activateService, hasStarted, isSettled, reduceMotion]);
 
   useEffect(() => {
     if (!isSettled || reduceMotion) return undefined;
 
-    const interval = window.setInterval(() => {
-      setSettledIndex((current) => (current + 1) % settledActivities.length);
-    }, 3200);
+    let activityIndex = 0;
+    const rotateActivity = () => {
+      const template = settledActivities[activityIndex % settledActivities.length];
+      const service = activateService(template.service.type, clusterCount);
+      activityIndex += 1;
+
+      setSettledActivity({
+        message: formatServiceMessage(service),
+        service,
+      });
+    };
+
+    rotateActivity();
+    const interval = window.setInterval(rotateActivity, 3200);
 
     return () => window.clearInterval(interval);
-  }, [isSettled, reduceMotion]);
+  }, [activateService, isSettled, reduceMotion]);
 
   const currentStage = isSettled
     ? {
       visibleCount: clusterCount,
       onlineCount: '1000+',
-      ...settledActivities[settledIndex],
+      ...settledActivity,
     }
     : stage;
-
-  useEffect(() => {
-    const service = currentStage.service;
-    if (service?.type !== 'scaling') return;
-
-    setReplicaCounts((current) => {
-      if (current[service.index] >= maxReplicaCount) return current;
-
-      const next = [...current];
-      next[service.index] += 1;
-      return next;
-    });
-  }, [currentStage.service?.index, currentStage.service?.type]);
 
   return {
     fleetRef,
