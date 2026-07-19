@@ -3,6 +3,8 @@ import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
 
 const clusterCount = 32;
+const initialReplicaCount = 2;
+const maxReplicaCount = 4;
 
 const initialFleetStage = {
   visibleCount: 1,
@@ -60,6 +62,9 @@ function useFleetSequence() {
   const [isSettled, setIsSettled] = useState(false);
   const [settledIndex, setSettledIndex] = useState(0);
   const [reduceMotion, setReduceMotion] = useState(false);
+  const [replicaCounts, setReplicaCounts] = useState(
+    () => Array(clusterCount).fill(initialReplicaCount),
+  );
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -195,7 +200,25 @@ function useFleetSequence() {
     }
     : stage;
 
-  return { fleetRef, hasStarted, stage: currentStage };
+  useEffect(() => {
+    const service = currentStage.service;
+    if (service?.type !== 'scaling') return;
+
+    setReplicaCounts((current) => {
+      if (current[service.index] >= maxReplicaCount) return current;
+
+      const next = [...current];
+      next[service.index] += 1;
+      return next;
+    });
+  }, [currentStage.service?.index, currentStage.service?.type]);
+
+  return {
+    fleetRef,
+    hasStarted,
+    replicaCounts,
+    stage: currentStage,
+  };
 }
 
 function ControlBus({ active }) {
@@ -249,8 +272,9 @@ function ControlBus({ active }) {
   );
 }
 
-function FleetCluster({ activity, index, online }) {
+function FleetCluster({ activity, index, online, replicaCount }) {
   const number = String(index + 1).padStart(3, '0');
+  const isScaling = activity?.type === 'scaling' && activity.index === index;
   const activityClass = activity?.index === index
     ? styles[`cluster${activity.type[0].toUpperCase()}${activity.type.slice(1)}`]
     : '';
@@ -263,14 +287,22 @@ function FleetCluster({ activity, index, online }) {
       <span className={styles.clusterNumber}>{number}</span>
       <span className={styles.miniTopology}>
         <span className={`${styles.miniNode} ${styles.miniPrimary}`} />
-        <span className={`${styles.miniNode} ${styles.miniReplica} ${styles.miniReplicaLeft}`} />
-        <span className={`${styles.miniNode} ${styles.miniReplica} ${styles.miniReplicaRight}`} />
+        {Array.from({ length: replicaCount }, (_, replicaIndex) => {
+          const isAddedReplica = isScaling && replicaIndex === replicaCount - 1;
+
+          return (
+            <span
+              key={replicaIndex}
+              className={`${styles.miniNode} ${styles.miniReplica} ${styles[`miniReplica${replicaIndex + 1}`]} ${isAddedReplica ? styles.miniReplicaAdded : ''}`}
+            />
+          );
+        })}
       </span>
     </div>
   );
 }
 
-function ClusterFleet({ fleetRef, stage }) {
+function ClusterFleet({ fleetRef, replicaCounts, stage }) {
   return (
     <div
       ref={fleetRef}
@@ -301,6 +333,7 @@ function ClusterFleet({ fleetRef, stage }) {
             index={index}
             online={index < stage.visibleCount}
             activity={stage.service}
+            replicaCount={replicaCounts[index]}
           />
         ))}
       </div>
@@ -399,7 +432,12 @@ const features = [
 
 /* ── Reusable diagram JSX ────────────────────────────────────────────── */
 function DiagramInner() {
-  const { fleetRef, hasStarted, stage } = useFleetSequence();
+  const {
+    fleetRef,
+    hasStarted,
+    replicaCounts,
+    stage,
+  } = useFleetSequence();
 
   return (
     <div className={styles.diagram}>
@@ -426,7 +464,7 @@ function DiagramInner() {
         </div>
       </div>
       <ControlBus active={hasStarted} />
-      <ClusterFleet fleetRef={fleetRef} stage={stage} />
+      <ClusterFleet fleetRef={fleetRef} replicaCounts={replicaCounts} stage={stage} />
     </div>
   );
 }
