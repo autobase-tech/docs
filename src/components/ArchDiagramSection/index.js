@@ -97,6 +97,7 @@ function useFleetSequence() {
     let visibleCount = 1;
     let onlineCountValue = clusterCount;
     let growthActivityIndex = 0;
+    let counterActivityIndex = 0;
 
     const schedule = (callback, minDelay, maxDelay) => {
       const timer = window.setTimeout(() => {
@@ -113,20 +114,26 @@ function useFleetSequence() {
       }
 
       const batchSize = Math.min(randomBetween(1, 4), 1000 - onlineCountValue);
+      const firstCluster = onlineCountValue + 1;
       onlineCountValue += batchSize;
+      counterActivityIndex += 1;
       const activity = settledActivities[onlineCountValue % settledActivities.length];
+      const showProvisioning = counterActivityIndex % 9 === 0;
+      const range = firstCluster === onlineCountValue
+        ? `CLUSTER_${String(firstCluster).padStart(4, '0')}`
+        : `CLUSTERS_${String(firstCluster).padStart(4, '0')}-${String(onlineCountValue).padStart(4, '0')}`;
 
       setStage({
         visibleCount: clusterCount,
         onlineCount: onlineCountValue === 1000 ? '1000+' : formatOnlineCount(onlineCountValue),
         message: onlineCountValue === 1000
           ? 'FLEET EXPANDED TO 1000+'
-          : activity.message,
-        service: activity.service,
+          : showProvisioning ? `PROVISION ${range}` : activity.message,
+        service: showProvisioning ? null : activity.service,
       });
 
       if (onlineCountValue < 1000) {
-        schedule(growCounter, 900, 1800);
+        schedule(growCounter, 650, 1300);
       } else {
         schedule(() => setIsSettled(true), 1600, 2200);
       }
@@ -279,7 +286,7 @@ function ClusterFleet({ fleetRef, stage }) {
       <div className={styles.fleetHeader}>
         <div>
           <div className={styles.fleetTitle}>PostgreSQL Clusters</div>
-          <div className={styles.fleetSubtitle}>One control plane. Every cluster lifecycle.</div>
+          <div className={styles.fleetSubtitle}>One control plane. Fully managed lifecycle.</div>
         </div>
         <div className={styles.fleetScale}>
           <span className={styles.fleetScaleLabel}>Managed fleet</span>
@@ -405,7 +412,7 @@ function DiagramInner() {
           <div className={styles.platformEyebrow}>One control plane</div>
           <div className={styles.cpHeader}>
             <img src="/img/navbar/logo-icon.svg" alt="" width={28} height={25} />
-            <span className={styles.cpTitle}>Autobase Platform</span>
+            <span className={styles.cpTitle}>AUTOBASE PLATFORM</span>
           </div>
           <div className={styles.cpPills}>
             <span>Provisioning</span>
