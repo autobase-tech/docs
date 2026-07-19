@@ -87,49 +87,12 @@
   width: 80%;
 }
 
-.muted {
-  color: var(--color-text-muted);
-  margin-left: 8px;
-}
-
-.usersBox {
-  flex-direction: column;
-  gap: 12px;
-  width: 48%;
-}
-
-.usersTitle {
-  font-size: 22px;
-  color: var(--color-text);
-}
-
-.userRoles {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  font-size: 16px;
-  color: var(--color-text-muted);
-}
-
-/* ─── Arrow down ──────────────────────────────────────────────────── */
-.arrowRow {
-  display: flex;
-  justify-content: center;
-  height: 40px;
-  align-items: center;
-  color: var(--diagram-line);
-}
-
-.arrowDown { display: block; }
-
 /* ─── Platform ───────────────────────────────────────────────────── */
 .platform {
   position: relative;
   flex-direction: column;
-  gap: 14px;
-  padding: 28px 0;
+  gap: 12px;
+  padding: 26px 0 28px;
   border-color: color-mix(in srgb, var(--color-primary) 52%, var(--color-border));
   border-style: solid;
   border-width: 1px;
@@ -164,6 +127,14 @@
   background: color-mix(in srgb, var(--color-primary) 4%, var(--color-bg));
 }
 
+.platformEyebrow {
+  color: var(--color-text-muted);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
 .cpHeader {
   display: flex;
   align-items: center;
@@ -189,161 +160,495 @@
 
 .sep { color: var(--color-border); }
 
-.clusterConnectors {
+/* ─── Control bus ────────────────────────────────────────────────── */
+.controlBus {
   width: 80%;
-  height: 56px;
+  height: 72px;
+  overflow: hidden;
+}
+
+.controlBus svg {
+  display: block;
+  width: 100%;
+  height: 84px;
+}
+
+.controlRoute {
   color: var(--diagram-line);
+  stroke: currentColor;
+  stroke-width: 1;
+  stroke-dasharray: 5 5;
+  vector-effect: non-scaling-stroke;
 }
 
-.storageConnectors {
-  width: 80%;
-  height: 56px;
-  color: var(--diagram-line);
+.controlPacket {
+  color: var(--color-primary);
+  fill: currentColor;
+  shape-rendering: crispEdges;
 }
 
-.mobileConnector {
-  display: none;
-}
-
-/* ─── Clusters ────────────────────────────────────────────────────── */
-.clustersRow {
-  display: flex;
-  align-items: center;
-  gap: 56px;
-  width: 80%;
-}
-
-.clusterBox {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  padding: 24px 0;
-  border: 1px dashed var(--diagram-border);
-  border-radius: 0;
-  font-size: 16px;
-  color: var(--color-text);
-  text-align: center;
-  line-height: 1.5;
-  flex: 1;
-  background: transparent;
-  transition: none;
-}
-
-.clusterBox:hover {
-  border-color: var(--color-primary);
-}
-
-.clusterBoxOptional {
-  opacity: 0.72;
-}
-
-.clusterTopology {
+/* ─── PostgreSQL fleet ───────────────────────────────────────────── */
+.fleet {
   position: relative;
-  width: 128px;
-  height: 74px;
-  color: var(--diagram-line);
-}
-
-.clusterTopologyLines {
-  position: absolute;
-  inset: 0;
-  color: var(--diagram-line);
-  transition: none;
-}
-
-.clusterNode {
-  position: absolute;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  color: var(--diagram-line);
-  font-size: 10px;
+  width: 80%;
+  padding: 24px;
+  border: 1px dashed var(--diagram-border);
+  background: transparent;
+}
+
+.fleetHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.fleetTitle {
+  color: var(--color-text);
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.fleetSubtitle {
+  margin-top: 5px;
+  color: var(--color-text-muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.fleetScale {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+  color: var(--color-primary);
+  font-size: 16px;
   line-height: 1;
-  transition: none;
+  white-space: nowrap;
 }
 
-.clusterNode span {
+.fleetScaleLabel {
+  color: var(--color-text-muted);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.fleetCount {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 7px;
+  color: var(--color-text-muted);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+}
+
+.fleetCount > span {
+  display: inline-block;
+  min-width: 5ch;
+  color: var(--color-primary);
+  font-size: 16px;
+  letter-spacing: 0;
+  text-align: right;
+}
+
+.fleetGrid {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.fleetCluster {
+  position: relative;
+  min-width: 0;
+  height: 58px;
+  border: 1px solid color-mix(in srgb, var(--diagram-border) 70%, transparent);
+  color: var(--diagram-line);
+  background: color-mix(in srgb, var(--color-text) 1.5%, transparent);
+  overflow: hidden;
+}
+
+.fleetClusterPending {
+  border-color: transparent;
+  background: transparent;
   opacity: 0;
-  transform: translateY(-2px);
-  transition: none;
+  pointer-events: none;
 }
 
-.clusterNodePrimary {
-  top: 0;
+.fleetClusterOnline {
+  animation: clusterBoot 560ms steps(1, end) both;
+  cursor: pointer;
+}
+
+.fleetClusterOnline .miniPrimary {
+  animation: bootPrimary 560ms steps(1, end) both;
+}
+
+.fleetClusterOnline .miniReplica1 {
+  animation: bootReplicaLeft 560ms steps(1, end) both;
+}
+
+.fleetClusterOnline .miniReplica2 {
+  animation: bootReplicaRight 560ms steps(1, end) both;
+}
+
+.clusterNumber {
+  position: absolute;
+  top: 5px;
+  left: 6px;
+  color: var(--color-text-muted);
+  font-size: 8px;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.miniTopology {
+  position: absolute;
+  top: 8px;
+  right: 7px;
+  bottom: 7px;
+  left: 7px;
+}
+
+.miniTopology::before,
+.miniTopology::after {
+  content: '';
+  position: absolute;
+  background: currentColor;
+  opacity: 0.48;
+}
+
+.miniTopology::before {
+  top: 19px;
+  left: 50%;
+  width: 1px;
+  height: 9px;
+}
+
+.miniTopology::after {
+  top: 27px;
+  right: 19%;
+  left: 19%;
+  height: 1px;
+}
+
+.miniNode {
+  position: absolute;
+  width: 9px;
+  height: 7px;
+  border: 1px solid currentColor;
+  background: var(--color-bg);
+  box-shadow: inset 0 -2px 0 color-mix(in srgb, currentColor 18%, transparent);
+  shape-rendering: crispEdges;
+}
+
+.miniPrimary {
+  top: 8px;
   left: 50%;
   transform: translateX(-50%);
 }
 
-.clusterNodeReplica {
-  top: 44px;
-  opacity: 0.76;
+.miniReplica {
+  top: 31px;
+  opacity: 0.72;
 }
 
-.clusterNodeReplicaLeft {
-  left: 12px;
+.miniReplica1 { left: 15%; }
+.miniReplica2 { right: 15%; }
+.miniReplica3 { left: 33%; }
+.miniReplica4 { right: 33%; }
+
+.clusterPreview {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 20;
+  display: none;
+  width: 240px;
+  height: 136px;
+  border: 1px solid var(--color-primary);
+  color: var(--diagram-line);
+  background: var(--color-bg);
+  box-shadow: 5px 5px 0 color-mix(in srgb, var(--color-primary) 22%, var(--color-bg));
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.9);
+  transform-origin: center;
+  visibility: hidden;
 }
 
-.clusterNodeReplicaRight {
-  right: 12px;
+.previewHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 29px;
+  padding: 0 10px;
+  border-bottom: 1px dashed color-mix(in srgb, var(--diagram-border) 75%, transparent);
+  color: var(--color-primary);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  line-height: 1;
 }
 
-.clusterBox:hover .clusterTopology,
-.clusterBox:hover .clusterTopologyLines,
-.clusterBox:hover .clusterNode {
+.previewHeader > span:last-child {
+  color: var(--color-text-muted);
+  font-size: 8px;
+}
+
+.previewBody {
+  position: relative;
+  display: flex;
+  height: 105px;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px 12px 9px;
+}
+
+.previewBody::before {
+  content: '';
+  position: absolute;
+  top: 34px;
+  left: 50%;
+  width: 1px;
+  height: 18px;
+  background: currentColor;
+  opacity: 0.55;
+}
+
+.previewPrimary {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 24px;
+  justify-content: center;
+}
+
+.previewPrimaryLabel {
+  position: absolute;
+  top: 4px;
+  left: calc(50% + 14px);
+  color: var(--color-primary);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+
+.previewNode {
+  display: block;
+  width: 17px;
+  height: 13px;
+  border: 1px solid currentColor;
+  background: var(--color-bg);
+  box-shadow: inset 0 -4px 0 color-mix(in srgb, currentColor 18%, transparent);
+}
+
+.previewPrimary > .previewNode {
   color: var(--color-primary);
 }
 
-.clusterBox:hover .clusterNode span {
-  opacity: 1;
-  transform: translateY(0);
+.previewReplicaRow {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex: 1;
+  align-items: flex-start;
+  justify-content: space-around;
+  margin-top: 23px;
 }
 
-.clusterBox:hover .clusterNodeReplicaLeft {
-  transform: translateX(-4px);
+.previewReplicaRow::before {
+  content: '';
+  position: absolute;
+  top: -9px;
+  right: 9%;
+  left: 9%;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.55;
 }
 
-.clusterBox:hover .clusterNodeReplicaRight {
-  transform: translateX(4px);
-}
-
-.clusterNodeIcon {
-  display: block;
-}
-
-.clusterHint {
+.previewReplica {
+  position: relative;
+  display: flex;
+  min-width: 40px;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
   color: var(--color-text-muted);
-  font-size: 12px;
-  line-height: 1.3;
-  margin-top: 10px;
+  font-size: 8px;
+  letter-spacing: 0.04em;
+  line-height: 1;
 }
 
-.clusterHintMobile {
-  display: none;
+.previewReplica::before {
+  content: '';
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  width: 1px;
+  height: 9px;
+  background: var(--diagram-line);
+  opacity: 0.55;
 }
 
-.diagramIcon {
-  color: var(--diagram-line);
+.fleetClusterPreviewOpen {
+  z-index: 30;
+  overflow: visible;
 }
 
-/* ─── Storage ─────────────────────────────────────────────────────── */
-.storageRow {
+.fleetClusterPreviewOpen .clusterPreview {
+  display: block;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  visibility: visible;
+  animation: previewReveal 140ms steps(2, end) both;
+}
+
+.fleetCluster:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.fleetCluster:hover .clusterNumber { color: var(--color-primary); }
+
+.fleetClusterOnline:focus-visible {
+  z-index: 31;
+  outline: 1px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.fleetFooter {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 20px;
-  text-align: left;
-}
-
-.storageTitle {
-  font-size: 20px;
-  color: var(--color-text);
-}
-
-.storageSub {
-  font-size: 15px;
+  min-height: 16px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px dashed color-mix(in srgb, var(--diagram-border) 72%, transparent);
   color: var(--color-text-muted);
-  margin-top: 6px;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.fleetActivity {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  flex: 1;
+  min-width: 0;
+  min-height: 12px;
+}
+
+.activityLine {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.activityPrompt {
+  flex: 0 0 14px;
+  color: var(--color-primary);
+}
+
+.activityMessage {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fleetOnline {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+}
+
+.fleetOnline > span {
+  width: 5px;
+  height: 5px;
+  background: var(--color-primary);
+  animation: onlineBlink 2s steps(1, end) infinite;
+}
+
+.clusterMaintaining {
+  animation: serviceBorder 1.4s steps(1, end) infinite;
+}
+
+.clusterScaling .miniReplicaAdded {
+  animation: replicaProvision 1.4s steps(1, end) both;
+}
+
+.clusterHealing .miniPrimary {
+  animation: serviceHeal 1.4s steps(1, end) infinite;
+}
+
+@keyframes clusterBoot {
+  0% {
+    border-color: transparent;
+    background: transparent;
+    opacity: 0;
+  }
+  20%, 55% {
+    border-color: var(--color-primary);
+    background: color-mix(in srgb, var(--color-primary) 5%, transparent);
+    opacity: 1;
+  }
+  100% {
+    border-color: color-mix(in srgb, var(--diagram-border) 70%, transparent);
+    background: color-mix(in srgb, var(--color-text) 1.5%, transparent);
+    opacity: 1;
+  }
+}
+
+@keyframes bootPrimary {
+  0%, 34% { opacity: 0; }
+  34.1%, 100% { opacity: 1; }
+}
+
+@keyframes bootReplicaLeft {
+  0%, 60% { opacity: 0; }
+  60.1%, 100% { opacity: 0.72; }
+}
+
+@keyframes bootReplicaRight {
+  0%, 78% { opacity: 0; }
+  78.1%, 100% { opacity: 0.72; }
+}
+
+@keyframes serviceBorder {
+  0%, 24%, 50%, 100% { border-color: color-mix(in srgb, var(--diagram-border) 70%, transparent); }
+  25%, 49% { border-color: var(--color-primary); }
+}
+
+@keyframes replicaProvision {
+  0%, 29% { color: var(--diagram-line); opacity: 0; }
+  30%, 49% { color: var(--color-primary); opacity: 1; }
+  50%, 64% { opacity: 0; }
+  65%, 79% { color: var(--color-primary); opacity: 1; }
+  80%, 100% { color: var(--diagram-line); opacity: 0.72; }
+}
+
+@keyframes previewReveal {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes serviceHeal {
+  0%, 19%, 40%, 59%, 80%, 100% { color: var(--diagram-line); opacity: 1; }
+  20%, 39%, 60%, 79% { opacity: 0; }
+  45%, 85% { color: var(--color-primary); opacity: 1; }
+}
+
+@keyframes onlineBlink {
+  0%, 75% { opacity: 1; }
+  75.1%, 100% { opacity: 0.28; }
 }
 
 /* ─── Architecture Link ───────────────────────────────────────────── */
@@ -434,8 +739,8 @@
     right: 48px;
     left: 48px;
   }
-  .box, .controlPlane, .clusterConnectors, .storageConnectors, .clustersRow { width: 90%; }
-  .usersBox { width: 64%; }
+  .box, .controlBus, .fleet { width: 90%; }
+  .fleetGrid { grid-template-columns: repeat(8, minmax(0, 1fr)); }
   .featuresGrid { grid-template-columns: repeat(3, 1fr); }
   .featureCard:nth-child(3) { border-right: none; }
   .featureCard:nth-child(n+4) { border-top: 1px solid var(--color-border); }
@@ -448,25 +753,33 @@
     right: 24px;
     left: 24px;
   }
-  .box, .controlPlane, .clusterConnectors, .storageConnectors, .clustersRow { width: 100%; }
-  .usersBox { width: 100%; }
+  .box, .controlBus, .fleet { width: 100%; }
   .box { font-size: 15px; padding: 20px 12px; }
   .sectionLabel { margin-bottom: 18px; font-size: 12px; }
-  .usersTitle { font-size: 18px; }
-  .userRoles { font-size: 13px; gap: 8px; }
   .cpTitle { font-size: 18px; }
   .cpPills { font-size: 13px; gap: 8px; }
-  .clustersRow { gap: 24px; }
-  .clusterBox { padding: 18px 8px; font-size: 13px; gap: 6px; }
-  .clusterTopology { width: 112px; height: 64px; }
-  .clusterTopologyLines { transform: none; }
-  .clusterNode { font-size: 8px; gap: 1px; }
-  .clusterNodeReplica { top: 38px; }
-  .clusterNodeReplicaLeft { left: 6px; }
-  .clusterNodeReplicaRight { right: 6px; }
-  .clusterHint { font-size: 12px; margin-top: 10px; }
-  .storageTitle { font-size: 15px; }
-  .storageSub { font-size: 13px; }
+  .controlBus { height: 62px; }
+  .fleet { padding: 20px; }
+  .fleetGrid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .fleetCluster:nth-child(n+25) { display: none; }
+  .fleetCluster:nth-child(6n+1) .clusterPreview {
+    right: auto;
+    left: 0;
+    transform: translate(0, -50%) scale(0.9);
+    transform-origin: left center;
+  }
+  .fleetClusterOnline.fleetClusterPreviewOpen:nth-child(6n+1) .clusterPreview {
+    transform: translate(0, -50%) scale(1);
+  }
+  .fleetCluster:nth-child(6n) .clusterPreview {
+    right: 0;
+    left: auto;
+    transform: translate(0, -50%) scale(0.9);
+    transform-origin: right center;
+  }
+  .fleetClusterOnline.fleetClusterPreviewOpen:nth-child(6n) .clusterPreview {
+    transform: translate(0, -50%) scale(1);
+  }
   .featuresGrid { grid-template-columns: repeat(2, 1fr); }
   .featureCard:nth-child(n) { border-right: 1px solid var(--color-border); border-top: none; }
   .featureCard:nth-child(2n) { border-right: none; }
@@ -495,29 +808,58 @@
   .featureCard:nth-last-child(-n+2) { border-bottom: none; }
   .featureIcon svg { width: 36px; height: 36px; }
   .featureDesc { line-height: 1.35; }
-  .clustersRow { flex-direction: column; gap: 0; }
-  .clusterConnectors,
-  .storageConnectors { display: none; }
-  .mobileConnector {
-    display: flex;
-    justify-content: center;
-    height: 32px;
-    color: var(--diagram-line);
-    overflow: hidden;
-  }
-  .arrowDown { width: 12px; height: 32px; }
-  .clusterBox { width: 100%; border-radius: 0; }
-  .clusterBox:not(:first-child) { display: none; }
-  .clusterHintDesktop { display: none; }
-  .clusterHintMobile { display: inline; }
-  .arrowRow { height: 32px; overflow: hidden; }
   .platform { padding: 22px 10px; }
-  .storageRow { gap: 12px; }
+  .platformEyebrow { font-size: 9px; }
+  .controlBus { height: 52px; }
+  .controlBus svg { height: 64px; }
+  .fleet { padding: 16px; }
+  .fleetHeader { gap: 12px; margin-bottom: 16px; }
+  .fleetTitle { font-size: 16px; }
+  .fleetSubtitle { max-width: 150px; font-size: 10px; }
+  .fleetScale { font-size: 13px; }
+  .fleetScaleLabel { font-size: 8px; }
+  .fleetCount { gap: 5px; font-size: 8px; }
+  .fleetCount > span { font-size: 13px; }
+  .fleetGrid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+  .fleetCluster { height: 52px; }
+  .fleetCluster:nth-child(n+17) { display: none; }
+  .fleetCluster:nth-child(n) .clusterPreview {
+    right: auto;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    transform-origin: center;
+  }
+  .fleetClusterOnline.fleetClusterPreviewOpen:nth-child(n) .clusterPreview {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  .fleetCluster:nth-child(4n+1) .clusterPreview {
+    right: auto;
+    left: 0;
+    transform: translate(0, -50%) scale(0.9);
+    transform-origin: left center;
+  }
+  .fleetClusterOnline.fleetClusterPreviewOpen:nth-child(4n+1) .clusterPreview {
+    transform: translate(0, -50%) scale(1);
+  }
+  .fleetCluster:nth-child(4n) .clusterPreview {
+    right: 0;
+    left: auto;
+    transform: translate(0, -50%) scale(0.9);
+    transform-origin: right center;
+  }
+  .fleetClusterOnline.fleetClusterPreviewOpen:nth-child(4n) .clusterPreview {
+    transform: translate(0, -50%) scale(1);
+  }
+  .fleetFooter { gap: 10px; font-size: 8px; }
+  .fleetOnline { gap: 5px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .clusterBox:hover .clusterNodeReplicaLeft,
-  .clusterBox:hover .clusterNodeReplicaRight {
-    transform: none;
-  }
+  .controlPacket { display: none; }
+  .fleetOnline > span,
+  .fleetClusterOnline,
+  .fleetClusterOnline .miniNode,
+  .clusterMaintaining,
+  .clusterScaling .miniNode,
+  .clusterHealing .miniNode { animation: none; }
 }

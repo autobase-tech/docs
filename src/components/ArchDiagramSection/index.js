@@ -1,92 +1,476 @@
-import React from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
 
-function ArrowDown() {
-  return (
-    <svg className={styles.arrowDown} width="16" height="48" viewBox="0 0 16 48" fill="none" aria-hidden="true">
-      <line x1="8" y1="0" x2="8" y2="40" stroke="currentColor" strokeWidth="2"/>
-      <polyline points="3,32 8,44 13,32" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
-    </svg>
-  );
+const clusterCount = 32;
+const initialReplicaCount = 2;
+const maxReplicaCount = 4;
+
+const initialFleetStage = {
+  visibleCount: 1,
+  onlineCount: '0001',
+  message: 'CLUSTER_001 ONLINE',
+  service: null,
+};
+
+const settledActivities = [
+  {
+    message: 'SCALE REPLICA_013',
+    service: { type: 'scaling', index: 12 },
+  },
+  {
+    message: 'HEAL PRIMARY_009',
+    service: { type: 'healing', index: 8 },
+  },
+  {
+    message: 'MAINTAIN CLUSTER_016',
+    service: { type: 'maintaining', index: 15 },
+  },
+];
+
+function formatOnlineCount(count) {
+  return String(count).padStart(4, '0');
 }
 
-function ClusterConnectors() {
-  return (
-    <svg className={styles.clusterConnectors} viewBox="0 0 800 72" fill="none" aria-hidden="true" preserveAspectRatio="none">
-      <path d="M400 0V24H133V56" stroke="currentColor" strokeWidth="2"/>
-      <path d="M400 24V56" stroke="currentColor" strokeWidth="2"/>
-      <path d="M400 24H667V56" stroke="currentColor" strokeWidth="2"/>
-      <polyline points="126,48 133,64 140,48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
-      <polyline points="393,48 400,64 407,48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
-      <polyline points="660,48 667,64 674,48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
-    </svg>
-  );
+function randomBetween(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function StorageConnectors() {
-  return (
-    <svg className={styles.storageConnectors} viewBox="0 0 800 72" fill="none" aria-hidden="true" preserveAspectRatio="none">
-      <path d="M133 0V24H667V0" stroke="currentColor" strokeWidth="2"/>
-      <path d="M400 0V56" stroke="currentColor" strokeWidth="2"/>
-      <polyline points="393,48 400,64 407,48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
-    </svg>
+function createReplicaTargets() {
+  const targetRange = maxReplicaCount - initialReplicaCount + 1;
+  const targets = Array.from(
+    { length: clusterCount },
+    (_, index) => initialReplicaCount + (index % targetRange),
   );
+
+  for (let index = targets.length - 1; index > 0; index -= 1) {
+    const swapIndex = randomBetween(0, index);
+    [targets[index], targets[swapIndex]] = [targets[swapIndex], targets[index]];
+  }
+
+  return targets;
 }
 
-function DatabaseIcon() {
-  return (
-    <svg className={styles.diagramIcon} width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
-      <ellipse cx="22" cy="11" rx="16" ry="6" stroke="currentColor" strokeWidth="1.5"/>
-      <path d="M6 11v11c0 3.31 7.16 6 16 6s16-2.69 16-6V11" stroke="currentColor" strokeWidth="1.5"/>
-      <path d="M6 22v11c0 3.31 7.16 6 16 6s16-2.69 16-6V22" stroke="currentColor" strokeWidth="1.5"/>
-    </svg>
-  );
+function formatServiceMessage(service) {
+  const number = String(service.index + 1).padStart(3, '0');
+
+  switch (service.type) {
+    case 'scaling':
+      return `SCALE REPLICA_${number}`;
+    case 'healing':
+      return `HEAL PRIMARY_${number}`;
+    case 'maintaining':
+      return `MAINTAIN CLUSTER_${number}`;
+    default:
+      return `CLUSTER_${number} ONLINE`;
+  }
 }
 
-function ClusterNodeIcon() {
-  return (
-    <svg className={styles.clusterNodeIcon} width="32" height="32" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-      <ellipse cx="14" cy="7" rx="9" ry="3.5" stroke="currentColor" strokeWidth="1.5"/>
-      <path d="M5 7v7c0 1.93 4.03 3.5 9 3.5s9-1.57 9-3.5V7" stroke="currentColor" strokeWidth="1.5"/>
-      <path d="M5 14v7c0 1.93 4.03 3.5 9 3.5s9-1.57 9-3.5v-7" stroke="currentColor" strokeWidth="1.5"/>
-    </svg>
-  );
+function useFleetSequence() {
+  const fleetRef = useRef(null);
+  const [hasStarted, setHasStarted] = useState(false);
+  const [stage, setStage] = useState(initialFleetStage);
+  const [isSettled, setIsSettled] = useState(false);
+  const [settledActivity, setSettledActivity] = useState(settledActivities[2]);
+  const [reduceMotion, setReduceMotion] = useState(false);
+  const replicaCountsRef = useRef(Array(clusterCount).fill(initialReplicaCount));
+  const replicaTargetsRef = useRef(null);
+  const lastServiceIndexRef = useRef(-1);
+  const [replicaCounts, setReplicaCounts] = useState(replicaCountsRef.current);
+
+  if (replicaTargetsRef.current === null) {
+    replicaTargetsRef.current = createReplicaTargets();
+  }
+
+  const activateService = useCallback((requestedType, onlineClusterCount) => {
+    const availableCount = Math.max(1, Math.min(clusterCount, onlineClusterCount));
+    const allCandidates = Array.from({ length: availableCount }, (_, index) => index);
+    let type = requestedType;
+    let candidates = requestedType === 'scaling'
+      ? allCandidates.filter((index) => (
+        replicaCountsRef.current[index] < replicaTargetsRef.current[index]
+      ))
+      : allCandidates;
+
+    if (candidates.length === 0) {
+      type = 'maintaining';
+      candidates = allCandidates;
+    }
+
+    if (candidates.length > 1) {
+      candidates = candidates.filter((index) => index !== lastServiceIndexRef.current);
+    }
+
+    const index = candidates[randomBetween(0, candidates.length - 1)];
+    lastServiceIndexRef.current = index;
+
+    if (type === 'scaling') {
+      const nextCounts = [...replicaCountsRef.current];
+      nextCounts[index] += 1;
+      replicaCountsRef.current = nextCounts;
+      setReplicaCounts(nextCounts);
+    }
+
+    return { type, index };
+  }, []);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion) {
+      replicaCountsRef.current = [...replicaTargetsRef.current];
+      setReplicaCounts(replicaCountsRef.current);
+      setReduceMotion(true);
+      setStage({
+        visibleCount: clusterCount,
+        onlineCount: '1000+',
+        ...settledActivities[2],
+      });
+      setHasStarted(true);
+      setIsSettled(true);
+      return undefined;
+    }
+
+    const node = fleetRef.current;
+    if (!node) return undefined;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setHasStarted(true);
+        observer.disconnect();
+      }
+    }, { threshold: 0.3 });
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!hasStarted || reduceMotion || isSettled) return undefined;
+
+    const timers = new Set();
+    let visibleCount = 1;
+    let onlineCountValue = clusterCount;
+    let growthActivityIndex = 0;
+    let counterActivityIndex = 0;
+
+    const schedule = (callback, minDelay, maxDelay) => {
+      const timer = window.setTimeout(() => {
+        timers.delete(timer);
+        callback();
+      }, randomBetween(minDelay, maxDelay));
+      timers.add(timer);
+    };
+
+    const growCounter = () => {
+      if (onlineCountValue >= 1000) {
+        schedule(() => setIsSettled(true), 1400, 1900);
+        return;
+      }
+
+      const batchSize = Math.min(randomBetween(1, 4), 1000 - onlineCountValue);
+      const firstCluster = onlineCountValue + 1;
+      onlineCountValue += batchSize;
+      counterActivityIndex += 1;
+      const activity = settledActivities[onlineCountValue % settledActivities.length];
+      const showProvisioning = counterActivityIndex % 9 === 0;
+      const service = onlineCountValue === 1000 || showProvisioning
+        ? null
+        : activateService(activity.service.type, clusterCount);
+      const range = firstCluster === onlineCountValue
+        ? `CLUSTER_${String(firstCluster).padStart(4, '0')}`
+        : `CLUSTERS_${String(firstCluster).padStart(4, '0')}-${String(onlineCountValue).padStart(4, '0')}`;
+
+      setStage({
+        visibleCount: clusterCount,
+        onlineCount: onlineCountValue === 1000 ? '1000+' : formatOnlineCount(onlineCountValue),
+        message: onlineCountValue === 1000
+          ? 'FLEET EXPANDED TO 1000+'
+          : showProvisioning ? `PROVISION ${range}` : formatServiceMessage(service),
+        service,
+      });
+
+      if (onlineCountValue < 1000) {
+        schedule(growCounter, 650, 1300);
+      } else {
+        schedule(() => setIsSettled(true), 1600, 2200);
+      }
+    };
+
+    const growVisibleFleet = () => {
+      const previouslyVisibleCount = visibleCount;
+      const batchSize = Math.min(randomBetween(1, 4), clusterCount - visibleCount);
+      const firstCluster = visibleCount + 1;
+      visibleCount += batchSize;
+      const lastCluster = visibleCount;
+      const range = firstCluster === lastCluster
+        ? `CLUSTER_${String(firstCluster).padStart(3, '0')}`
+        : `CLUSTERS_${String(firstCluster).padStart(3, '0')}-${String(lastCluster).padStart(3, '0')}`;
+      const cyclePosition = growthActivityIndex % (settledActivities.length + 1);
+      const showProvisioning = cyclePosition === settledActivities.length;
+      const serviceTemplate = settledActivities[cyclePosition % settledActivities.length].service;
+      const service = showProvisioning
+        ? null
+        : activateService(serviceTemplate.type, previouslyVisibleCount);
+      growthActivityIndex += 1;
+
+      setStage({
+        visibleCount,
+        onlineCount: formatOnlineCount(visibleCount),
+        message: showProvisioning ? `PROVISION ${range}` : formatServiceMessage(service),
+        service,
+      });
+
+      if (visibleCount < clusterCount) {
+        schedule(growVisibleFleet, 950, 1650);
+      } else {
+        schedule(growCounter, 1500, 2200);
+      }
+    };
+
+    schedule(growVisibleFleet, 900, 1400);
+
+    return () => {
+      timers.forEach(window.clearTimeout);
+    };
+  }, [activateService, hasStarted, isSettled, reduceMotion]);
+
+  useEffect(() => {
+    if (!isSettled || reduceMotion) return undefined;
+
+    let activityIndex = 0;
+    const rotateActivity = () => {
+      const template = settledActivities[activityIndex % settledActivities.length];
+      const service = activateService(template.service.type, clusterCount);
+      activityIndex += 1;
+
+      setSettledActivity({
+        message: formatServiceMessage(service),
+        service,
+      });
+    };
+
+    rotateActivity();
+    const interval = window.setInterval(rotateActivity, 3200);
+
+    return () => window.clearInterval(interval);
+  }, [activateService, isSettled, reduceMotion]);
+
+  const currentStage = isSettled
+    ? {
+      visibleCount: clusterCount,
+      onlineCount: '1000+',
+      ...settledActivity,
+    }
+    : stage;
+
+  return {
+    fleetRef,
+    hasStarted,
+    replicaCounts,
+    stage: currentStage,
+  };
 }
 
-function ClusterTopology() {
+function ControlBus({ active }) {
   return (
-    <div className={styles.clusterTopology} aria-hidden="true">
-      <svg className={styles.clusterTopologyLines} viewBox="0 0 120 70" fill="none" preserveAspectRatio="none">
-        <path d="M60 28V36" stroke="currentColor" strokeWidth="1.5"/>
-        <path d="M26 40H94" stroke="currentColor" strokeWidth="1.5"/>
-        <path d="M26 40V48" stroke="currentColor" strokeWidth="1.5"/>
-        <path d="M94 40V48" stroke="currentColor" strokeWidth="1.5"/>
+    <div className={styles.controlBus} aria-hidden="true">
+      <svg viewBox="0 0 800 84" fill="none" preserveAspectRatio="none">
+        <path className={styles.controlRoute} d="M400 0V28H96V74" />
+        <path className={styles.controlRoute} d="M400 28V74" />
+        <path className={styles.controlRoute} d="M400 28H704V74" />
+
+        {active && <rect className={styles.controlPacket} x="-3" y="-3" width="6" height="6">
+          <animateMotion
+            dur="8s"
+            begin="0s"
+            repeatCount="indefinite"
+            calcMode="discrete"
+            keyPoints="0;0.12;0.24;0.36;0.48;0.6;0.72;0.84;0.88;0.92;0.96;1;1"
+            keyTimes="0;0.025;0.05;0.075;0.1;0.125;0.15;0.175;0.2;0.225;0.25;0.275;1"
+            path="M400 0V28H704V74"
+          />
+          <animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.02;0.3;0.33;1" />
+        </rect>}
+
+        {active && <rect className={styles.controlPacket} x="-3" y="-3" width="6" height="6">
+          <animateMotion
+            dur="8s"
+            begin="2.65s"
+            repeatCount="indefinite"
+            calcMode="discrete"
+            keyPoints="0;0.12;0.24;0.36;0.48;0.6;0.72;0.84;0.88;0.92;0.96;1;1"
+            keyTimes="0;0.025;0.05;0.075;0.1;0.125;0.15;0.175;0.2;0.225;0.25;0.275;1"
+            path="M400 0V74"
+          />
+          <animate attributeName="opacity" dur="8s" begin="2.65s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.02;0.3;0.33;1" />
+        </rect>}
+
+        {active && <rect className={styles.controlPacket} x="-3" y="-3" width="6" height="6">
+          <animateMotion
+            dur="8s"
+            begin="5.3s"
+            repeatCount="indefinite"
+            calcMode="discrete"
+            keyPoints="0;0.12;0.24;0.36;0.48;0.6;0.72;0.84;0.88;0.92;0.96;1;1"
+            keyTimes="0;0.025;0.05;0.075;0.1;0.125;0.15;0.175;0.2;0.225;0.25;0.275;1"
+            path="M400 0V28H96V74"
+          />
+          <animate attributeName="opacity" dur="8s" begin="5.3s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.02;0.3;0.33;1" />
+        </rect>}
       </svg>
-      <div className={`${styles.clusterNode} ${styles.clusterNodePrimary}`}>
-        <ClusterNodeIcon />
-        <span>Primary</span>
-      </div>
-      <div className={`${styles.clusterNode} ${styles.clusterNodeReplica} ${styles.clusterNodeReplicaLeft}`}>
-        <ClusterNodeIcon />
-        <span>Replica</span>
-      </div>
-      <div className={`${styles.clusterNode} ${styles.clusterNodeReplica} ${styles.clusterNodeReplicaRight}`}>
-        <ClusterNodeIcon />
-        <span>Replica</span>
-      </div>
     </div>
   );
 }
 
-function StorageIcon() {
+function FleetCluster({
+  activity,
+  index,
+  online,
+  onPreviewClose,
+  onPreviewToggle,
+  previewOpen,
+  replicaCount,
+}) {
+  const number = String(index + 1).padStart(3, '0');
+  const isScaling = activity?.type === 'scaling' && activity.index === index;
+  const activityClass = activity?.index === index
+    ? styles[`cluster${activity.type[0].toUpperCase()}${activity.type.slice(1)}`]
+    : '';
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      onPreviewToggle();
+    } else if (event.key === 'Escape' && previewOpen) {
+      event.preventDefault();
+      onPreviewClose();
+    }
+  };
+
   return (
-    <svg className={styles.diagramIcon} width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-      <rect x="3" y="4" width="30" height="12" rx="1" stroke="currentColor" strokeWidth="1.5"/>
-      <rect x="3" y="20" width="30" height="12" rx="1" stroke="currentColor" strokeWidth="1.5"/>
-      <circle cx="29" cy="10" r="2" fill="currentColor"/>
-      <circle cx="29" cy="26" r="2" fill="currentColor"/>
-    </svg>
+    <div
+      className={`${styles.fleetCluster} ${online ? styles.fleetClusterOnline : styles.fleetClusterPending} ${previewOpen ? styles.fleetClusterPreviewOpen : ''} ${activityClass}`}
+      role={online ? 'button' : undefined}
+      tabIndex={online ? 0 : -1}
+      aria-expanded={online ? previewOpen : undefined}
+      aria-hidden={online ? undefined : true}
+      aria-label={online ? `PostgreSQL cluster ${number}: one primary and ${replicaCount} replicas` : undefined}
+      data-cluster-tile={online ? '' : undefined}
+      onClick={online ? onPreviewToggle : undefined}
+      onKeyDown={online ? handleKeyDown : undefined}
+    >
+      <span className={styles.clusterNumber}>{number}</span>
+      <span className={styles.miniTopology}>
+        <span className={`${styles.miniNode} ${styles.miniPrimary}`} />
+        {Array.from({ length: replicaCount }, (_, replicaIndex) => {
+          const isAddedReplica = isScaling && replicaIndex === replicaCount - 1;
+
+          return (
+            <span
+              key={replicaIndex}
+              className={`${styles.miniNode} ${styles.miniReplica} ${styles[`miniReplica${replicaIndex + 1}`]} ${isAddedReplica ? styles.miniReplicaAdded : ''}`}
+            />
+          );
+        })}
+      </span>
+      <span className={styles.clusterPreview} aria-hidden="true">
+        <span className={styles.previewHeader}>
+          <span>CLUSTER_{number}</span>
+          <span>{replicaCount} REPLICAS</span>
+        </span>
+        <span className={styles.previewBody}>
+          <span className={styles.previewPrimary}>
+            <span className={styles.previewNode} />
+            <span className={styles.previewPrimaryLabel}>PRIMARY</span>
+          </span>
+          <span className={styles.previewReplicaRow}>
+            {Array.from({ length: replicaCount }, (_, replicaIndex) => (
+              <span key={replicaIndex} className={styles.previewReplica}>
+                <span className={styles.previewNode} />
+                <span>REPLICA</span>
+              </span>
+            ))}
+          </span>
+        </span>
+      </span>
+    </div>
+  );
+}
+
+function ClusterFleet({ fleetRef, replicaCounts, stage }) {
+  const [openPreviewIndex, setOpenPreviewIndex] = useState(null);
+
+  useEffect(() => {
+    if (openPreviewIndex === null) return undefined;
+
+    const closeOutside = (event) => {
+      if (!(event.target instanceof Element) || !event.target.closest('[data-cluster-tile]')) {
+        setOpenPreviewIndex(null);
+      }
+    };
+    const closeOnEscape = (event) => {
+      if (event.key === 'Escape') setOpenPreviewIndex(null);
+    };
+
+    document.addEventListener('pointerdown', closeOutside);
+    document.addEventListener('keydown', closeOnEscape);
+
+    return () => {
+      document.removeEventListener('pointerdown', closeOutside);
+      document.removeEventListener('keydown', closeOnEscape);
+    };
+  }, [openPreviewIndex]);
+
+  return (
+    <div
+      ref={fleetRef}
+      className={styles.fleet}
+      role="group"
+      aria-label="One Autobase platform continuously provisions, scales, monitors, and heals hundreds or thousands of PostgreSQL clusters"
+    >
+      <span className={`${styles.corner} ${styles.cornerTopLeft}`} aria-hidden="true">+</span>
+      <span className={`${styles.corner} ${styles.cornerTopRight}`} aria-hidden="true">+</span>
+      <span className={`${styles.corner} ${styles.cornerBottomLeft}`} aria-hidden="true">+</span>
+      <span className={`${styles.corner} ${styles.cornerBottomRight}`} aria-hidden="true">+</span>
+
+      <div className={styles.fleetHeader}>
+        <div>
+          <div className={styles.fleetTitle}>PostgreSQL Clusters</div>
+          <div className={styles.fleetSubtitle}>One control plane. Fully managed lifecycle.</div>
+        </div>
+        <div className={styles.fleetScale}>
+          <span className={styles.fleetScaleLabel}>Managed fleet</span>
+          <span className={styles.fleetCount}><span>{stage.onlineCount}</span> ONLINE</span>
+        </div>
+      </div>
+
+      <div className={styles.fleetGrid}>
+        {Array.from({ length: clusterCount }, (_, index) => (
+          <FleetCluster
+            key={index}
+            index={index}
+            online={index < stage.visibleCount}
+            activity={stage.service}
+            previewOpen={openPreviewIndex === index}
+            onPreviewClose={() => setOpenPreviewIndex(null)}
+            onPreviewToggle={() => setOpenPreviewIndex((current) => (
+              current === index ? null : index
+            ))}
+            replicaCount={replicaCounts[index]}
+          />
+        ))}
+      </div>
+
+      <div className={styles.fleetFooter} aria-hidden="true">
+        <div className={styles.fleetActivity}>
+          <div className={styles.activityLine}>
+            <span className={styles.activityPrompt}>&gt;</span>
+            <span className={styles.activityMessage}>{stage.message}</span>
+          </div>
+        </div>
+        <span className={styles.fleetOnline}><span /> SYSTEM ACTIVE</span>
+      </div>
+    </div>
   );
 }
 
@@ -171,30 +555,25 @@ const features = [
 
 /* ── Reusable diagram JSX ────────────────────────────────────────────── */
 function DiagramInner() {
+  const {
+    fleetRef,
+    hasStarted,
+    replicaCounts,
+    stage,
+  } = useFleetSequence();
+
   return (
     <div className={styles.diagram}>
-      <div className={styles.row}>
-        <div className={`${styles.box} ${styles.usersBox}`}>
-          <div className={styles.usersTitle}>Users</div>
-          <div className={styles.userRoles}>
-            <span>Developers</span>
-            <span className={styles.sep}>|</span>
-            <span>SRE</span>
-            <span className={styles.sep}>|</span>
-            <span>DBA</span>
-          </div>
-        </div>
-      </div>
-      <div className={styles.arrowRow}><ArrowDown /></div>
       <div className={styles.row}>
         <div className={`${styles.box} ${styles.platform}`}>
           <span className={`${styles.corner} ${styles.cornerTopLeft}`} aria-hidden="true">+</span>
           <span className={`${styles.corner} ${styles.cornerTopRight}`} aria-hidden="true">+</span>
           <span className={`${styles.corner} ${styles.cornerBottomLeft}`} aria-hidden="true">+</span>
           <span className={`${styles.corner} ${styles.cornerBottomRight}`} aria-hidden="true">+</span>
+          <div className={styles.platformEyebrow}>One control plane</div>
           <div className={styles.cpHeader}>
             <img src="/img/navbar/logo-icon.svg" alt="" width={28} height={25} />
-            <span className={styles.cpTitle}>Autobase Platform</span>
+            <span className={styles.cpTitle}>AUTOBASE PLATFORM</span>
           </div>
           <div className={styles.cpPills}>
             <span>Provisioning</span>
@@ -207,36 +586,8 @@ function DiagramInner() {
           </div>
         </div>
       </div>
-      <ClusterConnectors />
-      <div className={styles.mobileConnector}><ArrowDown /></div>
-      <div className={styles.clustersRow}>
-        <div className={styles.clusterBox}>
-          <ClusterTopology />
-          <span className={`${styles.clusterHint} ${styles.clusterHintDesktop}`}>PostgreSQL Cluster 1</span>
-          <span className={`${styles.clusterHint} ${styles.clusterHintMobile}`}>PostgreSQL Clusters</span>
-        </div>
-        <div className={styles.clusterBox}>
-          <ClusterTopology />
-          <span className={styles.clusterHint}>PostgreSQL Cluster 2</span>
-        </div>
-        <div className={`${styles.clusterBox} ${styles.clusterBoxOptional}`}>
-          <ClusterTopology />
-          <span className={styles.clusterHint}>PostgreSQL Cluster N</span>
-        </div>
-      </div>
-      <StorageConnectors />
-      <div className={styles.mobileConnector}><ArrowDown /></div>
-      <div className={styles.row}>
-        <div className={styles.box}>
-          <div className={styles.storageRow}>
-            <StorageIcon />
-            <div>
-              <div className={styles.storageTitle}>Database Storage / Backup Storage</div>
-              <div className={styles.storageSub}>Local NVMe, SSD, EBS for data / S3 for backups</div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <ControlBus active={hasStarted} />
+      <ClusterFleet fleetRef={fleetRef} replicaCounts={replicaCounts} stage={stage} />
     </div>
   );
 }
