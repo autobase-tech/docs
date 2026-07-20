@@ -8,9 +8,9 @@ import ThemedImage from '@theme/ThemedImage';
 
 ## Autobase Console
 
-Autobase Console is the control plane of the platform. It provides a web-based interface and API for provisioning, operating, and monitoring production-ready PostgreSQL clusters across your own infrastructure, including physical servers, virtual machines, on-premises environments, and supported cloud providers.
+Autobase Console provides a web-based interface and API for provisioning, operating, and monitoring production-ready PostgreSQL clusters across your own infrastructure, including physical servers, virtual machines, on-premises environments, and supported cloud providers.
 
-This architecture allows Autobase to provide a DBaaS-like experience while keeping PostgreSQL clusters inside infrastructure controlled by the user. The Console acts as the single management entry point, while the actual database nodes remain independent Linux servers running PostgreSQL and the selected high-availability components.
+This architecture allows Autobase to provide a DBaaS-like experience while keeping PostgreSQL clusters inside infrastructure controlled by the user. The Console acts as the single control plane, while the actual database nodes remain independent Linux servers running PostgreSQL and the selected high-availability components.
 
 <ThemedImage
   alt="autobase-platform-scheme"
@@ -20,16 +20,16 @@ This architecture allows Autobase to provide a DBaaS-like experience while keepi
   }}
 />
 
-Users define cluster topology, parameters, and maintenance actions in the Console UI. The Console API validates requests, stores state in the Console DB, prepares inventory and variables, and delegates execution to the Automation container.
-
-Autobase Automation runs Ansible [playbooks](https://github.com/autobase-tech/autobase/tree/main/automation/playbooks) to create infrastructure when needed, install and configure PostgreSQL, set up high availability, apply configuration changes, scale clusters, and perform maintenance operations. Results, logs, metadata, and status are written back to the Console DB and displayed in the UI.
+Users define the desired cluster topology, configuration, and maintenance actions in the Console UI. The Console API validates requests, stores the desired state in the Console DB, prepares the inventory and variables, and delegates execution to the Automation container.
+Autobase Automation provisions infrastructure when needed, installs and configures PostgreSQL, sets up high availability, applies configuration changes, scales clusters, and performs maintenance operations.
+Results, logs, metadata, and execution status are written back to the Console DB and displayed in the UI.
 
 #### Components:
 
 - **Console UI** provides the web interface for creating clusters, reviewing topology, launching operations, editing configuration, and monitoring cluster status.
 - **Console API** implements the platform backend. It handles requests from the UI, validates input, manages cluster state, interacts with the Console DB, and starts automation tasks when required.
 - **Console DB** stores platform data, including cluster metadata, server inventory, configuration, operation history, execution results, logs, and current status.
-- **Automation container** executes Ansible playbooks using inventories and variables prepared by the Console API. It performs deployment, configuration, scaling, maintenance, and recovery-related operations.
+- **Automation container** executes Ansible [playbooks](https://github.com/autobase-tech/autobase/tree/main/automation/playbooks) using inventories and variables prepared by the Console API. It performs deployment, configuration, scaling, maintenance, and recovery-related operations.
 
 ## PostgreSQL Cluster
 
