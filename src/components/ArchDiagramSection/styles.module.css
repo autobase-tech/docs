@@ -92,7 +92,7 @@
   position: relative;
   flex-direction: column;
   gap: 12px;
-  padding: 26px 0 28px;
+  padding: 20px 0 22px;
   border-color: color-mix(in srgb, var(--color-primary) 52%, var(--color-border));
   border-style: solid;
   border-width: 1px;
@@ -755,6 +755,7 @@
   }
   .box, .controlBus, .fleet { width: 100%; }
   .box { font-size: 15px; padding: 20px 12px; }
+  .platform { padding: 18px 12px; }
   .sectionLabel { margin-bottom: 18px; font-size: 12px; }
   .cpTitle { font-size: 18px; }
   .cpPills { font-size: 13px; gap: 8px; }
@@ -808,7 +809,7 @@
   .featureCard:nth-last-child(-n+2) { border-bottom: none; }
   .featureIcon svg { width: 36px; height: 36px; }
   .featureDesc { line-height: 1.35; }
-  .platform { padding: 22px 10px; }
+  .platform { padding: 18px 10px; }
   .platformEyebrow { font-size: 9px; }
   .controlBus { height: 52px; }
   .controlBus svg { height: 64px; }
