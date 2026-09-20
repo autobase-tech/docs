@@ -166,6 +166,18 @@ export default function PlatformOverviewSection() {
     setActiveIndex((currentIndex) => (currentIndex + 1) % demos.length);
   }
 
+  function openFullscreen() {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (video.requestFullscreen) {
+      video.requestFullscreen().catch(() => {});
+      return;
+    }
+
+    video.webkitEnterFullscreen?.();
+  }
+
   function handleTabKeyDown(event, index) {
     if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
 
@@ -211,16 +223,26 @@ export default function PlatformOverviewSection() {
         </div>
 
         <div className={styles.browser}>
-          <div className={styles.browserBar} aria-hidden="true">
-            <div className={styles.browserControls}>
+          <div className={styles.browserBar}>
+            <div className={styles.browserControls} aria-hidden="true">
               <span />
               <span />
               <span />
             </div>
-            <div className={styles.browserAddress}>
-              <span className={styles.browserLock} />
+            <div className={styles.browserAddress} aria-hidden="true">
               <span>autobase.my-company.com</span>
             </div>
+            <button
+              type="button"
+              className={styles.fullscreenButton}
+              aria-label="View video in fullscreen"
+              title="View fullscreen"
+              onClick={openFullscreen}
+            >
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M2.5 6V2.5H6M10 2.5h3.5V6M13.5 10v3.5H10M6 13.5H2.5V10" />
+              </svg>
+            </button>
           </div>
 
           <div
