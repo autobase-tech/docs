@@ -28,6 +28,24 @@ const demos = [
     file: 'sql-editor.mp4',
     description: 'Run SQL queries directly from the platform interface.',
   },
+  {
+    id: 'backups-restore',
+    label: 'Backups & Restore',
+    file: 'backups-restore.mp4',
+    description: 'Create backups and restore PostgreSQL clusters.',
+  },
+  {
+    id: 'upgrades',
+    label: 'Upgrades',
+    file: 'upgrades.mp4',
+    description: 'Upgrade PostgreSQL clusters from the platform interface.',
+  },
+  {
+    id: 'scaling',
+    label: 'Scaling',
+    file: 'add-replica.mp4',
+    description: 'Scale PostgreSQL clusters by adding replicas.',
+  },
 ];
 
 export default function PlatformOverviewSection() {
@@ -198,6 +216,10 @@ export default function PlatformOverviewSection() {
               <span />
               <span />
               <span />
+            </div>
+            <div className={styles.browserAddress}>
+              <span className={styles.browserLock} />
+              <span>autobase.my-company.com</span>
             </div>
           </div>
 

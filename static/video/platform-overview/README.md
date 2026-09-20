@@ -10,5 +10,11 @@ Place the locally hosted platform demo videos in this directory:
 - `yaml-editor.dark.mp4`
 - `sql-editor.mp4`
 - `sql-editor.dark.mp4`
+- `backups-restore.mp4`
+- `backups-restore.dark.mp4`
+- `upgrades.mp4`
+- `upgrades.dark.mp4`
+- `add-replica.mp4`
+- `add-replica.dark.mp4`
 
 Recommended export: MP4 (H.264), muted, 1920×1080 (16:9), with `faststart` enabled for web playback. Keep the same dimensions and encoding settings for light and dark variants.
