@@ -8,7 +8,7 @@ import styles from './styles.module.css';
 const navLinks = [
   { label: '/pricing', to: '/pricing' },
   { label: '/docs',   to: '/docs' },
-  { label: 'Get Started ↵', to: '/docs/#getting-started', isCta: true },
+  { label: 'Live Demo ↵', href: 'https://demo.autobase.tech', isCta: true },
 ];
 
 function normalizePath(pathname) {
@@ -73,7 +73,7 @@ export default function Navbar(props) {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={styles.navLink}
+                className={link.isCta ? `${styles.cta} ${styles.ctaPrimary}` : styles.navLink}
               >
                 {link.label}
               </a>
@@ -110,7 +110,7 @@ export default function Navbar(props) {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={styles.mobileNavLink}
+                    className={`${styles.mobileNavLink} ${link.isCta ? styles.mobileNavCta : ''}`}
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {link.label}
