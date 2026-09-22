@@ -59,7 +59,7 @@ const plans = [
     billing: 'per month',
     features: [
       'MIT License',
-      { label: 'Limited platform functionality', supported: false },
+      { label: 'Limited platform functionality: deployment only; management via CLI', supported: false },
       { label: 'No support included', supported: false },
     ],
     cta: 'Try Free',
