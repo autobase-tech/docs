@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from '@docusaurus/Link';
 import TrustedByCarousel from '@site/src/components/TrustedByCarousel';
 import styles from './styles.module.css';
 
@@ -27,10 +26,9 @@ export default function HeroSection() {
         </p>
 
         <div className={styles.actions}>
-          <Link className={`${styles.button} ${styles.primaryButton}`} to="/docs#getting-started" aria-describedby="hero-trial-details">
-            <span aria-hidden="true">&gt;</span> Start your free trial <span aria-hidden="true">↵</span>
-          </Link>
-          <span id="hero-trial-details" className={styles.trialDetails}>Enterprise edition · 14 days free</span>
+          <a className={`${styles.button} ${styles.primaryButton}`} href="https://demo.autobase.tech" target="_blank" rel="noopener noreferrer">
+            <span aria-hidden="true">&gt;</span> Live Demo <span aria-hidden="true">↵</span>
+          </a>
         </div>
 
         <TrustedByCarousel />

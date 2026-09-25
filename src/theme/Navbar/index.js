@@ -6,9 +6,9 @@ import OriginalNavbar from '@theme-original/Navbar';
 import styles from './styles.module.css';
 
 const navLinks = [
-  { label: '/pricing', to: '/pricing' },
-  { label: '/docs',   to: '/docs' },
-  { label: 'Live Demo ↵', href: 'https://demo.autobase.tech', isCta: true },
+  { label: 'Pricing', to: '/pricing' },
+  { label: 'Documentation', to: '/docs' },
+  { label: 'Support', to: '/docs/support' },
 ];
 
 function normalizePath(pathname) {
