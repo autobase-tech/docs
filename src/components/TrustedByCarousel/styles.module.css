@@ -1,12 +1,10 @@
 .trustedBy {
   width: 100%;
-  max-width: 920px;
   margin-top: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  overflow: hidden;
 }
 
 .label {
@@ -25,11 +23,120 @@
   color: var(--color-primary);
 }
 
+.logoRow {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 12px;
+}
+
 .strip {
   position: relative;
-  width: 100%;
-  max-width: 100%;
+  flex: 1;
+  min-width: 0;
   overflow: hidden;
+}
+
+.addLogo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 0 0 108px;
+  height: 42px;
+  padding: 0 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 0;
+  background: transparent;
+  color: var(--color-text-muted);
+  font: 400 13px var(--font-base);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.addLogo:hover,
+.addLogo:focus-visible {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.addLogo:focus-visible,
+.closeDialog:focus-visible,
+.emailButton:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.dialog {
+  width: min(440px, calc(100vw - 32px));
+  max-width: none;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  box-shadow: 8px 8px 0 var(--shadow-pixel);
+}
+
+.dialog::backdrop {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.dialogContent {
+  position: relative;
+  padding: 32px;
+  font-family: var(--font-base);
+}
+
+.dialogContent h2 {
+  margin: 0 32px 20px 0;
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+.dialogContent h2:focus {
+  outline: none;
+}
+
+.dialogContent p {
+  margin: 0 0 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.dialogContent p a {
+  color: var(--color-primary);
+}
+
+.closeDialog {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  padding: 2px 8px;
+  border: 0;
+  background: transparent;
+  color: var(--color-text-muted);
+  font: 24px/1 var(--font-base);
+  cursor: pointer;
+}
+
+.emailButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 8px;
+  padding: 10px 16px;
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  font: 700 14px var(--font-base);
+  text-decoration: none;
+}
+
+.emailButton:hover {
+  background: var(--color-primary);
+  color: var(--color-bg);
+  text-decoration: none;
 }
 
 .strip::before,
@@ -139,6 +246,10 @@
     margin-top: 4px;
   }
 
+  .addLogo {
+    display: none;
+  }
+
   .logoLink {
     width: 132px;
     height: 52px;
@@ -151,6 +262,10 @@
 }
 
 @media (max-width: 480px) {
+  .dialogContent {
+    padding: 28px 20px;
+  }
+
   .strip::before,
   .strip::after {
     width: 32px;

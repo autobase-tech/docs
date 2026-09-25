@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styles from './styles.module.css';
 
 const trusted = [
@@ -78,18 +78,48 @@ function LogoSet({ hidden = false }) {
 }
 
 export default function TrustedByCarousel() {
+  const dialogRef = useRef(null);
+  const dialogTitleRef = useRef(null);
+  const emailHref = `mailto:info@autobase.tech?subject=${encodeURIComponent('Autobase customer logo and story')}&body=${encodeURIComponent('Hi Autobase team,\n\nWe use Autobase at [company]. Here is how we use it:\n\n[Your story]\n')}`;
+
   return (
     <div className={styles.trustedBy}>
       <div className={styles.label}>
         <span className={styles.prompt}>//</span>
         <span>Trusted by teams running Autobase in production</span>
       </div>
-      <div className={styles.strip}>
-        <div className={styles.track}>
-          <LogoSet />
-          <LogoSet hidden />
+      <div className={styles.logoRow}>
+        <div className={styles.strip}>
+          <div className={styles.track}>
+            <LogoSet />
+            <LogoSet hidden />
+          </div>
         </div>
+        <button type="button" className={styles.addLogo} onClick={() => {
+          dialogRef.current?.showModal();
+          dialogTitleRef.current?.focus();
+        }}>
+          <span aria-hidden="true">+</span> <span>Add logo</span>
+        </button>
       </div>
+      <dialog
+        ref={dialogRef}
+        className={styles.dialog}
+        aria-labelledby="add-logo-title"
+        aria-describedby="add-logo-description"
+        onClick={(event) => {
+          if (event.target === event.currentTarget) dialogRef.current?.close();
+        }}
+      >
+        <div className={styles.dialogContent}>
+          <button type="button" className={styles.closeDialog} aria-label="Close dialog" onClick={() => dialogRef.current?.close()}>×</button>
+          <h2 id="add-logo-title" ref={dialogTitleRef} tabIndex={-1}>Add your logo</h2>
+          <p id="add-logo-description">
+            Does your company use Autobase and want to see your logo here? Send your logo to <a href="mailto:info@autobase.tech">info@autobase.tech</a> and tell us how you use Autobase. We’d love to hear your story.
+          </p>
+          <a className={styles.emailButton} href={emailHref}>Email us <span aria-hidden="true">↗</span></a>
+        </div>
+      </dialog>
     </div>
   );
 }
