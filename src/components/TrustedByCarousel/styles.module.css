@@ -182,7 +182,7 @@
   justify-content: center;
   width: 160px;
   height: 58px;
-  padding: 12px 26px;
+  padding: 10px 26px;
   flex-shrink: 0;
   position: relative;
 }
@@ -190,7 +190,7 @@
 .logoImg {
   display: block;
   max-width: 100%;
-  max-height: 34px;
+  max-height: 38px;
   width: auto;
   height: auto;
   object-fit: contain;
@@ -200,7 +200,7 @@
 }
 
 .logoSquareAsset {
-  width: 72px;
+  width: 78px;
   max-height: none;
 }
 
@@ -253,11 +253,11 @@
   .logoLink {
     width: 132px;
     height: 52px;
-    padding: 12px 22px;
+    padding: 9px 22px;
   }
 
   .logoImg {
-    max-height: 30px;
+    max-height: 33px;
   }
 }
 
