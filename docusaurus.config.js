@@ -88,7 +88,7 @@ const config = {
       */
       navbar: {
         hideOnScroll: true,
-        title: 'autobase',
+        title: 'Autobase Docs',
         logo: {
           alt: 'autobase',
           src: 'img/autobase.svg',
