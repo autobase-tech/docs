@@ -22,6 +22,14 @@ const BANNERS = [
     visual: 'time-to-value',
   },
   {
+    id: 'cost-of-ownership',
+    beforeAccent: '40–60%',
+    before: '',
+    after: 'lower costs vs. managed PostgreSQL',
+    afterColor: 'text',
+    visual: 'cost-of-ownership',
+  },
+  {
     id: 'production-history',
     before: '',
     after: 'in Production',
@@ -246,6 +254,21 @@ function StopwatchIcon() {
 }
 
 function BannerVisual({type, githubStars, productionHistory}) {
+  if (type === 'cost-of-ownership') {
+    return (
+      <div className={styles.costComparison} aria-label="Illustrative infrastructure cost comparison with managed PostgreSQL" role="img">
+        <div className={styles.costRow}>
+          <span>MANAGED POSTGRES</span>
+          <span className={styles.costTrack}><span className={styles.managedCost} /></span>
+        </div>
+        <div className={styles.costRow}>
+          <span>AUTOBASE POSTGRES</span>
+          <span className={styles.costTrack}><span className={styles.autobaseCost} /></span>
+        </div>
+      </div>
+    );
+  }
+
   if (type === 'production-history') {
     return (
       <div className={styles.productionTimeline} aria-hidden="true">
@@ -458,7 +481,7 @@ export default function SocialProofSection() {
             aria-live="polite"
             aria-atomic="true"
           >
-            <div className={styles.text}>
+            <div className={`${styles.text} ${activeBanner.id === 'cost-of-ownership' ? styles.costText : ''}`}>
               <p className={styles.before}>
                 {activeBeforeAccent && (
                   <span className={styles.inlineAccent}>{activeBeforeAccent} </span>

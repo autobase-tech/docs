@@ -114,6 +114,25 @@
   font-weight: var(--fw-bold);
 }
 
+.costText {
+  gap: 4px;
+}
+
+.costText .before {
+  font-size: clamp(32px, 3.6vw, 44px);
+}
+
+.costText .after {
+  font-size: clamp(18px, 1.8vw, 22px);
+  font-weight: var(--fw-regular);
+  line-height: 1.2;
+  color: var(--color-text-muted);
+}
+
+.costText .underbar {
+  display: none;
+}
+
 .subtitle {
   margin: 2px 0 0;
   font-family: var(--font-base);
@@ -167,6 +186,48 @@
 .arrow {
   flex-shrink: 0;
   color: var(--color-text-muted);
+}
+
+/* ─── Infrastructure cost comparison ──────────────────────────────── */
+.costComparison {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 280px;
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+}
+
+.costRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: var(--font-base);
+  font-size: 11px;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.7px;
+}
+
+.costTrack {
+  display: block;
+  height: 8px;
+  background: var(--color-border);
+}
+
+.managedCost,
+.autobaseCost {
+  display: block;
+  height: 100%;
+}
+
+.managedCost {
+  width: 100%;
+  background: var(--color-text-muted);
+}
+
+.autobaseCost {
+  width: 50%;
+  background: var(--color-primary);
 }
 
 /* ─── Production history timeline ─────────────────────────────────── */
@@ -609,6 +670,7 @@
   .banner { height: 280px; padding: 14px 20px 32px; }
   .slide { flex-direction: column; justify-content: center; gap: 16px; }
   .visual { gap: 16px; }
+  .costComparison { width: min(100%, 280px); }
   .underbar { display: none; }
   .before, .after { font-size: clamp(18px, 5vw, 24px); }
   .productionTimeline { width: min(100%, 300px); }
