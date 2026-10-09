@@ -11,7 +11,7 @@ const props = [
       </svg>
     ),
     title: 'Your Infrastructure',
-    description: 'Postgres runs in your cloud account or on your own servers.',
+    description: 'Run PostgreSQL in your cloud account or on your own servers.',
   },
   {
     icon: (
@@ -23,7 +23,7 @@ const props = [
       </svg>
     ),
     title: 'Your Data',
-    description: 'Your databases and backups stay in infrastructure you control.',
+    description: 'Keep databases and backups in infrastructure you control.',
   },
   {
     icon: (
@@ -35,14 +35,18 @@ const props = [
       </svg>
     ),
     title: 'Your Rules',
-    description: 'SSH and superuser access, 500+ extensions, and full customization freedom.',
+    description: 'Full control over access, extensions, and configuration.',
   },
 ];
 
 export default function ValuePropsSection() {
   return (
-    <section className={styles.section} aria-label="Your infrastructure, your data, your rules">
+    <section className={styles.section} aria-labelledby="data-sovereignty-title">
       <div className={styles.inner}>
+        <h2 id="data-sovereignty-title" className={styles.heading}>Data Sovereignty by Design</h2>
+        <p className={styles.intro}>
+          Get the DBaaS experience without giving up control. Run PostgreSQL in your own infrastructure. Keep your databases, backups, and access under your control.
+        </p>
         <div className={styles.grid}>
           {props.map((p) => (
             <div key={p.title} className={styles.card}>

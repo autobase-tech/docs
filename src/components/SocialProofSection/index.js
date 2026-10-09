@@ -38,7 +38,7 @@ const BANNERS = [
   },
   {
     id: 'open-source',
-    before: 'Open source forever',
+    before: 'Open source core',
     after: null,
     subtitleAccent: 'Trusted',
     subtitle: 'by teams worldwide',

@@ -1,13 +1,31 @@
 /* ─── Section ─────────────────────────────────────────────────────── */
 .section {
   background: var(--color-bg);
-  padding: var(--section-pt) 0 var(--section-pb);
+  padding: calc(var(--section-pt) - 16px) 0 calc(var(--section-pb) + 16px);
 }
 
 .inner {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 80px;
+}
+
+.heading {
+  font-family: var(--font-base);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-bold);
+  line-height: 1.2;
+  color: var(--color-text);
+  margin: 0 0 24px;
+}
+
+.intro {
+  font-family: var(--font-base);
+  font-size: clamp(20px, 2.5vw, 24px);
+  font-weight: var(--fw-regular);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  margin: 0 0 28px;
 }
 
 /* ─── Grid ────────────────────────────────────────────────────────── */
