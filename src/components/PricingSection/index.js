@@ -86,7 +86,6 @@ const plans = [
     image: '/img/pricing/header-professional.png',
     price: 1024,
     billing: 'per month',
-    popular: true,
     features: [
       'Commercial license',
       'Up to 10 clusters',
@@ -225,7 +224,7 @@ export default function PricingSection() {
         {plans.map((plan) => (
           <div
             key={plan.id}
-            className={clsx(styles.card, plan.popular && styles.cardPopular, plan.premium && styles.cardPremium)}
+            className={clsx(styles.card, plan.premium && styles.cardPremium)}
           >
             <div className={styles.cardHeader}>
               <span className={styles.planId}>/{plan.id}</span>

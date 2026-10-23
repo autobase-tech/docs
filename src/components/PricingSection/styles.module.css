@@ -153,14 +153,12 @@
   background: var(--color-surface);
 }
 
-.cardPopular,
 .cardPremium {
   background:
     linear-gradient(to right, var(--color-primary), var(--color-primary)) no-repeat 0 0 / 100% 2px,
     var(--color-bg);
 }
 
-.cardPopular:hover,
 .cardPremium:hover {
   background:
     linear-gradient(to right, var(--color-primary), var(--color-primary)) no-repeat 0 0 / 100% 2px,
