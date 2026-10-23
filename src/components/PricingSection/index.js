@@ -59,8 +59,8 @@ const plans = [
     billing: 'per month',
     features: [
       'MIT License',
-      { label: 'Limited platform functionality: deployment only; management via CLI', supported: false },
-      { label: 'No support included', supported: false },
+      { label: 'Deployment only; no management functionality', supported: false },
+      { label: 'Support SLA: Not included', supported: false },
     ],
     cta: 'Try Free',
     href: 'https://github.com/autobase-tech/autobase/blob/main/README.md#getting-started',
@@ -74,10 +74,8 @@ const plans = [
     features: [
       'Commercial license',
       'Up to 2 clusters',
-      'Up to 1 TB storage',
-      'Up to 10 000 TPS',
       'Up to 1 DBA hour included',
-      'SLA: up to 24 hours (5×8)',
+      'Support SLA: up to 24 hours (5×8)',
     ],
     cta: 'Start now',
     href: '/docs#getting-started',
@@ -92,10 +90,8 @@ const plans = [
     features: [
       'Commercial license',
       'Up to 10 clusters',
-      'Up to 30 TB storage',
-      'Up to 100 000 TPS',
       'Up to 5 DBA hours included',
-      'SLA: up to 8 hours (5×8)',
+      'Support SLA: up to 8 hours (5×8)',
     ],
     cta: 'Launch production',
     href: '/docs#getting-started',
@@ -110,10 +106,8 @@ const plans = [
     features: [
       'Commercial license',
       'Unlimited clusters',
-      'Unlimited storage',
-      'Unlimited TPS',
       'Up to 15 DBA hours included',
-      'SLA: up to 1 hour (7×24)',
+      'Support SLA: up to 1 hour (7×24)',
     ],
     cta: 'Scale with Autobase',
     href: '/docs#getting-started',
@@ -235,9 +229,6 @@ export default function PricingSection() {
           >
             <div className={styles.cardHeader}>
               <span className={styles.planId}>/{plan.id}</span>
-              {plan.popular && (
-                <span className={styles.popularBadge}>Most popular</span>
-              )}
             </div>
 
             {/* Body */}
