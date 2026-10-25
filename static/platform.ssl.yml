@@ -21,7 +21,7 @@ services:
       caddy.email: ${EMAIL}
 
   autobase-console-api:
-    image: autobase/console_api:2.11.0
+    image: autobase/console_api:latest
     container_name: autobase-console-api
     healthcheck:
       test:
@@ -51,12 +51,13 @@ services:
       - PG_CONSOLE_DB_PASSWORD=${PG_CONSOLE_DB_PASSWORD:-postgres-pass}
       - PG_CONSOLE_LOGGER_LEVEL=${PG_CONSOLE_LOGGER_LEVEL:-INFO}
       - PG_CONSOLE_DB_HOST=${PG_CONSOLE_DB_HOST:-autobase-console-db}
+      - PG_CONSOLE_DOCKER_IMAGE=${PG_CONSOLE_DOCKER_IMAGE:-autobase/automation:latest}
     networks:
       - autobase
       - caddy
 
   autobase-console-ui:
-    image: autobase/console_ui:2.11.0
+    image: autobase/console_ui:latest
     container_name: autobase-console-ui
     healthcheck:
       test: ["CMD", "curl", "http://localhost:80/"]
@@ -80,7 +81,7 @@ services:
       - caddy
 
   autobase-console-db:
-    image: autobase/console_db:2.11.0
+    image: autobase/console_db:latest
     container_name: autobase-console-db
     healthcheck:
       test: pg_isready -U postgres -h 127.0.0.1
