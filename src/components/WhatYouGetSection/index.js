@@ -68,8 +68,8 @@ export default function WhatYouGetSection() {
         {/* ── Row 2: CTA — pinned to bottom of 100vh ── */}
         <div className={clsx('row', styles.ctaRow)}>
           <div className="col-12 text-center">
-            <p className={styles.ctaHeading}>Try it in practice. Start with a trial.</p>
-            <Link to="/docs" className={styles.ctaButton}>Start a Free trial now</Link>
+            <p className={styles.ctaHeading}>Start free with Starter. Up to 2 clusters, no time limit.</p>
+            <Link to="/docs" className={styles.ctaButton}>Start with Starter</Link>
           </div>
         </div>
 

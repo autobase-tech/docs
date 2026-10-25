@@ -16,7 +16,7 @@ export default function CLISection() {
             <span className={styles.ctaArrow}>&gt;</span>
             <div>
               <div className={styles.ctaTitle}>DOWNLOAD PLATFORM</div>
-              <div className={styles.ctaSubtitle}>Free Starter plan · Up to 2 clusters · No time limit</div>
+              <div className={styles.ctaSubtitle}>Start free · Upgrade as you grow</div>
             </div>
           </a>
           <a
