@@ -52,14 +52,13 @@ function PersonIcon() {
 
 const plans = [
   {
-    id: 'free',
-    name: 'Free',
+    id: 'starter',
+    name: 'Starter',
     image: '/img/pricing/header-free.png',
     price: 0,
     billing: 'per month',
     features: [
-      'MIT License',
-      { label: 'Deployment only; no management functionality', supported: false },
+      'Up to 2 clusters',
       { label: 'Support SLA: Not included', supported: false },
     ],
     cta: 'Try Free',
@@ -72,8 +71,7 @@ const plans = [
     price: 256,
     billing: 'per month',
     features: [
-      'Commercial license',
-      'Up to 2 clusters',
+      'Up to 5 clusters',
       'Up to 1 DBA hour included',
       'Support SLA: up to 24 hours (5×8)',
     ],
@@ -87,8 +85,7 @@ const plans = [
     price: 1024,
     billing: 'per month',
     features: [
-      'Commercial license',
-      'Up to 10 clusters',
+      'Up to 20 clusters',
       'Up to 5 DBA hours included',
       'Support SLA: up to 8 hours (5×8)',
     ],
@@ -103,7 +100,6 @@ const plans = [
     billing: 'per month',
     premium: true,
     features: [
-      'Commercial license',
       'Unlimited clusters',
       'Up to 15 DBA hours included',
       'Support SLA: up to 1 hour (7×24)',

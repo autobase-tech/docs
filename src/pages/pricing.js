@@ -7,7 +7,7 @@ export default function PricingPage() {
     <Layout
       wrapperClassName="landingPage"
       title="Pricing"
-      description="Autobase pricing plans — Free, Standard, Professional, Premium">
+      description="Autobase pricing plans — Starter, Standard, Professional, Premium">
       <main>
         <PricingSection />
       </main>
