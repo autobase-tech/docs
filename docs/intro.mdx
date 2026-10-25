@@ -38,6 +38,8 @@ Review the [Requirements](/docs/overview/requirements) section before deployment
 <Tabs>
   <TabItem value="http" label="Quick start" default>
 
+Use this quick start to try Autobase. For production deployments, we recommend following the **Production setup** tab.
+
 <Steps>
   <Step title="Get the docker-compose file">
 
@@ -67,7 +69,9 @@ Refer to the [Deployment](/docs/category/deployment) section to learn more about
 </Steps>
 
   </TabItem>
-  <TabItem value="https" label="With SSL (recommended)">
+  <TabItem value="https" label="Production setup">
+
+This setup enables HTTPS with automatic certificate renewal and guides you through configuring unique secrets before the first launch. You will need a domain name pointing to your Autobase server.
 
 <Steps>
   <Step title="Create a DNS record">
@@ -85,10 +89,29 @@ curl -fsSL https://autobase.tech/platform.ssl.yml \
   </Step>
   <Step title="Create a .env file">
 
-```yaml
-DOMAIN=autobase.example.com  # Your domain
-EMAIL=admin@example.com      # Email for SSL certificate
+Create `.env` in the same directory as the Compose file. Set your domain and email address, and replace each secret below with a separate, unique random value:
+
+```dotenv
+DOMAIN=autobase.example.com
+EMAIL=admin@example.com
+PG_CONSOLE_AUTHORIZATION_TOKEN=replace-with-a-unique-random-token
+PG_CONSOLE_ENCRYPTIONKEY=replace-with-a-unique-random-key
+PG_CONSOLE_DB_PASSWORD=replace-with-a-unique-random-password
 ```
+
+Generate each secret separately, for example with `openssl rand -hex 32`. Default secrets are intended only for evaluation and must be replaced before production use or storing real credentials.
+
+Restrict access to the file and do not commit it to Git:
+
+```sh
+chmod 600 .env
+```
+
+:::important
+Set `PG_CONSOLE_ENCRYPTIONKEY` before storing credentials, back it up securely, and keep it unchanged across updates and restores. Changing it does not re-encrypt existing credentials and makes them unreadable with the new key.
+:::
+
+These secrets are separate from the user credentials you create during the initial UI setup.
 
   </Step>
   <Step title="Run the Autobase Console">
