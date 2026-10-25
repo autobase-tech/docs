@@ -30,7 +30,7 @@ sources={{
 />
 
 :::note
-In the Community Edition, extensions can be installed via the UI only during cluster creation. In the Enterprise Edition, extensions can also be installed after deployment from the **Extensions** page of the selected cluster.
+Extensions can be installed via the UI during cluster creation or after deployment from the **Extensions** page of the selected cluster.
 :::
 
 ## Command line
