@@ -1,13 +1,20 @@
 ---
 services:
   autobase-console-api:
-    image: autobase/console_api_ee:2.11.0
+    image: autobase/console_api:latest
     container_name: autobase-console-api
     healthcheck:
-      test: ["CMD", "curl", "-fsS",
-            "-H", "accept: application/json",
-            "-H", "Authorization: Bearer ${AUTH_TOKEN:-auth_token}",
-            "http://localhost:8080/api/v1/version"]
+      test:
+        [
+          "CMD",
+          "curl",
+          "-fsS",
+          "-H",
+          "accept: application/json",
+          "-H",
+          "Authorization: Bearer ${AUTH_TOKEN:-auth_token}",
+          "http://localhost:8080/api/v1/version",
+        ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -20,6 +27,9 @@ services:
       - /tmp/ansible:/tmp/ansible
     environment:
       - PG_CONSOLE_AUTHORIZATION_TOKEN=${AUTH_TOKEN:-auth_token}
+      - PG_CONSOLE_DOCKER_IMAGE=${PG_CONSOLE_DOCKER_IMAGE:-autobase/automation:latest}
+      - PG_CONSOLE_ENCRYPTIONKEY=${PG_CONSOLE_ENCRYPTIONKEY:-super_secret}
+      - PG_CONSOLE_DB_PASSWORD=${PG_CONSOLE_DB_PASSWORD:-postgres-pass}
       - PG_CONSOLE_LOGGER_LEVEL=${PG_CONSOLE_LOGGER_LEVEL:-DEBUG}
       - PG_CONSOLE_AUTH_COOKIE_SECURE=false
       - PG_CONSOLE_DB_HOST=autobase-console-db
@@ -27,7 +37,7 @@ services:
       - autobase
 
   autobase-console-ui:
-    image: autobase/console_ui_ee:2.11.0
+    image: autobase/console_ui:latest
     container_name: autobase-console-ui
     ports:
       - 80:80
@@ -49,7 +59,7 @@ services:
       - autobase
 
   autobase-console-db:
-    image: autobase/console_db:2.11.0
+    image: autobase/console_db:latest
     container_name: autobase-console-db
     healthcheck:
       test: pg_isready -U postgres -h 127.0.0.1
@@ -57,6 +67,8 @@ services:
       timeout: 5s
       retries: 10
     restart: unless-stopped
+    environment:
+      - POSTGRES_PASSWORD=${PG_CONSOLE_DB_PASSWORD:-postgres-pass}
     volumes:
       - console_postgres:/var/lib/postgresql
     networks:
@@ -65,8 +77,6 @@ services:
   dbdesk-studio:
     image: docker.io/bhavikagarwal2001/dbdesk-studio:0.1.5
     container_name: dbdesk-studio
-    ports:
-      - 9876:9876  # nginx (frontend + /api/ proxy); Express listens internally on PORT
     healthcheck:
       test: ["CMD", "curl", "-fsS", "http://localhost:6789/health"]
       interval: 10s
