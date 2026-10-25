@@ -62,7 +62,7 @@ const plans = [
       { label: 'Support SLA: Not included', supported: false },
     ],
     cta: 'Try Free',
-    href: 'https://github.com/autobase-tech/autobase/blob/main/README.md#getting-started',
+    href: '/docs#getting-started',
   },
   {
     id: 'standard',
