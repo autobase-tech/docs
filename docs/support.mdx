@@ -4,18 +4,17 @@ sidebar_position: 100
 
 # Support
 
-We provide personalized support and expert assistance, so you can focus on building your project with confidence, knowing that a reliable partner is always available when you need help.
+We provide personalized support and expert assistance, so you can focus on building your project with confidence, knowing you have a reliable partner to help with your PostgreSQL operations.
 
-:::tip support mail
+Paid plans include monthly DBA consulting hours and a private Slack channel. Included hours and support response times depend on your plan.
+
+:::tip Support inquiries
 For support inquiries, please contact us at <a href="mailto:support@autobase.tech">support@autobase.tech</a>
 :::
 
-Each Autobase package includes DBA as a Service (DBAaaS)—giving you direct access to a dedicated PostgreSQL expert (DBA).
-You’ll also gain access to a private Slack channel for real-time communication and support.
+## Support plans
 
-#### Available support plans:
-
-See [Pricing](/pricing) for plan prices and billing options.
+Compare the plans below. See [Pricing](/pricing) for prices and billing options.
 
 import React from 'react';
 import '@site/src/css/support.css';
@@ -27,13 +26,16 @@ import '@site/src/css/support.css';
         <th>Plan</th>
         <th>Best for</th>
         <th>Included</th>
-        <th>Limits</th>
+        <th>Clusters</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td><strong>Standard</strong></td>
-        <td>Small businesses and startups that need reliable personal support on an occasional basis.</td>
+        <td>
+          <p>Small businesses and startups that need reliable personal support on an occasional basis.</p>
+          <p>Recommended for workloads up to 1 TB of storage and 10,000 TPS.</p>
+        </td>
         <td>
           <ul>
             <li>Autobase automation tools</li>
@@ -44,15 +46,16 @@ import '@site/src/css/support.css';
         </td>
         <td>
           <ul>
-            <li>Up to 5 PostgreSQL clusters</li>
-            <li>Up to 1 TB storage</li>
-            <li>Up to 10 000 TPS*</li>
+            <li>Up to 5 clusters</li>
           </ul>
         </td>
       </tr>
       <tr>
         <td><strong>Professional</strong></td>
-        <td>Organizations that need continuous maintenance and support for their PostgreSQL clusters.</td>
+        <td>
+          <p>Organizations that need continuous maintenance and support for their clusters.</p>
+          <p>Recommended for workloads up to 30 TB of storage and 100,000 TPS.</p>
+        </td>
         <td>
           <ul>
             <li>Autobase automation tools</li>
@@ -63,15 +66,16 @@ import '@site/src/css/support.css';
         </td>
         <td>
           <ul>
-            <li>Up to 20 PostgreSQL clusters</li>
-            <li>Up to 30 TB storage</li>
-            <li>Up to 100 000 TPS*</li>
+            <li>Up to 20 clusters</li>
           </ul>
         </td>
       </tr>
       <tr>
         <td><strong>Premium</strong></td>
-        <td>Organizations facing large-scale, high-load database challenges.</td>
+        <td>
+          <p>Organizations facing large-scale, high-load database challenges.</p>
+          <p>For larger workloads and custom support needs.</p>
+        </td>
         <td>
           <ul>
             <li>Autobase automation tools</li>
@@ -83,9 +87,7 @@ import '@site/src/css/support.css';
         </td>
         <td>
           <ul>
-            <li>Unlimited PostgreSQL clusters</li>
-            <li>Unlimited storage</li>
-            <li>Unlimited TPS</li>
+            <li>Unlimited clusters</li>
           </ul>
         </td>
       </tr>
@@ -93,4 +95,4 @@ import '@site/src/css/support.css';
   </table>
 </div>
 
-Note: TPS (transactions per second) values are provided as a guideline to help you choose the most appropriate support package. Higher transaction rates can be supported with additional tuning and configuration — feel free to contact us for recommendations.
+Storage and TPS (transactions per second) figures are guidelines for choosing a support plan, not platform limits.
