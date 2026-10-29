@@ -72,7 +72,7 @@ const plans = [
     billing: 'per month',
     features: [
       'Up to 5 clusters',
-      'Up to 1 DBA hour included',
+      'Up to 1 DBA hour per month',
       'Support SLA: up to 24 hours (5×8)',
     ],
     cta: 'Start now',
@@ -86,7 +86,7 @@ const plans = [
     billing: 'per month',
     features: [
       'Up to 20 clusters',
-      'Up to 5 DBA hours included',
+      'Up to 5 DBA hours per month',
       'Support SLA: up to 8 hours (5×8)',
     ],
     cta: 'Launch production',
@@ -101,7 +101,7 @@ const plans = [
     premium: true,
     features: [
       'Unlimited clusters',
-      'Up to 15 DBA hours included',
+      'Up to 15 DBA hours per month',
       'Support SLA: up to 1 hour (7×24)',
     ],
     cta: 'Scale with Autobase',
