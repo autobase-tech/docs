@@ -117,10 +117,10 @@ export default function PricingSection() {
   const [isEditingEngineeringCost, setIsEditingEngineeringCost] = useState(false);
   const [infrastructureSize, setInfrastructureSize] = useState('medium');
   const economicsReportUrl = useBaseUrl('/Autobase_PostgreSQL_Stack_and_Economics.pdf');
-  const getDisplayedPrice = (price) => (monthly ? price : price * 11);
+  const getDisplayedPrice = (price) => (monthly ? price : price * 12);
   const getBillingLabel = () =>
     monthly ? 'per month' : 'per year';
-  const premiumMonthlyCost = monthly ? 4096 : (4096 * 11) / 12;
+  const premiumMonthlyCost = 4096;
   const engineeringCostPerHour = engineeringCostPerMonth / ENGINEERING_HOURS_PER_MONTH;
   const releasedEngineers = Math.min(3, Math.max(1, Math.round(releasedHours / ENGINEERING_HOURS_PER_MONTH)));
   const workforceLabel = releasedHours < ENGINEERING_HOURS_PER_MONTH
@@ -268,10 +268,6 @@ export default function PricingSection() {
 
       {/* ── Notes ── */}
       <div className={styles.notes}>
-        <div className={styles.noteItem}>
-          <span className={styles.notePrompt} aria-hidden="true">i</span>
-          <span>1 month free with annual billing</span>
-        </div>
         <div className={styles.noteItem}>
           <span className={styles.notePrompt} aria-hidden="true">i</span>
           <span>additional DBA hours: $300/hour</span>
