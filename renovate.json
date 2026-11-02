@@ -16,6 +16,11 @@
       "matchManagers": ["dockerfile", "docker-compose"],
       "groupName": "docker dependencies",
       "schedule": ["before 4am on Monday"]
+    },
+    {
+      "description": "Require manual merging for dbdesk-studio updates",
+      "matchPackageNames": ["docker.io/bhavikagarwal2001/dbdesk-studio"],
+      "automerge": false
     }
   ]
 }
