@@ -84,7 +84,7 @@ docker run --rm -it \
   -e ANSIBLE_INVENTORY=/project/inventory \
   -v $PWD:/project \
   -v $HOME/.ssh:/root/.ssh \
-  autobase/automation:2.11.0 \
+  autobase/automation:2.12.0 \
     ansible-playbook restore_pgcluster.yml
 ```
 

@@ -94,7 +94,7 @@ docker run --rm -it \
   -e ANSIBLE_INVENTORY=/project/inventory \
   -v $PWD:/project \
   -v $HOME/.ssh:/root/.ssh \
-  autobase/automation:2.11.0 \
+  autobase/automation:2.12.0 \
     ansible-playbook add_node.yml
 ```
 
@@ -123,7 +123,7 @@ docker run --rm -it \
   -e AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} \
   -e AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} \
   -v $HOME/.ssh:/root/.ssh \
-  autobase/automation:2.11.0 \
+  autobase/automation:2.12.0 \
     ansible-playbook add_node.yml --extra-vars \
       "ansible_user=ubuntu \
        ansible_ssh_private_key_file=/root/.ssh/id_rsa \
@@ -163,7 +163,7 @@ export GCP_SERVICE_ACCOUNT_CONTENTS='{
 docker run --rm -it \
   -e GCP_SERVICE_ACCOUNT_CONTENTS=${GCP_SERVICE_ACCOUNT_CONTENTS} \
   -v $HOME/.ssh:/root/.ssh \
-  autobase/automation:2.11.0 \
+  autobase/automation:2.12.0 \
     ansible-playbook add_node.yml --extra-vars \
       "ansible_user=root \
        ansible_ssh_private_key_file=/root/.ssh/id_rsa \
@@ -207,7 +207,7 @@ docker run --rm -it \
   -e AZURE_SECRET=${AZURE_SECRET} \
   -e AZURE_TENANT=${AZURE_TENANT} \
   -v $HOME/.ssh:/root/.ssh \
-  autobase/automation:2.11.0 \
+  autobase/automation:2.12.0 \
     ansible-playbook add_node.yml --extra-vars \
       "ansible_user=azureadmin \
        ansible_ssh_private_key_file=/root/.ssh/id_rsa \
@@ -244,7 +244,7 @@ export DO_API_TOKEN=<value>
 docker run --rm -it \
   -e DO_API_TOKEN=${DO_API_TOKEN} \
   -v $HOME/.ssh:/root/.ssh \
-  autobase/automation:2.11.0 \
+  autobase/automation:2.12.0 \
     ansible-playbook add_node.yml --extra-vars \
       "ansible_user=root \
        ansible_ssh_private_key_file=/root/.ssh/id_rsa \
@@ -286,7 +286,7 @@ export HCLOUD_API_TOKEN=<value>
 docker run --rm -it \
   -e HCLOUD_API_TOKEN=${HCLOUD_API_TOKEN} \
   -v $HOME/.ssh:/root/.ssh \
-  autobase/automation:2.11.0 \
+  autobase/automation:2.12.0 \
     ansible-playbook add_node.yml --extra-vars \
       "ansible_user=root \
        ansible_ssh_private_key_file=/root/.ssh/id_rsa \
