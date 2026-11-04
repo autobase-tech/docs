@@ -13,12 +13,12 @@
 [class*='announcementBar_'] [class*='announcementBarContent_'],
 [class*='announcementBar_'] a {
   color: inherit !important;
-  text-decoration-color: #ff5722;
+  text-decoration-color: var(--landing-accent, #ff5722);
   text-underline-offset: 3px;
 }
 
 .announcement-system {
-  color: #ff5722 !important;
+  color: var(--landing-accent, #ff5722) !important;
 }
 
 /**
@@ -123,13 +123,13 @@ html.docs-wrapper[data-theme='light'] .theme-doc-toc-desktop {
 html:has(.landingPage) {
   --landing-content-width: 1320px;
   --landing-gutter: 80px;
-  --landing-accent: #ff5722;
-  --landing-accent-fill: #ff5722;
+  --landing-accent: #e94e1b;
+  --landing-accent-fill: #e94e1b;
   --landing-on-accent: #111111;
 }
 
 html[data-theme='dark']:has(.landingPage) {
-  --landing-accent: #ff5722;
+  --landing-accent: #e94e1b;
 }
 
 @media (max-width: 1100px) {

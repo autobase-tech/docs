@@ -825,7 +825,7 @@
   .fleetCount > span { font-size: 13px; }
   .fleetGrid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
   .fleetCluster { height: 52px; }
-  .fleetCluster:nth-child(n+17) { display: none; }
+  .fleetCluster:nth-child(n+9) { display: none; }
   .fleetCluster:nth-child(n) .clusterPreview {
     right: auto;
     left: 50%;

@@ -72,7 +72,7 @@ const features = [
     ),
     label: 'Upgrades',
     title: 'Upgrades',
-    description: 'Zero-Downtime Upgrades',
+    description: 'Minor and major version upgrades',
   },
 ];
 

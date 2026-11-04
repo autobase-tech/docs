@@ -522,7 +522,7 @@ const features = [
   },
   {
     label: 'Upgrades',
-    description: 'Zero-Downtime Upgrades',
+    description: 'Minor and major version upgrades',
     icon: (
       <FeatureGlyph>
         <path d="M24 34V15M17 22l7-7 7 7M15 34h18" />
