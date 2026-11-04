@@ -6,9 +6,9 @@
 .inner {
   position: relative;
   width: 100%;
-  max-width: 1200px;
+  max-width: var(--landing-content-width, 1200px);
   margin: 0 auto;
-  padding: 48px 80px 8px;
+  padding: 48px var(--landing-gutter, 80px) 8px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -17,11 +17,26 @@
 .inner::after {
   content: '';
   position: absolute;
-  right: 80px;
+  right: var(--landing-gutter, 80px);
   bottom: 0;
-  left: 80px;
+  left: var(--landing-gutter, 80px);
   height: 1px;
   background: var(--color-border);
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 40px;
+}
+
+.copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
 }
 
 .inner .label {
@@ -42,7 +57,7 @@
 /* ─── Heading — Quantico Bold ─────────────────────────────────────── */
 .heading {
   font-family: 'Quantico', sans-serif;
-  font-size: clamp(36px, 5vw, 60px);
+  font-size: clamp(34px, 3.5vw, 46px);
   font-weight: 700;
   line-height: 1.05;
   color: var(--color-text);
@@ -58,7 +73,7 @@
 /* ─── Subheading ──────────────────────────────────────────────────── */
 .subheading {
   font-family: var(--font-base);
-  font-size: clamp(20px, 2.5vw, 24px);
+  font-size: clamp(18px, 1.8vw, 22px);
   font-weight: var(--fw-regular);
   color: var(--color-text-muted);
   margin: 0;
@@ -76,30 +91,21 @@
 
 /* ─── Responsive ──────────────────────────────────────────────────── */
 @media (max-width: 1100px) {
-  .inner { padding: 40px 48px 8px; }
+  .inner { padding: 40px var(--landing-gutter, 80px) 8px; }
+  .heroGrid { gap: 28px; }
+}
 
-  .inner::after {
-    right: 48px;
-    left: 48px;
-  }
+@media (max-width: 1000px) {
+  .heroGrid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .heading { font-size: clamp(36px, 5vw, 54px); }
 }
 
 @media (max-width: 768px) {
-  .inner { padding: 32px 28px 8px; }
-
-  .inner::after {
-    right: 28px;
-    left: 28px;
-  }
+  .inner { padding: 32px var(--landing-gutter, 80px) 8px; }
 }
 
 @media (max-width: 480px) {
-  .inner { padding: 28px 20px 8px; }
-
-  .inner::after {
-    right: 20px;
-    left: 20px;
-  }
+  .inner { padding: 28px var(--landing-gutter, 80px) 8px; }
 }
 
 /* ─── Hero actions ─────────────────────────────────────────────────── */
@@ -123,12 +129,10 @@
   font-weight: 700;
   line-height: 1.4;
   text-decoration: none;
-  box-shadow: 4px 4px 0 var(--shadow-pixel);
 }
 
 .button:hover {
   text-decoration: none;
-  box-shadow: 4px 4px 0 var(--shadow-pixel-hover);
 }
 
 .button:focus-visible {
@@ -143,14 +147,32 @@
 }
 
 .primaryButton:hover {
-  background: var(--color-primary);
-  border-color: var(--color-primary-alt);
+  background: var(--landing-accent-fill);
+  border-color: var(--landing-accent-fill);
   color: #111111;
 }
 
+.secondaryButton {
+  border-color: var(--color-border);
+  color: var(--color-text);
+  background: transparent;
+}
+
+.secondaryButton:hover {
+  border-color: var(--color-text-muted);
+  color: var(--color-text);
+  background: var(--shadow-pixel);
+}
+
 @media (max-width: 480px) {
-  .actions { flex-direction: column; align-items: flex-start; gap: 14px; }
-  .button { padding: 12px 20px; gap: 16px; }
+  .actions { flex-wrap: nowrap; gap: 10px; }
+  .button {
+    min-height: 44px;
+    padding: 10px 12px;
+    gap: 8px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
 }
 
 .reference {
@@ -164,7 +186,7 @@
 }
 
 .referenceText { display: flex; flex-direction: column; gap: 6px; }
-.referenceText strong { font-size: 15px; font-weight: 500; }
+.referenceText strong { font-size: 15px; font-weight: 700; }
 .referenceAccent { color: var(--color-primary); }
 .referenceText > span { max-width: 680px; font-size: 13px; line-height: 1.6; color: var(--color-text-muted); }
 .referenceLink { margin-left: auto; flex-shrink: 0; font-size: 13px; color: var(--color-primary); }
@@ -175,5 +197,5 @@
 @media (max-width: 768px) {
   .reference { flex-wrap: wrap; gap: 12px 16px; }
   .referenceText { flex: 1; min-width: 200px; }
-  .referenceLink { margin-left: 56px; }
+  .referenceLink { margin-left: 0; }
 }

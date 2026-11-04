@@ -1,13 +1,13 @@
 /* ─── Section ─────────────────────────────────────────────────────── */
 .section {
   background: var(--color-bg);
-  padding: var(--section-pt) 0 var(--section-pb);
+  padding: 32px 0 32px;
 }
 
 .inner {
-  max-width: 1200px;
+  max-width: var(--landing-content-width, 1200px);
   margin: 0 auto;
-  padding: 0 80px;
+  padding: 0 var(--landing-gutter, 80px);
 }
 
 /* ─── CTA row ────────────────────────────────────────────────────── */
@@ -27,7 +27,6 @@
   outline: 1px solid transparent;
   outline-offset: 0px;
   background: transparent;
-  box-shadow: 6px 6px 0 var(--shadow-pixel);
   text-decoration: none;
   transition: none;
 }
@@ -50,8 +49,6 @@
   outline-color: var(--color-primary);
   background: var(--color-surface);
   opacity: 1;
-  transform: translate(3px, 3px);
-  box-shadow: 3px 3px 0 var(--shadow-pixel-hover);
 }
 
 .ctaSecondary:hover {
@@ -59,8 +56,6 @@
   outline-color: var(--color-primary);
   background: var(--color-surface);
   opacity: 1;
-  transform: translate(3px, 3px);
-  box-shadow: 3px 3px 0 var(--shadow-pixel-hover);
 }
 
 .ctaArrow {
@@ -94,13 +89,15 @@
 
 /* ─── Responsive ──────────────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .inner { padding: 0 48px; }
   .ctas { gap: 12px; }
   .ctaPrimary, .ctaSecondary { padding: 20px; }
 }
 
+@media (max-width: 768px) {
+  .section { padding: 24px 0 24px; }
+}
+
 @media (max-width: 600px) {
-  .inner { padding: 0 20px; }
   .ctas { grid-template-columns: 1fr; }
   .ctaPrimary, .ctaSecondary { width: 100%; }
 }

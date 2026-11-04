@@ -61,7 +61,7 @@ const features = [
     ),
     label: 'Monitoring',
     title: 'Monitoring',
-    description: 'Built-in Metrics & Alerting',
+    description: 'Built-in Dashboards',
   },
   {
     icon: (

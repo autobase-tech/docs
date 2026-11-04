@@ -1,38 +1,44 @@
 import React from 'react';
 import styles from './styles.module.css';
 
+function ValueGlyph({ children }) {
+  return (
+    <svg viewBox="0 0 48 48" fill="none" aria-hidden="true" focusable="false">
+      <g stroke="currentColor" strokeWidth="1" strokeLinecap="square" strokeLinejoin="miter">
+        <path d="M8 16V8h8M32 8h8v8M40 32v8h-8M16 40H8v-8" />
+        {children}
+      </g>
+    </svg>
+  );
+}
+
 const props = [
   {
     icon: (
-      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-        <rect x="4" y="5" width="28" height="11" rx="2" stroke="currentColor" strokeWidth="1.5"/>
-        <rect x="4" y="20" width="28" height="11" rx="2" stroke="currentColor" strokeWidth="1.5"/>
-        <path d="M10 10.5h1M10 25.5h1M22 10.5h4M22 25.5h4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-      </svg>
+      <ValueGlyph>
+        <path d="M14 14h20v8H14zM14 26h20v8H14z" />
+        <path d="M18 18h1M28 18h3M18 30h1M28 30h3" />
+      </ValueGlyph>
     ),
     title: 'Your Infrastructure',
     description: 'Run PostgreSQL in your cloud account or on your own servers.',
   },
   {
     icon: (
-      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-        <ellipse cx="14" cy="8" rx="10" ry="4" stroke="currentColor" strokeWidth="1.5"/>
-        <path d="M4 8v9c0 2.2 4.48 4 10 4M4 17v9c0 2.2 4.48 4 10 4M24 8v6" stroke="currentColor" strokeWidth="1.5"/>
-        <path d="M25 16l-8 3.5v5c0 4.5 3.4 7.6 8 9 4.6-1.4 8-4.5 8-9v-5L25 16z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
-        <path d="M21.5 25l2.5 2.5 4.5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
+      <ValueGlyph>
+        <path d="M14 16l10-4 10 4-10 4-10-4zM14 16v16l10 4 10-4V16" />
+        <path d="M14 24l10 4 10-4M24 20v16" />
+      </ValueGlyph>
     ),
     title: 'Your Data',
     description: 'Keep databases and backups in infrastructure you control.',
   },
   {
     icon: (
-      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-        <path d="M4 9h7m6 0h15M4 18h18m6 0h4M4 27h4m6 0h18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <circle cx="14" cy="9" r="3" stroke="currentColor" strokeWidth="1.5"/>
-        <circle cx="25" cy="18" r="3" stroke="currentColor" strokeWidth="1.5"/>
-        <circle cx="11" cy="27" r="3" stroke="currentColor" strokeWidth="1.5"/>
-      </svg>
+      <ValueGlyph>
+        <path d="M13 17h8M27 17h8M13 24h14M33 24h2M13 31h3M22 31h13" />
+        <path d="M21 14h6v6h-6zM27 21h6v6h-6zM16 28h6v6h-6z" />
+      </ValueGlyph>
     ),
     title: 'Your Rules',
     description: 'Full control over access, extensions, and configuration.',
@@ -43,9 +49,12 @@ export default function ValuePropsSection() {
   return (
     <section className={styles.section} aria-labelledby="data-sovereignty-title">
       <div className={styles.inner}>
-        <h2 id="data-sovereignty-title" className={styles.heading}>Data Sovereignty by Design</h2>
+        <h2 id="data-sovereignty-title" className={styles.heading}>
+          <span aria-hidden="true">//</span>
+          Data Sovereignty by Design
+        </h2>
         <p className={styles.intro}>
-          Get the DBaaS experience without giving up control. Run PostgreSQL in your own infrastructure. Keep your databases, backups, and access under your control.
+          The DBaaS experience, with full control over your infrastructure and data.
         </p>
         <div className={styles.grid}>
           {props.map((p) => (

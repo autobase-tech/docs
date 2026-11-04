@@ -7,8 +7,7 @@
   --color-text: #111111;
   --color-text-muted: #555555;
   --color-border: #e0e0e0;
-  --shadow-pixel: rgba(0, 0, 0, 0.05);
-  --shadow-pixel-hover: rgba(0, 0, 0, 0.1);
+  --color-primary: var(--landing-accent);
   background: var(--color-bg);
 }
 
@@ -17,8 +16,6 @@
   --color-text: #f9fafb;
   --color-text-muted: #9ca3af;
   --color-border: #252a31;
-  --shadow-pixel: rgba(255, 255, 255, 0.06);
-  --shadow-pixel-hover: rgba(255, 255, 255, 0.11);
 }
 
 .divider {
@@ -29,9 +26,9 @@
 }
 
 .inner {
-  max-width: 1200px;
+  max-width: var(--landing-content-width, 1200px);
   margin: 0 auto;
-  padding: 48px 80px 56px;
+  padding: 48px var(--landing-gutter, 80px) 56px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -60,6 +57,7 @@
 }
 
 .themeToggle {
+  min-height: 44px;
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -74,15 +72,12 @@
   line-height: 1;
   text-transform: uppercase;
   cursor: pointer;
-  box-shadow: 4px 4px 0 var(--shadow-pixel, rgba(0, 0, 0, 0.05));
   transition: none;
 }
 
 .themeToggle:hover {
   border-color: var(--color-primary);
   color: var(--color-text);
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 var(--shadow-pixel-hover, rgba(0, 0, 0, 0.1));
 }
 
 .themePrompt {
@@ -111,15 +106,15 @@
 
 /* ─── Responsive ──────────────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .inner { padding: 40px 48px 48px; }
+  .inner { padding: 40px var(--landing-gutter, 80px) 48px; }
 }
 
 @media (max-width: 600px) {
-  .inner { padding: 32px 20px 40px; }
+  .inner { padding: 32px var(--landing-gutter, 80px) 40px; }
   .logoRow { align-items: flex-start; }
   .themeToggle { padding: 7px 10px; font-size: 12px; }
 }
 
 @media (max-width: 480px) {
-  .inner { padding: 28px 16px 36px; }
+  .inner { padding: 28px var(--landing-gutter, 80px) 36px; }
 }

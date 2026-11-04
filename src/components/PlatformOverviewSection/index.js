@@ -200,6 +200,9 @@ export default function PlatformOverviewSection() {
           <span aria-hidden="true">//</span>
           Platform overview
         </h2>
+        <p className={styles.intro}>
+          See Autobase in action, from cluster creation to everyday operations.
+        </p>
 
         <div className={styles.tabs} role="tablist" aria-label="Platform demonstrations">
           {demos.map((demo, index) => (

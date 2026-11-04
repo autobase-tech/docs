@@ -6,9 +6,9 @@
 }
 
 .inner {
-  max-width: 1200px;
+  max-width: var(--landing-content-width, 1200px);
   margin: 0 auto;
-  padding: 0 80px;
+  padding: 0 var(--landing-gutter, 80px);
 }
 
 /* ─── Banner card ─────────────────────────────────────────────────── */
@@ -21,13 +21,11 @@
   border: 1px solid var(--color-border);
   border-radius: 0;
   background: var(--color-bg);
-  box-shadow: 8px 8px 0 var(--shadow-pixel);
   transition: none;
 }
 
 .banner:hover {
   border-color: var(--color-border);
-  box-shadow: 10px 10px 0 var(--shadow-pixel-hover);
 }
 
 .banner::before {
@@ -287,7 +285,6 @@
   width: 13px;
   height: 13px;
   background: var(--color-primary);
-  box-shadow: 5px 5px 0 rgb(255 87 34 / 16%);
 }
 
 .timelineLabels {
@@ -624,30 +621,39 @@
   position: absolute;
   z-index: 4;
   left: 50%;
-  bottom: 14px;
+  bottom: 7px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0;
   transform: translateX(-50%);
 }
 
 .indicator {
+  position: relative;
   appearance: none;
-  border: 1px solid var(--color-text-muted);
+  border: 0;
   border-radius: 0;
   background: transparent;
   color: var(--color-text-muted);
   cursor: pointer;
-}
-
-.indicator {
-  width: 9px;
-  height: 9px;
+  width: 24px;
+  height: 24px;
   padding: 0;
 }
 
-.indicator:hover,
-.activeIndicator {
+.indicator::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--color-text-muted);
+  transform: translate(-50%, -50%);
+}
+
+.indicator:hover::before,
+.activeIndicator::before {
   border-color: var(--color-primary);
   background: var(--color-primary);
 }
@@ -659,14 +665,12 @@
 
 /* ─── Responsive ──────────────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .inner { padding: 0 48px; }
   .banner { height: 320px; text-align: center; padding: 36px 40px 46px; }
   .slide { flex-direction: column; justify-content: center; gap: 32px; }
   .underbar { margin: 10px auto 0; }
 }
 
 @media (max-width: 600px) {
-  .inner { padding: 0 20px; }
   .banner { height: 280px; padding: 14px 20px 32px; }
   .slide { flex-direction: column; justify-content: center; gap: 16px; }
   .visual { gap: 16px; }

@@ -1,8 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
 
-const clusterCount = 32;
+const clusterCount = 21;
 const initialReplicaCount = 2;
 const maxReplicaCount = 4;
 
@@ -542,7 +541,7 @@ const features = [
   },
   {
     label: 'Monitoring',
-    description: 'Built-in Metrics & Alerting',
+    description: 'Built-in Dashboards',
     icon: (
       <FeatureGlyph>
         <path d="M14 34V15M14 34h21" />
@@ -592,27 +591,25 @@ function DiagramInner() {
   );
 }
 
+export function ArchitectureDiagram() {
+  return (
+    <div className={styles.overview} role="region" aria-label="Autobase platform architecture">
+      <DiagramInner />
+    </div>
+  );
+}
+
 export default function ArchDiagramSection() {
   return (
-    <section className={styles.section} aria-labelledby="system-overview-title">
+    <section className={styles.section} aria-labelledby="day-2-operations-title">
       <div className={styles.inner}>
-        <h2 id="system-overview-title" className={styles.sectionLabel}>
+        <h2 id="day-2-operations-title" className={styles.sectionLabel}>
           <span aria-hidden="true">//</span>
-          System overview
+          Automated Day-2 Operations
         </h2>
-
-        {/* ── Architecture Diagram ── */}
-        <DiagramInner />
-
-        <Link to="/docs/overview/architecture" className={styles.architectureLink}>
-          Architecture details
-          <span aria-hidden="true">-&gt;</span>
-        </Link>
-
-        {/* ── Divider ── */}
-        <hr className={styles.divider} />
-
-        {/* ── Features Grid ── */}
+        <p className={styles.intro}>
+          Keep PostgreSQL reliable and up to date, with less manual work.
+        </p>
         <div className={styles.featuresGrid} aria-label="Platform capabilities">
           {features.map((f) => (
             <div key={f.label} className={styles.featureCard}>
@@ -622,7 +619,6 @@ export default function ArchDiagramSection() {
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );

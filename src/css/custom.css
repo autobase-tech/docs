@@ -119,6 +119,36 @@ html.docs-wrapper[data-theme='light'] .theme-doc-toc-desktop {
   background-color: #F9FAFB;
 }
 
+/* Shared grid for the marketing pages, header, and footer. */
+html:has(.landingPage) {
+  --landing-content-width: 1320px;
+  --landing-gutter: 80px;
+  --landing-accent: #ff5722;
+  --landing-accent-fill: #ff5722;
+  --landing-on-accent: #111111;
+}
+
+html[data-theme='dark']:has(.landingPage) {
+  --landing-accent: #ff5722;
+}
+
+@media (max-width: 1100px) {
+  html:has(.landingPage) { --landing-gutter: 48px; }
+}
+
+@media (max-width: 768px) {
+  html:has(.landingPage) { --landing-gutter: 24px; }
+}
+
+@media (max-width: 480px) {
+  html:has(.landingPage) { --landing-gutter: 16px; }
+}
+
+html:has(.landingPage) :is(a, button, input, select, textarea, [role='button']):focus-visible {
+  outline: 2px solid var(--landing-accent);
+  outline-offset: 4px;
+}
+
 .landingPage {
   --ifm-background-color: #F9FAFB !important;
   --ifm-background-surface-color: #F9FAFB !important;
@@ -134,12 +164,12 @@ html.docs-wrapper[data-theme='light'] .theme-doc-toc-desktop {
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 
   --font-base: 'Quantico', sans-serif;
-  --fw-light: 200;
+  --fw-light: 400;
   --fw-regular: 400;
-  --fw-medium: 500;
+  --fw-medium: 400;
   --fw-semibold: 600;
   --fw-bold: 700;
-  --fw-black: 900;
+  --fw-black: 700;
 
   --fs-hero: clamp(48px, 6vw, 86px);
   --fs-h2: clamp(32px, 4vw, 58px);
@@ -150,7 +180,7 @@ html.docs-wrapper[data-theme='light'] .theme-doc-toc-desktop {
   --fs-btn: clamp(14px, 1.4vw, 22px);
   --fs-sm: clamp(13px, 1.2vw, 19px);
 
-  --color-primary: #ff5722;
+  --color-primary: var(--landing-accent);
   --color-primary-alt: #fc6902;
   --color-gradient-end: #be987d;
   --color-white: #ffffff;
@@ -232,7 +262,6 @@ html[data-theme='dark']:has(.landingPage) .footer {
 
 .landingPage p {
   font-family: var(--font-base);
-  font-weight: var(--fw-light);
 }
 
 .landing-sr-only {

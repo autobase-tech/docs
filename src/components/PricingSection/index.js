@@ -178,7 +178,7 @@ export default function PricingSection() {
 
       {/* ── Heading ── */}
       <div className={styles.hero}>
-        <h2 className={styles.heading}>Pricing</h2>
+        <h1 className={styles.heading}>Pricing</h1>
         <p className={styles.subtitle}>
           You are not buying a tool. You are buying a{' '}
           <span className={styles.orange}>system</span>.
@@ -196,18 +196,22 @@ export default function PricingSection() {
         </div>
       </div>
 
-      {/* ── Billing switcher (placeholder) ── */}
+      {/* ── Billing switcher ── */}
       <div className={styles.switcherWrap}>
         <p className={styles.billingLabel}>Billing period</p>
         <div className={styles.switcher}>
           <button
+            type="button"
             className={clsx(styles.switchBtn, !monthly && styles.switchBtnActive)}
+            aria-pressed={!monthly}
             onClick={() => setMonthly(false)}
           >
             Paid yearly
           </button>
           <button
+            type="button"
             className={clsx(styles.switchBtn, monthly && styles.switchBtnActive)}
+            aria-pressed={monthly}
             onClick={() => setMonthly(true)}
           >
             Paid monthly
@@ -284,9 +288,9 @@ export default function PricingSection() {
             <span aria-hidden="true">//</span>
             The economics
           </p>
-          <h3 id="economics-heading" className={styles.economicsHeading}>
+          <h2 id="economics-heading" className={styles.economicsHeading}>
             PostgreSQL is free. Running it at scale is not.
-          </h3>
+          </h2>
         </div>
 
         <div className={styles.comparisonGrid}>
@@ -319,7 +323,7 @@ export default function PricingSection() {
         <div className={styles.roiCalculator}>
           <div className={styles.calculatorIntro}>
             <p className={styles.eyebrow}>Estimate your return</p>
-            <h4 className={styles.calculatorHeading}>What is released engineering time worth?</h4>
+            <h3 className={styles.calculatorHeading}>What is released engineering time worth?</h3>
             <div className={styles.calculatorDescription}>
               <span>Based on a modeled engineering cost of {formattedEngineeringCost} per month.</span>
               <button
@@ -401,9 +405,9 @@ export default function PricingSection() {
           <div className={styles.infrastructureHeader}>
             <div>
               <p className={styles.eyebrow}>Infrastructure cost</p>
-              <h4 id="infrastructure-heading" className={styles.infrastructureHeading}>
+              <h3 id="infrastructure-heading" className={styles.infrastructureHeading}>
                 Managed Postgres vs Autobase
-              </h4>
+              </h3>
             </div>
             <div className={styles.infrastructureSwitcher} aria-label="Infrastructure size">
               {Object.keys(INFRASTRUCTURE_COSTS).map((size) => (
@@ -411,10 +415,6 @@ export default function PricingSection() {
                   key={size}
                   type="button"
                   className={clsx(styles.infrastructureSwitchBtn, infrastructureSize === size && styles.infrastructureSwitchBtnActive)}
-                  style={infrastructureSize === size ? {
-                    backgroundColor: 'var(--color-primary)',
-                    color: 'var(--color-white)',
-                  } : undefined}
                   onClick={() => setInfrastructureSize(size)}
                   aria-pressed={infrastructureSize === size}
                 >

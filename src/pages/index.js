@@ -19,8 +19,8 @@ export default function Home() {
       <main>
         <ArchDiagramSection />
         <PlatformOverviewSection />
-        <CLISection />
         <ValuePropsSection />
+        <CLISection />
         {/* <ProductHighlightsSection /> */}
         <ContactSection />
         <SocialProofSection />
