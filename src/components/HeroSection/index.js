@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
-import TrustedByCarousel from '@site/src/components/TrustedByCarousel';
+import TrustedByLogos from '@site/src/components/TrustedByLogos';
 import { ArchitectureDiagram } from '@site/src/components/ArchDiagramSection';
 import styles from './styles.module.css';
 
@@ -41,7 +41,7 @@ export default function HeroSection() {
           <ArchitectureDiagram />
         </div>
 
-        <TrustedByCarousel />
+        <TrustedByLogos />
 
         <a
           className={styles.reference}

@@ -10,9 +10,7 @@
 .label {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 8px;
-  margin-bottom: 10px;
   font-family: var(--font-base);
   font-size: clamp(12px, 1vw, 14px);
   color: var(--color-text-muted);
@@ -23,18 +21,13 @@
   color: var(--color-primary);
 }
 
-.logoRow {
+.header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
   gap: 12px;
-}
-
-.strip {
-  position: relative;
-  flex: 1;
-  min-width: 0;
-  overflow: hidden;
+  margin-bottom: 12px;
 }
 
 .addLogo {
@@ -138,52 +131,32 @@
   text-decoration: none;
 }
 
-.strip::before,
-.strip::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  z-index: 1;
-  width: 64px;
-  pointer-events: none;
+.logoGrid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  width: 100%;
+  gap: 1px;
+  border: 1px solid var(--color-border);
+  background: var(--color-border);
 }
 
-.strip::before {
-  left: 0;
-  background: linear-gradient(to right, var(--color-bg), transparent);
-}
-
-.strip::after {
-  right: 0;
-  background: linear-gradient(to left, var(--color-bg), transparent);
-}
-
-.track {
-  display: flex;
-  width: max-content;
-  animation: marquee 48s linear infinite;
-}
-
-.strip:hover .track {
-  animation-play-state: paused;
-}
-
-.logoSet {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
+.logoGrid > .addLogo {
+  display: none;
 }
 
 .logoLink {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 160px;
-  height: 58px;
-  padding: 10px 26px;
-  flex-shrink: 0;
-  position: relative;
+  min-width: 0;
+  height: 76px;
+  padding: 8px clamp(10px, 1.6vw, 22px);
+  background: var(--color-bg);
+}
+
+.logoLink:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
 }
 
 .logoImg {
@@ -193,6 +166,7 @@
   width: auto;
   height: auto;
   object-fit: contain;
+  transform: scale(var(--logo-scale, 1));
   filter: grayscale(100%) contrast(115%);
   opacity: 0.68;
   transition: none;
@@ -200,7 +174,7 @@
 
 .logoSquareAsset {
   width: 78px;
-  max-height: none;
+  max-height: 60px;
 }
 
 .logoLink:hover .logoImg {
@@ -235,48 +209,53 @@
   opacity: 0.9;
 }
 
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
 @media (max-width: 768px) {
   .trustedBy {
     margin-top: 4px;
   }
 
-  .addLogo {
+  .header > .addLogo {
     display: none;
   }
 
+  .logoGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .logoGrid > .addLogo {
+    display: inline-flex;
+    height: 58px;
+    border: 0;
+    background: var(--color-bg);
+    outline-offset: -2px;
+  }
+
+  .logoGrid:has(> .addLogo:not(:nth-child(3n)))::after {
+    content: '';
+    grid-column-end: -1;
+    background: var(--color-bg);
+  }
+
+  .logoGrid:has(> .addLogo:nth-child(3n + 1))::after {
+    grid-column: span 2 / -1;
+  }
+
   .logoLink {
-    width: 132px;
-    height: 52px;
-    padding: 9px 22px;
+    height: 58px;
   }
 
   .logoImg {
-    max-height: 33px;
+    max-width: min(100%, 116px);
+    max-height: 26px;
+  }
+
+  .logoSquareAsset {
+    max-height: 48px;
   }
 }
 
 @media (max-width: 480px) {
   .dialogContent {
     padding: 28px 20px;
-  }
-
-  .strip::before,
-  .strip::after {
-    width: 32px;
-  }
-
-  .logoLink {
-    width: 118px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .track {
-    animation: none;
   }
 }
