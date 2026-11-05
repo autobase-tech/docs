@@ -15,7 +15,7 @@ const trusted = [
   { name: 'Toncarton', img: '/img/trusted/toncarton.png', darkImg: '/img/trusted/toncarton.dark.png', href: 'https://www.toncarton.com' },
   { name: 'Asakabank', img: '/img/trusted/asakabank.png', darkImg: '/img/trusted/asakabank.dark.png', href: 'https://www.asakabank.uz/en/' },
   { name: 'Codefloe', img: '/img/trusted/codefloe.png', darkImg: '/img/trusted/codefloe.dark.png', href: 'https://codefloe.com', scale: 1.2 },
-  { name: 'Awarebuildings', img: '/img/trusted/awarebuildings.png', darkImg: '/img/trusted/awarebuildings.dark.png', href: 'https://www.awarebuildings.com', scale: 1.5 },
+  { name: 'Awarebuildings', img: '/img/trusted/awarebuildings.png', darkImg: '/img/trusted/awarebuildings.dark.png', href: 'https://www.awarebuildings.com', square: true, scale: 1.5 },
 ];
 
 const uniqueLogos = trusted.filter(
@@ -26,17 +26,6 @@ const logoOffsetKey = 'autobase-trusted-logo-offset';
 
 function getLogoBatch(offset) {
   return uniqueLogos.slice(offset).concat(uniqueLogos.slice(0, offset)).slice(0, logoLimit);
-}
-
-function normalizeLogoSize(event) {
-  const image = event.currentTarget;
-  if (!image.naturalWidth || !image.naturalHeight) {
-    return;
-  }
-
-  if (image.naturalHeight / image.naturalWidth > 0.55) {
-    image.classList.add(styles.logoSquareAsset);
-  }
 }
 
 function LogoGrid({ children }) {
@@ -63,36 +52,40 @@ function LogoGrid({ children }) {
 
   return (
     <div className={styles.logoGrid}>
-      {logos.map((sponsor) => (
-        <a
-          key={sponsor.name}
-          href={sponsor.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.logoLink}
-          style={sponsor.scale === undefined ? undefined : { '--logo-scale': sponsor.scale }}
-          aria-label={sponsor.name}
-        >
-          <img
-            src={sponsor.img}
-            alt=""
-            className={`${styles.logoImg} ${sponsor.darkImg ? styles.logoLight : ''}`}
-            onLoad={normalizeLogoSize}
-            loading="lazy"
-            decoding="async"
-          />
-          {sponsor.darkImg && (
+      {logos.map((sponsor) => {
+        const imageClassName = sponsor.square
+          ? `${styles.logoImg} ${styles.logoSquareAsset}`
+          : styles.logoImg;
+
+        return (
+          <a
+            key={sponsor.name}
+            href={sponsor.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.logoLink}
+            style={sponsor.scale === undefined ? undefined : { '--logo-scale': sponsor.scale }}
+            aria-label={sponsor.name}
+          >
             <img
-              src={sponsor.darkImg}
+              src={sponsor.img}
               alt=""
-              className={`${styles.logoImg} ${styles.logoDark}`}
-              onLoad={normalizeLogoSize}
+              className={sponsor.darkImg ? `${imageClassName} ${styles.logoLight}` : imageClassName}
               loading="lazy"
               decoding="async"
             />
-          )}
-        </a>
-      ))}
+            {sponsor.darkImg && (
+              <img
+                src={sponsor.darkImg}
+                alt=""
+                className={`${imageClassName} ${styles.logoDark}`}
+                loading="lazy"
+                decoding="async"
+              />
+            )}
+          </a>
+        );
+      })}
       {children}
     </div>
   );
