@@ -608,7 +608,7 @@ export default function ArchDiagramSection() {
           Automated Day-2 Operations
         </h2>
         <p className={styles.intro}>
-          Keep PostgreSQL reliable and up to date, with less manual work.
+          Keep PostgreSQL reliable and up to date, without manual work.
         </p>
         <div className={styles.featuresGrid} aria-label="Platform capabilities">
           {features.map((f) => (
