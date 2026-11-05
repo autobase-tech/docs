@@ -1,6 +1,6 @@
 .section {
   background: var(--color-bg);
-  padding: 64px 0 0;
+  padding-top: 40px;
 }
 
 .inner {
@@ -76,7 +76,7 @@
 }
 
 @media (max-width: 768px) {
-  .section { padding: 40px 0 0; }
+  .section { padding-top: 28px; }
   .heading { margin-bottom: 18px; }
   .intro { margin-bottom: 24px; font-size: 16px; }
   .grid { grid-template-columns: minmax(0, 1fr); }
@@ -85,7 +85,7 @@
 }
 
 @media (max-width: 480px) {
-  .section { padding: 32px 0 0; }
+  .section { padding-top: 24px; }
   .card { padding: 20px 18px; }
   .icon svg { width: 36px; height: 36px; }
   .description { font-size: 14px; }

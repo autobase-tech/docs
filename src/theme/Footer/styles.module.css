@@ -34,6 +34,10 @@
   gap: 20px;
 }
 
+:global(.landingPage) + .footer .inner {
+  padding-top: 28px;
+}
+
 /* ─── Logo ────────────────────────────────────────────────────────── */
 .logoRow {
   display: flex;

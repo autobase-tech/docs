@@ -1,8 +1,8 @@
 import React from 'react';
 import Layout from '@theme/Layout';
 import HeroSection from '@site/src/components/HeroSection';
-import ArchDiagramSection from '@site/src/components/ArchDiagramSection';
 import PlatformOverviewSection from '@site/src/components/PlatformOverviewSection';
+import ArchDiagramSection from '@site/src/components/ArchDiagramSection';
 import ValuePropsSection from '@site/src/components/ValuePropsSection';
 import ProductHighlightsSection from '@site/src/components/ProductHighlightsSection';
 import CLISection from '@site/src/components/CLISection';
@@ -17,8 +17,8 @@ export default function Home() {
       description="Automated database platform for PostgreSQL">
       <HeroSection />
       <main>
-        <ArchDiagramSection />
         <PlatformOverviewSection />
+        <ArchDiagramSection />
         <ValuePropsSection />
         <CLISection />
         {/* <ProductHighlightsSection /> */}

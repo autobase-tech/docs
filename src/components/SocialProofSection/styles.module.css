@@ -1,7 +1,7 @@
 /* ─── Section ─────────────────────────────────────────────────────── */
 .section {
   background: var(--color-bg);
-  padding: 0 0 16px;
+  padding: 0;
   margin-bottom: 0;
 }
 
