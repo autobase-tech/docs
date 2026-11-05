@@ -97,11 +97,6 @@ const config = {
             label: 'Support',
             position: 'right',
           },
-          {
-            type: 'html',
-            position: 'right',
-            value: `<a href="https://github.com/autobase-tech/autobase" target="_blank" style="display: flex; align-items: center;"><img src="https://img.shields.io/github/stars/autobase-tech/autobase?style=social" alt="GitHub stars" style="height: 22px;"></a>`,
-          }
         ],
       },
       docs: {
