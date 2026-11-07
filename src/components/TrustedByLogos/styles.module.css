@@ -35,12 +35,12 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  flex: 0 0 108px;
+  height: 76px;
   min-height: 44px;
   padding: 0 8px;
-  border: 1px solid var(--color-border);
+  border: 0;
   border-radius: 0;
-  background: transparent;
+  background: var(--color-bg);
   color: var(--color-text-muted);
   font: 400 13px var(--font-base);
   white-space: nowrap;
@@ -58,6 +58,10 @@
 .emailButton:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 3px;
+}
+
+.addLogo:focus-visible {
+  outline-offset: -2px;
 }
 
 .dialog {
@@ -140,10 +144,6 @@
   background: var(--color-border);
 }
 
-.logoGrid > .addLogo {
-  display: none;
-}
-
 .logoLink {
   display: flex;
   align-items: center;
@@ -214,30 +214,17 @@
     margin-top: 4px;
   }
 
-  .header > .addLogo {
-    display: none;
-  }
-
   .logoGrid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .logoGrid > .addLogo {
-    display: inline-flex;
     height: 58px;
-    border: 0;
-    background: var(--color-bg);
-    outline-offset: -2px;
+    grid-column: -2 / -1;
   }
 
-  .logoGrid:has(> .addLogo:not(:nth-child(3n)))::after {
-    content: '';
-    grid-column-end: -1;
-    background: var(--color-bg);
-  }
-
-  .logoGrid:has(> .addLogo:nth-child(3n + 1))::after {
-    grid-column: span 2 / -1;
+  .logoLink:nth-of-type(n + 12) {
+    display: none;
   }
 
   .logoLink {

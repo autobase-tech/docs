@@ -9,7 +9,6 @@ const trusted = [
   { name: 'Edclub', img: '/img/trusted/edclub.png', darkImg: '/img/trusted/edclub.dark.png', href: 'https://www.edclub.com' },
   { name: 'Optiwise', img: '/img/trusted/optiwise.png', darkImg: '/img/trusted/optiwise.dark.png', href: 'https://optiwise.nl' },
   { name: 'New Byte', img: '/img/trusted/newbyte.png', darkImg: '/img/trusted/newbyte.dark.png', href: 'https://newbyte.net.br' },
-  { name: 'Antistock', img: '/img/trusted/antistock.png', darkImg: '/img/trusted/antistock.dark.png', href: 'https://antistock.io' },
   { name: 'We-Manage', img: '/img/trusted/we-manage.png', darkImg: '/img/trusted/we-manage.dark.png', href: 'https://we-manage.de' },
   { name: 'Postgres.AI', img: '/img/trusted/postgresai.png', darkImg: '/img/trusted/postgresai.dark.png', href: 'https://postgres.ai' },
   { name: 'Toncarton', img: '/img/trusted/toncarton.png', darkImg: '/img/trusted/toncarton.dark.png', href: 'https://www.toncarton.com' },
@@ -21,7 +20,7 @@ const trusted = [
 const uniqueLogos = trusted.filter(
   (logo, index) => trusted.findIndex((entry) => entry.name === logo.name) === index,
 );
-const logoLimit = 14;
+const logoLimit = 13;
 const logoOffsetKey = 'autobase-trusted-logo-offset';
 
 function getLogoBatch(offset) {
@@ -41,8 +40,7 @@ function LogoGrid({ children }) {
       const offset = Number.isSafeInteger(storedOffset) && storedOffset >= 0
         ? storedOffset % uniqueLogos.length
         : 0;
-      const step = uniqueLogos.length > logoLimit ? logoLimit : 1;
-      const nextOffset = (offset + step) % uniqueLogos.length;
+      const nextOffset = (offset + 1) % uniqueLogos.length;
       window.sessionStorage.setItem(logoOffsetKey, String(nextOffset));
       setLogos(getLogoBatch(offset));
     } catch {
@@ -111,7 +109,6 @@ export default function TrustedByLogos() {
           <span className={styles.prompt}>//</span>
           <span>Trusted by teams running Autobase in production</span>
         </div>
-        {addLogoButton}
       </div>
       <LogoGrid>{addLogoButton}</LogoGrid>
       <dialog
