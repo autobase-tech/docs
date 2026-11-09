@@ -46,6 +46,12 @@ const demos = [
     file: 'add-replica.mp4',
     description: 'Scale PostgreSQL clusters by adding replicas.',
   },
+  {
+    id: 'monitoring',
+    label: 'Monitoring',
+    file: 'monitoring.mp4',
+    description: 'Monitor PostgreSQL cluster health and performance.',
+  },
 ];
 
 export default function PlatformOverviewSection() {
