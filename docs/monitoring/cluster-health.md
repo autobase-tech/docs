@@ -25,7 +25,7 @@ Example of a three-node cluster with the `healthy` status:
 | `healthy` | Patroni reports at least the expected number of PostgreSQL members, and at least that many members are in the `running` or `streaming` state. |
 | `unhealthy` | Patroni reports the expected number of members or more, but fewer than the expected number are `running` or `streaming`. For example, a member may be present but stopped or still starting. |
 | `degraded` | Patroni reports fewer PostgreSQL members than expected. One or more database nodes are missing from the reported topology. |
-| `unavailable` | The platform cannot retrieve cluster information from any of the known nodes' Patroni APIs for a cluster previously connected to Patroni. This can indicate an unreachable cluster or a connectivity problem between the platform and its nodes. |
+| `unavailable` | The platform previously connected to Patroni but can no longer retrieve cluster information from any known node's Patroni API. This can indicate an unreachable cluster or a connectivity problem between the platform and its nodes. |
 | `maintenance` | The interface temporarily displays this status while it tracks an active management operation for the cluster, such as applying configuration changes, scaling, or upgrading. Check **Operations** for progress and logs. |
 
 A health status summarizes Patroni membership and member states. It does not evaluate application response times, CPU or disk utilization, replication lag thresholds, or every aspect of database availability. Use the [dashboards](./dashboards.md) to investigate performance and resource usage.

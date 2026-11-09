@@ -6,7 +6,7 @@ sidebar_position: 3
 
 Click a cluster name on the **Clusters** page, then open **Monitoring**. Each cluster has its own monitoring page with **System**, **Postgres**, **PgBouncer**, **Tables**, and **Indexes** tabs.
 
-The charts use metrics collected by the Netdata agents on the database nodes. See [Netdata integration](./overview.md#netdata-integration) for how data is collected and how to open the full Netdata dashboard.
+The charts use metrics collected by the Netdata agents on the database nodes. See [Netdata integration](./overview.md#netdata-integration) for collection and retention details, or [open the full Netdata dashboard](#open-the-netdata-dashboard) to explore more metrics.
 
 ## Select nodes and a period
 
@@ -38,7 +38,7 @@ Devices, mount points, and network interfaces remain separate so you can identif
 
 The **Postgres** dashboard covers database activity, connections, locking, I/O, replication, and maintenance.
 
-| Charts or group | What they show |
+| Charts or groups | What they show |
 | --- | --- |
 | Activity | Committed and rolled-back transactions, transaction age distribution, available and used connections, connections by state, and rows read and written. |
 | Locks | Held locks, waiting locks, and deadlocks. |
@@ -58,7 +58,7 @@ The **PgBouncer** dashboard helps you inspect connection pooling and client wait
 The **PgBouncer** tab is hidden when PgBouncer is disabled in the cluster configuration.
 :::
 
-| Charts or group | What they show |
+| Charts or groups | What they show |
 | --- | --- |
 | Connections | Client and server connections by state. |
 | Client waits | Accumulated client wait time and the collector-reported maximum wait time. |
@@ -74,7 +74,7 @@ When a node runs multiple PgBouncer processes, their metrics remain separate. Da
 
 The **Tables** dashboard provides metrics for individual tables. Filter by database and schema, then choose the tables to display. By default, the dashboard selects up to 10 tables ranked by activity in the selected period.
 
-| Charts or group | What they show |
+| Charts or groups | What they show |
 | --- | --- |
 | Writes and HOT updates | Inserts, updates, deletes, HOT updates, and the HOT-update percentage. |
 | Scans | Sequential and index scans, and rows fetched by each scan method. |
@@ -101,7 +101,7 @@ Netdata provides a much larger set of metrics and dashboards, which you can expl
 http://NODE:19999
 ```
 
-Replace `NODE` with the hostname or IP address of a database node reachable from your browser. Each agent provides the metrics collected on that node. Direct access requires connectivity to port `19999` and permission under the agent's access configuration; public access is disabled by default.
+Replace `NODE` with the hostname or IP address of a database node reachable from your browser. Each agent provides the metrics collected on that node. Direct access requires connectivity to port `19999` and permission under the agent's access configuration. In cloud deployments, public access is disabled by default.
 
 See [Netdata dashboards and charts](https://learn.netdata.cloud/docs/dashboards-and-charts) for more information about accessing the agent's dashboards.
 
