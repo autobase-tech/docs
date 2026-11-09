@@ -1,0 +1,8 @@
+{
+  "label": "Monitoring",
+  "position": 5,
+  "link": {
+    "type": "doc",
+    "id": "monitoring/overview"
+  }
+}
