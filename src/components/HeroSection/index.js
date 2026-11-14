@@ -26,7 +26,7 @@ export default function HeroSection() {
 
             <p className={styles.subheading}>
               The simplicity of managed database{' '}
-              <span className={styles.subheadingSecondLine}>On your own infrastructure.</span>
+              <span className={styles.subheadingSecondLine}>on your own infrastructure.</span>
             </p>
 
             <div className={styles.actions}>

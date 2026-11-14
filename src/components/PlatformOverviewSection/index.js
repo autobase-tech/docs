@@ -206,8 +206,12 @@ export default function PlatformOverviewSection() {
           <span aria-hidden="true">//</span>
           Platform overview
         </h2>
+        <p className={styles.subtitle}>
+          Your PostgreSQL fleet. One control plane.
+        </p>
         <p className={styles.intro}>
-          See Autobase in action, from cluster creation to everyday operations.
+          Deploy, configure, and operate production-ready PostgreSQL clusters from one console.
+          {' '}Bring the managed database experience to your own infrastructure.
         </p>
 
         <div className={styles.tabs} role="tablist" aria-label="Platform demonstrations">

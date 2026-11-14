@@ -607,8 +607,12 @@ export default function ArchDiagramSection() {
           <span aria-hidden="true">//</span>
           Automated Day-2 Operations
         </h2>
+        <p className={styles.subtitle}>
+          Less database maintenance. More time to build.
+        </p>
         <p className={styles.intro}>
-          Keep PostgreSQL reliable and up to date, without manual work.
+          Take repetitive PostgreSQL tasks off your team’s plate with automated failover,
+          {' '}continuous backups, and workflows for recovery, upgrades, and scaling.
         </p>
         <div className={styles.featuresGrid} aria-label="Platform capabilities">
           {features.map((f) => (

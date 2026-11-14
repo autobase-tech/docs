@@ -53,8 +53,12 @@ export default function ValuePropsSection() {
           <span aria-hidden="true">//</span>
           Data Sovereignty by Design
         </h2>
+        <p className={styles.subtitle}>
+          Your PostgreSQL. On your terms.
+        </p>
         <p className={styles.intro}>
-          The DBaaS experience, with full control over your infrastructure and data.
+          Get the convenience of managed PostgreSQL while keeping control over where your data lives,
+          {' '}who can access it, and how your databases run.
         </p>
         <div className={styles.grid}>
           {props.map((p) => (
