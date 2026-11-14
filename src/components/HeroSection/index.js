@@ -25,7 +25,7 @@ export default function HeroSection() {
             </h1>
 
             <p className={styles.subheading}>
-              The simplicity of managed PostgreSQL.{' '}
+              The simplicity of managed database{' '}
               <span className={styles.subheadingSecondLine}>On your own infrastructure.</span>
             </p>
 
