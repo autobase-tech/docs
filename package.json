@@ -18,7 +18,7 @@
     "@docusaurus/faster": "^3.10.0",
     "@docusaurus/preset-classic": "^3.10.0",
     "@mdx-js/react": "^3.1.1",
-    "bootstrap": "5.3.8",
+    "bootstrap": "5.3.9",
     "chart.js": "^4.5.1",
     "clsx": "^2.1.1",
     "gsap": "^3.15.0",
