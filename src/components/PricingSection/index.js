@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import { blackFridayOffer, useBlackFridayOfferActive } from '@site/src/blackFridayOffer';
 import styles from './styles.module.css';
 
 const DEFAULT_ENGINEERING_COST_PER_MONTH = 8500;
@@ -111,6 +112,8 @@ const plans = [
 
 export default function PricingSection() {
   const [monthly, setMonthly] = useState(true);
+  const offerActive = useBlackFridayOfferActive();
+  const showAnnualOffer = offerActive && !monthly;
   const [releasedHours, setReleasedHours] = useState(160);
   const [engineeringCostPerMonth, setEngineeringCostPerMonth] = useState(DEFAULT_ENGINEERING_COST_PER_MONTH);
   const [engineeringCostInput, setEngineeringCostInput] = useState(String(DEFAULT_ENGINEERING_COST_PER_MONTH));
@@ -235,7 +238,24 @@ export default function PricingSection() {
               <p className={styles.planName}>{plan.name}</p>
 
               <div className={styles.priceBlock}>
-                {plan.price !== undefined ? (
+                {plan.id === 'standard' && showAnnualOffer ? (
+                  <>
+                    <p className={styles.price}>
+                      <s>
+                        <span className={styles.currency}>$</span>
+                        {blackFridayOffer.renewalPrice.slice(1)}
+                      </s>
+                    </p>
+                    <p className={styles.price}>
+                      <span className={styles.currency}>$</span>
+                      {blackFridayOffer.firstYearPrice.slice(1)}
+                    </p>
+                    <p className={styles.billing}>
+                      First year. Renews at {blackFridayOffer.renewalPrice}/year.
+                    </p>
+                    <Link className={styles.offerLink} to="/black-friday">Black Friday offer details</Link>
+                  </>
+                ) : plan.price !== undefined ? (
                   <>
                     <p className={styles.price}>
                       <span className={styles.currency}>$</span>

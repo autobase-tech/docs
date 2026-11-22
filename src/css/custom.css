@@ -2,23 +2,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import 'bootstrap/dist/css/bootstrap-grid.min.css';
 
-[class*='announcementBar_'] {
-  border-bottom: 1px solid rgb(255 87 34 / 55%);
+.theme-announcement-bar[role='banner'] {
+  --announcement-bar-background: #f9fafb;
+  background-color: var(--announcement-bar-background) !important;
+  border-bottom: 0;
   color: var(--ifm-font-color-base) !important;
   font-family: 'Quantico', sans-serif;
   font-size: 12px;
   letter-spacing: 0.04em;
 }
 
-[class*='announcementBar_'] [class*='announcementBarContent_'],
-[class*='announcementBar_'] a {
-  color: inherit !important;
-  text-decoration-color: var(--landing-accent, #ff5722);
+[data-theme='dark'] .theme-announcement-bar {
+  --announcement-bar-background: #0d1114;
+  color: #f9fafb !important;
+}
+
+.docs-wrapper[data-theme='dark'] .theme-announcement-bar {
+  --announcement-bar-background: #090c10;
+}
+
+.theme-announcement-bar .announcement-label {
+  display: inline-block;
+  margin-inline-end: 6px;
+  padding: 2px 6px;
+  background-color: #ff773d;
+  color: #160f0c;
+  line-height: 1.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.theme-announcement-bar a {
+  color: inherit;
+  text-decoration-color: currentColor;
   text-underline-offset: 3px;
 }
 
-.announcement-system {
-  color: var(--landing-accent, #ff5722) !important;
+.theme-announcement-bar .close {
+  color: inherit;
+  opacity: 1;
 }
 
 /**

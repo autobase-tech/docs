@@ -231,6 +231,14 @@
   margin-right: 2px;
 }
 
+.offerLink {
+  align-self: flex-start;
+  color: var(--color-text);
+  font-size: 0.875rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .billing,
 .freeDesc {
   font-family: var(--font-base);

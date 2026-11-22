@@ -24,10 +24,12 @@ export default function Navbar(props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const homePath = useBaseUrl('/');
   const pricingPath = useBaseUrl('/pricing');
+  const blackFridayPath = useBaseUrl('/black-friday');
   const normalizedPath = normalizePath(pathname);
   const isLandingHeader =
     normalizedPath === normalizePath(homePath) ||
-    normalizedPath === normalizePath(pricingPath);
+    normalizedPath === normalizePath(pricingPath) ||
+    normalizedPath === normalizePath(blackFridayPath);
 
   if (!isLandingHeader) {
     return (

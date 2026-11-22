@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
 import TrustedByLogos from '@site/src/components/TrustedByLogos';
-import { ArchitectureDiagram } from '@site/src/components/ArchDiagramSection';
+import BlackFridayOffer from './BlackFridayOffer';
 import styles from './styles.module.css';
 
 const LINE1 = 'DATABASE PLATFORM';
@@ -38,7 +38,7 @@ export default function HeroSection() {
               </Link>
             </div>
           </div>
-          <ArchitectureDiagram />
+          <BlackFridayOffer />
         </div>
 
         <TrustedByLogos />

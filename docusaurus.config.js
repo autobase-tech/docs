@@ -78,14 +78,20 @@ const config = {
     ({
       // Replace with your project's social card
       image: 'img/autobase-social-card.png',
-      /*
       announcementBar: {
+        id: 'black-friday-2026',
         content:
-          '<span class="announcement-system">[ SYSTEM UPDATE ]</span> <a target="_blank" rel="noopener noreferrer" href="https://github.com/autobase-tech/autobase/releases/tag/2.12.0">Autobase 2.12 released -&gt;</a>',
-        backgroundColor: 'rgb(255 92 40 / 15%)',
+          '<strong class="announcement-label">Black Friday</strong> <a href="/black-friday">50% off your first year of Standard</a>',
         isCloseable: true,
       },
-      */
+      // To announce a release, replace the active announcementBar with this example.
+      // Use a new id for each release so users who dismissed an earlier announcement see the new one.
+      // announcementBar: {
+      //   id: 'release-2-12-0',
+      //   content:
+      //     '<strong class="announcement-label">New Release</strong> <a href="https://github.com/autobase-tech/autobase/releases/tag/2.12.0">Autobase 2.12.0 is out</a>',
+      //   isCloseable: true,
+      // },
       navbar: {
         hideOnScroll: true,
         title: 'Autobase Docs',

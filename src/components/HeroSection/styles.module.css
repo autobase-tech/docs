@@ -194,6 +194,117 @@
 .reference:hover .referenceLink { text-decoration: underline; }
 .reference:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 4px; }
 
+.offerCard {
+  display: grid;
+  gap: 12px;
+  padding: clamp(20px, 3vw, 36px);
+  border: 1px solid var(--color-diagram-border);
+  background: color-mix(in srgb, var(--color-primary) 3%, var(--color-bg));
+  color: var(--color-text);
+  font-family: var(--font-base);
+}
+
+.offerCard .label {
+  color: var(--color-text);
+  font-size: 0.875rem;
+}
+
+.offerCard .label span { color: var(--color-primary); }
+
+.offerHeading {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: clamp(1.25rem, 2.2vw, 1.65rem);
+  line-height: 1.2;
+}
+
+.offerDiscount {
+  color: var(--color-primary);
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+}
+
+.offerPrice,
+.offerTerms,
+.offerRedemption p,
+.offerFooter p { margin: 0; }
+
+.offerPrice { font-size: 1rem; }
+.offerPrice strong { font-size: 1.25rem; }
+.offerTerms { color: var(--color-text-muted); }
+
+.offerRedemption {
+  display: grid;
+  justify-items: start;
+  gap: 6px;
+  padding-top: 8px;
+  font-size: 0.875rem;
+}
+
+.offerCode {
+  display: inline-flex;
+  align-items: stretch;
+  border: 1px dashed var(--color-diagram-border);
+  background: var(--color-bg);
+}
+
+.offerCode code {
+  align-self: center;
+  padding: 6px 12px;
+  border: 0;
+  background: transparent;
+  color: var(--color-text);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.offerCode button {
+  min-width: 76px;
+  min-height: 44px;
+  padding: 6px 8px;
+  border: 0;
+  border-left: 1px dashed var(--color-diagram-border);
+  background: transparent;
+  color: var(--color-text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.offerCode button:hover { background: var(--shadow-pixel); }
+
+.offerFooter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
+
+.offerDetailsLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 6px 12px;
+  border: 1px solid var(--color-diagram-border);
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.offerDetailsLink:hover {
+  background: var(--shadow-pixel);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
 @media (max-width: 768px) {
   .reference { flex-wrap: wrap; gap: 12px 16px; }
   .referenceText { flex: 1; min-width: 200px; }
