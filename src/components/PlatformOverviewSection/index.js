@@ -302,7 +302,6 @@ export default function PlatformOverviewSection() {
                     <div className={styles.mockGrid}>
                       {Array.from({ length: 8 }, (_, index) => <span key={index} />)}
                     </div>
-                    <div className={styles.mediaHint}>/video/platform-overview/{themedFile}</div>
                   </div>
                 </div>
               </div>

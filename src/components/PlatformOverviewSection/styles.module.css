@@ -308,15 +308,6 @@
   background: var(--color-bg);
 }
 
-.mediaHint {
-  position: absolute;
-  right: 34px;
-  bottom: 24px;
-  color: var(--color-text-muted);
-  font-size: 10px;
-  letter-spacing: 0.05em;
-  opacity: 0.7;
-}
 
 @media (max-width: 1100px) {
   .inner { padding: var(--section-pt) var(--landing-gutter, 80px) 0; }
@@ -335,7 +326,6 @@
   .mockContent { padding: 22px; }
   .mockGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
   .mockGrid span:nth-child(n+7) { display: none; }
-  .mediaHint { right: 22px; bottom: 16px; }
 }
 
 @media (max-width: 480px) {
@@ -361,7 +351,6 @@
   .mockToolbar { margin: 14px 0 12px; }
   .mockToolbar span { width: 54px; height: 18px; }
   .mockGrid { gap: 6px; }
-  .mediaHint { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

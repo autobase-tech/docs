@@ -5,6 +5,9 @@ import styles from './styles.module.css';
 
 const profile = INFRASTRUCTURE_COSTS.medium;
 const aws = profile.providers.find((provider) => provider.name === 'AWS');
+const monthlySavings = aws.managed - aws.autobase;
+const savingsPercent = Math.round(monthlySavings / aws.managed * 100);
+const annualSavings = monthlySavings * 12;
 
 export default function BusinessValueSection() {
   return (
@@ -12,17 +15,32 @@ export default function BusinessValueSection() {
       <div className={styles.grid}>
         <div className={styles.copy}>
           <p className={styles.label}><span aria-hidden="true">//</span> The economics</p>
-          <h2 id="business-value-title">What would PostgreSQL cost on your own infrastructure?</h2>
-          <p>You pay your provider for the machines and choose an Autobase plan for the software.
-            Your team gets a platform for running its databases without having to build one in-house.</p>
+          <h2 id="business-value-title">What could you save on PostgreSQL?</h2>
+          <p>Choose infrastructure that fits your workload and use Autobase to run your databases without building an internal platform.</p>
           <Link to="/pricing#infrastructure-heading">Compare costs for your setup <span aria-hidden="true">→</span></Link>
         </div>
         <div className={styles.example}>
           <h3>One cluster on AWS</h3>
           <p>Pricing model · One primary and two replicas<br />{profile.label}</p>
-          <dl>
-            <div><dt>Managed PostgreSQL</dt><dd>{formatCurrency.format(aws.managed)}<small> / mo</small></dd></div>
-            <div><dt>Infrastructure with Autobase</dt><dd>{formatCurrency.format(aws.autobase)}<small> / mo</small></dd></div>
+          <dl className={styles.comparison}>
+            <div className={styles.costRow}>
+              <dt>Managed PostgreSQL</dt>
+              <dd>{formatCurrency.format(aws.managed)}<small> / mo</small></dd>
+            </div>
+            <div className={`${styles.costRow} ${styles.autobaseCost}`} style={{'--bar-width': `${aws.autobase / aws.managed * 100}%`}}>
+              <dt>Infrastructure with Autobase</dt>
+              <dd>{formatCurrency.format(aws.autobase)}<small> / mo</small></dd>
+            </div>
+          </dl>
+          <dl className={styles.savings}>
+            <div>
+              <dt>Lower infrastructure costs</dt>
+              <dd>{savingsPercent}%</dd>
+            </div>
+            <div>
+              <dt>Estimated annual infrastructure savings</dt>
+              <dd>{formatCurrency.format(annualSavings)}</dd>
+            </div>
           </dl>
           <p>Autobase Starter is free for up to two clusters.</p>
         </div>
