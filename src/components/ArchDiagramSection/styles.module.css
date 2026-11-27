@@ -41,7 +41,7 @@
   margin: 0 0 12px;
   color: var(--color-text);
   font-family: var(--font-base);
-  font-size: clamp(20px, 2vw, 24px);
+  font-size: clamp(26px, 3vw, 40px);
   font-weight: var(--fw-bold);
   line-height: 1.35;
 }

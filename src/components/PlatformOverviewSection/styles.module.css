@@ -10,7 +10,7 @@
   width: 100%;
   max-width: var(--landing-content-width, 1200px);
   margin: 0 auto;
-  padding: 32px var(--landing-gutter, 80px) 0;
+  padding: var(--section-pt) var(--landing-gutter, 80px) 0;
 }
 
 .sectionLabel {
@@ -35,7 +35,7 @@
   margin: 0 0 12px;
   color: var(--color-text);
   font-family: var(--font-base);
-  font-size: clamp(20px, 2vw, 24px);
+  font-size: clamp(26px, 3vw, 40px);
   font-weight: var(--fw-bold);
   line-height: 1.35;
 }
@@ -319,7 +319,7 @@
 }
 
 @media (max-width: 1100px) {
-  .inner { padding: 32px var(--landing-gutter, 80px) 0; }
+  .inner { padding: var(--section-pt) var(--landing-gutter, 80px) 0; }
 }
 
 @media (max-width: 768px) {
@@ -369,3 +369,5 @@
     animation: none;
   }
 }
+
+.intro a { color: var(--color-text); text-decoration: underline; text-underline-offset: 4px; }

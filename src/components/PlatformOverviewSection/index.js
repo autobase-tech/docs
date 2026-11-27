@@ -202,16 +202,11 @@ export default function PlatformOverviewSection() {
   return (
     <section ref={sectionRef} className={styles.section} aria-labelledby="platform-overview-title">
       <div className={styles.inner}>
-        <h2 id="platform-overview-title" className={styles.sectionLabel}>
-          <span aria-hidden="true">//</span>
-          Platform overview
-        </h2>
-        <p className={styles.subtitle}>
-          Your PostgreSQL fleet. One control plane.
-        </p>
+        <p className={styles.sectionLabel}><span aria-hidden="true">//</span> Platform overview</p>
+        <h2 id="platform-overview-title" className={styles.subtitle}>One place to run your PostgreSQL databases.</h2>
         <p className={styles.intro}>
-          Deploy, configure, and operate production-ready PostgreSQL clusters from one console.
-          {' '}Bring the managed database experience to your own infrastructure.
+          Follow a workflow below, or{' '}
+          <a href="https://demo.autobase.tech" target="_blank" rel="noopener noreferrer">explore the live demo</a> yourself.
         </p>
 
         <div className={styles.tabs} role="tablist" aria-label="Platform demonstrations">
@@ -271,7 +266,8 @@ export default function PlatformOverviewSection() {
               src={`${mediaRoot}${themedFile}`}
               muted
               playsInline
-              preload={isNearView ? 'auto' : 'metadata'}
+              preload={isNearView ? 'auto' : 'none'}
+              controls={prefersReducedMotion}
               aria-label={activeDemo.description}
               onCanPlay={() => setMediaStatus('ready')}
               onPlaying={() => setHasStartedPlaying(true)}

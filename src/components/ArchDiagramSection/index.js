@@ -603,16 +603,10 @@ export default function ArchDiagramSection() {
   return (
     <section className={styles.section} aria-labelledby="day-2-operations-title">
       <div className={styles.inner}>
-        <h2 id="day-2-operations-title" className={styles.sectionLabel}>
-          <span aria-hidden="true">//</span>
-          Automated Day-2 Operations
-        </h2>
-        <p className={styles.subtitle}>
-          Less database maintenance. More time to build.
-        </p>
+        <p className={styles.sectionLabel}><span aria-hidden="true">//</span> Automated day-2 operations</p>
+        <h2 id="day-2-operations-title" className={styles.subtitle}>Less routine. More engineering.</h2>
         <p className={styles.intro}>
-          Take repetitive PostgreSQL tasks off your team’s plate with automated failover,
-          {' '}continuous backups, and workflows for recovery, upgrades, and scaling.
+          Automate day-to-day database operations and let your team focus on building your business.
         </p>
         <div className={styles.featuresGrid} aria-label="Platform capabilities">
           {features.map((f) => (

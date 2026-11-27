@@ -1,4 +1,5 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
+import {INFRASTRUCTURE_COSTS} from '@site/src/infrastructureCosts';
 import styles from './styles.module.css';
 
 const ROTATION_INTERVAL_MS = 6500;
@@ -13,19 +14,22 @@ const EXTENSION_NAMES = ['postgis', 'vector', 'timescaledb', 'pg_partman', 'pg_c
 // Autobase was initially released Oct 8, 2019 (JavaScript months are zero-based).
 const AUTOBASE_INITIAL_RELEASE_DATE = {year: 2019, month: 9, day: 8};
 const PRODUCTION_AGE_REFRESH_MS = 60 * 60 * 1000;
+const aws = INFRASTRUCTURE_COSTS.medium.providers.find((provider) => provider.name === 'AWS');
+const awsInfrastructureCostPercent = (aws.autobase / aws.managed) * 100;
 
 const BANNERS = [
   {
     id: 'time-to-value',
-    before: '1 week of DevOps work',
-    after: '10 minutes in Autobase',
+    before: 'Deploy PostgreSQL',
+    after: 'in about 10–15 minutes',
+    subtitle: 'After initial setup',
     visual: 'time-to-value',
   },
   {
     id: 'cost-of-ownership',
-    beforeAccent: '40–60%',
+    beforeAccent: `${Math.round(100 - awsInfrastructureCostPercent)}%`,
     before: '',
-    after: 'lower costs vs. managed PostgreSQL',
+    after: 'lower infrastructure costs in the AWS example',
     afterColor: 'text',
     visual: 'cost-of-ownership',
   },
@@ -228,16 +232,15 @@ function StopwatchIcon() {
       {/* Side crown/button */}
       <line x1="54" y1="22" x2="60" y2="16" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"/>
       <rect x="57" y="11" width="8" height="5" rx="2" fill="currentColor"/>
-      {/* "10" text */}
       <text
         x="42" y="46"
         textAnchor="middle"
         dominantBaseline="middle"
-        fontSize="20"
+        fontSize="12"
         fontWeight="800"
         fill="currentColor"
         fontFamily="system-ui, sans-serif"
-      >10</text>
+      >10–15</text>
       {/* "MIN" text */}
       <text
         x="42" y="60"
@@ -262,8 +265,8 @@ function BannerVisual({type, githubStars, productionHistory}) {
           <span className={styles.costTrack}><span className={styles.managedCost} /></span>
         </div>
         <div className={styles.costRow}>
-          <span>AUTOBASE POSTGRES</span>
-          <span className={styles.costTrack}><span className={styles.autobaseCost} /></span>
+          <span>INFRASTRUCTURE WITH AUTOBASE</span>
+          <span className={styles.costTrack}><span className={styles.autobaseCost} style={{width: `${awsInfrastructureCostPercent}%`}} /></span>
         </div>
       </div>
     );
@@ -376,7 +379,7 @@ function BannerVisual({type, githubStars, productionHistory}) {
     <div className={styles.visual} aria-hidden="true">
       <div className={styles.timeBlock}>
         <CalendarWithClockIcon />
-        <span className={styles.timeLabel}>1 WEEK</span>
+        <span className={styles.timeLabel}>SETUP COMPLETE</span>
       </div>
 
       <svg className={styles.arrow} width="48" height="24" viewBox="0 0 48 24" fill="none">
@@ -386,7 +389,7 @@ function BannerVisual({type, githubStars, productionHistory}) {
 
       <div className={styles.timeBlock}>
         <StopwatchIcon />
-        <span className={`${styles.timeLabel} ${styles.accentLabel}`}>10 MINUTES</span>
+        <span className={`${styles.timeLabel} ${styles.accentLabel}`}>10–15 MINUTES</span>
       </div>
     </div>
   );

@@ -1,0 +1,18 @@
+.section { max-width: var(--landing-content-width); margin: 0 auto; padding: var(--section-pt) var(--landing-gutter) 0; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(24px, 5vw, 70px); }
+.copy .label { margin: 0 0 12px; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+.label span { margin-right: 5px; color: var(--color-primary); }
+.copy h2 { margin: 0 0 16px; font-size: clamp(26px, 3vw, 40px); line-height: 1.15; }
+.copy p, .example p { color: var(--color-text-muted); }
+.copy a { color: var(--color-text); text-decoration: underline; text-underline-offset: 4px; }
+.example { padding: clamp(18px, 3vw, 32px); border: 1px solid var(--color-border); border-top: 3px solid var(--color-primary); }
+.example h3 { font-size: 22px; margin: 0 0 4px; }
+.example p { margin: 0; font-size: 14px; line-height: 1.5; }
+.example dl { margin: 16px 0; }
+.example dl div { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--color-border); }
+.example dt { font-weight: 400; }
+.example dd { margin: 0; font-size: clamp(18px, 2vw, 26px); font-weight: 700; white-space: nowrap; }
+.example small { color: var(--color-text-muted); font-size: 13px; font-weight: 400; }
+@media (max-width: 760px) {
+  .grid { grid-template-columns: 1fr; }
+}

@@ -1,73 +1,37 @@
 import React from 'react';
+import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
 
-function ValueGlyph({ children }) {
-  return (
-    <svg viewBox="0 0 48 48" fill="none" aria-hidden="true" focusable="false">
-      <g stroke="currentColor" strokeWidth="1" strokeLinecap="square" strokeLinejoin="miter">
-        <path d="M8 16V8h8M32 8h8v8M40 32v8h-8M16 40H8v-8" />
-        {children}
-      </g>
-    </svg>
-  );
-}
-
-const props = [
-  {
-    icon: (
-      <ValueGlyph>
-        <path d="M14 14h20v8H14zM14 26h20v8H14z" />
-        <path d="M18 18h1M28 18h3M18 30h1M28 30h3" />
-      </ValueGlyph>
-    ),
-    title: 'Your Infrastructure',
-    description: 'Run PostgreSQL in your cloud account or on your own servers.',
-  },
-  {
-    icon: (
-      <ValueGlyph>
-        <path d="M14 16l10-4 10 4-10 4-10-4zM14 16v16l10 4 10-4V16" />
-        <path d="M14 24l10 4 10-4M24 20v16" />
-      </ValueGlyph>
-    ),
-    title: 'Your Data',
-    description: 'Keep databases and backups in infrastructure you control.',
-  },
-  {
-    icon: (
-      <ValueGlyph>
-        <path d="M13 17h8M27 17h8M13 24h14M33 24h2M13 31h3M22 31h13" />
-        <path d="M21 14h6v6h-6zM27 21h6v6h-6zM16 28h6v6h-6z" />
-      </ValueGlyph>
-    ),
-    title: 'Your Rules',
-    description: 'Full control over access, extensions, and configuration.',
-  },
+const integrations = [
+  ['Hetzner Cloud', 'hetzner'], ['AWS', 'aws'], ['Google Cloud', 'gcp'],
+  ['Azure', 'azure'], ['DigitalOcean', 'digitalocean'],
 ];
 
 export default function ValuePropsSection() {
   return (
     <section className={styles.section} aria-labelledby="data-sovereignty-title">
       <div className={styles.inner}>
-        <h2 id="data-sovereignty-title" className={styles.heading}>
-          <span aria-hidden="true">//</span>
-          Data Sovereignty by Design
-        </h2>
-        <p className={styles.subtitle}>
-          Your PostgreSQL. On your terms.
-        </p>
+        <p className={styles.label}><span aria-hidden="true">//</span> Data sovereignty</p>
+        <h2 id="data-sovereignty-title" className={styles.heading}>Choose where your data lives.</h2>
         <p className={styles.intro}>
-          Get the convenience of managed PostgreSQL while keeping control over where your data lives,
-          {' '}who can access it, and how your databases run.
+          Your team decides where databases and backups are stored, who has access, and how they are configured.
+          Choose the infrastructure that fits your customers and your budget.
         </p>
         <div className={styles.grid}>
-          {props.map((p) => (
-            <div key={p.title} className={styles.card}>
-              <div className={styles.icon}>{p.icon}</div>
-              <h3 className={styles.title}>{p.title}</h3>
-              <p className={styles.description}>{p.description}</p>
-            </div>
-          ))}
+          <div className={styles.card}>
+            <h3>Bring your own cloud <span className={styles.acronym}>(BYOC)</span></h3>
+            <p>Autobase provisions the machines in your account through built-in cloud integrations.</p>
+            <ul className={styles.links} aria-label="Cloud deployment guides">
+              {integrations.map(([name, slug]) => (
+                <li key={slug}><Link to={`/docs/deployment/${slug}`}>{name}</Link></li>
+              ))}
+            </ul>
+          </div>
+          <div className={styles.card}>
+            <h3>Bring your own machines <span className={styles.acronym}>(BYOM)</span></h3>
+            <p>Run on existing Linux servers in your data center, private cloud, or another provider.</p>
+            <Link to="/docs/deployment/your-own-machines">Deploy on your servers <span aria-hidden="true">→</span></Link>
+          </div>
         </div>
       </div>
     </section>

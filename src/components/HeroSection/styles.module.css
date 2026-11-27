@@ -26,12 +26,13 @@
 
 .heroGrid {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
   align-items: center;
   gap: 40px;
 }
 
 .copy {
+  container-type: inline-size;
   display: flex;
   min-width: 0;
   flex-direction: column;
@@ -39,160 +40,86 @@
   gap: 24px;
 }
 
-.inner .label {
+.label {
   margin: 0;
-  color: var(--color-primary);
-  font-family: var(--font-base);
-  font-size: 12px;
+  color: var(--color-text-muted);
+  font-size: 13px;
   font-weight: 700;
-  line-height: 1.5;
-  letter-spacing: 1px;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
-.label span {
-  margin-right: 6px;
-}
+.label span, .productLabel span { margin-right: 6px; color: var(--color-primary); }
 
-/* ─── Heading — Quantico Bold ─────────────────────────────────────── */
 .heading {
-  font-family: 'Quantico', sans-serif;
-  font-size: clamp(34px, 3.5vw, 46px);
-  font-weight: 700;
-  line-height: 1.05;
+  margin: 0;
+  font-size: clamp(1.5rem, 8.6cqw, 3.75rem);
+  line-height: 1.04;
+  letter-spacing: -0.045em;
   color: var(--color-text);
-  letter-spacing: -1px;
-  margin: 0;
+  text-transform: uppercase;
 }
 
-.line {
-  display: block;
-  min-height: 1.05em;
-}
+.subheading span { display: block; }
+.accent { color: var(--color-primary); }
 
-/* ─── Subheading ──────────────────────────────────────────────────── */
+.productLabel,
 .subheading {
-  font-family: var(--font-base);
-  font-size: clamp(18px, 1.8vw, 22px);
-  font-weight: var(--fw-regular);
-  color: var(--color-text-muted);
   margin: 0;
-  max-width: 660px;
-  line-height: 1.5;
+  color: var(--color-text-muted);
+  font-size: clamp(18px, 1.7vw, 23px);
+  line-height: 1.45;
 }
 
-.subheadingSecondLine {
-  display: block;
+.productLabel {
+  font-size: clamp(0.6875rem, 3.35cqw, 0.8125rem);
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
 }
 
-@media (max-width: 768px) {
-  .subheadingSecondLine { display: inline; }
-}
-
-/* ─── Responsive ──────────────────────────────────────────────────── */
-@media (max-width: 1100px) {
-  .inner { padding: 40px var(--landing-gutter, 80px) 8px; }
-  .heroGrid { gap: 28px; }
-}
-
-@media (max-width: 1000px) {
-  .heroGrid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
-  .heading { font-size: clamp(36px, 5vw, 54px); }
-}
-
-@media (max-width: 768px) {
-  .inner { padding: 32px var(--landing-gutter, 80px) 8px; }
-}
-
-@media (max-width: 480px) {
-  .inner { padding: 28px var(--landing-gutter, 80px) 8px; }
-}
-
-/* ─── Hero actions ─────────────────────────────────────────────────── */
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 20px 24px;
-}
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  min-height: 48px;
-  padding: 12px 24px;
-  border: 1px solid transparent;
-  font-family: var(--font-base);
-  font-size: 16px;
+  gap: 14px;
+  min-height: 46px;
+  padding: 10px 20px;
+  border: 1px solid var(--color-diagram-border);
+  color: var(--color-text);
   font-weight: 700;
-  line-height: 1.4;
-  text-decoration: none;
 }
-
-.button:hover {
-  text-decoration: none;
-}
-
-.button:focus-visible {
-  outline: 2px solid var(--color-text);
-  outline-offset: 4px;
-}
-
-.primaryButton {
-  background: transparent;
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-}
-
-.primaryButton:hover {
-  background: var(--landing-accent-fill);
-  border-color: var(--landing-accent-fill);
-  color: #111111;
-}
-
-.secondaryButton {
-  border-color: var(--color-border);
-  color: var(--color-text);
-  background: transparent;
-}
-
-.secondaryButton:hover {
-  border-color: var(--color-text-muted);
-  color: var(--color-text);
-  background: var(--shadow-pixel);
-}
-
-@media (max-width: 480px) {
-  .actions { flex-wrap: nowrap; gap: 10px; }
-  .button {
-    min-height: 44px;
-    padding: 10px 12px;
-    gap: 8px;
-    font-size: 13px;
-    white-space: nowrap;
-  }
-}
+.primaryButton { background: var(--color-text); border-color: var(--color-text); color: var(--color-bg); }
+.primaryButton:hover { background: var(--landing-accent-fill); color: var(--landing-on-accent); border-color: var(--landing-accent-fill); }
+.secondaryButton:hover { border-color: var(--color-text); color: var(--color-text); }
+.button:hover { text-decoration: none; }
 
 .reference {
   display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 20px 0 24px;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 24px;
+  padding: 18px 0;
   border-top: 1px solid var(--color-border);
-  color: var(--color-text);
-  text-decoration: none;
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+.referenceAccent { color: #bd3b12; }
+:global([data-theme='dark']) .referenceAccent { color: var(--color-primary); }
+.referenceLink { color: var(--color-text); text-decoration: underline; text-underline-offset: 3px; }
+.reference:hover { color: var(--color-text); text-decoration: none; }
+
+@media (max-width: 1000px) {
+  .heroGrid { grid-template-columns: minmax(0, 1fr); }
 }
 
-.referenceText { display: flex; flex-direction: column; gap: 6px; }
-.referenceText strong { font-size: 15px; font-weight: 700; }
-.referenceAccent { color: var(--color-primary); }
-.referenceText > span { max-width: 680px; font-size: 13px; line-height: 1.6; color: var(--color-text-muted); }
-.referenceLink { margin-left: auto; flex-shrink: 0; font-size: 13px; color: var(--color-primary); }
-.reference:hover { color: var(--color-text); text-decoration: none; }
-.reference:hover .referenceLink { text-decoration: underline; }
-.reference:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 4px; }
+@media (max-width: 760px) {
+  .inner { padding-top: 32px; }
+  .copy { gap: 20px; }
+  .button { padding-inline: 16px; }
+}
 
 .offerCard {
   display: grid;
@@ -303,10 +230,4 @@
   background: var(--shadow-pixel);
   color: var(--color-text);
   text-decoration: none;
-}
-
-@media (max-width: 768px) {
-  .reference { flex-wrap: wrap; gap: 12px 16px; }
-  .referenceText { flex: 1; min-width: 200px; }
-  .referenceLink { margin-left: 0; }
 }

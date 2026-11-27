@@ -4,7 +4,7 @@ import HeroSection from '@site/src/components/HeroSection';
 import PlatformOverviewSection from '@site/src/components/PlatformOverviewSection';
 import ArchDiagramSection from '@site/src/components/ArchDiagramSection';
 import ValuePropsSection from '@site/src/components/ValuePropsSection';
-import ProductHighlightsSection from '@site/src/components/ProductHighlightsSection';
+import BusinessValueSection from '@site/src/components/BusinessValueSection';
 import CLISection from '@site/src/components/CLISection';
 import ContactSection from '@site/src/components/ContactSection';
 import SocialProofSection from '@site/src/components/SocialProofSection';
@@ -13,15 +13,15 @@ export default function Home() {
   return (
     <Layout
       wrapperClassName="landingPage"
-      title="autobase"
-      description="Automated database platform for PostgreSQL">
-      <HeroSection />
+      title="Autobase"
+      description="Get the simplicity of managed PostgreSQL on infrastructure you control. Run Autobase in your cloud account or on your own servers. Start free with up to two clusters.">
       <main>
+        <HeroSection />
+        <ValuePropsSection />
+        <BusinessValueSection />
         <PlatformOverviewSection />
         <ArchDiagramSection />
-        <ValuePropsSection />
         <CLISection />
-        {/* <ProductHighlightsSection /> */}
         <ContactSection />
         <SocialProofSection />
       </main>

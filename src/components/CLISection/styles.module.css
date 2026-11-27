@@ -1,7 +1,7 @@
 /* ─── Section ─────────────────────────────────────────────────────── */
 .section {
   background: var(--color-bg);
-  padding: 32px 0 32px;
+  padding: var(--section-pt) 0 40px;
 }
 
 .inner {
@@ -9,6 +9,8 @@
   margin: 0 auto;
   padding: 0 var(--landing-gutter, 80px);
 }
+
+.heading { margin: 0 0 22px; font-size: clamp(26px, 3vw, 40px); }
 
 /* ─── CTA row ────────────────────────────────────────────────────── */
 .ctas {
