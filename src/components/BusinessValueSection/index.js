@@ -15,20 +15,20 @@ export default function BusinessValueSection() {
       <div className={styles.grid}>
         <div className={styles.copy}>
           <p className={styles.label}><span aria-hidden="true">//</span> The economics</p>
-          <h2 id="business-value-title">What could you save on PostgreSQL?</h2>
+          <h2 id="business-value-title">What could you save?</h2>
           <p>Choose infrastructure that fits your workload and use Autobase to run your databases without building an internal platform.</p>
           <Link to="/pricing#infrastructure-heading">Compare costs for your setup <span aria-hidden="true">→</span></Link>
         </div>
         <div className={styles.example}>
-          <h3>One cluster on AWS</h3>
-          <p>Pricing model · One primary and two replicas<br />{profile.label}</p>
+          <h3>One Postgres cluster</h3>
+          <p>AWS pricing model · One primary and two replicas<br />{profile.label}</p>
           <dl className={styles.comparison}>
             <div className={styles.costRow}>
-              <dt>Managed PostgreSQL</dt>
+              <dt>Managed Postgres</dt>
               <dd>{formatCurrency.format(aws.managed)}<small> / mo</small></dd>
             </div>
             <div className={`${styles.costRow} ${styles.autobaseCost}`} style={{'--bar-width': `${aws.autobase / aws.managed * 100}%`}}>
-              <dt>Infrastructure with Autobase</dt>
+              <dt>Autobase Postgres</dt>
               <dd>{formatCurrency.format(aws.autobase)}<small> / mo</small></dd>
             </div>
           </dl>
@@ -42,7 +42,6 @@ export default function BusinessValueSection() {
               <dd>{formatCurrency.format(annualSavings)}</dd>
             </div>
           </dl>
-          <p>Autobase Starter is free for up to two clusters.</p>
         </div>
       </div>
     </section>

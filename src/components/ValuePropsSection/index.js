@@ -15,12 +15,12 @@ export default function ValuePropsSection() {
         <h2 id="data-sovereignty-title" className={styles.heading}>Choose where your data lives.</h2>
         <p className={styles.intro}>
           Your team decides where databases and backups are stored, who has access, and how they are configured.
-          Choose the infrastructure that fits your customers and your budget.
+          Autobase automates Postgres deployment and day-to-day operations on the infrastructure you choose.
         </p>
         <div className={styles.grid}>
           <div className={styles.card}>
             <h3>Bring your own cloud <span className={styles.acronym}>(BYOC)</span></h3>
-            <p>Autobase provisions the machines in your account through built-in cloud integrations.</p>
+            <p>Deploy Postgres in your own account with a supported cloud provider.</p>
             <ul className={styles.links} aria-label="Cloud deployment guides">
               {integrations.map(([name, slug]) => (
                 <li key={slug}><Link to={`/docs/deployment/${slug}`}>{name}</Link></li>
@@ -29,7 +29,7 @@ export default function ValuePropsSection() {
           </div>
           <div className={styles.card}>
             <h3>Bring your own machines <span className={styles.acronym}>(BYOM)</span></h3>
-            <p>Run on existing Linux servers in your data center, private cloud, or another provider.</p>
+            <p>Run on existing Linux servers in your data center or private cloud.</p>
             <Link to="/docs/deployment/your-own-machines">Deploy on your servers <span aria-hidden="true">→</span></Link>
           </div>
         </div>

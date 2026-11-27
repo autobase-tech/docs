@@ -203,7 +203,7 @@ export default function PlatformOverviewSection() {
     <section ref={sectionRef} className={styles.section} aria-labelledby="platform-overview-title">
       <div className={styles.inner}>
         <p className={styles.sectionLabel}><span aria-hidden="true">//</span> Platform overview</p>
-        <h2 id="platform-overview-title" className={styles.subtitle}>One place to run your PostgreSQL databases.</h2>
+        <h2 id="platform-overview-title" className={styles.subtitle}>One control plane for your entire database fleet.</h2>
         <p className={styles.intro}>
           Follow a workflow below, or{' '}
           <a href="https://demo.autobase.tech" target="_blank" rel="noopener noreferrer">explore the live demo</a> yourself.
